@@ -1,0 +1,13 @@
+{
+ "run": "20261107T140638Z",
+ "instruments": 286,
+ "live_list_ok": true,
+ "live_error": null,
+ "status": {
+  "full": 5,
+  "partial": 0,
+  "none": 281
+ },
+ "still_in_live_list": 1,
+ "api_errors": 281
+}
