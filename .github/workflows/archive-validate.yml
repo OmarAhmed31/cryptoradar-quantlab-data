@@ -1,0 +1,38 @@
+name: archive-validate
+
+# Archive verification: listing-only coverage (142 pairs), 1 month 1m candles BTC/ETH/SAND, one delisted pair end check.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["requests/archive_validate.txt"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: okx-collect
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Guard tests on this runner
+        run: python3 -I tests/test_proxy.py
+      - name: Archive verify
+        run: python3 -I lab/archive_validate.py
+      - name: Commit results
+        if: always()
+        run: |
+          git config user.name "quantlab-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add out reports
+          git commit -m "archive validate $(date -u +%FT%TZ)" || echo "nothing to commit"
+          git pull --rebase origin main
+          git push
