@@ -4,13 +4,14 @@ python3 -I lab/archive_probe.py
  -> out/archive_probe/<run>/  listing_<yyyymm>.json (raw), sample/<file> (ONE file), probe_report.json
 
 Scope approved by the expert (2026-11-07):
-  * file listings for 2024-01, 2024-07, 2025-06 only
+  * file listings for 2024-01, 2024-07, 2025-06 only (official endpoint /api/v5/public/market-data-history;
+    the older priapi listing returned 404 on 2026-11-07, see out/archive_probe/20261107T155922Z)
   * download ONE single-day file only, for a pair known to be delisted later and trading that day
   * inspect content (price, size, time, trade id), coverage, provenance (url, time, sha256)
   * NO monthly archives, NO candle building, NO research use, NO spot/futures mixing
 Hosts: www.okx.com (listing API) + static.okx.com (file CDN). Nothing else.
 """
-import sys, json, time, pathlib, hashlib, zipfile, io, csv, re, urllib.request, urllib.error, datetime as dt
+import sys, json, time, pathlib, hashlib, zipfile, io, csv, re, urllib.request, urllib.error, urllib.parse, datetime as dt
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 from lab import guard
 
@@ -18,7 +19,8 @@ MONTHS = ("202401", "202407", "202506")
 TARGET_DAY = "2024-07-15"            # inside 2024-07 listing
 # delisted later (global ledger, spot, effective 2024-08-23 / 2024-08-30) -> tried in this order, ONE download max
 CANDIDATES = ("FITFI-USDT", "GARI-USDT", "XPR-USDT", "AKITA-USDT", "TAMA-USDT", "WNCG-USDT", "TUP-USDT", "THG-USDT")
-LATER_DELISTED_CHECK = {"202506": ("X-USDT", "BSV-USDT", "GOG-USDT", "DIA-USDT", "BONE-USDT", "OXT-USDT"),
+LATER_DELISTED_CHECK = {"202401": ('EM-USDT','HC-USDT','KAR-USDT','LET-USDT','MOVEZ-USDT','MRST-USDT'),
+                        "202506": ("X-USDT", "BSV-USDT", "GOG-USDT", "DIA-USDT", "BONE-USDT", "OXT-USDT"),
                         "202407": CANDIDATES}
 MAX_BYTES = 200 * 1024 * 1024
 UA = {"User-Agent": "CryptoRadar-QuantLab/0.1 (research, read-only)"}
@@ -43,78 +45,96 @@ def http(url, cap=20 * 1024 * 1024):
     return None, rec
 
 
-def names(obj):
+def entries(obj):
+    """every dict in the response that carries a download link"""
     out = []
     if isinstance(obj, dict):
-        for k, v in obj.items():
-            if k.lower() in ("filename", "file_name", "name") and isinstance(v, str):
-                out.append(obj)
-                break
+        if any(isinstance(v, str) and v.startswith("http") for v in obj.values()):
+            out.append(obj)
         for v in obj.values():
-            out += names(v)
+            out += entries(v)
     elif isinstance(obj, list):
         for v in obj:
-            out += names(v)
+            out += entries(v)
     return out
 
 
-def fname(d):
-    for k in ("fileName", "filename", "file_name", "name"):
-        if k in d:
-            return d[k]
+def link(d):
+    return next(v for v in d.values() if isinstance(v, str) and v.startswith("http"))
+
+
+def ms(day):
+    return int(dt.datetime.strptime(day, "%Y-%m-%d").replace(tzinfo=dt.timezone.utc).timestamp() * 1000)
+
+
+def mbounds(m):
+    y, mo = int(m[:4]), int(m[4:])
+    a = dt.datetime(y, mo, 1, tzinfo=dt.timezone.utc)
+    b = dt.datetime(y + (mo == 12), mo % 12 + 1, 1, tzinfo=dt.timezone.utc)
+    return int(a.timestamp() * 1000), int(b.timestamp() * 1000) - 1
+
+
+API = "https://www.okx.com/api/v5/public/market-data-history"
+MODULES = {"1": "trade history", "2": "1-minute candlestick"}
+
+
+def listing(out, tag, module, insts, agg, begin, end):
+    url = f"{API}?module={module}&instType=SPOT&instIdList={','.join(insts)}&dateAggrType={agg}&begin={begin}&end={end}"
+    body, rec = http(url)
+    if body:
+        guard.atomic_write(out / f"listing_{tag}.json", body, mode="wb")
+    ents, code = [], None
+    try:
+        j = json.loads(body) if body else {}
+        code, rec["okx_msg"] = j.get("code"), j.get("msg")
+        ents = entries(j.get("data"))
+    except Exception as e:
+        rec["parse_error"] = str(e)[:150]
+    rec.update(okx_code=code, files=len(ents), entry_fields=sorted(ents[0].keys()) if ents else [],
+               sample=ents[:4], links=[link(e) for e in ents][:60])
+    time.sleep(1.0)
+    return rec, ents
 
 
 def main():
     run = time.strftime("%Y%m%dT%H%M%SZ", time.gmtime())
     out = guard.LAB / "out" / "archive_probe" / run
     (out / "sample").mkdir(parents=True, exist_ok=True)
-    rep = {"run": run, "scope": "limited probe, expert-approved 2026-11-07", "listings": {}, "download": None}
-    files_by_month = {}
+    rep = {"run": run, "scope": "limited probe, expert-approved 2026-11-07", "endpoint": API, "listings": {}, "download": None}
     for m in MONTHS:
-        url = f"https://www.okx.com/priapi/v5/broker/public/orderRecord?t={int(time.time()*1000)}&path=cdn/okex/traderecords/trades/monthly/{m}"
-        body, rec = http(url)
-        if body:
-            guard.atomic_write(out / f"listing_{m}.json", body, mode="wb")
-        items = []
-        try:
-            items = names(json.loads(body)) if body else []
-        except Exception as e:
-            rec["parse_error"] = str(e)[:150]
-        fl = sorted({fname(i) for i in items if fname(i)})
-        files_by_month[m] = {fname(i): i for i in items if fname(i)}
-        days = sorted({d for f in fl for d in re.findall(r"\d{4}-\d{2}-\d{2}", f)})
-        spot_usdt = [f for f in fl if re.match(r"^[A-Z0-9]+-USDT-trades-", f)]
-        insts = sorted({f.split("-trades-")[0] for f in fl if "-trades-" in f})
-        later = {p: sum(1 for f in fl if f.startswith(p + "-trades-")) for p in LATER_DELISTED_CHECK.get(m, ())}
-        rep["listings"][m] = {**rec, "files": len(fl), "instruments": len(insts), "spot_usdt_files": len(spot_usdt),
-                              "first_day": days[0] if days else None, "last_day": days[-1] if days else None,
-                              "days": len(days), "sample_names": fl[:10],
-                              "later_delisted_pairs_files_in_month": later,
-                              "item_fields": sorted(items[0].keys()) if items else []}
-        time.sleep(1.0)
-
-    # ---- ONE download
-    month = TARGET_DAY[:4] + TARGET_DAY[5:7]
+        insts = (list(LATER_DELISTED_CHECK.get(m, ())) + ["BTC-USDT"])[:10]
+        b, e = mbounds(m)
+        for mod in MODULES:
+            rec, _ = listing(out, f"{m}_module{mod}_monthly", mod, insts, "monthly", b, e)
+            rep["listings"][f"{m} module {mod} ({MODULES[mod]}) monthly, instIdList={','.join(insts)}"] = rec
+    # daily listing for the target day, trades only, then ONE download
+    d0 = ms(TARGET_DAY)
+    rec, ents = listing(out, f"{TARGET_DAY}_module1_daily", "1", list(CANDIDATES), "daily", d0, d0 + 86400000 - 1)
+    rep["listings"][f"{TARGET_DAY} module 1 daily, instIdList={','.join(CANDIDATES)}"] = rec
     pick = None
     for p in CANDIDATES:
-        for f, meta in files_by_month.get(month, {}).items():
-            if f.startswith(p + "-trades-") and TARGET_DAY in f:
-                pick = (p, f, meta); break
+        for en in ents:
+            if p in json.dumps(en):
+                pick = (p, en); break
         if pick:
             break
     if not pick:
-        rep["download"] = {"skipped": f"no file for candidates on {TARGET_DAY} in listing"}
+        rep["download"] = {"skipped": f"no trade file for candidates on {TARGET_DAY}"}
     else:
-        p, f, meta = pick
-        url = f"https://static.okx.com/cdn/okex/traderecords/trades/monthly/{month}/{f}"
-        body, rec = http(url, cap=MAX_BYTES)
-        d = {"pair": p, "file": f, "listing_meta": meta, **rec}
-        if body and not rec.get("truncated"):
-            guard.atomic_write(out / "sample" / f, body, mode="wb")
-            d.update(inspect(body, p))
-        rep["download"] = d
+        p, en = pick
+        url = link(en)
+        if urllib.parse.urlparse(url).hostname not in ("static.okx.com", "www.okx.com"):
+            rep["download"] = {"skipped": f"link host not approved: {urllib.parse.urlparse(url).hostname}", "url": url}
+        else:
+            body, rec = http(url, cap=MAX_BYTES)
+            fn = url.rsplit("/", 1)[-1].split("?")[0] or "sample.bin"
+            dd = {"pair": p, "listing_entry": en, "file": fn, **rec}
+            if body and not rec.get("truncated"):
+                guard.atomic_write(out / "sample" / fn, body, mode="wb")
+                dd.update(inspect(body, p))
+            rep["download"] = dd
     guard.atomic_write(out / "probe_report.json", json.dumps(rep, indent=1, ensure_ascii=False))
-    print(json.dumps(rep, indent=1, ensure_ascii=False)[:6000])
+    print(json.dumps(rep, indent=1, ensure_ascii=False)[:8000])
 
 
 def inspect(body, pair):
