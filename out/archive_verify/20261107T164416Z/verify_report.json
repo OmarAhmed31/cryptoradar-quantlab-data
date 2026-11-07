@@ -1,0 +1,152 @@
+{
+ "run": "20261107T164416Z",
+ "scope": "expert approval after v0.5: listing-only 142 pairs + 1 month 1m candles BTC/ETH/SAND + one delisted pair end check",
+ "pairs": 142,
+ "candles": [
+  {
+   "file": "BTC-USDT-candlesticks-2026-09.zip",
+   "listing": {
+    "dateTs": "1788192000000",
+    "filename": "BTC-USDT-candlesticks-2026-09.zip",
+    "sizeMB": "1.27",
+    "url": "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202609/BTC-USDT-candlesticks-2026-09.zip?v=1001"
+   },
+   "url": "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202609/BTC-USDT-candlesticks-2026-09.zip?v=1001",
+   "requested_utc": "2026-11-07T16:44:17Z",
+   "status": 200,
+   "bytes": 1332672,
+   "truncated": false,
+   "sha256": "38f3d397bedc8dca4d1cf53f0d844e3524d1ea4176b1d7259b73d368223c4928"
+  },
+  {
+   "file": "ETH-USDT-candlesticks-2026-09.zip",
+   "listing": {
+    "dateTs": "1788192000000",
+    "filename": "ETH-USDT-candlesticks-2026-09.zip",
+    "sizeMB": "1.2",
+    "url": "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202609/ETH-USDT-candlesticks-2026-09.zip?v=1001"
+   },
+   "url": "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202609/ETH-USDT-candlesticks-2026-09.zip?v=1001",
+   "requested_utc": "2026-11-07T16:44:17Z",
+   "status": 200,
+   "bytes": 1262919,
+   "truncated": false,
+   "sha256": "375e0c2367181a52cd5adc95583d798aeaa862faa00e29a7067c2bfe766b8aff"
+  },
+  {
+   "file": "SAND-USDT-candlesticks-2026-09.zip",
+   "listing": {
+    "dateTs": "1788192000000",
+    "filename": "SAND-USDT-candlesticks-2026-09.zip",
+    "sizeMB": "0.66",
+    "url": "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202609/SAND-USDT-candlesticks-2026-09.zip?v=1001"
+   },
+   "url": "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202609/SAND-USDT-candlesticks-2026-09.zip?v=1001",
+   "requested_utc": "2026-11-07T16:44:17Z",
+   "status": 200,
+   "bytes": 688201,
+   "truncated": false,
+   "sha256": "1dbda88718dc7aa83c05d4fe4c11d7835cf26b31398ea1cb934cdce8033e5d51"
+  }
+ ],
+ "range_diagnostic": [
+  {
+   "agg": "monthly",
+   "months": 20,
+   "status": 400,
+   "code": "50077",
+   "msg": "The time interval between the start date and end date cannot exceed 10 months.",
+   "files": null
+  },
+  {
+   "agg": "monthly",
+   "months": 12,
+   "status": 400,
+   "code": "50077",
+   "msg": "The time interval between the start date and end date cannot exceed 10 months.",
+   "files": null
+  },
+  {
+   "agg": "monthly",
+   "months": 6,
+   "status": 200,
+   "code": "0",
+   "msg": "",
+   "files": 30
+  },
+  {
+   "agg": "daily",
+   "days": 19,
+   "status": 400,
+   "code": "50076",
+   "msg": "The time interval between the start date and end date cannot exceed 10 days.",
+   "files": null
+  },
+  {
+   "agg": "daily",
+   "days": 15,
+   "status": 400,
+   "code": "50076",
+   "msg": "The time interval between the start date and end date cannot exceed 10 days.",
+   "files": null
+  },
+  {
+   "agg": "daily",
+   "days": 11,
+   "status": 400,
+   "code": "50076",
+   "msg": "The time interval between the start date and end date cannot exceed 10 days.",
+   "files": null
+  },
+  {
+   "agg": "daily",
+   "days": 8,
+   "status": 200,
+   "code": "0",
+   "msg": "",
+   "files": 16
+  }
+ ],
+ "delist_check": {
+  "pair": "FITFI-USDT",
+  "effective_delisting_utc": "2024-08-30 08:00",
+  "files": [
+   {
+    "kind": "trades",
+    "file": "FITFI-USDT-trades-2024-08-23.zip",
+    "file_day_start_utc": "2024-08-22 16:00",
+    "url": "https://static.okx.com/cdn/okex/traderecords/trades/daily/20240823/FITFI-USDT-trades-2024-08-23.zip?v=1001",
+    "requested_utc": "2026-11-07T17:14:57Z",
+    "status": 200,
+    "bytes": 124688,
+    "truncated": false,
+    "sha256": "a14ecb84617e7bef6b20148901d48f45a660eba237e0707aac08e29703651c6a"
+   },
+   {
+    "kind": "candles",
+    "file": "FITFI-USDT-candlesticks-2024-08-23.zip",
+    "file_day_start_utc": "2024-08-22 16:00",
+    "url": "https://static.okx.com/cdn/okex/traderecords/candlesticks/daily/20240823/FITFI-USDT-candlesticks-2024-08-23.zip?v=1001",
+    "requested_utc": "2026-11-07T17:14:58Z",
+    "status": 200,
+    "bytes": 20960,
+    "truncated": false,
+    "sha256": "bb2e4a8affc5cc436bfcdebdc5fb7da54d485ef78fb43bb4a22c73d777fa8bb4"
+   }
+  ]
+ },
+ "listing_calls": 800,
+ "listing_errors": [],
+ "listing_error_count": 0,
+ "largest_accepted_range_days": 184.0,
+ "coverage_trades": {
+  "full_apparent": 141,
+  "partial": 0,
+  "none": 1
+ },
+ "coverage_candles": {
+  "full_apparent": 141,
+  "partial": 0,
+  "none": 1
+ }
+}
