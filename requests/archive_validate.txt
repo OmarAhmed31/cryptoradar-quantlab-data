@@ -1,1 +1,2 @@
 rule B validation 2026-11-07 (expert conditions after v0.6)
+rerun 2 (commit step fix)
