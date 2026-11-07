@@ -1,0 +1,490 @@
+{
+ "run": "20261107T160218Z",
+ "scope": "limited probe, expert-approved 2026-11-07",
+ "endpoint": "https://www.okx.com/api/v5/public/market-data-history",
+ "listings": {
+  "202401 module 1 (trade history) monthly, instIdList=EM-USDT,HC-USDT,KAR-USDT,LET-USDT,BTC-USDT": {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=EM-USDT,HC-USDT,KAR-USDT,LET-USDT,BTC-USDT&dateAggrType=monthly&begin=1704067200000&end=1706745599999",
+   "requested_utc": "2026-11-07T16:02:18Z",
+   "status": 200,
+   "final_url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=EM-USDT,HC-USDT,KAR-USDT,LET-USDT,BTC-USDT&dateAggrType=monthly&begin=1704067200000&end=1706745599999",
+   "bytes": 2882,
+   "truncated": false,
+   "sha256": "8681bf3243b396d3b3b0ad5fc45c9bf16302728b705b81235fadcc010c027881",
+   "content_type": "application/json;charset=UTF-8",
+   "okx_msg": "",
+   "okx_code": "0",
+   "files": 10,
+   "entry_fields": [
+    "dateTs",
+    "filename",
+    "sizeMB",
+    "url"
+   ],
+   "sample": [
+    {
+     "dateTs": "1706716800000",
+     "filename": "LET-USDT-trades-2024-02.zip",
+     "sizeMB": "1.69",
+     "url": "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202402/LET-USDT-trades-2024-02.zip?v=1001"
+    },
+    {
+     "dateTs": "1704038400000",
+     "filename": "LET-USDT-trades-2024-01.zip",
+     "sizeMB": "1.21",
+     "url": "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202401/LET-USDT-trades-2024-01.zip?v=1001"
+    },
+    {
+     "dateTs": "1706716800000",
+     "filename": "KAR-USDT-trades-2024-02.zip",
+     "sizeMB": "0.92",
+     "url": "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202402/KAR-USDT-trades-2024-02.zip?v=1001"
+    },
+    {
+     "dateTs": "1704038400000",
+     "filename": "KAR-USDT-trades-2024-01.zip",
+     "sizeMB": "1.09",
+     "url": "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202401/KAR-USDT-trades-2024-01.zip?v=1001"
+    }
+   ],
+   "links": [
+    "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202402/LET-USDT-trades-2024-02.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202401/LET-USDT-trades-2024-01.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202402/KAR-USDT-trades-2024-02.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202401/KAR-USDT-trades-2024-01.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202402/BTC-USDT-trades-2024-02.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202401/BTC-USDT-trades-2024-01.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202402/EM-USDT-trades-2024-02.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202401/EM-USDT-trades-2024-01.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202402/HC-USDT-trades-2024-02.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202401/HC-USDT-trades-2024-01.zip?v=1001"
+   ]
+  },
+  "202401 module 2 (1-minute candlestick) monthly, instIdList=EM-USDT,HC-USDT,KAR-USDT,LET-USDT,BTC-USDT": {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=2&instType=SPOT&instIdList=EM-USDT,HC-USDT,KAR-USDT,LET-USDT,BTC-USDT&dateAggrType=monthly&begin=1704067200000&end=1706745599999",
+   "requested_utc": "2026-11-07T16:02:20Z",
+   "status": 200,
+   "final_url": "https://www.okx.com/api/v5/public/market-data-history?module=2&instType=SPOT&instIdList=EM-USDT,HC-USDT,KAR-USDT,LET-USDT,BTC-USDT&dateAggrType=monthly&begin=1704067200000&end=1706745599999",
+   "bytes": 3056,
+   "truncated": false,
+   "sha256": "129dba39e505b37fb6a037ba978d4395c24c93a4c6a5be91fe6af8ac445e0a04",
+   "content_type": "application/json;charset=UTF-8",
+   "okx_msg": "",
+   "okx_code": "0",
+   "files": 10,
+   "entry_fields": [
+    "dateTs",
+    "filename",
+    "sizeMB",
+    "url"
+   ],
+   "sample": [
+    {
+     "dateTs": "1706716800000",
+     "filename": "LET-USDT-candlesticks-2024-02.zip",
+     "sizeMB": "0.73",
+     "url": "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202402/LET-USDT-candlesticks-2024-02.zip?v=1001"
+    },
+    {
+     "dateTs": "1704038400000",
+     "filename": "LET-USDT-candlesticks-2024-01.zip",
+     "sizeMB": "0.78",
+     "url": "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202401/LET-USDT-candlesticks-2024-01.zip?v=1001"
+    },
+    {
+     "dateTs": "1706716800000",
+     "filename": "KAR-USDT-candlesticks-2024-02.zip",
+     "sizeMB": "0.32",
+     "url": "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202402/KAR-USDT-candlesticks-2024-02.zip?v=1001"
+    },
+    {
+     "dateTs": "1704038400000",
+     "filename": "KAR-USDT-candlesticks-2024-01.zip",
+     "sizeMB": "0.35",
+     "url": "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202401/KAR-USDT-candlesticks-2024-01.zip?v=1001"
+    }
+   ],
+   "links": [
+    "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202402/LET-USDT-candlesticks-2024-02.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202401/LET-USDT-candlesticks-2024-01.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202402/KAR-USDT-candlesticks-2024-02.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202401/KAR-USDT-candlesticks-2024-01.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202402/BTC-USDT-candlesticks-2024-02.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202401/BTC-USDT-candlesticks-2024-01.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202402/EM-USDT-candlesticks-2024-02.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202401/EM-USDT-candlesticks-2024-01.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202402/HC-USDT-candlesticks-2024-02.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202401/HC-USDT-candlesticks-2024-01.zip?v=1001"
+   ]
+  },
+  "202407 module 1 (trade history) monthly, instIdList=FITFI-USDT,GARI-USDT,XPR-USDT,AKITA-USDT,BTC-USDT": {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=FITFI-USDT,GARI-USDT,XPR-USDT,AKITA-USDT,BTC-USDT&dateAggrType=monthly&begin=1719792000000&end=1722470399999",
+   "requested_utc": "2026-11-07T16:02:22Z",
+   "status": 200,
+   "final_url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=FITFI-USDT,GARI-USDT,XPR-USDT,AKITA-USDT,BTC-USDT&dateAggrType=monthly&begin=1719792000000&end=1722470399999",
+   "bytes": 2917,
+   "truncated": false,
+   "sha256": "e72c9f5e10f6425804786b57a584d3d1be66ded24c1dd76882f67afb9e41b960",
+   "content_type": "application/json;charset=UTF-8",
+   "okx_msg": "",
+   "okx_code": "0",
+   "files": 10,
+   "entry_fields": [
+    "dateTs",
+    "filename",
+    "sizeMB",
+    "url"
+   ],
+   "sample": [
+    {
+     "dateTs": "1722441600000",
+     "filename": "GARI-USDT-trades-2024-08.zip",
+     "sizeMB": "1.1",
+     "url": "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202408/GARI-USDT-trades-2024-08.zip?v=1001"
+    },
+    {
+     "dateTs": "1719763200000",
+     "filename": "GARI-USDT-trades-2024-07.zip",
+     "sizeMB": "0.77",
+     "url": "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202407/GARI-USDT-trades-2024-07.zip?v=1001"
+    },
+    {
+     "dateTs": "1722441600000",
+     "filename": "FITFI-USDT-trades-2024-08.zip",
+     "sizeMB": "4.08",
+     "url": "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202408/FITFI-USDT-trades-2024-08.zip?v=1001"
+    },
+    {
+     "dateTs": "1719763200000",
+     "filename": "FITFI-USDT-trades-2024-07.zip",
+     "sizeMB": "5.31",
+     "url": "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202407/FITFI-USDT-trades-2024-07.zip?v=1001"
+    }
+   ],
+   "links": [
+    "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202408/GARI-USDT-trades-2024-08.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202407/GARI-USDT-trades-2024-07.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202408/FITFI-USDT-trades-2024-08.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202407/FITFI-USDT-trades-2024-07.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202408/BTC-USDT-trades-2024-08.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202407/BTC-USDT-trades-2024-07.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202408/XPR-USDT-trades-2024-08.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202407/XPR-USDT-trades-2024-07.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202408/AKITA-USDT-trades-2024-08.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202407/AKITA-USDT-trades-2024-07.zip?v=1001"
+   ]
+  },
+  "202407 module 2 (1-minute candlestick) monthly, instIdList=FITFI-USDT,GARI-USDT,XPR-USDT,AKITA-USDT,BTC-USDT": {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=2&instType=SPOT&instIdList=FITFI-USDT,GARI-USDT,XPR-USDT,AKITA-USDT,BTC-USDT&dateAggrType=monthly&begin=1719792000000&end=1722470399999",
+   "requested_utc": "2026-11-07T16:02:24Z",
+   "status": 200,
+   "final_url": "https://www.okx.com/api/v5/public/market-data-history?module=2&instType=SPOT&instIdList=FITFI-USDT,GARI-USDT,XPR-USDT,AKITA-USDT,BTC-USDT&dateAggrType=monthly&begin=1719792000000&end=1722470399999",
+   "bytes": 3091,
+   "truncated": false,
+   "sha256": "6d07d281bd12f2dfa4a1e084a469db175c0133aa5598c4eefde121449964a326",
+   "content_type": "application/json;charset=UTF-8",
+   "okx_msg": "",
+   "okx_code": "0",
+   "files": 10,
+   "entry_fields": [
+    "dateTs",
+    "filename",
+    "sizeMB",
+    "url"
+   ],
+   "sample": [
+    {
+     "dateTs": "1722441600000",
+     "filename": "GARI-USDT-candlesticks-2024-08.zip",
+     "sizeMB": "0.39",
+     "url": "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202408/GARI-USDT-candlesticks-2024-08.zip?v=1001"
+    },
+    {
+     "dateTs": "1719763200000",
+     "filename": "GARI-USDT-candlesticks-2024-07.zip",
+     "sizeMB": "0.34",
+     "url": "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202407/GARI-USDT-candlesticks-2024-07.zip?v=1001"
+    },
+    {
+     "dateTs": "1722441600000",
+     "filename": "FITFI-USDT-candlesticks-2024-08.zip",
+     "sizeMB": "0.64",
+     "url": "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202408/FITFI-USDT-candlesticks-2024-08.zip?v=1001"
+    },
+    {
+     "dateTs": "1719763200000",
+     "filename": "FITFI-USDT-candlesticks-2024-07.zip",
+     "sizeMB": "0.81",
+     "url": "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202407/FITFI-USDT-candlesticks-2024-07.zip?v=1001"
+    }
+   ],
+   "links": [
+    "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202408/GARI-USDT-candlesticks-2024-08.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202407/GARI-USDT-candlesticks-2024-07.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202408/FITFI-USDT-candlesticks-2024-08.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202407/FITFI-USDT-candlesticks-2024-07.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202408/BTC-USDT-candlesticks-2024-08.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202407/BTC-USDT-candlesticks-2024-07.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202408/XPR-USDT-candlesticks-2024-08.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202407/XPR-USDT-candlesticks-2024-07.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202408/AKITA-USDT-candlesticks-2024-08.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202407/AKITA-USDT-candlesticks-2024-07.zip?v=1001"
+   ]
+  },
+  "202506 module 1 (trade history) monthly, instIdList=X-USDT,BSV-USDT,GOG-USDT,DIA-USDT,BTC-USDT": {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=X-USDT,BSV-USDT,GOG-USDT,DIA-USDT,BTC-USDT&dateAggrType=monthly&begin=1748736000000&end=1751327999999",
+   "requested_utc": "2026-11-07T16:02:25Z",
+   "status": 200,
+   "final_url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=X-USDT,BSV-USDT,GOG-USDT,DIA-USDT,BTC-USDT&dateAggrType=monthly&begin=1748736000000&end=1751327999999",
+   "bytes": 2883,
+   "truncated": false,
+   "sha256": "072b585f1e24d96076aa8241d76218508eedf92753b307881f044a7f0d618cd7",
+   "content_type": "application/json;charset=UTF-8",
+   "okx_msg": "",
+   "okx_code": "0",
+   "files": 10,
+   "entry_fields": [
+    "dateTs",
+    "filename",
+    "sizeMB",
+    "url"
+   ],
+   "sample": [
+    {
+     "dateTs": "1751299200000",
+     "filename": "BSV-USDT-trades-2025-07.zip",
+     "sizeMB": "1.4",
+     "url": "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202507/BSV-USDT-trades-2025-07.zip?v=1001"
+    },
+    {
+     "dateTs": "1748707200000",
+     "filename": "BSV-USDT-trades-2025-06.zip",
+     "sizeMB": "2.21",
+     "url": "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202506/BSV-USDT-trades-2025-06.zip?v=1001"
+    },
+    {
+     "dateTs": "1751299200000",
+     "filename": "BTC-USDT-trades-2025-07.zip",
+     "sizeMB": "138.84",
+     "url": "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202507/BTC-USDT-trades-2025-07.zip?v=1001"
+    },
+    {
+     "dateTs": "1748707200000",
+     "filename": "BTC-USDT-trades-2025-06.zip",
+     "sizeMB": "130.22",
+     "url": "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202506/BTC-USDT-trades-2025-06.zip?v=1001"
+    }
+   ],
+   "links": [
+    "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202507/BSV-USDT-trades-2025-07.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202506/BSV-USDT-trades-2025-06.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202507/BTC-USDT-trades-2025-07.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202506/BTC-USDT-trades-2025-06.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202507/GOG-USDT-trades-2025-07.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202506/GOG-USDT-trades-2025-06.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202507/DIA-USDT-trades-2025-07.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202506/DIA-USDT-trades-2025-06.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202507/X-USDT-trades-2025-07.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/monthly/202506/X-USDT-trades-2025-06.zip?v=1001"
+   ]
+  },
+  "202506 module 2 (1-minute candlestick) monthly, instIdList=X-USDT,BSV-USDT,GOG-USDT,DIA-USDT,BTC-USDT": {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=2&instType=SPOT&instIdList=X-USDT,BSV-USDT,GOG-USDT,DIA-USDT,BTC-USDT&dateAggrType=monthly&begin=1748736000000&end=1751327999999",
+   "requested_utc": "2026-11-07T16:02:27Z",
+   "status": 200,
+   "final_url": "https://www.okx.com/api/v5/public/market-data-history?module=2&instType=SPOT&instIdList=X-USDT,BSV-USDT,GOG-USDT,DIA-USDT,BTC-USDT&dateAggrType=monthly&begin=1748736000000&end=1751327999999",
+   "bytes": 3056,
+   "truncated": false,
+   "sha256": "c6a0513a931cc92f3c5d0c6b88f8d6fa0168c3cdc575a14fd7d70b5a5946ddac",
+   "content_type": "application/json;charset=UTF-8",
+   "okx_msg": "",
+   "okx_code": "0",
+   "files": 10,
+   "entry_fields": [
+    "dateTs",
+    "filename",
+    "sizeMB",
+    "url"
+   ],
+   "sample": [
+    {
+     "dateTs": "1751299200000",
+     "filename": "BSV-USDT-candlesticks-2025-07.zip",
+     "sizeMB": "0.15",
+     "url": "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202507/BSV-USDT-candlesticks-2025-07.zip?v=1001"
+    },
+    {
+     "dateTs": "1748707200000",
+     "filename": "BSV-USDT-candlesticks-2025-06.zip",
+     "sizeMB": "0.53",
+     "url": "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202506/BSV-USDT-candlesticks-2025-06.zip?v=1001"
+    },
+    {
+     "dateTs": "1751299200000",
+     "filename": "BTC-USDT-candlesticks-2025-07.zip",
+     "sizeMB": "1.31",
+     "url": "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202507/BTC-USDT-candlesticks-2025-07.zip?v=1001"
+    },
+    {
+     "dateTs": "1748707200000",
+     "filename": "BTC-USDT-candlesticks-2025-06.zip",
+     "sizeMB": "1.29",
+     "url": "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202506/BTC-USDT-candlesticks-2025-06.zip?v=1001"
+    }
+   ],
+   "links": [
+    "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202507/BSV-USDT-candlesticks-2025-07.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202506/BSV-USDT-candlesticks-2025-06.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202507/BTC-USDT-candlesticks-2025-07.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202506/BTC-USDT-candlesticks-2025-06.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202507/GOG-USDT-candlesticks-2025-07.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202506/GOG-USDT-candlesticks-2025-06.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202507/DIA-USDT-candlesticks-2025-07.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202506/DIA-USDT-candlesticks-2025-06.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202507/X-USDT-candlesticks-2025-07.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202506/X-USDT-candlesticks-2025-06.zip?v=1001"
+   ]
+  },
+  "2024-07-15 module 1 daily, instIdList=FITFI-USDT,GARI-USDT,XPR-USDT,AKITA-USDT,TAMA-USDT,WNCG-USDT,TUP-USDT,THG-USDT": {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=FITFI-USDT,GARI-USDT,XPR-USDT,AKITA-USDT,TAMA-USDT&dateAggrType=daily&begin=1721001600000&end=1721087999999",
+   "requested_utc": "2026-11-07T16:02:29Z",
+   "status": 200,
+   "final_url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=FITFI-USDT,GARI-USDT,XPR-USDT,AKITA-USDT,TAMA-USDT&dateAggrType=daily&begin=1721001600000&end=1721087999999",
+   "bytes": 2971,
+   "truncated": false,
+   "sha256": "0585500592f034792ca302cdb52c905d9ac4cc131516fc8b3b84290e418d8c01",
+   "content_type": "application/json;charset=UTF-8",
+   "okx_msg": "",
+   "okx_code": "0",
+   "files": 10,
+   "entry_fields": [
+    "dateTs",
+    "filename",
+    "sizeMB",
+    "url"
+   ],
+   "sample": [
+    {
+     "dateTs": "1721059200000",
+     "filename": "GARI-USDT-trades-2024-07-16.zip",
+     "sizeMB": "0.01",
+     "url": "https://static.okx.com/cdn/okex/traderecords/trades/daily/20240716/GARI-USDT-trades-2024-07-16.zip?v=1001"
+    },
+    {
+     "dateTs": "1720972800000",
+     "filename": "GARI-USDT-trades-2024-07-15.zip",
+     "sizeMB": "0.03",
+     "url": "https://static.okx.com/cdn/okex/traderecords/trades/daily/20240715/GARI-USDT-trades-2024-07-15.zip?v=1001"
+    },
+    {
+     "dateTs": "1721059200000",
+     "filename": "FITFI-USDT-trades-2024-07-16.zip",
+     "sizeMB": "0.22",
+     "url": "https://static.okx.com/cdn/okex/traderecords/trades/daily/20240716/FITFI-USDT-trades-2024-07-16.zip?v=1001"
+    },
+    {
+     "dateTs": "1720972800000",
+     "filename": "FITFI-USDT-trades-2024-07-15.zip",
+     "sizeMB": "0.22",
+     "url": "https://static.okx.com/cdn/okex/traderecords/trades/daily/20240715/FITFI-USDT-trades-2024-07-15.zip?v=1001"
+    }
+   ],
+   "links": [
+    "https://static.okx.com/cdn/okex/traderecords/trades/daily/20240716/GARI-USDT-trades-2024-07-16.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/daily/20240715/GARI-USDT-trades-2024-07-15.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/daily/20240716/FITFI-USDT-trades-2024-07-16.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/daily/20240715/FITFI-USDT-trades-2024-07-15.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/daily/20240716/TAMA-USDT-trades-2024-07-16.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/daily/20240715/TAMA-USDT-trades-2024-07-15.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/daily/20240716/XPR-USDT-trades-2024-07-16.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/daily/20240715/XPR-USDT-trades-2024-07-15.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/daily/20240716/AKITA-USDT-trades-2024-07-16.zip?v=1001",
+    "https://static.okx.com/cdn/okex/traderecords/trades/daily/20240715/AKITA-USDT-trades-2024-07-15.zip?v=1001"
+   ]
+  }
+ },
+ "download": {
+  "pair": "FITFI-USDT",
+  "listing_entry": {
+   "dateTs": "1721059200000",
+   "filename": "FITFI-USDT-trades-2024-07-16.zip",
+   "sizeMB": "0.22",
+   "url": "https://static.okx.com/cdn/okex/traderecords/trades/daily/20240716/FITFI-USDT-trades-2024-07-16.zip?v=1001"
+  },
+  "file": "FITFI-USDT-trades-2024-07-16.zip",
+  "url": "https://static.okx.com/cdn/okex/traderecords/trades/daily/20240716/FITFI-USDT-trades-2024-07-16.zip?v=1001",
+  "requested_utc": "2026-11-07T16:02:30Z",
+  "status": 200,
+  "final_url": "https://static.okx.com/cdn/okex/traderecords/trades/daily/20240716/FITFI-USDT-trades-2024-07-16.zip?v=1001",
+  "bytes": 227992,
+  "truncated": false,
+  "sha256": "1fa80603e3fa52ca972635283f774b0d84d4d556e21e54e8c222608805b79648",
+  "content_type": "application/zip",
+  "zip_test": "ok",
+  "members": [
+   [
+    "FITFI-USDT-trades-2024-07-16.csv",
+    1412390
+   ]
+  ],
+  "header": [
+   "instrument_name",
+   "trade_id",
+   "side",
+   "price",
+   "size",
+   "created_time"
+  ],
+  "rows": 24800,
+  "first_rows": [
+   [
+    "FITFI-USDT",
+    "27535930",
+    "buy",
+    "0.00461",
+    "150.0",
+    "1721059204386"
+   ],
+   [
+    "FITFI-USDT",
+    "27535931",
+    "buy",
+    "0.00461",
+    "274.232",
+    "1721059204457"
+   ],
+   [
+    "FITFI-USDT",
+    "27535932",
+    "buy",
+    "0.004616",
+    "150.0",
+    "1721059205561"
+   ]
+  ],
+  "columns_found": {
+   "trade_id": 1,
+   "price": 3,
+   "size": 4,
+   "time": 5,
+   "instrument": 0
+  },
+  "instruments_in_file": [
+   "FITFI-USDT"
+  ],
+  "first_trade_utc": "2024-07-15 16:00:04",
+  "last_trade_utc": "2024-07-16 15:59:46",
+  "max_gap_minutes": 7.0,
+  "distinct_utc_hours_with_trades": 24,
+  "day_boundary_hint": "UTC+8 day",
+  "trade_id_min": 27535930,
+  "trade_id_max": 27560729,
+  "trade_id_unique": 24800,
+  "trade_id_span": 24800,
+  "trade_id_missing_inside_span": 0,
+  "price_min": 0.004537,
+  "price_max": 0.004918,
+  "non_positive_prices": 0,
+  "size_sum": 130347760.9035
+ }
+}
