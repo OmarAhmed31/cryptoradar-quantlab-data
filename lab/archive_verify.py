@@ -190,7 +190,7 @@ def coverage(out, pairs, L, chunk_months=20, daily_days=18):
                       f"{tag}_status": st})
         rows.append(r)
         if p == DELIST_TEST:
-            r["_daily_entries"] = {tag: daily[mo][p][-2:] for mo, tag in mods.items()}
+            r["_daily_entries"] = {tag: sorted(daily[mo][p])[-2:] for mo, tag in mods.items()}   # sorted: latest last (bug fixed after run 20261107T164416Z)
     return rows
 
 
