@@ -1,0 +1,15 @@
+{
+ "run": "20261107T173313Z",
+ "dataset": "Delisted Assets Historical Dataset (NOT a complete historical market dataset)",
+ "pairs": 142,
+ "pairs_with_several_effective_dates_latest_used": {},
+ "listing_calls": 87,
+ "listing_errors": [],
+ "files": 2055,
+ "files_ok": 2055,
+ "raw_bytes": 1160964371,
+ "pairs_with_missing_file_months": 0,
+ "pairs_with_no_data": 0,
+ "pairs_traded_after_delisting": 97,
+ "duplicate_conflicts": 0
+}
