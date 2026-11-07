@@ -1,0 +1,38 @@
+name: avail-test
+
+# Candle availability for delisted spot pairs listed in requests/avail_instruments.txt
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["requests/avail_instruments.txt"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: okx-collect
+  cancel-in-progress: false
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Guard tests on this runner
+        run: python3 -I tests/test_proxy.py
+      - name: Availability test
+        run: python3 -I lab/avail_test.py requests/avail_instruments.txt
+      - name: Commit results
+        if: always()
+        run: |
+          git config user.name "quantlab-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add out reports
+          git commit -m "availability results $(date -u +%FT%TZ)" || echo "nothing to commit"
+          git pull --rebase origin main
+          git push

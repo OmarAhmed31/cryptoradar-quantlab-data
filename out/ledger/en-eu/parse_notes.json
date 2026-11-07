@@ -1,0 +1,21 @@
+{
+ "announcements": 34,
+ "rows": 156,
+ "by_market_type": {
+  "spot": 124,
+  "other": 1,
+  "migration": 9,
+  "perpetual_futures": 9,
+  "margin": 12,
+  "expiry_futures": 1
+ },
+ "by_date_method": {
+  "table_row": 40,
+  "no_instrument_found": 2,
+  "not_found": 9,
+  "execution_section": 105
+ },
+ "year_inferred": 0,
+ "spot_rows_with_withdrawal_suspension": 110,
+ "date_conflicts": []
+}

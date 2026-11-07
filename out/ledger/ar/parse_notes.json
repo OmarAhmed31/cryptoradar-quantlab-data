@@ -1,0 +1,29 @@
+{
+ "announcements": 119,
+ "rows": 594,
+ "by_market_type": {
+  "spot": 268,
+  "postponement": 2,
+  "perpetual_futures": 131,
+  "other": 5,
+  "migration": 25,
+  "margin": 160,
+  "expiry_futures": 3
+ },
+ "by_date_method": {
+  "table_row": 390,
+  "no_instrument_found": 10,
+  "not_found": 14,
+  "execution_section": 180
+ },
+ "year_inferred": 0,
+ "spot_rows_with_withdrawal_suspension": 206,
+ "date_conflicts": [
+  [
+   "okx-to-delist-perpetual-futures-for-uxlinkusdt",
+   "UXLINK-USDT-SWAP",
+   "2025-09-23 12:20",
+   "2025-09-23 02:00"
+  ]
+ ]
+}
