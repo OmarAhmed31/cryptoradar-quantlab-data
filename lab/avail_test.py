@@ -22,12 +22,13 @@ def pages(inst, bar, after, stop_ms, raw, max_pages):
     """Walk history-candles backwards from `after` until empty / older than stop_ms. Returns {ts: row}."""
     out, err, n = {}, None, 0
     while n < max_pages:
+        OF._RAW["last"] = None
         j, err = OF.get(f"{BASE}/api/v5/market/history-candles?instId={inst}&bar={bar}&limit=100&after={after}")
+        n += 1
+        if OF._RAW["last"]:   # raw response kept also when OKX returns an error (e.g. 51001)
+            raw.write(json.dumps({"bar": bar, **OF._RAW["last"]}) + "\n")
         if j is None:
             break
-        n += 1
-        if OF._RAW["last"]:
-            raw.write(json.dumps({"bar": bar, **OF._RAW["last"]}) + "\n")
         data = j.get("data") or []
         if not data:
             break
@@ -45,8 +46,8 @@ def iso(ms):
     return dt.datetime.fromtimestamp(ms / 1000, dt.timezone.utc).strftime("%Y-%m-%d %H:%M") if ms else ""
 
 
-def main(listfile):
-    run = time.strftime("%Y%m%dT%H%M%SZ", time.gmtime())
+def main(listfile, tag=""):
+    run = time.strftime("%Y%m%dT%H%M%SZ", time.gmtime()) + (f"_{tag}" if tag else "")
     out = guard.LAB / "out" / "availability" / run
     (out / "raw").mkdir(parents=True, exist_ok=True)
     inst_j, ierr = OF.get(f"{BASE}/api/v5/public/instruments?instType=SPOT", tries=2)
@@ -88,5 +89,5 @@ def main(listfile):
 
 if __name__ == "__main__":
     guard.install(write_dirs=("out", "state"), net_hosts=("www.okx.com",), job="avail-test", cpu_s=7000)
-    main(sys.argv[1])
+    main(sys.argv[1], sys.argv[2] if len(sys.argv) > 2 else "")
     guard.health("done")

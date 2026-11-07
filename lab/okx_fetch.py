@@ -34,6 +34,8 @@ def get(url, tries=3):
             if j.get("code") == "0":
                 return j, None
             last = f"okx code {j.get('code')} {j.get('msg', '')[:60]}"
+            if j.get("code") == "51001":   # instrument does not exist: deterministic, no retry
+                break
         except urllib.error.HTTPError as e:
             last = f"http {e.code}"
         except urllib.error.URLError as e:
