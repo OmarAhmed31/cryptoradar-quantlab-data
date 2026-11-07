@@ -1,0 +1,46 @@
+name: okx-probe
+
+# Probe only: 3 coins + raw delisting pages. No secrets are used or needed.
+# Runs when requests/probe.txt changes, or manually from the Actions tab.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["requests/probe.txt"]
+
+permissions:
+  contents: write   # only to commit the probe results back into out/
+
+concurrency:
+  group: okx-probe
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Runner network info (region evidence)
+        run: |
+          mkdir -p out
+          echo "runner_os=$RUNNER_OS arch=$RUNNER_ARCH at=$(date -u +%FT%TZ)" | tee out/runner_info.txt
+      - name: Guard proxy tests on this runner
+        run: python3 -I tests/test_proxy.py
+        continue-on-error: true
+      - name: OKX candles probe (BTC ETH SAND, 400 days)
+        run: python3 -I lab/okx_fetch.py probe BTC ETH SAND | tail -40
+        continue-on-error: true
+      - name: OKX official delisting pages (raw, 2 index pages, up to 15 articles)
+        run: python3 -I lab/delist_fetch.py 2 15
+        continue-on-error: true
+      - name: Commit results
+        run: |
+          git config user.name "quantlab-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add out reports
+          git commit -m "probe results $(date -u +%FT%TZ)" || echo "nothing to commit"
+          git push
