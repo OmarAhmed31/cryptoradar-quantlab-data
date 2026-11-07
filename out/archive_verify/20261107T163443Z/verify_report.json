@@ -1,0 +1,371 @@
+{
+ "run": "20261107T163443Z",
+ "scope": "expert approval after v0.5: listing-only 142 pairs + 1 month 1m candles BTC/ETH/SAND + one delisted pair end check",
+ "pairs": 142,
+ "candles": [
+  {
+   "file": "BTC-USDT-candlesticks-2026-09.zip",
+   "listing": {
+    "dateTs": "1788192000000",
+    "filename": "BTC-USDT-candlesticks-2026-09.zip",
+    "sizeMB": "1.27",
+    "url": "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202609/BTC-USDT-candlesticks-2026-09.zip?v=1001"
+   },
+   "url": "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202609/BTC-USDT-candlesticks-2026-09.zip?v=1001",
+   "requested_utc": "2026-11-07T16:34:44Z",
+   "status": 200,
+   "bytes": 1332672,
+   "truncated": false,
+   "sha256": "38f3d397bedc8dca4d1cf53f0d844e3524d1ea4176b1d7259b73d368223c4928"
+  },
+  {
+   "file": "ETH-USDT-candlesticks-2026-09.zip",
+   "listing": {
+    "dateTs": "1788192000000",
+    "filename": "ETH-USDT-candlesticks-2026-09.zip",
+    "sizeMB": "1.2",
+    "url": "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202609/ETH-USDT-candlesticks-2026-09.zip?v=1001"
+   },
+   "url": "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202609/ETH-USDT-candlesticks-2026-09.zip?v=1001",
+   "requested_utc": "2026-11-07T16:34:44Z",
+   "status": 200,
+   "bytes": 1262919,
+   "truncated": false,
+   "sha256": "375e0c2367181a52cd5adc95583d798aeaa862faa00e29a7067c2bfe766b8aff"
+  },
+  {
+   "file": "SAND-USDT-candlesticks-2026-09.zip",
+   "listing": {
+    "dateTs": "1788192000000",
+    "filename": "SAND-USDT-candlesticks-2026-09.zip",
+    "sizeMB": "0.66",
+    "url": "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202609/SAND-USDT-candlesticks-2026-09.zip?v=1001"
+   },
+   "url": "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202609/SAND-USDT-candlesticks-2026-09.zip?v=1001",
+   "requested_utc": "2026-11-07T16:34:44Z",
+   "status": 200,
+   "bytes": 688201,
+   "truncated": false,
+   "sha256": "1dbda88718dc7aa83c05d4fe4c11d7835cf26b31398ea1cb934cdce8033e5d51"
+  }
+ ],
+ "delist_check": {
+  "pair": "FITFI-USDT",
+  "effective_delisting_utc": "2024-08-30 08:00",
+  "files": []
+ },
+ "listing_calls": 445,
+ "listing_errors": [
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=AIDOGE-USDT,AKITA-USDT,ALCX-USDT,ALPHA-USDT,ANT-USDT&dateAggrType=monthly&begin=1514736000000&end=1567267199999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=AIDOGE-USDT,AKITA-USDT,ALCX-USDT,ALPHA-USDT,ANT-USDT&dateAggrType=monthly&begin=1567267200000&end=1619798399999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=AIDOGE-USDT,AKITA-USDT,ALCX-USDT,ALPHA-USDT,ANT-USDT&dateAggrType=monthly&begin=1619798400000&end=1672502399999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=AIDOGE-USDT,AKITA-USDT,ALCX-USDT,ALPHA-USDT,ANT-USDT&dateAggrType=monthly&begin=1672502400000&end=1725119999999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=AIDOGE-USDT,AKITA-USDT,ALCX-USDT,ALPHA-USDT,ANT-USDT&dateAggrType=monthly&begin=1725120000000&end=1777564799999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=APM-USDT,ARTY-USDT,AST-USDT,AVIVE-USDT,AZY-USDT&dateAggrType=monthly&begin=1514736000000&end=1567267199999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=APM-USDT,ARTY-USDT,AST-USDT,AVIVE-USDT,AZY-USDT&dateAggrType=monthly&begin=1567267200000&end=1619798399999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=APM-USDT,ARTY-USDT,AST-USDT,AVIVE-USDT,AZY-USDT&dateAggrType=monthly&begin=1619798400000&end=1672502399999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=APM-USDT,ARTY-USDT,AST-USDT,AVIVE-USDT,AZY-USDT&dateAggrType=monthly&begin=1672502400000&end=1725119999999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=APM-USDT,ARTY-USDT,AST-USDT,AVIVE-USDT,AZY-USDT&dateAggrType=monthly&begin=1725120000000&end=1777564799999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=BADGER-USDT,BAL-USDT,BLOCK-USDT,BLOK-USDT,BONE-USDT&dateAggrType=monthly&begin=1514736000000&end=1567267199999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=BADGER-USDT,BAL-USDT,BLOCK-USDT,BLOK-USDT,BONE-USDT&dateAggrType=monthly&begin=1567267200000&end=1619798399999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=BADGER-USDT,BAL-USDT,BLOCK-USDT,BLOK-USDT,BONE-USDT&dateAggrType=monthly&begin=1619798400000&end=1672502399999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=BADGER-USDT,BAL-USDT,BLOCK-USDT,BLOK-USDT,BONE-USDT&dateAggrType=monthly&begin=1672502400000&end=1725119999999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=BADGER-USDT,BAL-USDT,BLOCK-USDT,BLOK-USDT,BONE-USDT&dateAggrType=monthly&begin=1725120000000&end=1777564799999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=BORA-USDT,BORING-USDT,BRWL-USDT,BSV-USDT,BZZ-USDT&dateAggrType=monthly&begin=1514736000000&end=1567267199999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=BORA-USDT,BORING-USDT,BRWL-USDT,BSV-USDT,BZZ-USDT&dateAggrType=monthly&begin=1567267200000&end=1619798399999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=BORA-USDT,BORING-USDT,BRWL-USDT,BSV-USDT,BZZ-USDT&dateAggrType=monthly&begin=1619798400000&end=1672502399999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=BORA-USDT,BORING-USDT,BRWL-USDT,BSV-USDT,BZZ-USDT&dateAggrType=monthly&begin=1672502400000&end=1725119999999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=BORA-USDT,BORING-USDT,BRWL-USDT,BSV-USDT,BZZ-USDT&dateAggrType=monthly&begin=1725120000000&end=1777564799999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=CEEK-USDT,CEL-USDT,CGL-USDT,CONV-USDT,CTXC-USDT&dateAggrType=monthly&begin=1514736000000&end=1567267199999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=CEEK-USDT,CEL-USDT,CGL-USDT,CONV-USDT,CTXC-USDT&dateAggrType=monthly&begin=1567267200000&end=1619798399999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=CEEK-USDT,CEL-USDT,CGL-USDT,CONV-USDT,CTXC-USDT&dateAggrType=monthly&begin=1619798400000&end=1672502399999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=CEEK-USDT,CEL-USDT,CGL-USDT,CONV-USDT,CTXC-USDT&dateAggrType=monthly&begin=1672502400000&end=1725119999999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=CEEK-USDT,CEL-USDT,CGL-USDT,CONV-USDT,CTXC-USDT&dateAggrType=monthly&begin=1725120000000&end=1777564799999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=CXT-USDT,DAO-USDT,DCR-USDT,DEP-USDT,DIA-USDT&dateAggrType=monthly&begin=1514736000000&end=1567267199999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=CXT-USDT,DAO-USDT,DCR-USDT,DEP-USDT,DIA-USDT&dateAggrType=monthly&begin=1567267200000&end=1619798399999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=CXT-USDT,DAO-USDT,DCR-USDT,DEP-USDT,DIA-USDT&dateAggrType=monthly&begin=1619798400000&end=1672502399999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=CXT-USDT,DAO-USDT,DCR-USDT,DEP-USDT,DIA-USDT&dateAggrType=monthly&begin=1672502400000&end=1725119999999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=CXT-USDT,DAO-USDT,DCR-USDT,DEP-USDT,DIA-USDT&dateAggrType=monthly&begin=1725120000000&end=1777564799999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=DOME-USDT,DORA-USDT,DOSE-USDT,DUCK-USDT,ELF-USDT&dateAggrType=monthly&begin=1514736000000&end=1567267199999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=DOME-USDT,DORA-USDT,DOSE-USDT,DUCK-USDT,ELF-USDT&dateAggrType=monthly&begin=1567267200000&end=1619798399999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=DOME-USDT,DORA-USDT,DOSE-USDT,DUCK-USDT,ELF-USDT&dateAggrType=monthly&begin=1619798400000&end=1672502399999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=DOME-USDT,DORA-USDT,DOSE-USDT,DUCK-USDT,ELF-USDT&dateAggrType=monthly&begin=1672502400000&end=1725119999999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=DOME-USDT,DORA-USDT,DOSE-USDT,DUCK-USDT,ELF-USDT&dateAggrType=monthly&begin=1725120000000&end=1777564799999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=ELON-USDT,EM-USDT,EURT-USDT,FAME-USDT,FITFI-USDT&dateAggrType=monthly&begin=1514736000000&end=1567267199999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=ELON-USDT,EM-USDT,EURT-USDT,FAME-USDT,FITFI-USDT&dateAggrType=monthly&begin=1567267200000&end=1619798399999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=ELON-USDT,EM-USDT,EURT-USDT,FAME-USDT,FITFI-USDT&dateAggrType=monthly&begin=1619798400000&end=1672502399999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=ELON-USDT,EM-USDT,EURT-USDT,FAME-USDT,FITFI-USDT&dateAggrType=monthly&begin=1672502400000&end=1725119999999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=ELON-USDT,EM-USDT,EURT-USDT,FAME-USDT,FITFI-USDT&dateAggrType=monthly&begin=1725120000000&end=1777564799999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=FLM-USDT,FORTH-USDT,FRONT-USDT,GARI-USDT,GEAR-USDT&dateAggrType=monthly&begin=1514736000000&end=1567267199999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=FLM-USDT,FORTH-USDT,FRONT-USDT,GARI-USDT,GEAR-USDT&dateAggrType=monthly&begin=1567267200000&end=1619798399999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=FLM-USDT,FORTH-USDT,FRONT-USDT,GARI-USDT,GEAR-USDT&dateAggrType=monthly&begin=1619798400000&end=1672502399999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=FLM-USDT,FORTH-USDT,FRONT-USDT,GARI-USDT,GEAR-USDT&dateAggrType=monthly&begin=1672502400000&end=1725119999999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=FLM-USDT,FORTH-USDT,FRONT-USDT,GARI-USDT,GEAR-USDT&dateAggrType=monthly&begin=1725120000000&end=1777564799999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=GFT-USDT,GHST-USDT,GOAL-USDT,GODS-USDT,GOG-USDT&dateAggrType=monthly&begin=1514736000000&end=1567267199999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=GFT-USDT,GHST-USDT,GOAL-USDT,GODS-USDT,GOG-USDT&dateAggrType=monthly&begin=1567267200000&end=1619798399999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=GFT-USDT,GHST-USDT,GOAL-USDT,GODS-USDT,GOG-USDT&dateAggrType=monthly&begin=1619798400000&end=1672502399999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=GFT-USDT,GHST-USDT,GOAL-USDT,GODS-USDT,GOG-USDT&dateAggrType=monthly&begin=1672502400000&end=1725119999999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  },
+  {
+   "url": "https://www.okx.com/api/v5/public/market-data-history?module=1&instType=SPOT&instIdList=GFT-USDT,GHST-USDT,GOAL-USDT,GODS-USDT,GOG-USDT&dateAggrType=monthly&begin=1725120000000&end=1777564799999",
+   "status": 400,
+   "code": null,
+   "msg": null
+  }
+ ],
+ "listing_error_count": 386,
+ "coverage_trades": {
+  "full_apparent": 0,
+  "partial": 11,
+  "none": 131
+ },
+ "coverage_candles": {
+  "full_apparent": 0,
+  "partial": 11,
+  "none": 131
+ }
+}
