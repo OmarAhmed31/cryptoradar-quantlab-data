@@ -1,14 +1,15 @@
 {
- "corrections_applied": 1,
+ "corrections_applied": 2,
  "announcements": 119,
  "rows": 594,
  "by_market_type": {
-  "spot": 268,
+  "spot": 267,
   "postponement": 2,
   "perpetual_futures": 131,
   "other": 5,
   "migration": 25,
   "margin": 160,
+  "not_delisted": 1,
   "expiry_futures": 3
  },
  "by_date_method": {
@@ -18,7 +19,7 @@
   "execution_section": 180
  },
  "year_inferred": 0,
- "spot_rows_with_withdrawal_suspension": 206,
+ "spot_rows_with_withdrawal_suspension": 205,
  "date_conflicts": [
   [
    "okx-to-delist-perpetual-futures-for-uxlinkusdt",

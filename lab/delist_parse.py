@@ -212,7 +212,7 @@ def apply_corrections(rows, locale):
         if c["locale"] != locale:
             continue
         for r in rows:
-            if r.get("slug") == c["slug"] and r.get(c["field"]) == c["old_value"]:
+            if r.get("slug") == c["slug"] and r.get("instrument") == c.get("instrument", r.get("instrument")) and r.get(c["field"]) == c["old_value"]:
                 r[c["field"]] = c["new_value"]
                 if c["field"] == "instrument":
                     r["base_asset"] = c["new_value"].split("-")[0]
