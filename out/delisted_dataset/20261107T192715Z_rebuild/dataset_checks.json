@@ -1,0 +1,16 @@
+{
+ "pairs_in_index": 141,
+ "excluded": [
+  "USDC-USDT"
+ ],
+ "problems": [],
+ "hourly_rows": 1419323,
+ "rows_at_or_after_delisting": 0,
+ "duplicate_hours": 0,
+ "bad_rows": 0,
+ "report_hours_built": 1419323,
+ "totals_match": true,
+ "identical_to_previous_build": 141,
+ "different_from_previous_build": 0,
+ "PASS": true
+}

@@ -1,0 +1,96 @@
+{
+ "pair": "USDC-USDT",
+ "correction_id": "2",
+ "change": "market_type spot -> not_delisted",
+ "reason": "Parser picked USDC/USDT from the note sentence; the announcement says only USDT/USDC is delisted and USDC/USDT stays available (USDT-USDC is already a separate row). Archive confirms USDC-USDT kept trading after 2025-06-04 (36,543 traded minutes to end of month).",
+ "approved_by": "Omar (explicit approval in chat 2026-11-07, after expert support in v0.7 review)",
+ "evidence_raw_file": "out/delisting_raw/ar/articles/okx-to-delist-zero-prq-iq-arty-samo-and-usdt-usdc-spot-trading-pairs.html",
+ "evidence_raw_sha256": "c7e2b04cc5b6ecab9ff06bdfb3a4303e3d695323821e36b48a32844676f15707",
+ "ledger_effective_utc": "2025-06-04 08:00",
+ "raw_files": 18,
+ "raw_files_sha256": [
+  [
+   "USDC-USDT-candlesticks-2024-01.zip",
+   "33cbd26d84919cca20c4a53d3ce37c086e80d3175040daeb8e97939835e35bcd"
+  ],
+  [
+   "USDC-USDT-candlesticks-2024-02.zip",
+   "8eafdd598e421c919c216138aaa1f2549c7c220294d7d95911ceaedf38e06959"
+  ],
+  [
+   "USDC-USDT-candlesticks-2024-03.zip",
+   "99629a82e5611e27375df359306d18e7cce9fd667efb010bfd4c605da28eb1d1"
+  ],
+  [
+   "USDC-USDT-candlesticks-2024-04.zip",
+   "5b837e64d6cc555fecb7f790db6ed7c85365bc85892e28ae21471e45d48eec40"
+  ],
+  [
+   "USDC-USDT-candlesticks-2024-05.zip",
+   "eb30426fef574b407eff8d8ee12756e67d1b16614e4745c2fb28df909d908a5e"
+  ],
+  [
+   "USDC-USDT-candlesticks-2024-06.zip",
+   "30416dc33c9b0cc5774737c3967e6079d15b65d33add71eb4dd853565a931d3d"
+  ],
+  [
+   "USDC-USDT-candlesticks-2024-07.zip",
+   "7de057ef7c9fb2a92623fe58a358580ac076c463ee7daf435e8b57f06ebf85f5"
+  ],
+  [
+   "USDC-USDT-candlesticks-2024-08.zip",
+   "3b333af48d54ef30720b13ab879d9bf5a95c3b07ed43f6897481cd3427f78deb"
+  ],
+  [
+   "USDC-USDT-candlesticks-2024-09.zip",
+   "cad62ac0e5db8c315647ebfed0e60a2f72a4ccdfe9de4d1283d0af00a387b797"
+  ],
+  [
+   "USDC-USDT-candlesticks-2024-10.zip",
+   "2d9e7c13434561c24427b1df26822738c6078464fa87d4bb42238fd65d19b509"
+  ],
+  [
+   "USDC-USDT-candlesticks-2024-11.zip",
+   "d87c92362fbe00289baaed3b49e34226eabd7c0c800febc864b9fa7dfe7ebb51"
+  ],
+  [
+   "USDC-USDT-candlesticks-2024-12.zip",
+   "23c12348bbdb353e29a2b0957d616f17f858fc90528bf1a537e10a6becffa0f9"
+  ],
+  [
+   "USDC-USDT-candlesticks-2025-01.zip",
+   "fb46c5e7af542c84b6efbab9256338833804656088863ad50c24e550d4e0dc76"
+  ],
+  [
+   "USDC-USDT-candlesticks-2025-02.zip",
+   "8c5277f8dc2add76d48e5332dbb062943497acab33592c3efc20177e87783ca4"
+  ],
+  [
+   "USDC-USDT-candlesticks-2025-03.zip",
+   "603c162cae5ed5736ac80b1c177af7028fb153b3939b58a631828d7c4fcb52f7"
+  ],
+  [
+   "USDC-USDT-candlesticks-2025-04.zip",
+   "d640223adbdba2bd24cbb810df2c6c376b066392c16d779a5362e44f97555d33"
+  ],
+  [
+   "USDC-USDT-candlesticks-2025-05.zip",
+   "9362f7710beb8957c261521bc1bd5867daa5126a4fc5a74a9b1c1a0b7b4cedb5"
+  ],
+  [
+   "USDC-USDT-candlesticks-2025-06.zip",
+   "0778d3ad9dddafc6c3629f3310b8d6e2dea2c84f7bc70be95d9a5d66068609ee"
+  ]
+ ],
+ "trading_after_the_misparsed_date": {
+  "pair": "USDC-USDT",
+  "effective_delisting_utc": "2025-06-04 08:00",
+  "minutes_after_in_files": 37920,
+  "last_minute_in_files_utc": "2025-06-30 15:59",
+  "traded_minutes_after": 36543,
+  "first_traded_after_utc": "2025-06-04 08:00",
+  "last_traded_after_utc": "2025-06-30 15:59",
+  "last_traded_after_minutes_past_effective": 37919,
+  "base_volume_after": "757549822.590109"
+ }
+}

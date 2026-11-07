@@ -1,0 +1,2 @@
+pair,in_dataset,correction_id,change,approved_by
+USDC-USDT,0,2,market_type spot -> not_delisted,"Omar (explicit approval in chat 2026-11-07, after expert support in v0.7 review)"

@@ -1,0 +1,36 @@
+{
+ "run": "20261107T192715Z_rebuild",
+ "mode": "offline rebuild",
+ "from_run": "20261107T173313Z",
+ "raw_files_verified_sha256": 2055,
+ "dataset": "Delisted Assets Historical Dataset (NOT a complete historical market dataset)",
+ "excluded_by_correction": {
+  "USDC-USDT": {
+   "pair": "USDC-USDT",
+   "correction_id": "2",
+   "change": "market_type spot -> not_delisted",
+   "reason": "Parser picked USDC/USDT from the note sentence; the announcement says only USDT/USDC is delisted and USDC/USDT stays available (USDT-USDC is already a separate row). Archive confirms USDC-USDT kept trading after 2025-06-04 (36,543 traded minutes to end of month).",
+   "approved_by": "Omar (explicit approval in chat 2026-11-07, after expert support in v0.7 review)",
+   "evidence_raw_file": "out/delisting_raw/ar/articles/okx-to-delist-zero-prq-iq-arty-samo-and-usdt-usdc-spot-trading-pairs.html",
+   "evidence_raw_sha256": "c7e2b04cc5b6ecab9ff06bdfb3a4303e3d695323821e36b48a32844676f15707",
+   "ledger_effective_utc": "2025-06-04 08:00"
+  }
+ },
+ "pairs_with_several_effective_dates_latest_used": {},
+ "dataset_pairs": 141,
+ "excluded_pairs": [
+  "USDC-USDT"
+ ],
+ "hourly_files": 141,
+ "files": 2037,
+ "files_ok": 2037,
+ "raw_bytes": 1144388175,
+ "hours_built": 1419323,
+ "hours_span": 1435573,
+ "hours_left_empty": 16250,
+ "pairs_with_missing_file_months": 0,
+ "pairs_with_no_data": 0,
+ "pairs_traded_after_delisting": 96,
+ "traded_minutes_after_delisting_dropped": 1071,
+ "duplicate_conflicts": 0
+}
