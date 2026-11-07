@@ -1,0 +1,666 @@
+{
+ "locale": "en-eu",
+ "section": "https://www.okx.com/en-eu/help/section/announcements-delistings",
+ "collected_utc": "2026-11-07T14:02:32Z",
+ "pages_fetched": 3,
+ "items": 34,
+ "articles_ok": 34,
+ "list": [
+  {
+   "slug": "okx-to-delist-dora-icx-storj-zeus-and-elf-spot-trading-pairs",
+   "href": "/en-eu/help/okx-to-delist-dora-icx-storj-zeus-and-elf-spot-trading-pairs",
+   "title": "OKX to delist DORA, ICX, STORJ, ZEUS and ELF spot trading pairs",
+   "date_text": "Sep 23, 2026",
+   "index_page": 1,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-delist-x-perp-for-soxsusd",
+   "href": "/en-eu/help/okx-to-delist-x-perp-for-soxsusd",
+   "title": "OKX to delist X-Perp for SOXSUSD",
+   "date_text": "Aug 28, 2026",
+   "index_page": 1,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-delist-gods-prcl-and-duck-spot-trading-pairs",
+   "href": "/en-eu/help/okx-to-delist-gods-prcl-and-duck-spot-trading-pairs",
+   "title": "OKX to delist GODS, PRCL and DUCK spot trading pairs",
+   "date_text": "Aug 7, 2026",
+   "index_page": 1,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-support-aergo-crypto-migration",
+   "href": "/en-eu/help/okx-to-support-aergo-crypto-migration",
+   "title": "OKX to support AERGO crypto migration",
+   "date_text": "Jul 14, 2026",
+   "index_page": 1,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-support-ip-crypto-migration",
+   "href": "/en-eu/help/okx-to-support-ip-crypto-migration",
+   "title": "OKX to support IP crypto migration",
+   "date_text": "Jun 26, 2026",
+   "index_page": 1,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-delist-perpetual-futures-for-piggyusdt",
+   "href": "/en-eu/help/okx-to-delist-perpetual-futures-for-piggyusdt",
+   "title": "OKX to delist perpetual futures for PIGGYUSDT",
+   "date_text": "Dec 7, 2025",
+   "index_page": 1,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-delist-perpetual-futures-for-launchcoinusdt",
+   "href": "/en-eu/help/okx-to-delist-perpetual-futures-for-launchcoinusdt",
+   "title": "OKX to delist perpetual futures for LAUNCHCOINUSDT",
+   "date_text": "Oct 23, 2025",
+   "index_page": 1,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-delist-x-bsv-gog-dia-bone-and-oxt-spot-trading-pairs",
+   "href": "/en-eu/help/okx-to-delist-x-bsv-gog-dia-bone-and-oxt-spot-trading-pairs",
+   "title": "OKX to delist X, BSV, GOG, DIA, BONE and OXT spot trading pairs",
+   "date_text": "Jun 30, 2025",
+   "index_page": 1,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-delist-alcx-nuls-mdt-bora-ctxc-xno-venom-radar-spot-trading-pairs",
+   "href": "/en-eu/help/okx-to-delist-alcx-nuls-mdt-bora-ctxc-xno-venom-radar-spot-trading-pairs",
+   "title": "OKX to delist ALCX, NULS, MDT, BORA, CTXC, XNO, VENOM, RADAR spot trading pairs",
+   "date_text": "Jun 16, 2025",
+   "index_page": 1,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-delist-zero-prq-iq-arty-samo-and-usdt-usdc-spot-trading-pairs",
+   "href": "/en-eu/help/okx-to-delist-zero-prq-iq-arty-samo-and-usdt-usdc-spot-trading-pairs",
+   "title": "OKX to delist ZERO, PRQ, IQ, ARTY, SAMO and USDT/USDC spot trading pairs",
+   "date_text": "May 28, 2025",
+   "index_page": 1,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-delist-kishu-milo-and-mxc-spot-trading-pairs",
+   "href": "/en-eu/help/okx-to-delist-kishu-milo-and-mxc-spot-trading-pairs",
+   "title": "OKX to delist KISHU, MILO and MXC spot trading pairs",
+   "date_text": "Apr 22, 2025",
+   "index_page": 1,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-delist-xr-goal-kp3r-lamb-bzz-and-gpt-spot-trading-pairs-eu",
+   "href": "/en-eu/help/okx-to-delist-xr-goal-kp3r-lamb-bzz-and-gpt-spot-trading-pairs-eu",
+   "title": "OKX to delist XR, GOAL, KP3R, LAMB, BZZ and GPT spot trading pairs",
+   "date_text": "Mar 13, 2025",
+   "index_page": 1,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-delist-gft-spot-trading-pairs",
+   "href": "/en-eu/help/okx-to-delist-gft-spot-trading-pairs",
+   "title": "OKX to delist GFT spot trading pairs",
+   "date_text": "Dec 2, 2024",
+   "index_page": 1,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-delist-lon-spot-trading-pairs",
+   "href": "/en-eu/help/okx-to-delist-lon-spot-trading-pairs",
+   "title": "OKX to delist LON spot trading pairs",
+   "date_text": "Nov 21, 2024",
+   "index_page": 1,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-delist-block-utk-ast-sis-wxt-and-wifi-spot-trading-pairs",
+   "href": "/en-eu/help/okx-to-delist-block-utk-ast-sis-wxt-and-wifi-spot-trading-pairs",
+   "title": "OKX to delist BLOCK, UTK, AST, SIS, WXT, and WIFI spot trading pairs",
+   "date_text": "Oct 16, 2024",
+   "index_page": 1,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-delist-dmail-jpg-lith-stc-and-revv-spot-trading-pairs",
+   "href": "/en-eu/help/okx-to-delist-dmail-jpg-lith-stc-and-revv-spot-trading-pairs",
+   "title": "OKX to delist DMAIL, JPG, LITH, STC, and REVV spot trading pairs",
+   "date_text": "Sep 6, 2024",
+   "index_page": 2,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-delist-cel-omg-spell-apm-lhinu-and-pols-spot-trading-pairs",
+   "href": "/en-eu/help/okx-to-delist-cel-omg-spell-apm-lhinu-and-pols-spot-trading-pairs",
+   "title": "OKX to delist CEL, OMG, SPELL, APM, LHINU, POLS, and DCR spot trading pairs",
+   "date_text": "Jul 17, 2024",
+   "index_page": 2,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-delist-rndr-margin-trading-pairs-and-perpetual-futures",
+   "href": "/en-eu/help/okx-to-delist-rndr-margin-trading-pairs-and-perpetual-futures",
+   "title": "OKX to delist RNDR margin trading pairs and perpetual futures",
+   "date_text": "Jul 1, 2024",
+   "index_page": 2,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-delist-several-spot-trading-pairs-6-14",
+   "href": "/en-eu/help/okx-to-delist-several-spot-trading-pairs-6-14",
+   "title": "OKX to delist several spot trading pairs",
+   "date_text": "Jun 7, 2024",
+   "index_page": 2,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-delist-several-spot-trading-pairs-6-6",
+   "href": "/en-eu/help/okx-to-delist-several-spot-trading-pairs-6-6",
+   "title": "OKX to delist several spot trading pairs",
+   "date_text": "May 30, 2024",
+   "index_page": 2,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-postpone-delisting-of-starl-and-ant-margin-trading-pair",
+   "href": "/en-eu/help/okx-to-postpone-delisting-of-starl-and-ant-margin-trading-pair",
+   "title": "OKX to postpone delisting of STARL and ANT margin trading pair",
+   "date_text": "May 23, 2024",
+   "index_page": 2,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-delist-skeb-movez-pit-em-let-and-mrst-spot-trading-pairs",
+   "href": "/en-eu/help/okx-to-delist-skeb-movez-pit-em-let-and-mrst-spot-trading-pairs",
+   "title": "OKX to delist SKEB, MOVEZ, PIT, EM, LET and MRST spot trading pairs",
+   "date_text": "May 21, 2024",
+   "index_page": 2,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-delist-several-margin-trading-pairs-and-perpetual-swaps-17-5",
+   "href": "/en-eu/help/okx-to-delist-several-margin-trading-pairs-and-perpetual-swaps-17-5",
+   "title": "OKX to delist several margin trading pairs and perpetual futures",
+   "date_text": "May 17, 2024",
+   "index_page": 2,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-delist-gf-margin-trading-pairs-and-perpetual-swaps",
+   "href": "/en-eu/help/okx-to-delist-gf-margin-trading-pairs-and-perpetual-swaps",
+   "title": "OKX to delist GF margin trading pairs and perpetual futures",
+   "date_text": "Apr 17, 2024",
+   "index_page": 2,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-delist-xeta-kar-hc-and-vsys-spot-trading-pairs",
+   "href": "/en-eu/help/okx-to-delist-xeta-kar-hc-and-vsys-spot-trading-pairs",
+   "title": "OKX to delist XETA, KAR, HC and VSYS spot trading pairs",
+   "date_text": "Apr 5, 2024",
+   "index_page": 2,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-delist-eos-and-etc-expiry-futures",
+   "href": "/en-eu/help/okx-to-delist-eos-and-etc-expiry-futures",
+   "title": "OKX to delist EOS and ETC expiry futures",
+   "date_text": "Apr 3, 2024",
+   "index_page": 2,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-delist-yfii-spot-trading-pairs",
+   "href": "/en-eu/help/okx-to-delist-yfii-spot-trading-pairs",
+   "title": "OKX to delist YFII spot trading pairs",
+   "date_text": "Feb 22, 2024",
+   "index_page": 2,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-postpone-delisting-of-wsm-margin-trading-pair-and-perpetual-futures",
+   "href": "/en-eu/help/okx-to-postpone-delisting-of-wsm-margin-trading-pair-and-perpetual-futures",
+   "title": "OKX to postpone delisting of WSM margin trading pair and perpetual futures",
+   "date_text": "Feb 5, 2024",
+   "index_page": 2,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-delist-several-margin-trading-pairs-and-perpetual-swaps",
+   "href": "/en-eu/help/okx-to-delist-several-margin-trading-pairs-and-perpetual-swaps",
+   "title": "OKX to delist several margin trading pairs and perpetual swaps",
+   "date_text": "Feb 2, 2024",
+   "index_page": 2,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-delist-waves-spot-trading-pairs",
+   "href": "/en-eu/help/okx-to-delist-waves-spot-trading-pairs",
+   "title": "OKX to delist WAVES spot trading pairs",
+   "date_text": "Feb 2, 2024",
+   "index_page": 2,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-delist-wsm-margin-trading-pairs-and-perpetual-futures",
+   "href": "/en-eu/help/okx-to-delist-wsm-margin-trading-pairs-and-perpetual-futures",
+   "title": "OKX to delist WSM margin trading pairs and perpetual futures",
+   "date_text": "Jan 30, 2024",
+   "index_page": 3,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-delist-waves-margin-trading-pairs-and-perpetual-swaps",
+   "href": "/en-eu/help/okx-to-delist-waves-margin-trading-pairs-and-perpetual-swaps",
+   "title": "OKX to delist WAVES margin trading pairs and perpetual futures",
+   "date_text": "Jan 25, 2024",
+   "index_page": 3,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-delist-wgrt-kono-and-wsb-spot-trading-pairs",
+   "href": "/en-eu/help/okx-to-delist-wgrt-kono-and-wsb-spot-trading-pairs",
+   "title": "OKX to delist WGRT, KONO, and WSB spot trading pairs",
+   "date_text": "Jan 25, 2024",
+   "index_page": 3,
+   "fetched": true
+  },
+  {
+   "slug": "okx-to-delist-dome-and-fame-spot-trading-pairs",
+   "href": "/en-eu/help/okx-to-delist-dome-and-fame-spot-trading-pairs",
+   "title": "OKX to delist DOME and FAME spot trading pairs",
+   "date_text": "Jan 5, 2024",
+   "index_page": 3,
+   "fetched": true
+  }
+ ],
+ "fetch_log": [
+  {
+   "url": "https://www.okx.com/en-eu/help/section/announcements-delistings",
+   "at_utc": "2026-11-07T14:01:51Z",
+   "final_url": "https://www.okx.com/en-eu/help/section/announcements-delistings",
+   "status": 200,
+   "bytes": 91478,
+   "sha256": "1feab89338eeaca43397b505c0aba5e89e5873099459275573f7024bdb122ae8",
+   "kind": "index",
+   "page": 1,
+   "new_items": 15
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/section/announcements-delistings/page/2",
+   "at_utc": "2026-11-07T14:01:52Z",
+   "final_url": "https://www.okx.com/en-eu/help/section/announcements-delistings/page/2",
+   "status": 200,
+   "bytes": 84440,
+   "sha256": "f3dd03806d456b83d1a2dc1d6c509a956ee9fd97fc9502f196eb6ca83bbf871d",
+   "kind": "index",
+   "page": 2,
+   "new_items": 15
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/section/announcements-delistings/page/3",
+   "at_utc": "2026-11-07T14:01:54Z",
+   "final_url": "https://www.okx.com/en-eu/help/section/announcements-delistings/page/3",
+   "status": 200,
+   "bytes": 75490,
+   "sha256": "c6a9b5e0e832a7e948514c268f9fe375480ed90c6a8886c68dfe7acc2d52af69",
+   "kind": "index",
+   "page": 3,
+   "new_items": 4
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/section/announcements-delistings/page/4",
+   "at_utc": "2026-11-07T14:01:55Z",
+   "status": 404,
+   "error": "http 404",
+   "final_url": "https://www.okx.com/en-eu/help/section/announcements-delistings/page/4",
+   "kind": "index",
+   "page": 4
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-delist-dora-icx-storj-zeus-and-elf-spot-trading-pairs",
+   "at_utc": "2026-11-07T14:01:55Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-delist-dora-icx-storj-zeus-and-elf-spot-trading-pairs",
+   "status": 200,
+   "bytes": 83943,
+   "sha256": "1b6e758e349e0d9b17aa259598af77469a38817a107d7360c9fcadc23769511e",
+   "kind": "article",
+   "slug": "okx-to-delist-dora-icx-storj-zeus-and-elf-spot-trading-pairs"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-delist-x-perp-for-soxsusd",
+   "at_utc": "2026-11-07T14:01:56Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-delist-x-perp-for-soxsusd",
+   "status": 200,
+   "bytes": 77606,
+   "sha256": "f2bb1df4f0daae3ef0e24ff04c45c1afe6c09aefcb52bac2bf8d9aba4371dd9d",
+   "kind": "article",
+   "slug": "okx-to-delist-x-perp-for-soxsusd"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-delist-gods-prcl-and-duck-spot-trading-pairs",
+   "at_utc": "2026-11-07T14:01:57Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-delist-gods-prcl-and-duck-spot-trading-pairs",
+   "status": 200,
+   "bytes": 85003,
+   "sha256": "44f23587df2d9c2a356529b7a94a53627ccafec18e43856fed3ecf9f4520ef71",
+   "kind": "article",
+   "slug": "okx-to-delist-gods-prcl-and-duck-spot-trading-pairs"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-support-aergo-crypto-migration",
+   "at_utc": "2026-11-07T14:01:59Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-support-aergo-crypto-migration",
+   "status": 200,
+   "bytes": 81479,
+   "sha256": "25f8e1d85ff6909c05e5e1ddcc8139ffbbc994c8bdad9e4f82707a377fc043fd",
+   "kind": "article",
+   "slug": "okx-to-support-aergo-crypto-migration"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-support-ip-crypto-migration",
+   "at_utc": "2026-11-07T14:02:00Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-support-ip-crypto-migration",
+   "status": 200,
+   "bytes": 83961,
+   "sha256": "d871c681bff3afeefd2fb5333a71c32fab30ce349386b974e399240d093ab1a5",
+   "kind": "article",
+   "slug": "okx-to-support-ip-crypto-migration"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-delist-perpetual-futures-for-piggyusdt",
+   "at_utc": "2026-11-07T14:02:01Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-delist-perpetual-futures-for-piggyusdt",
+   "status": 200,
+   "bytes": 72961,
+   "sha256": "af66f32b03612aaf602d520bd9525708bb69b683c4b1eae0a0f9f94c063c2c1e",
+   "kind": "article",
+   "slug": "okx-to-delist-perpetual-futures-for-piggyusdt"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-delist-perpetual-futures-for-launchcoinusdt",
+   "at_utc": "2026-11-07T14:02:02Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-delist-perpetual-futures-for-launchcoinusdt",
+   "status": 200,
+   "bytes": 70113,
+   "sha256": "501ce838ad6ac4807f4acabd56a95a85c6db52d1e78f3147d14dac45cfa9d28d",
+   "kind": "article",
+   "slug": "okx-to-delist-perpetual-futures-for-launchcoinusdt"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-delist-x-bsv-gog-dia-bone-and-oxt-spot-trading-pairs",
+   "at_utc": "2026-11-07T14:02:03Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-delist-x-bsv-gog-dia-bone-and-oxt-spot-trading-pairs",
+   "status": 200,
+   "bytes": 78077,
+   "sha256": "67ff4188850fed27905283c8edab2516800363dafd5060fd1294fc09bfa5603c",
+   "kind": "article",
+   "slug": "okx-to-delist-x-bsv-gog-dia-bone-and-oxt-spot-trading-pairs"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-delist-alcx-nuls-mdt-bora-ctxc-xno-venom-radar-spot-trading-pairs",
+   "at_utc": "2026-11-07T14:02:04Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-delist-alcx-nuls-mdt-bora-ctxc-xno-venom-radar-spot-trading-pairs",
+   "status": 200,
+   "bytes": 78985,
+   "sha256": "7f33b24a4cf5d49fda662fc76cb8b1b70358b41e05222b4f89418fe54b2b9bd2",
+   "kind": "article",
+   "slug": "okx-to-delist-alcx-nuls-mdt-bora-ctxc-xno-venom-radar-spot-trading-pairs"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-delist-zero-prq-iq-arty-samo-and-usdt-usdc-spot-trading-pairs",
+   "at_utc": "2026-11-07T14:02:05Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-delist-zero-prq-iq-arty-samo-and-usdt-usdc-spot-trading-pairs",
+   "status": 200,
+   "bytes": 78732,
+   "sha256": "82eb60ef5959fecee9a4719e1ea374a68aec28fe3dd1069a7a8c6e2f64e7f64f",
+   "kind": "article",
+   "slug": "okx-to-delist-zero-prq-iq-arty-samo-and-usdt-usdc-spot-trading-pairs"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-delist-kishu-milo-and-mxc-spot-trading-pairs",
+   "at_utc": "2026-11-07T14:02:06Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-delist-kishu-milo-and-mxc-spot-trading-pairs",
+   "status": 200,
+   "bytes": 78919,
+   "sha256": "76ddc7fe06374e0455c92214bacc6fb8c9b6f1bbf0f95c26c23fa12b895169aa",
+   "kind": "article",
+   "slug": "okx-to-delist-kishu-milo-and-mxc-spot-trading-pairs"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-delist-xr-goal-kp3r-lamb-bzz-and-gpt-spot-trading-pairs-eu",
+   "at_utc": "2026-11-07T14:02:07Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-delist-xr-goal-kp3r-lamb-bzz-and-gpt-spot-trading-pairs-eu",
+   "status": 200,
+   "bytes": 77788,
+   "sha256": "db1ff1db2e9ce0bf33b81d5b3ca0e5f8334eaa723c4625b90f51bbdddfc2298a",
+   "kind": "article",
+   "slug": "okx-to-delist-xr-goal-kp3r-lamb-bzz-and-gpt-spot-trading-pairs-eu"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-delist-gft-spot-trading-pairs",
+   "at_utc": "2026-11-07T14:02:08Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-delist-gft-spot-trading-pairs",
+   "status": 200,
+   "bytes": 76513,
+   "sha256": "8be2dde0f8134909dfafaf4fb6baa10da0117d65c77cf7243029bdab9aaa0f07",
+   "kind": "article",
+   "slug": "okx-to-delist-gft-spot-trading-pairs"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-delist-lon-spot-trading-pairs",
+   "at_utc": "2026-11-07T14:02:09Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-delist-lon-spot-trading-pairs",
+   "status": 200,
+   "bytes": 76522,
+   "sha256": "6595fcc8677348793dd4c7f4e953f293a40c603e6d8e767e023693c6d13fd9ad",
+   "kind": "article",
+   "slug": "okx-to-delist-lon-spot-trading-pairs"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-delist-block-utk-ast-sis-wxt-and-wifi-spot-trading-pairs",
+   "at_utc": "2026-11-07T14:02:10Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-delist-block-utk-ast-sis-wxt-and-wifi-spot-trading-pairs",
+   "status": 200,
+   "bytes": 78199,
+   "sha256": "90dcc94b80aada64480fcf829147b19464434286e7205342d7c6f88d117e1c94",
+   "kind": "article",
+   "slug": "okx-to-delist-block-utk-ast-sis-wxt-and-wifi-spot-trading-pairs"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-delist-dmail-jpg-lith-stc-and-revv-spot-trading-pairs",
+   "at_utc": "2026-11-07T14:02:11Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-delist-dmail-jpg-lith-stc-and-revv-spot-trading-pairs",
+   "status": 200,
+   "bytes": 74642,
+   "sha256": "82cb5638d7c2d6521d288d6a129260a25378088a55fb4045db97831b894eedef",
+   "kind": "article",
+   "slug": "okx-to-delist-dmail-jpg-lith-stc-and-revv-spot-trading-pairs"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-delist-cel-omg-spell-apm-lhinu-and-pols-spot-trading-pairs",
+   "at_utc": "2026-11-07T14:02:13Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-delist-cel-omg-spell-apm-lhinu-and-pols-spot-trading-pairs",
+   "status": 200,
+   "bytes": 78343,
+   "sha256": "71e7d64f118ea2a336bb29f391f600eca38e18a148102e19db7bf7b7371a39c0",
+   "kind": "article",
+   "slug": "okx-to-delist-cel-omg-spell-apm-lhinu-and-pols-spot-trading-pairs"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-delist-rndr-margin-trading-pairs-and-perpetual-futures",
+   "at_utc": "2026-11-07T14:02:14Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-delist-rndr-margin-trading-pairs-and-perpetual-futures",
+   "status": 200,
+   "bytes": 76962,
+   "sha256": "4909d22795bbb9326f8674c0bfe5478834fc5cf5f627e3f4895a683218206517",
+   "kind": "article",
+   "slug": "okx-to-delist-rndr-margin-trading-pairs-and-perpetual-futures"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-delist-several-spot-trading-pairs-6-14",
+   "at_utc": "2026-11-07T14:02:15Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-delist-several-spot-trading-pairs-6-14",
+   "status": 200,
+   "bytes": 76798,
+   "sha256": "7a128762a049a3e6356f5e50e70f7c3c63ce7b67cf81d51adcebaf0f7633ed5c",
+   "kind": "article",
+   "slug": "okx-to-delist-several-spot-trading-pairs-6-14"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-delist-several-spot-trading-pairs-6-6",
+   "at_utc": "2026-11-07T14:02:16Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-delist-several-spot-trading-pairs-6-6",
+   "status": 200,
+   "bytes": 73245,
+   "sha256": "b0f21608116dec33e420c4dcbee6c2e7c65668b95eb7175f0a2a9a6f5ab1dc42",
+   "kind": "article",
+   "slug": "okx-to-delist-several-spot-trading-pairs-6-6"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-postpone-delisting-of-starl-and-ant-margin-trading-pair",
+   "at_utc": "2026-11-07T14:02:17Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-postpone-delisting-of-starl-and-ant-margin-trading-pair",
+   "status": 200,
+   "bytes": 75281,
+   "sha256": "451a29cbe68ceba8fd1491565378c0f0f7a4cc718a184817b3ac1d5fe85b0409",
+   "kind": "article",
+   "slug": "okx-to-postpone-delisting-of-starl-and-ant-margin-trading-pair"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-delist-skeb-movez-pit-em-let-and-mrst-spot-trading-pairs",
+   "at_utc": "2026-11-07T14:02:18Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-delist-skeb-movez-pit-em-let-and-mrst-spot-trading-pairs",
+   "status": 200,
+   "bytes": 77958,
+   "sha256": "219a253d33c4f0d2b93a28ef93ced14c2d36af4171e5f154f2f1312182355d51",
+   "kind": "article",
+   "slug": "okx-to-delist-skeb-movez-pit-em-let-and-mrst-spot-trading-pairs"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-delist-several-margin-trading-pairs-and-perpetual-swaps-17-5",
+   "at_utc": "2026-11-07T14:02:19Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-delist-several-margin-trading-pairs-and-perpetual-swaps-17-5",
+   "status": 200,
+   "bytes": 78900,
+   "sha256": "52b33b8700d904054cc5d92cb7627c476dd126755aaab5ec421f9fc869384e05",
+   "kind": "article",
+   "slug": "okx-to-delist-several-margin-trading-pairs-and-perpetual-swaps-17-5"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-delist-gf-margin-trading-pairs-and-perpetual-swaps",
+   "at_utc": "2026-11-07T14:02:20Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-delist-gf-margin-trading-pairs-and-perpetual-swaps",
+   "status": 200,
+   "bytes": 78319,
+   "sha256": "eefff7d4c01df5568e8cab12fdf853ad8c29cdd329392919447d8e13a70a76ca",
+   "kind": "article",
+   "slug": "okx-to-delist-gf-margin-trading-pairs-and-perpetual-swaps"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-delist-xeta-kar-hc-and-vsys-spot-trading-pairs",
+   "at_utc": "2026-11-07T14:02:21Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-delist-xeta-kar-hc-and-vsys-spot-trading-pairs",
+   "status": 200,
+   "bytes": 77522,
+   "sha256": "d282eb4fe877294f23bc31ece1e574cfdd2d4e4c1d5cda16ef0c7da749c33a75",
+   "kind": "article",
+   "slug": "okx-to-delist-xeta-kar-hc-and-vsys-spot-trading-pairs"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-delist-eos-and-etc-expiry-futures",
+   "at_utc": "2026-11-07T14:02:22Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-delist-eos-and-etc-expiry-futures",
+   "status": 200,
+   "bytes": 73790,
+   "sha256": "9b763af61d3df538564ceaf007e73177e1e9b494720adbc5e6b1ecd12010b29d",
+   "kind": "article",
+   "slug": "okx-to-delist-eos-and-etc-expiry-futures"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-delist-yfii-spot-trading-pairs",
+   "at_utc": "2026-11-07T14:02:24Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-delist-yfii-spot-trading-pairs",
+   "status": 200,
+   "bytes": 74422,
+   "sha256": "392600436f04d984ed56552a96f000fcf6af7614f50b84eb28986e1bebe0d6a3",
+   "kind": "article",
+   "slug": "okx-to-delist-yfii-spot-trading-pairs"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-postpone-delisting-of-wsm-margin-trading-pair-and-perpetual-futures",
+   "at_utc": "2026-11-07T14:02:25Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-postpone-delisting-of-wsm-margin-trading-pair-and-perpetual-futures",
+   "status": 200,
+   "bytes": 72556,
+   "sha256": "c7e7337ae0fa739a329a74f2ecf87bdad33b3b6e245bc03293943f636cc010b9",
+   "kind": "article",
+   "slug": "okx-to-postpone-delisting-of-wsm-margin-trading-pair-and-perpetual-futures"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-delist-several-margin-trading-pairs-and-perpetual-swaps",
+   "at_utc": "2026-11-07T14:02:26Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-delist-several-margin-trading-pairs-and-perpetual-swaps",
+   "status": 200,
+   "bytes": 78680,
+   "sha256": "b4f666cd37dbb50144aff423a841a954daac28a4f28a2754aff5e5d3b88da9f2",
+   "kind": "article",
+   "slug": "okx-to-delist-several-margin-trading-pairs-and-perpetual-swaps"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-delist-waves-spot-trading-pairs",
+   "at_utc": "2026-11-07T14:02:27Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-delist-waves-spot-trading-pairs",
+   "status": 200,
+   "bytes": 74343,
+   "sha256": "1230ebca891db6f28c9d86ebf667331ef367ca612b44849767a5573a2a6bc595",
+   "kind": "article",
+   "slug": "okx-to-delist-waves-spot-trading-pairs"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-delist-wsm-margin-trading-pairs-and-perpetual-futures",
+   "at_utc": "2026-11-07T14:02:28Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-delist-wsm-margin-trading-pairs-and-perpetual-futures",
+   "status": 200,
+   "bytes": 78466,
+   "sha256": "77c1f8c2e399809ce9bbd0206bdec0b8ae59ae795093e28da35bab971358beba",
+   "kind": "article",
+   "slug": "okx-to-delist-wsm-margin-trading-pairs-and-perpetual-futures"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-delist-waves-margin-trading-pairs-and-perpetual-swaps",
+   "at_utc": "2026-11-07T14:02:29Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-delist-waves-margin-trading-pairs-and-perpetual-swaps",
+   "status": 200,
+   "bytes": 78638,
+   "sha256": "5194ef67bb5d853e27ae3d61fcea75799578de87c084317f64617f38af27cee0",
+   "kind": "article",
+   "slug": "okx-to-delist-waves-margin-trading-pairs-and-perpetual-swaps"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-delist-wgrt-kono-and-wsb-spot-trading-pairs",
+   "at_utc": "2026-11-07T14:02:30Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-delist-wgrt-kono-and-wsb-spot-trading-pairs",
+   "status": 200,
+   "bytes": 75593,
+   "sha256": "b272b7b99e9e9e21c78534b68898dc5425637293ce2f4a8df2dbdafc254b2d1b",
+   "kind": "article",
+   "slug": "okx-to-delist-wgrt-kono-and-wsb-spot-trading-pairs"
+  },
+  {
+   "url": "https://www.okx.com/en-eu/help/okx-to-delist-dome-and-fame-spot-trading-pairs",
+   "at_utc": "2026-11-07T14:02:31Z",
+   "final_url": "https://www.okx.com/en-eu/help/okx-to-delist-dome-and-fame-spot-trading-pairs",
+   "status": 200,
+   "bytes": 75563,
+   "sha256": "3c6345819cb3c1867011a20bfbeafdfd56a8c287d4aff8d6e3f052d7f269769f",
+   "kind": "article",
+   "slug": "okx-to-delist-dome-and-fame-spot-trading-pairs"
+  }
+ ]
+}
