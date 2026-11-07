@@ -75,18 +75,26 @@ def main(avail_dir, live_raw, out_dir, signals=None):
     c += f"- Of these delisted USDT pairs, still present in today's live instrument list: {len(still_live)} {still_live[:15]}.\n"
     c += f"- Spot rows whose announcement explicitly states a withdrawal suspension (asset removed from the platform): {full_wd} of {len(g_spot)}. The rest: pair delisting only, or not stated.\n\n"
     # monthly universe
-    dl = {i: ms(av[i]["effective_delisting_utc"]) for i in gU if i in av}
+    dl = {i: ms(av[i]["effective_delisting_utc"]) for i in gU if i in av and i not in liveU}   # a delisted pair live again today is counted in A
     first = {i: (ms(av[i]["first_1d"]) if av[i]["first_1d"] else None) for i in gU if i in av}
-    c += "## 3. USDT spot pairs tradable on OKX by month (point-in-time)\n\n| month end | live today & listed by then | delisted later but tradable then | total | delisted share |\n|---|---|---|---|---|\n"
+    ann = {}
+    for r in g_spot:
+        if r["instrument"] in dl and r["announcement_utc"]:
+            ann[r["instrument"]] = min(ann.get(r["instrument"], "9"), r["announcement_utc"])
+    c += "## 3. USDT spot pairs tradable on OKX by month (point-in-time)\n\n"
+    c += "Column C = pairs delisted later whose listing date is NOT known (OKX returns no candles for them); they are counted as tradable at month end only because they were delisted after it — an upper bound.\n\n"
+    c += "| month end | A: live today & listed by then | B: delisted later, candles prove tradable | C: delisted later, listing date unknown | A+B+C | (B+C) share | without delisted (A only) understates universe by |\n|---|---|---|---|---|---|---|\n"
     for m, end in month_ends(dt.date(2024, 1, 1), dt.date.today()):
         a1 = sum(1 for i, t in liveU.items() if t and t <= end)
         b1 = sum(1 for i in dl if dl[i] > end and first[i] is not None and first[i] <= end)
-        c += f"| {m} | {a1} | {b1} | {a1 + b1} | {100 * b1 / (a1 + b1):.1f}% |\n" if a1 + b1 else ""
+        c1 = sum(1 for i in dl if dl[i] > end and first[i] is None)
+        tot = a1 + b1 + c1
+        c += f"| {m} | {a1} | {b1} | {c1} | {tot} | {100 * (b1 + c1) / tot:.1f}% | {b1 + c1} pairs |\n" if tot else ""
     c += "\n- Pairs delisted BEFORE Jan 2024 are not in the archive → months before 2024 cannot be rebuilt from this source. Coverage starts Jan 2024.\n"
     c += "- `listTime` of a live pair is its OKX listing time; for a delisted pair, the first daily candle is used as its listing proxy (flagged).\n\n"
     if signals:
         S = list(csv.DictReader(open(signals, encoding="utf-8-sig")))
-        ok = late = unknown = after = 0
+        ok = late = unknown = after = dl_unknown = 0
         for r in S:
             ts = int(r["signal_id"].rsplit("_", 1)[1]); inst = r["sym"] + "-USDT"
             if inst in liveU:
@@ -94,10 +102,12 @@ def main(avail_dir, live_raw, out_dir, signals=None):
                 elif liveU[inst]: late += 1
                 else: unknown += 1
             elif inst in dl:
-                ok += (ts < dl[inst]); after += (ts >= dl[inst])
+                if ts >= dl[inst]: after += 1
+                elif first[inst] is not None: ok += (first[inst] <= ts); late += (first[inst] > ts)
+                else: dl_unknown += 1
             else:
                 unknown += 1
-        c += f"## 4. CryptoRadar signals (local check, not published)\n\n- {len(S)} signals: pair tradable on OKX at signal time **{ok}** · listed after signal {late} · signal after delisting {after} · unknown {unknown}.\n"
+        c += f"## 4. CryptoRadar signals (local check, not published)\n\n- {len(S)} signals: pair tradable on OKX at signal time **{ok}** · listed after signal {late} · signal after delisting {after} · on a later-delisted pair with unknown listing date {dl_unknown} · not found anywhere {unknown}.\n"
         c += "- No coin is removed from research because it is delisted today: availability is judged at the signal's own date.\n"
     (out / "data_coverage_report.md").write_text(c, encoding="utf-8")
     print("reports written to", out)
