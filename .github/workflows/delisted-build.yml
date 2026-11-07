@@ -1,0 +1,49 @@
+name: delisted-build
+
+# Delisted Assets Historical Dataset: 1m candles for the 142 delisted USDT pairs, Jan 2024 -> delisting time.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["requests/delisted_build.txt"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: okx-collect
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Guard tests on this runner
+        run: python3 -I tests/test_proxy.py
+      - name: Download + build
+        run: python3 -I lab/delisted_build.py
+      - name: Publish raw files as release assets
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          d=$(ls -d out/delisted_dataset/*/ | tail -1); run=$(basename $d)
+          tar -C $d -cf raw_$run.tar raw
+          split -b 1900m -d raw_$run.tar raw_$run.tar.part
+          sha256sum raw_$run.tar raw_$run.tar.part* > $d/raw_release_sha256.txt
+          gh release create "delisted-raw-$run" raw_$run.tar.part* $d/download_manifest.csv \
+            --title "Delisted dataset raw OKX files $run" \
+            --notes "Raw OKX archive files (1m candlesticks) exactly as downloaded. Per-file url, time and sha256: download_manifest.csv. Reassemble: cat parts > tar."
+      - name: Commit results (no raw)
+        if: always()
+        run: |
+          git config user.name "quantlab-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add out reports
+          git commit -m "delisted dataset build $(date -u +%FT%TZ)" || echo "nothing to commit"
+          git pull --rebase origin main
+          git push

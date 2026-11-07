@@ -199,7 +199,26 @@ def parse_article(path, locale, meta, collected):
 
 COLS = ["region", "locale", "market_type", "instrument", "base_asset", "quote", "announcement_utc", "effective_delisting_utc", "date_method", "year_inferred",
         "deposit_suspension_utc", "asset_withdrawal_suspension_utc", "asset_full_delisting", "title", "slug", "official_url", "raw_file", "raw_sha256",
-        "collected_utc", "usdt_typo_fixed", "date_conflict", "evidence", "note"]
+        "collected_utc", "usdt_typo_fixed", "date_conflict", "evidence", "note", "correction"]
+
+
+def apply_corrections(rows, locale):
+    """ledger_corrections/corrections.csv: documented, reviewed fixes. The wrong value is kept in the `correction` column."""
+    f = LAB / "ledger_corrections" / "corrections.csv"
+    if not f.exists():
+        return 0
+    n = 0
+    for c in csv.DictReader(open(f, encoding="utf-8")):
+        if c["locale"] != locale:
+            continue
+        for r in rows:
+            if r.get("slug") == c["slug"] and r.get(c["field"]) == c["old_value"]:
+                r[c["field"]] = c["new_value"]
+                if c["field"] == "instrument":
+                    r["base_asset"] = c["new_value"].split("-")[0]
+                r["correction"] = f"#{c['id']}: {c['field']} {c['old_value']} -> {c['new_value']}"
+                n += 1
+    return n
 
 
 def main(locale):
@@ -213,10 +232,11 @@ def main(locale):
         if not p.exists():
             rows.append({"region": locale, "slug": it["slug"], "title": it["title"], "note": "article raw missing"}); continue
         rows += parse_article(p, locale, it, man["collected_utc"])
+    n_corr = apply_corrections(rows, locale)
     with open(out / "delisting_ledger.csv", "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=COLS, extrasaction="ignore"); w.writeheader(); w.writerows(rows)
     import collections
-    notes = {"announcements": len(man["list"]), "rows": len(rows), "by_market_type": dict(collections.Counter(r.get("market_type", "") for r in rows)),
+    notes = {"corrections_applied": n_corr, "announcements": len(man["list"]), "rows": len(rows), "by_market_type": dict(collections.Counter(r.get("market_type", "") for r in rows)),
              "by_date_method": dict(collections.Counter(r.get("date_method", "") for r in rows)),
              "year_inferred": sum(1 for r in rows if r.get("year_inferred") == 1),
              "spot_rows_with_withdrawal_suspension": sum(1 for r in rows if r.get("market_type") == "spot" and r.get("asset_withdrawal_suspension_utc")),
