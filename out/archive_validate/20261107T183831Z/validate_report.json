@@ -1,0 +1,74 @@
+{
+ "run": "20261107T183831Z",
+ "month_utc8": "2026-06",
+ "files": [
+  {
+   "file": "BTC-USDT-candlesticks-2026-06.zip",
+   "url": "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202606/BTC-USDT-candlesticks-2026-06.zip?v=1001",
+   "requested_utc": "2026-11-07T18:38:31Z",
+   "status": 200,
+   "bytes": 1360214,
+   "truncated": false,
+   "sha256": "f6ace8683dd736c79ffc243f77f4b2ce1ab890d22929dfab12d080441ba9e945"
+  },
+  {
+   "file": "ETH-USDT-candlesticks-2026-06.zip",
+   "url": "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202606/ETH-USDT-candlesticks-2026-06.zip?v=1001",
+   "requested_utc": "2026-11-07T18:38:32Z",
+   "status": 200,
+   "bytes": 1269404,
+   "truncated": false,
+   "sha256": "782407493af841b4345dea8efcbf273b92b8747d8257c314cd3e978c13de27cb"
+  },
+  {
+   "file": "SAND-USDT-candlesticks-2026-06.zip",
+   "url": "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202606/SAND-USDT-candlesticks-2026-06.zip?v=1001",
+   "requested_utc": "2026-11-07T18:38:32Z",
+   "status": 200,
+   "bytes": 693104,
+   "truncated": false,
+   "sha256": "9372d5f39da40022fd95171aec59dd3c92420389fc0ec60eb8a6eb2eabf5b254"
+  },
+  {
+   "file": "DOGE-USDT-candlesticks-2026-06.zip",
+   "url": "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202606/DOGE-USDT-candlesticks-2026-06.zip?v=1001",
+   "requested_utc": "2026-11-07T18:38:33Z",
+   "status": 200,
+   "bytes": 1249359,
+   "truncated": false,
+   "sha256": "2f96db060edd90f202ec61fb70613a424e78ad56bc0079b58281ef6d6e484555"
+  },
+  {
+   "file": "LSK-USDT-candlesticks-2026-06.zip",
+   "url": "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202606/LSK-USDT-candlesticks-2026-06.zip?v=1001",
+   "requested_utc": "2026-11-07T18:38:33Z",
+   "status": 200,
+   "bytes": 432939,
+   "truncated": false,
+   "sha256": "02389d24782a4c7ff6740b53b5587dd5e355587f7ea795b4dfcc13d769a25460"
+  },
+  {
+   "file": "SOL-USDT-candlesticks-2026-06.zip",
+   "url": "https://static.okx.com/cdn/okex/traderecords/candlesticks/monthly/202606/SOL-USDT-candlesticks-2026-06.zip?v=1001",
+   "requested_utc": "2026-11-07T18:38:33Z",
+   "status": 200,
+   "bytes": 1116763,
+   "truncated": false,
+   "sha256": "d8f9a45b6b1a216bcada1f74c93e20ac180fb15b4f793dbfa5121ea2f9215f92"
+  }
+ ],
+ "fetch": {
+  "SOL-USDT": {
+   "pages": 8,
+   "error": null
+  },
+  "DOGE-USDT": {
+   "pages": 8,
+   "error": null
+  },
+  "LSK-USDT": {
+   "pages": 8,
+   "error": null
+  }
+ }
+}

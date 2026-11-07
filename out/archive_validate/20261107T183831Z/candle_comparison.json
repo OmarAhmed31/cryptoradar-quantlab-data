@@ -1,0 +1,878 @@
+[
+ {
+  "pair": "BTC-USDT",
+  "file": "BTC-USDT-candlesticks-2026-06.zip",
+  "header": [
+   "instrument_name",
+   "open",
+   "high",
+   "low",
+   "close",
+   "vol",
+   "vol_ccy",
+   "vol_quote",
+   "open_time",
+   "confirm"
+  ],
+  "minutes_in_file": 43200,
+  "first_minute_utc": "2026-05-31 16:00",
+  "last_minute_utc": "2026-06-30 15:59",
+  "duplicate_minutes": 0,
+  "expected_minutes_in_span": 43200,
+  "missing_minutes": 0,
+  "unconfirmed_minutes": 0,
+  "zero_volume_minutes": 0,
+  "zero_volume_minutes_flat_at_prev_close": 0,
+  "bad_ohlc_minutes": 0,
+  "vol_ccy_equals_vol_quote": true,
+  "hours_with_no_traded_minute": 0,
+  "archive_hours": 720,
+  "archive_hours_with_<60_minutes": 0,
+  "verified_hours_in_span": 720,
+  "hours_only_in_archive": [],
+  "hours_only_in_verified": [],
+  "hours_compared": 720,
+  "columns": {
+   "open": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "high": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "low": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "close": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "volume_base": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "volume_quote": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   }
+  },
+  "columns_rule_A_all_minutes": {
+   "open": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "high": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "low": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "close": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "volume_base": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "volume_quote": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   }
+  }
+ },
+ {
+  "pair": "DOGE-USDT",
+  "file": "DOGE-USDT-candlesticks-2026-06.zip",
+  "header": [
+   "instrument_name",
+   "open",
+   "high",
+   "low",
+   "close",
+   "vol",
+   "vol_ccy",
+   "vol_quote",
+   "open_time",
+   "confirm"
+  ],
+  "minutes_in_file": 43200,
+  "first_minute_utc": "2026-05-31 16:00",
+  "last_minute_utc": "2026-06-30 15:59",
+  "duplicate_minutes": 0,
+  "expected_minutes_in_span": 43200,
+  "missing_minutes": 0,
+  "unconfirmed_minutes": 0,
+  "zero_volume_minutes": 85,
+  "zero_volume_minutes_flat_at_prev_close": 85,
+  "bad_ohlc_minutes": 0,
+  "vol_ccy_equals_vol_quote": true,
+  "hours_with_no_traded_minute": 0,
+  "archive_hours": 720,
+  "archive_hours_with_<60_minutes": 62,
+  "verified_hours_in_span": 720,
+  "hours_only_in_archive": [],
+  "hours_only_in_verified": [],
+  "hours_compared": 720,
+  "columns": {
+   "open": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "high": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "low": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "close": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "volume_base": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "volume_quote": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   }
+  },
+  "columns_rule_A_all_minutes": {
+   "open": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "high": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "low": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "close": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "volume_base": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "volume_quote": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   }
+  }
+ },
+ {
+  "pair": "ETH-USDT",
+  "file": "ETH-USDT-candlesticks-2026-06.zip",
+  "header": [
+   "instrument_name",
+   "open",
+   "high",
+   "low",
+   "close",
+   "vol",
+   "vol_ccy",
+   "vol_quote",
+   "open_time",
+   "confirm"
+  ],
+  "minutes_in_file": 43200,
+  "first_minute_utc": "2026-05-31 16:00",
+  "last_minute_utc": "2026-06-30 15:59",
+  "duplicate_minutes": 0,
+  "expected_minutes_in_span": 43200,
+  "missing_minutes": 0,
+  "unconfirmed_minutes": 0,
+  "zero_volume_minutes": 1,
+  "zero_volume_minutes_flat_at_prev_close": 1,
+  "bad_ohlc_minutes": 0,
+  "vol_ccy_equals_vol_quote": true,
+  "hours_with_no_traded_minute": 0,
+  "archive_hours": 720,
+  "archive_hours_with_<60_minutes": 1,
+  "verified_hours_in_span": 720,
+  "hours_only_in_archive": [],
+  "hours_only_in_verified": [],
+  "hours_compared": 720,
+  "columns": {
+   "open": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "high": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "low": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "close": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "volume_base": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "volume_quote": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   }
+  },
+  "columns_rule_A_all_minutes": {
+   "open": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "high": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "low": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "close": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "volume_base": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "volume_quote": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   }
+  }
+ },
+ {
+  "pair": "LSK-USDT",
+  "file": "LSK-USDT-candlesticks-2026-06.zip",
+  "header": [
+   "instrument_name",
+   "open",
+   "high",
+   "low",
+   "close",
+   "vol",
+   "vol_ccy",
+   "vol_quote",
+   "open_time",
+   "confirm"
+  ],
+  "minutes_in_file": 43200,
+  "first_minute_utc": "2026-05-31 16:00",
+  "last_minute_utc": "2026-06-30 15:59",
+  "duplicate_minutes": 0,
+  "expected_minutes_in_span": 43200,
+  "missing_minutes": 0,
+  "unconfirmed_minutes": 0,
+  "zero_volume_minutes": 31552,
+  "zero_volume_minutes_flat_at_prev_close": 31552,
+  "bad_ohlc_minutes": 0,
+  "vol_ccy_equals_vol_quote": true,
+  "hours_with_no_traded_minute": 29,
+  "archive_hours": 720,
+  "archive_hours_with_<60_minutes": 691,
+  "verified_hours_in_span": 720,
+  "hours_only_in_archive": [],
+  "hours_only_in_verified": [],
+  "hours_compared": 720,
+  "columns": {
+   "open": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "high": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "low": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "close": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "volume_base": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "volume_quote": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   }
+  },
+  "columns_rule_A_all_minutes": {
+   "open": {
+    "mismatches": 398,
+    "max_abs_diff": "0.0022",
+    "max_rel_diff": "2.517e-02",
+    "worst_hour_utc": "2026-06-27 13:00",
+    "archive_value": "0.0896",
+    "verified_value": "0.0874",
+    "mismatches_rel_gt_1e-9": 398
+   },
+   "high": {
+    "mismatches": 76,
+    "max_abs_diff": "0.0019",
+    "max_rel_diff": "2.132e-02",
+    "worst_hour_utc": "2026-06-28 19:00",
+    "archive_value": "0.091",
+    "verified_value": "0.0891",
+    "mismatches_rel_gt_1e-9": 76
+   },
+   "low": {
+    "mismatches": 58,
+    "max_abs_diff": "0.0012",
+    "max_rel_diff": "1.356e-02",
+    "worst_hour_utc": "2026-06-18 20:00",
+    "archive_value": "0.0873",
+    "verified_value": "0.0885",
+    "mismatches_rel_gt_1e-9": 58
+   },
+   "close": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "volume_base": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "volume_quote": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   }
+  }
+ },
+ {
+  "pair": "SAND-USDT",
+  "file": "SAND-USDT-candlesticks-2026-06.zip",
+  "header": [
+   "instrument_name",
+   "open",
+   "high",
+   "low",
+   "close",
+   "vol",
+   "vol_ccy",
+   "vol_quote",
+   "open_time",
+   "confirm"
+  ],
+  "minutes_in_file": 43200,
+  "first_minute_utc": "2026-05-31 16:00",
+  "last_minute_utc": "2026-06-30 15:59",
+  "duplicate_minutes": 0,
+  "expected_minutes_in_span": 43200,
+  "missing_minutes": 0,
+  "unconfirmed_minutes": 0,
+  "zero_volume_minutes": 19689,
+  "zero_volume_minutes_flat_at_prev_close": 19689,
+  "bad_ohlc_minutes": 0,
+  "vol_ccy_equals_vol_quote": true,
+  "hours_with_no_traded_minute": 0,
+  "archive_hours": 720,
+  "archive_hours_with_<60_minutes": 705,
+  "verified_hours_in_span": 720,
+  "hours_only_in_archive": [],
+  "hours_only_in_verified": [],
+  "hours_compared": 720,
+  "columns": {
+   "open": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "high": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "low": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "close": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "volume_base": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "volume_quote": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   }
+  },
+  "columns_rule_A_all_minutes": {
+   "open": {
+    "mismatches": 213,
+    "max_abs_diff": "0.00045",
+    "max_rel_diff": "8.687e-03",
+    "worst_hour_utc": "2026-06-06 03:00",
+    "archive_value": "0.05225",
+    "verified_value": "0.0518",
+    "mismatches_rel_gt_1e-9": 213
+   },
+   "high": {
+    "mismatches": 33,
+    "max_abs_diff": "0.00037",
+    "max_rel_diff": "7.132e-03",
+    "worst_hour_utc": "2026-06-06 03:00",
+    "archive_value": "0.05225",
+    "verified_value": "0.05188",
+    "mismatches_rel_gt_1e-9": 33
+   },
+   "low": {
+    "mismatches": 15,
+    "max_abs_diff": "0.00021",
+    "max_rel_diff": "4.161e-03",
+    "worst_hour_utc": "2026-06-19 08:00",
+    "archive_value": "0.05026",
+    "verified_value": "0.05047",
+    "mismatches_rel_gt_1e-9": 15
+   },
+   "close": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "volume_base": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "volume_quote": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   }
+  }
+ },
+ {
+  "pair": "SOL-USDT",
+  "file": "SOL-USDT-candlesticks-2026-06.zip",
+  "header": [
+   "instrument_name",
+   "open",
+   "high",
+   "low",
+   "close",
+   "vol",
+   "vol_ccy",
+   "vol_quote",
+   "open_time",
+   "confirm"
+  ],
+  "minutes_in_file": 43200,
+  "first_minute_utc": "2026-05-31 16:00",
+  "last_minute_utc": "2026-06-30 15:59",
+  "duplicate_minutes": 0,
+  "expected_minutes_in_span": 43200,
+  "missing_minutes": 0,
+  "unconfirmed_minutes": 0,
+  "zero_volume_minutes": 0,
+  "zero_volume_minutes_flat_at_prev_close": 0,
+  "bad_ohlc_minutes": 0,
+  "vol_ccy_equals_vol_quote": true,
+  "hours_with_no_traded_minute": 0,
+  "archive_hours": 720,
+  "archive_hours_with_<60_minutes": 0,
+  "verified_hours_in_span": 720,
+  "hours_only_in_archive": [],
+  "hours_only_in_verified": [],
+  "hours_compared": 720,
+  "columns": {
+   "open": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "high": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "low": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "close": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "volume_base": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "volume_quote": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   }
+  },
+  "columns_rule_A_all_minutes": {
+   "open": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "high": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "low": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "close": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "volume_base": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   },
+   "volume_quote": {
+    "mismatches": 0,
+    "max_abs_diff": "0",
+    "max_rel_diff": "0",
+    "worst_hour_utc": "",
+    "archive_value": "",
+    "verified_value": "",
+    "mismatches_rel_gt_1e-9": 0
+   }
+  }
+ }
+]
