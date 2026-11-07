@@ -32,7 +32,9 @@ def fetch(url):
     return None, rec
 
 
-def main(pages, art_limit):
+def main(pages, art_limit, section=None):
+    global SECTION
+    SECTION = section or SECTION
     run_id = time.strftime("%Y%m%dT%H%M%SZ", time.gmtime())
     out = guard.LAB / "out" / "delist_raw" / run_id
     out.mkdir(parents=True, exist_ok=True)
@@ -64,5 +66,5 @@ def main(pages, art_limit):
 
 if __name__ == "__main__":
     guard.install(write_dirs=("out", "state"), net_hosts=("www.okx.com",), job="delist-probe")
-    main(int(sys.argv[1]), int(sys.argv[2]) if len(sys.argv) > 2 else 15)
+    main(int(sys.argv[1]), int(sys.argv[2]) if len(sys.argv) > 2 else 15, sys.argv[3] if len(sys.argv) > 3 else None)
     guard.health("done")

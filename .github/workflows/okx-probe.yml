@@ -31,11 +31,12 @@ jobs:
       - name: Guard proxy tests on this runner
         run: python3 -I tests/test_proxy.py
         continue-on-error: true
-      - name: OKX candles probe (BTC ETH SAND, 400 days)
-        run: python3 -I lab/okx_fetch.py probe BTC ETH SAND | tail -40
-        continue-on-error: true
-      - name: OKX official delisting pages (raw, 2 index pages, up to 15 articles)
-        run: python3 -I lab/delist_fetch.py 2 15
+      - name: Region check - which delisting archive does each locale path serve? (1 page, no articles)
+        run: |
+          for L in ar zh-hans en-eu; do
+            python3 -I lab/delist_fetch.py 1 0 "https://www.okx.com/$L/help/section/announcements-delistings" | tail -3
+            sleep 2
+          done
         continue-on-error: true
       - name: Commit results
         run: |
