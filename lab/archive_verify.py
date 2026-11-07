@@ -45,9 +45,13 @@ def http(url, cap=20 * 1024 * 1024):
                 rec.update(status=r.status, bytes=len(body), truncated=len(body) > cap, sha256=hashlib.sha256(body).hexdigest())
                 return body[:cap], rec
         except urllib.error.HTTPError as e:
-            rec.update(status=e.code, error=f"http {e.code}")
+            try:
+                eb = e.read(4096)
+            except Exception:
+                eb = b""
+            rec.update(status=e.code, error=f"http {e.code}", sha256=hashlib.sha256(eb).hexdigest())
             if e.code != 429:
-                break
+                return eb or None, rec          # keep the error body as evidence
         except Exception as e:
             rec.update(status=None, error=f"{type(e).__name__}: {str(e)[:150]}")
         time.sleep(2 + 3 * attempt)
@@ -59,6 +63,8 @@ class Lister:
         self.raw = gzip.open(raw_path, "wt", encoding="utf-8")
         self.calls = 0
         self.errors = []
+        self.spans = []
+        self.last = {}
 
     def __call__(self, module, insts, agg, begin, end):
         url = f"{API}?module={module}&instType=SPOT&instIdList={','.join(insts)}&dateAggrType={agg}&begin={begin}&end={end}"
@@ -73,7 +79,8 @@ class Lister:
                 pass
             self.raw.write(json.dumps({**rec, "body": body.decode("utf-8", "replace") if body else None}) + "\n")
             time.sleep(0.6)
-            if j.get("code") == "0":
+            self.last = {"status": rec.get("status"), "code": j.get("code"), "msg": j.get("msg")}
+            if j.get("code") == "0" and rec.get("status") == 200:
                 out = []
                 for blk in j.get("data") or []:
                     for det in blk.get("details") or []:
@@ -86,6 +93,22 @@ class Lister:
             break
         self.errors.append({"url": url, "status": rec.get("status"), "code": j.get("code"), "msg": j.get("msg")})
         return None
+
+    def split(self, module, insts, agg, begin, end, unit):
+        """Same listing, but a range OKX rejects (HTTP 400) is halved until it is accepted or below one unit."""
+        got = self(module, insts, agg, begin, end)
+        if got is not None:
+            self.spans.append(end - begin)
+            return got
+        if self.last.get("status") != 400 or end - begin <= unit:
+            return None
+        self.errors.pop()                         # replaced by the two halves
+        mid = begin + (end - begin) // 2
+        a = self.split(module, insts, agg, begin, mid, unit)
+        b = self.split(module, insts, agg, mid + 1, end, unit)
+        if a is None and b is None:
+            return None
+        return (a or []) + (b or [])
 
     def close(self):
         self.raw.close()
@@ -101,13 +124,14 @@ def pair_of(fn):
             return fn.split(sep)[0]
 
 
-def coverage(out, pairs, L):
+def coverage(out, pairs, L, chunk_months=20, daily_days=18):
     """pairs: {inst: effective_utc_ms}. Listing only."""
     mods = {"1": "trades", "2": "candles"}
-    # monthly chunks of <= 20 months (UTC+8), Jan 2018 .. Dec 2026
-    chunks, y, m = [], 2018, 1
+    # monthly chunks (UTC+8), Jan 2021 .. Dec 2026 (OKX archive: trade history from Sep 2021)
+    chunks, y, m = [], 2021, 1
     while (y, m) <= (2026, 12):
-        ey, em = y + (m + 18) // 12, (m + 18) % 12 + 1          # +19 months -> 20 months inclusive
+        k = chunk_months - 1
+        ey, em = y + (m - 1 + k) // 12, (m - 1 + k) % 12 + 1      # chunk_months inclusive
         if (ey, em) > (2026, 12):
             ey, em = 2026, 12
         chunks.append((cn_month_start(y, m), cn_month_start(ey + (em == 12), em % 12 + 1) - 1))
@@ -119,7 +143,7 @@ def coverage(out, pairs, L):
         for k in range(0, len(names), 5):
             grp = names[k:k + 5]
             for b, e in chunks:
-                got = L(mo, grp, "monthly", b, e)
+                got = L.split(mo, grp, "monthly", b, e, 31 * D)
                 for g in got or []:
                     p = pair_of(g["filename"])
                     if p in monthly[mo]:
@@ -131,7 +155,7 @@ def coverage(out, pairs, L):
         for eff, ps in sorted(byeff.items()):
             for k in range(0, len(ps), 5):
                 grp = ps[k:k + 5]
-                got = L(mo, grp, "daily", eff - 18 * D, eff + 1 * D)
+                got = L.split(mo, grp, "daily", eff - daily_days * D, eff + 1 * D, D)
                 for g in got or []:
                     p = pair_of(g["filename"])
                     if p in daily[mo]:
@@ -203,8 +227,27 @@ def main():
             guard.atomic_write(out / "candles" / g["filename"], body, mode="wb")
         rep["candles"].append({"file": g["filename"], "listing": g, **rec})
 
-    # 2) listing-only coverage, all pairs
-    rows = coverage(out, pairs, L)
+    # 2) find the range OKX actually accepts (docs say 20 months / 20 days; first run got HTTP 400 on those)
+    grp = sorted(pairs)[:5]
+    diag = []
+    cm = None
+    for months in (20, 12, 6, 3, 2, 1):
+        b2 = cn_month_start(2024, 1); y2, m2 = 2024, 1 + months
+        e2 = cn_month_start(y2 + (m2 - 1) // 12, (m2 - 1) % 12 + 1) - 1
+        got = L("2", grp, "monthly", b2, e2)
+        diag.append({"agg": "monthly", "months": months, **L.last, "files": None if got is None else len(got)})
+        if got is not None:
+            cm = months; break
+    dd = None
+    for days in (18, 14, 10, 7, 5, 3, 2, 1):
+        e2 = pairs[grp[0]]
+        got = L("2", grp, "daily", e2 - days * D, e2 + D - 1)
+        diag.append({"agg": "daily", "days": days + 1, **L.last, "files": None if got is None else len(got)})
+        if got is not None:
+            dd = days; break
+    rep["range_diagnostic"] = diag
+    L.errors.clear()
+    rows = coverage(out, pairs, L, chunk_months=cm or 1, daily_days=dd if dd is not None else 0)
 
     # 3) expert's extra test: last daily file(s) of ONE delisted pair
     rep["delist_check"] = {"pair": DELIST_TEST, "effective_delisting_utc": iso(pairs.get(DELIST_TEST)), "files": []}
@@ -228,6 +271,7 @@ def main():
     rep["listing_calls"] = L.calls
     rep["listing_errors"] = L.errors[:50]
     rep["listing_error_count"] = len(L.errors)
+    rep["largest_accepted_range_days"] = round(max(L.spans) / D, 1) if L.spans else None
     for tag in ("trades", "candles"):
         rep[f"coverage_{tag}"] = {st: sum(1 for r in rows if r[f"{tag}_status"] == st) for st in ("full_apparent", "partial", "none")}
     guard.atomic_write(out / "verify_report.json", json.dumps(rep, indent=1, ensure_ascii=False))
