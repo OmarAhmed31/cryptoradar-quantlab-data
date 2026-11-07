@@ -102,17 +102,17 @@ def main():
     (out / "sample").mkdir(parents=True, exist_ok=True)
     rep = {"run": run, "scope": "limited probe, expert-approved 2026-11-07", "endpoint": API, "listings": {}, "download": None}
     for m in MONTHS:
-        insts = (list(LATER_DELISTED_CHECK.get(m, ())) + ["BTC-USDT"])[:10]
+        insts = list(LATER_DELISTED_CHECK.get(m, ()))[:4] + ["BTC-USDT"]   # OKX max 5 (code 50025)
         b, e = mbounds(m)
         for mod in MODULES:
             rec, _ = listing(out, f"{m}_module{mod}_monthly", mod, insts, "monthly", b, e)
             rep["listings"][f"{m} module {mod} ({MODULES[mod]}) monthly, instIdList={','.join(insts)}"] = rec
     # daily listing for the target day, trades only, then ONE download
     d0 = ms(TARGET_DAY)
-    rec, ents = listing(out, f"{TARGET_DAY}_module1_daily", "1", list(CANDIDATES), "daily", d0, d0 + 86400000 - 1)
+    rec, ents = listing(out, f"{TARGET_DAY}_module1_daily", "1", list(CANDIDATES)[:5], "daily", d0, d0 + 86400000 - 1)
     rep["listings"][f"{TARGET_DAY} module 1 daily, instIdList={','.join(CANDIDATES)}"] = rec
     pick = None
-    for p in CANDIDATES:
+    for p in CANDIDATES[:5]:
         for en in ents:
             if p in json.dumps(en):
                 pick = (p, en); break

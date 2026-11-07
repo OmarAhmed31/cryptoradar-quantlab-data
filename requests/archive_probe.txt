@@ -1,2 +1,3 @@
 limited archive probe 2026-11-07 (expert-approved)
 rerun 2 (official endpoint)
+rerun 3 (max 5 instruments)
