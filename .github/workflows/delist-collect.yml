@@ -1,0 +1,40 @@
+name: delist-collect
+
+# Raw OKX official delisting archive: global (ar) and Europe (en-eu), kept separate.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["requests/delist.txt"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: okx-collect
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Guard tests on this runner
+        run: python3 -I tests/test_proxy.py
+      - name: Global archive (ar)
+        run: python3 -I lab/delist_collect.py ar 40
+      - name: Europe archive (en-eu), separate
+        run: python3 -I lab/delist_collect.py en-eu 40
+        continue-on-error: true
+      - name: Commit results
+        run: |
+          git config user.name "quantlab-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add out reports
+          git commit -m "delisting archive raw $(date -u +%FT%TZ)" || echo "nothing to commit"
+          git pull --rebase origin main
+          git push
