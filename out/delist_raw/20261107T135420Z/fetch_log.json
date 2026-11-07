@@ -1,0 +1,43 @@
+{
+ "run_id": "20261107T135420Z",
+ "section": "https://www.okx.com/en-eu/help/section/announcements-delistings",
+ "pages_requested": 1,
+ "links_found": 24,
+ "links": [
+  "/en-eu/help/okx-to-delist-dora-icx-storj-zeus-and-elf-spot-trading-pairs",
+  "/en-eu/help/okx-to-delist-x-perp-for-soxsusd",
+  "/en-eu/help/okx-to-delist-gods-prcl-and-duck-spot-trading-pairs",
+  "/en-eu/help/okx-to-support-aergo-crypto-migration",
+  "/en-eu/help/okx-to-support-ip-crypto-migration",
+  "/en-eu/help/okx-to-delist-perpetual-futures-for-piggyusdt",
+  "/en-eu/help/okx-to-delist-perpetual-futures-for-launchcoinusdt",
+  "/en-eu/help/okx-to-delist-x-bsv-gog-dia-bone-and-oxt-spot-trading-pairs",
+  "/en-eu/help/okx-to-delist-alcx-nuls-mdt-bora-ctxc-xno-venom-radar-spot-trading-pairs",
+  "/en-eu/help/okx-to-delist-zero-prq-iq-arty-samo-and-usdt-usdc-spot-trading-pairs",
+  "/en-eu/help/okx-to-delist-kishu-milo-and-mxc-spot-trading-pairs",
+  "/en-eu/help/okx-to-delist-xr-goal-kp3r-lamb-bzz-and-gpt-spot-trading-pairs-eu",
+  "/en-eu/help/okx-to-delist-gft-spot-trading-pairs",
+  "/en-eu/help/okx-to-delist-lon-spot-trading-pairs",
+  "/en-eu/help/okx-to-delist-block-utk-ast-sis-wxt-and-wifi-spot-trading-pairs",
+  "/en-eu/help/okx-candidate-privacy-notice",
+  "/en-eu/help/terms-of-service-eea",
+  "/en-eu/help/terms-of-service-derivatives-eea",
+  "/en-eu/help/privacy-policy-statement",
+  "/en-eu/help/eea-risk-and-compliance-disclosure",
+  "/en-eu/help/oem-disclosures",
+  "/en-eu/help/okcoin-europe-ltd-conflicts-of-interest-disclosure",
+  "/en-eu/help/whistleblower-notice",
+  "/en-eu/help/okx-law-enforcement-request-guide"
+ ],
+ "fetched_ok": 1,
+ "log": [
+  {
+   "url": "https://www.okx.com/en-eu/help/section/announcements-delistings",
+   "at_utc": "2026-11-07T13:54:20Z",
+   "final_url": "https://www.okx.com/en-eu/help/section/announcements-delistings",
+   "status": 200,
+   "bytes": 91478,
+   "sha256": "3e5b465781d311dbac90d1bdb42bb09b16174a87a6ff1127933c6b234cda13c5"
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "run_id": "20261107T135414Z",
+ "section": "https://www.okx.com/ar/help/section/announcements-delistings",
+ "pages_requested": 1,
+ "links_found": 21,
+ "links": [
+  "/ar/help/okx-to-delist-dora-icx-storj-zeus-and-elf-spot-trading-pairs",
+  "/ar/help/okx-to-postpone-the-delisting-of-oneusdt-perpetual-futures",
+  "/ar/help/okx-to-delist-perpetual-futures-for-icxusdt",
+  "/ar/help/okx-to-delist-x-perp-for-soxsusd",
+  "/ar/help/okx-to-delist-gods-prcl-and-duck-spot-trading-pairs",
+  "/ar/help/okx-to-support-aergo-crypto-migration",
+  "/ar/help/okx-to-delist-perpetual-futures-for-lrcusdt",
+  "/ar/help/okx-to-support-ip-crypto-migration",
+  "/ar/help/okx-to-delist-perpetual-futures-for-panwusdt",
+  "/ar/help/okx-to-support-ton-crypto-migration",
+  "/ar/help/okx-to-delist-major-and-j-spot-trading-pairs",
+  "/ar/help/okx-to-delist-several-usds-um-perpetual-futures-20260505",
+  "/ar/help/okx-to-support-dai-to-usds-crypto-migration",
+  "/ar/help/okx-to-delist-uxlink-spot-trading-pairs",
+  "/ar/help/okx-to-delist-kite-margin-trading-pair",
+  "/ar/help/okx-candidate-privacy-notice",
+  "/ar/help/terms-of-service",
+  "/ar/help/privacy-policy-statement",
+  "/ar/help/risk-compliance-disclosure",
+  "/ar/help/whistleblower-notice",
+  "/ar/help/okx-law-enforcement-request-guide"
+ ],
+ "fetched_ok": 1,
+ "log": [
+  {
+   "url": "https://www.okx.com/ar/help/section/announcements-delistings",
+   "at_utc": "2026-11-07T13:54:14Z",
+   "final_url": "https://www.okx.com/ar/help/section/announcements-delistings",
+   "status": 200,
+   "bytes": 105873,
+   "sha256": "016fa29935ffb5e9561c87a6e3b0b0bda4401a62fc52de705d990845975af030"
+  }
+ ]
+}

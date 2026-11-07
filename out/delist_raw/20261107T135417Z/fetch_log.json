@@ -1,0 +1,40 @@
+{
+ "run_id": "20261107T135417Z",
+ "section": "https://www.okx.com/zh-hans/help/section/announcements-delistings",
+ "pages_requested": 1,
+ "links_found": 21,
+ "links": [
+  "/zh-hans/help/okx-to-delist-dora-icx-storj-zeus-and-elf-spot-trading-pairs",
+  "/zh-hans/help/okx-to-delist-aeon-usd-spot-trading-pair",
+  "/zh-hans/help/okx-to-postpone-the-delisting-of-oneusdt-perpetual-futures",
+  "/zh-hans/help/okx-to-delist-perpetual-futures-for-oneusdt",
+  "/zh-hans/help/okx-to-delist-perpetual-futures-for-icxusdt",
+  "/zh-hans/help/okx-to-delist-selected-usds-spot-trading-pairs",
+  "/zh-hans/help/okx-to-delist-x-perp-for-soxsusd",
+  "/zh-hans/help/okx-to-delist-gods-prcl-and-duck-spot-trading-pairs",
+  "/zh-hans/help/okx-to-delist-perpetual-futures-for-lrcusdt",
+  "/zh-hans/help/okx-to-support-ip-crypto-migration",
+  "/zh-hans/help/okx-to-delist-perpetual-futures-for-panwusdt",
+  "/zh-hans/help/okx-to-support-ton-crypto-migration",
+  "/zh-hans/help/okx-to-delist-major-and-j-spot-trading-pairs",
+  "/zh-hans/help/okx-to-delist-several-usds-um-perpetual-futures-20260505",
+  "/zh-hans/help/okx-to-support-dai-to-usds-crypto-migration",
+  "/zh-hans/help/okx-candidate-privacy-notice",
+  "/zh-hans/help/terms-of-service",
+  "/zh-hans/help/privacy-policy-statement",
+  "/zh-hans/help/risk-compliance-disclosure",
+  "/zh-hans/help/whistleblower-notice",
+  "/zh-hans/help/okx-law-enforcement-request-guide"
+ ],
+ "fetched_ok": 1,
+ "log": [
+  {
+   "url": "https://www.okx.com/zh-hans/help/section/announcements-delistings",
+   "at_utc": "2026-11-07T13:54:17Z",
+   "final_url": "https://www.okx.com/zh-hans/help/section/announcements-delistings",
+   "status": 200,
+   "bytes": 99664,
+   "sha256": "2dedd7a1fa2c4609b9ec429aacceaa32fa3deca1a753f92f60ce0eef4954a262"
+  }
+ ]
+}
