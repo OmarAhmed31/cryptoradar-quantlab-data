@@ -1,0 +1,244 @@
+{
+ "base_run": "20261107T164416Z",
+ "early_candles": {
+  "ANT-USDT": {
+   "first_month_utc": "2020-07-31 16:00",
+   "files_2017_2020": 5
+  },
+  "APM-USDT": {
+   "first_month_utc": "2020-01-31 16:00",
+   "files_2017_2020": 11
+  },
+  "AST-USDT": {
+   "first_month_utc": "2019-11-30 16:00",
+   "files_2017_2020": 13
+  },
+  "BADGER-USDT": {
+   "first_month_utc": "none before 2021-01 (UTC+8)",
+   "files_2017_2020": 0
+  },
+  "BAL-USDT": {
+   "first_month_utc": "2020-06-30 16:00",
+   "files_2017_2020": 6
+  },
+  "BSV-USDT": {
+   "first_month_utc": "2019-11-30 16:00",
+   "files_2017_2020": 13
+  },
+  "CTXC-USDT": {
+   "first_month_utc": "2019-11-30 16:00",
+   "files_2017_2020": 13
+  },
+  "DCR-USDT": {
+   "first_month_utc": "2019-11-30 16:00",
+   "files_2017_2020": 13
+  },
+  "DEP-USDT": {
+   "first_month_utc": "2020-03-31 16:00",
+   "files_2017_2020": 9
+  },
+  "DIA-USDT": {
+   "first_month_utc": "2020-07-31 16:00",
+   "files_2017_2020": 5
+  },
+  "ELF-USDT": {
+   "first_month_utc": "2019-11-30 16:00",
+   "files_2017_2020": 13
+  },
+  "EM-USDT": {
+   "first_month_utc": "2019-11-30 16:00",
+   "files_2017_2020": 13
+  },
+  "FLM-USDT": {
+   "first_month_utc": "2020-08-31 16:00",
+   "files_2017_2020": 4
+  },
+  "FRONT-USDT": {
+   "first_month_utc": "2020-08-31 16:00",
+   "files_2017_2020": 4
+  },
+  "GHST-USDT": {
+   "first_month_utc": "2020-09-30 16:00",
+   "files_2017_2020": 3
+  },
+  "HC-USDT": {
+   "first_month_utc": "2019-11-30 16:00",
+   "files_2017_2020": 13
+  },
+  "ICX-USDT": {
+   "first_month_utc": "2019-11-30 16:00",
+   "files_2017_2020": 13
+  },
+  "IQ-USDT": {
+   "first_month_utc": "2020-05-31 16:00",
+   "files_2017_2020": 7
+  },
+  "KAN-USDT": {
+   "first_month_utc": "2019-11-30 16:00",
+   "files_2017_2020": 13
+  },
+  "KP3R-USDT": {
+   "first_month_utc": "2020-11-30 16:00",
+   "files_2017_2020": 1
+  },
+  "LAMB-USDT": {
+   "first_month_utc": "2019-11-30 16:00",
+   "files_2017_2020": 13
+  },
+  "LET-USDT": {
+   "first_month_utc": "2019-11-30 16:00",
+   "files_2017_2020": 13
+  },
+  "LON-USDT": {
+   "first_month_utc": "2020-11-30 16:00",
+   "files_2017_2020": 1
+  },
+  "MDT-USDT": {
+   "first_month_utc": "2019-11-30 16:00",
+   "files_2017_2020": 13
+  },
+  "MLN-USDT": {
+   "first_month_utc": "2020-08-31 16:00",
+   "files_2017_2020": 4
+  },
+  "MXC-USDT": {
+   "first_month_utc": "none before 2021-01 (UTC+8)",
+   "files_2017_2020": 0
+  },
+  "NULS-USDT": {
+   "first_month_utc": "2019-11-30 16:00",
+   "files_2017_2020": 13
+  },
+  "OMG-USDT": {
+   "first_month_utc": "2019-11-30 16:00",
+   "files_2017_2020": 13
+  },
+  "OXT-USDT": {
+   "first_month_utc": "2020-02-29 16:00",
+   "files_2017_2020": 10
+  },
+  "POLS-USDT": {
+   "first_month_utc": "none before 2021-01 (UTC+8)",
+   "files_2017_2020": 0
+  },
+  "PRQ-USDT": {
+   "first_month_utc": "none before 2021-01 (UTC+8)",
+   "files_2017_2020": 0
+  },
+  "REN-USDT": {
+   "first_month_utc": "2020-07-31 16:00",
+   "files_2017_2020": 5
+  },
+  "REP-USDT": {
+   "first_month_utc": "2020-08-31 16:00",
+   "files_2017_2020": 4
+  },
+  "RIO-USDT": {
+   "first_month_utc": "2020-08-31 16:00",
+   "files_2017_2020": 4
+  },
+  "SC-USDT": {
+   "first_month_utc": "2019-11-30 16:00",
+   "files_2017_2020": 13
+  },
+  "STORJ-USDT": {
+   "first_month_utc": "2019-11-30 16:00",
+   "files_2017_2020": 13
+  },
+  "USDC-USDT": {
+   "first_month_utc": "2019-11-30 16:00",
+   "files_2017_2020": 13
+  },
+  "UTK-USDT": {
+   "first_month_utc": "2019-11-30 16:00",
+   "files_2017_2020": 13
+  },
+  "VSYS-USDT": {
+   "first_month_utc": "2019-11-30 16:00",
+   "files_2017_2020": 13
+  },
+  "WXT-USDT": {
+   "first_month_utc": "2019-11-30 16:00",
+   "files_2017_2020": 13
+  },
+  "XEM-USDT": {
+   "first_month_utc": "2019-11-30 16:00",
+   "files_2017_2020": 13
+  },
+  "XPR-USDT": {
+   "first_month_utc": "2020-07-31 16:00",
+   "files_2017_2020": 5
+  }
+ },
+ "SSWP-USDT": {
+  "trades": {
+   "monthly_files": 23,
+   "first_month_utc": "2023-05-31 16:00",
+   "last_month_utc": "2025-03-31 16:00",
+   "last_daily_start_utc": "2025-04-28 16:00",
+   "reaches_delisting": true
+  },
+  "candles": {
+   "monthly_files": 23,
+   "first_month_utc": "2023-05-31 16:00",
+   "last_month_utc": "2025-03-31 16:00",
+   "last_daily_start_utc": "2025-04-28 16:00",
+   "reaches_delisting": true
+  }
+ },
+ "delist_check": {
+  "pair": "FITFI-USDT",
+  "effective_delisting_utc": "2024-08-30 08:00",
+  "files": [
+   {
+    "kind": "trades",
+    "file": "FITFI-USDT-trades-2024-08-30.zip",
+    "file_day_start_utc": "2024-08-29 16:00",
+    "listed_days_after_window_start": [
+     "2024-08-26 16:00",
+     "2024-08-27 16:00",
+     "2024-08-28 16:00",
+     "2024-08-29 16:00"
+    ],
+    "url": "https://static.okx.com/cdn/okex/traderecords/trades/daily/20240830/FITFI-USDT-trades-2024-08-30.zip?v=1001",
+    "requested_utc": "2026-11-07T17:19:56Z",
+    "status": 200,
+    "bytes": 10323,
+    "truncated": false,
+    "sha256": "0ab4fae8ecd80c74a46ef5badd870adebff7d55a246ee7db2479e9a61edba6fa",
+    "rows": 900,
+    "first_utc": "2024-08-29 16:05",
+    "last_utc": "2024-08-30 07:56",
+    "last_minus_delisting_minutes": -3.2,
+    "trades_after_delisting": 0,
+    "last_trade_utc_exact": "2024-08-30 07:56:47"
+   },
+   {
+    "kind": "candles",
+    "file": "FITFI-USDT-candlesticks-2024-08-30.zip",
+    "file_day_start_utc": "2024-08-29 16:00",
+    "listed_days_after_window_start": [
+     "2024-08-26 16:00",
+     "2024-08-27 16:00",
+     "2024-08-28 16:00",
+     "2024-08-29 16:00"
+    ],
+    "url": "https://static.okx.com/cdn/okex/traderecords/candlesticks/daily/20240830/FITFI-USDT-candlesticks-2024-08-30.zip?v=1001",
+    "requested_utc": "2026-11-07T17:19:58Z",
+    "status": 200,
+    "bytes": 7163,
+    "truncated": false,
+    "sha256": "1c75a008bec210d8238e4f0ca9b48f1fc779daf8416376163630fc5942920aef",
+    "rows": 1015,
+    "first_utc": "2024-08-29 16:00",
+    "last_utc": "2024-08-30 08:54",
+    "last_minus_delisting_minutes": 54.0,
+    "last_traded_minute_utc": "2024-08-30 07:56",
+    "minutes_after_delisting": 55,
+    "traded_minutes_after_delisting": 0
+   }
+  ]
+ },
+ "listing_calls": 100,
+ "listing_errors": []
+}
