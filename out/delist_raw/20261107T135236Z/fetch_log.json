@@ -1,0 +1,185 @@
+{
+ "run_id": "20261107T135236Z",
+ "section": "https://www.okx.com/help/section/announcements-delistings",
+ "pages_requested": 2,
+ "links_found": 23,
+ "links": [
+  "/en-us/help/okx-to-delist-dora-icx-storj-zeus-and-elf-spot-trading-pairs",
+  "/en-us/help/okx-to-delist-aeon-usd-spot-trading-pair",
+  "/en-us/help/okx-to-delist-selected-usd-spot-trading-pairs",
+  "/en-us/help/okx-to-delist-gods-prcl-and-duck-spot-trading-pairs",
+  "/en-us/help/okx-to-support-aergo-crypto-migration",
+  "/en-us/help/okx-to-support-ton-crypto-migration",
+  "/en-us/help/okx-to-delist-major-and-j-spot-trading-pairs",
+  "/en-us/help/okx-to-support-dai-to-usds-crypto-migration",
+  "/en-us/help/okx-to-delist-uxlink-spot-trading-pairs",
+  "/en-us/help/okx-to-delist-rss3-memefi-ghst-rio-and-sweat-spot-trading-pairs",
+  "/en-us/help/okx-to-support-fxs-crypto-migration",
+  "/en-us/help/okx-to-delist-ice-spot-trading-pairs",
+  "/en-us/help/okx-to-delist-aca-clv-foxy-pstake-and-raca-spot-trading-pairs",
+  "/en-us/help/okx-to-delist-bal-perp-flm-dep-nc-and-looks-spot-trading-pairs",
+  "/en-us/help/okx-to-delist-kda-spot-trading-pairs",
+  "/en-us/help/terms-of-service-us",
+  "/en-us/help/privacy-policy-statement",
+  "/en-us/help/okx-us-risk-and-compliance-disclosure",
+  "/en-us/help/okx-us-whistleblower-notice",
+  "/en-us/help/okx-law-enforcement-request-guide",
+  "/en-us/help/okx-to-delist-slerf-alpha-badger-oas-mln-and-aidoge-spot-trading-pairs",
+  "/en-us/help/okx-to-delist-forth-runecoin-polydoge-sc-ustc-and-lunc-spot-trading-pairs",
+  "/en-us/help/okx-to-delist-wbtc-jst-btt-ern-glmr-and-movr-spot-trading-pairs"
+ ],
+ "fetched_ok": 17,
+ "log": [
+  {
+   "url": "https://www.okx.com/help/section/announcements-delistings",
+   "at_utc": "2026-11-07T13:52:36Z",
+   "final_url": "https://www.okx.com/en-us/help/section/announcements-delistings",
+   "status": 200,
+   "bytes": 79191,
+   "sha256": "cfdbccd39bd35aff87d1c70ef28a968140608b9196a9f92bf427dbce7fb86c64"
+  },
+  {
+   "url": "https://www.okx.com/help/section/announcements-delistings/page/2",
+   "at_utc": "2026-11-07T13:52:38Z",
+   "final_url": "https://www.okx.com/en-us/help/section/announcements-delistings/page/2",
+   "status": 200,
+   "bytes": 63002,
+   "sha256": "92926585e65d6a05b775f68e00754ec5d0d73c9e73de757d7bcb6167d6637a03"
+  },
+  {
+   "url": "https://www.okx.com/en-us/help/okx-to-delist-dora-icx-storj-zeus-and-elf-spot-trading-pairs",
+   "at_utc": "2026-11-07T13:52:39Z",
+   "final_url": "https://www.okx.com/en-us/help/okx-to-delist-dora-icx-storj-zeus-and-elf-spot-trading-pairs",
+   "status": 200,
+   "bytes": 73427,
+   "sha256": "2478873de5957f76c01d1fdba44e711b75f86d82626bb98b47a12fb36db57909",
+   "link": "/en-us/help/okx-to-delist-dora-icx-storj-zeus-and-elf-spot-trading-pairs"
+  },
+  {
+   "url": "https://www.okx.com/en-us/help/okx-to-delist-aeon-usd-spot-trading-pair",
+   "at_utc": "2026-11-07T13:52:40Z",
+   "final_url": "https://www.okx.com/en-us/help/okx-to-delist-aeon-usd-spot-trading-pair",
+   "status": 200,
+   "bytes": 63586,
+   "sha256": "f92bbaf9a56839ff96fa0999f59c17a36b9f3273a04367a26d2d160bd07ced25",
+   "link": "/en-us/help/okx-to-delist-aeon-usd-spot-trading-pair"
+  },
+  {
+   "url": "https://www.okx.com/en-us/help/okx-to-delist-selected-usd-spot-trading-pairs",
+   "at_utc": "2026-11-07T13:52:42Z",
+   "final_url": "https://www.okx.com/en-us/help/okx-to-delist-selected-usd-spot-trading-pairs",
+   "status": 200,
+   "bytes": 66933,
+   "sha256": "386fc617dd44336d7092e373d2d902adb2731173daecc30a348326ffc2e945f5",
+   "link": "/en-us/help/okx-to-delist-selected-usd-spot-trading-pairs"
+  },
+  {
+   "url": "https://www.okx.com/en-us/help/okx-to-delist-gods-prcl-and-duck-spot-trading-pairs",
+   "at_utc": "2026-11-07T13:52:43Z",
+   "final_url": "https://www.okx.com/en-us/help/okx-to-delist-gods-prcl-and-duck-spot-trading-pairs",
+   "status": 200,
+   "bytes": 72370,
+   "sha256": "74b630d94a27371a0309042b1ee73d9907210bf17fbc1b57aac892496e2ba7d1",
+   "link": "/en-us/help/okx-to-delist-gods-prcl-and-duck-spot-trading-pairs"
+  },
+  {
+   "url": "https://www.okx.com/en-us/help/okx-to-support-aergo-crypto-migration",
+   "at_utc": "2026-11-07T13:52:44Z",
+   "final_url": "https://www.okx.com/en-us/help/okx-to-support-aergo-crypto-migration",
+   "status": 200,
+   "bytes": 68984,
+   "sha256": "623b4b412bc7c532bf3b867c5e9bf2215b6ec54324ab32c957e4226a9b8d7bd9",
+   "link": "/en-us/help/okx-to-support-aergo-crypto-migration"
+  },
+  {
+   "url": "https://www.okx.com/en-us/help/okx-to-support-ton-crypto-migration",
+   "at_utc": "2026-11-07T13:52:46Z",
+   "final_url": "https://www.okx.com/en-us/help/okx-to-support-ton-crypto-migration",
+   "status": 200,
+   "bytes": 70160,
+   "sha256": "89d6467b2c98cc9f018884a9f2b7b83b6ce032b9bfb40f8ad04de32c16b321df",
+   "link": "/en-us/help/okx-to-support-ton-crypto-migration"
+  },
+  {
+   "url": "https://www.okx.com/en-us/help/okx-to-delist-major-and-j-spot-trading-pairs",
+   "at_utc": "2026-11-07T13:52:47Z",
+   "final_url": "https://www.okx.com/en-us/help/okx-to-delist-major-and-j-spot-trading-pairs",
+   "status": 200,
+   "bytes": 70391,
+   "sha256": "cc35834877449c153172a6a6cd83d126beead6d7915268cc2deb9c33ed645193",
+   "link": "/en-us/help/okx-to-delist-major-and-j-spot-trading-pairs"
+  },
+  {
+   "url": "https://www.okx.com/en-us/help/okx-to-support-dai-to-usds-crypto-migration",
+   "at_utc": "2026-11-07T13:52:48Z",
+   "final_url": "https://www.okx.com/en-us/help/okx-to-support-dai-to-usds-crypto-migration",
+   "status": 200,
+   "bytes": 68976,
+   "sha256": "739c8b9b8a5a6155e98415caa39ef88f69b1946b852af7305f1b4c95a3c6a1b9",
+   "link": "/en-us/help/okx-to-support-dai-to-usds-crypto-migration"
+  },
+  {
+   "url": "https://www.okx.com/en-us/help/okx-to-delist-uxlink-spot-trading-pairs",
+   "at_utc": "2026-11-07T13:52:49Z",
+   "final_url": "https://www.okx.com/en-us/help/okx-to-delist-uxlink-spot-trading-pairs",
+   "status": 200,
+   "bytes": 71149,
+   "sha256": "2b9ad08506d0cb138849426c29e1d5a054672c05ac0b139db88aaab5809ec4a6",
+   "link": "/en-us/help/okx-to-delist-uxlink-spot-trading-pairs"
+  },
+  {
+   "url": "https://www.okx.com/en-us/help/okx-to-delist-rss3-memefi-ghst-rio-and-sweat-spot-trading-pairs",
+   "at_utc": "2026-11-07T13:52:51Z",
+   "final_url": "https://www.okx.com/en-us/help/okx-to-delist-rss3-memefi-ghst-rio-and-sweat-spot-trading-pairs",
+   "status": 200,
+   "bytes": 71594,
+   "sha256": "102c7378bdeac5fdfa9c663a4619a9833d1b5187401cd93ac4d0b5c065f2ddae",
+   "link": "/en-us/help/okx-to-delist-rss3-memefi-ghst-rio-and-sweat-spot-trading-pairs"
+  },
+  {
+   "url": "https://www.okx.com/en-us/help/okx-to-support-fxs-crypto-migration",
+   "at_utc": "2026-11-07T13:52:52Z",
+   "final_url": "https://www.okx.com/en-us/help/okx-to-support-fxs-crypto-migration",
+   "status": 200,
+   "bytes": 71799,
+   "sha256": "7c8c3d68c577818e882e6af2829a0f05ab5d84164dcae24f2a456627d81d418a",
+   "link": "/en-us/help/okx-to-support-fxs-crypto-migration"
+  },
+  {
+   "url": "https://www.okx.com/en-us/help/okx-to-delist-ice-spot-trading-pairs",
+   "at_utc": "2026-11-07T13:52:53Z",
+   "final_url": "https://www.okx.com/en-us/help/okx-to-delist-ice-spot-trading-pairs",
+   "status": 200,
+   "bytes": 69606,
+   "sha256": "05e712adc731628a080f4c2cf4b508645c03ee0e1ffc76df82efdc03d7c05fd8",
+   "link": "/en-us/help/okx-to-delist-ice-spot-trading-pairs"
+  },
+  {
+   "url": "https://www.okx.com/en-us/help/okx-to-delist-aca-clv-foxy-pstake-and-raca-spot-trading-pairs",
+   "at_utc": "2026-11-07T13:52:55Z",
+   "final_url": "https://www.okx.com/en-us/help/okx-to-delist-aca-clv-foxy-pstake-and-raca-spot-trading-pairs",
+   "status": 200,
+   "bytes": 68957,
+   "sha256": "b3f833ce09758cb3ed3808e8d41d7fcb5cfc7052602022a55485d2a2aad5d0ef",
+   "link": "/en-us/help/okx-to-delist-aca-clv-foxy-pstake-and-raca-spot-trading-pairs"
+  },
+  {
+   "url": "https://www.okx.com/en-us/help/okx-to-delist-bal-perp-flm-dep-nc-and-looks-spot-trading-pairs",
+   "at_utc": "2026-11-07T13:52:56Z",
+   "final_url": "https://www.okx.com/en-us/help/okx-to-delist-bal-perp-flm-dep-nc-and-looks-spot-trading-pairs",
+   "status": 200,
+   "bytes": 72401,
+   "sha256": "8c523d1dae8afa25d4ea25a0970a137d9f2c09651e2f69e6dea31492963a6ef1",
+   "link": "/en-us/help/okx-to-delist-bal-perp-flm-dep-nc-and-looks-spot-trading-pairs"
+  },
+  {
+   "url": "https://www.okx.com/en-us/help/okx-to-delist-kda-spot-trading-pairs",
+   "at_utc": "2026-11-07T13:52:57Z",
+   "final_url": "https://www.okx.com/en-us/help/okx-to-delist-kda-spot-trading-pairs",
+   "status": 200,
+   "bytes": 68937,
+   "sha256": "feda49e17811c9f5f883b2be5a597e3f149d9ded6698b6bc8c6d9786b41fd01a",
+   "link": "/en-us/help/okx-to-delist-kda-spot-trading-pairs"
+  }
+ ]
+}

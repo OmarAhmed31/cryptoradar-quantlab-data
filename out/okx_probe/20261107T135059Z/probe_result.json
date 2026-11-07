@@ -1,0 +1,53 @@
+{
+ "run_id": "20261107T135059Z",
+ "mode": "probe",
+ "days": 400,
+ "coins": {
+  "BTC": {
+   "pages": 97,
+   "error": null,
+   "from": 1759492800000,
+   "to": 1794052800000,
+   "n": 9601,
+   "first": 1759492800000,
+   "last": 1794052800000,
+   "dups": 0,
+   "gaps_hours": 0,
+   "bad_price": 0,
+   "bad_ohlc": 0
+  },
+  "ETH": {
+   "pages": 97,
+   "error": null,
+   "from": 1759492800000,
+   "to": 1794052800000,
+   "n": 9601,
+   "first": 1759492800000,
+   "last": 1794052800000,
+   "dups": 0,
+   "gaps_hours": 0,
+   "bad_price": 0,
+   "bad_ohlc": 0
+  },
+  "SAND": {
+   "pages": 97,
+   "error": null,
+   "from": 1759492800000,
+   "to": 1794052800000,
+   "n": 9601,
+   "first": 1759492800000,
+   "last": 1794052800000,
+   "dups": 0,
+   "gaps_hours": 0,
+   "bad_price": 0,
+   "bad_ohlc": 0
+  }
+ },
+ "started_utc": "20261107T135059Z",
+ "instruments": {
+  "ok": true,
+  "error": null,
+  "n_usdt": 466
+ },
+ "verdict": "PASS"
+}
