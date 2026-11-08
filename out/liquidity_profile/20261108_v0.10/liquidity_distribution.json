@@ -1,0 +1,38 @@
+{
+ "series": 615,
+ "pair_days": 305317,
+ "assessable_pair_days": 288084,
+ "calendar_gaps_inside_series": 0,
+ "THR30_quantiles": {
+  "0.05": 0.9403,
+  "0.1": 0.9833,
+  "0.25": 1.0,
+  "0.5": 1.0,
+  "0.75": 1.0,
+  "0.9": 1.0,
+  "0.95": 1.0
+ },
+ "DV30_med_quantiles_usd": {
+  "0.05": 24305,
+  "0.1": 44882,
+  "0.25": 128836,
+  "0.5": 484117,
+  "0.75": 2069453,
+  "0.9": 7299768,
+  "0.95": 15529583
+ },
+ "by_group": {
+  "active": {
+   "series": 401,
+   "pair_days": 232399,
+   "THR30_median": 1.0,
+   "DV30_med_median_usd": 654402
+  },
+  "delisted": {
+   "series": 139,
+   "pair_days": 55685,
+   "THR30_median": 1.0,
+   "DV30_med_median_usd": 180333
+  }
+ }
+}
