@@ -29,6 +29,14 @@ def main():
         (base / d).mkdir(parents=True, exist_ok=True)
     log, todo, seen_sm, slugs = [], ["https://www.okx.com/sitemap.xml"], set(), set(SEED)
     n = 0
+    # robots.txt names the official sitemaps (sitemap.xml returned 404 on the first run)
+    body, rec = fetch("https://www.okx.com/robots.txt")
+    rec["kind"] = "robots"; log.append(rec)
+    if body:
+        guard.atomic_write(base / "sitemaps" / "robots.txt", body, mode="wb")
+        for l in re.findall(r"(?im)^\s*sitemap:\s*(\S+)", body.decode("utf-8", "replace")):
+            if "www.okx.com" in l:
+                todo.append(l)
     while todo and n < MAX_SITEMAPS:
         u = todo.pop(0)
         if u in seen_sm:
@@ -56,7 +64,12 @@ def main():
                 slugs.add(m.group(1))
         time.sleep(0.5)
     items, k = [], 0
-    for s in sorted(slugs):
+    queue, done = sorted(slugs), set()
+    while queue:
+        s = queue.pop(0)
+        if s in done:
+            continue
+        done.add(s)
         if k >= MAX_ARTICLES:
             break
         url = f"https://www.okx.com/ar/help/{s}"
@@ -68,6 +81,11 @@ def main():
             m = re.search(rb'"datePublished"\s*:\s*"([^"]+)"', body)
             pub = m.group(1).decode() if m else None
         rec["datePublished"] = pub
+        if ok:   # follow links to other delisting announcements (prev/next, related)
+            for l in set(re.findall(rb'/(?:[a-z-]+/)?help/([a-z0-9-]*delist[a-z0-9-]*)', body)):
+                l = l.decode()
+                if l not in done and l not in queue:
+                    queue.append(l); slugs.add(l)
         if ok and pub and LO <= pub[:10] < HI:
             guard.atomic_write(base / "articles" / f"{s}.html", body, mode="wb")
             t = re.search(rb"<title>(.*?)</title>", body, re.S)

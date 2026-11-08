@@ -1,1 +1,2 @@
 pre-2024 official delisting announcements search 2026-11-08 (expert request after v0.8)
+rerun 2: robots.txt sitemaps + link crawl (sitemap.xml 404)
