@@ -1,0 +1,38 @@
+{
+ "P1": {
+  "n_eligible_median": 239.0,
+  "breadth_7_mean": 0.4485,
+  "breadth_7_mean_survivors": 0.4563,
+  "median_ret_30_mean": -0.0329,
+  "median_ret_30_mean_survivors": -0.0295,
+  "mkt_vol_7_mean": 0.01104,
+  "mkt_vol_7_mean_survivors": 0.01074,
+  "median_corr_btc_30_mean": 0.634,
+  "btc_minus_median_alt_30_mean": 0.0956,
+  "turnover_mean": 0.0068
+ },
+ "S50k": {
+  "n_eligible_median": 263.0,
+  "breadth_7_mean": 0.4481,
+  "breadth_7_mean_survivors": 0.4569,
+  "median_ret_30_mean": -0.0339,
+  "median_ret_30_mean_survivors": -0.0295,
+  "mkt_vol_7_mean": 0.01097,
+  "mkt_vol_7_mean_survivors": 0.01069,
+  "median_corr_btc_30_mean": 0.628,
+  "btc_minus_median_alt_30_mean": 0.0966,
+  "turnover_mean": 0.0049
+ },
+ "S250k": {
+  "n_eligible_median": 195.0,
+  "breadth_7_mean": 0.4502,
+  "breadth_7_mean_survivors": 0.4563,
+  "median_ret_30_mean": -0.0292,
+  "median_ret_30_mean_survivors": -0.0265,
+  "mkt_vol_7_mean": 0.01118,
+  "mkt_vol_7_mean_survivors": 0.01088,
+  "median_corr_btc_30_mean": 0.639,
+  "btc_minus_median_alt_30_mean": 0.0919,
+  "turnover_mean": 0.0095
+ }
+}

@@ -1,0 +1,151 @@
+{
+ "P1": {
+  "k": 3,
+  "silhouette_by_k": {
+   "3": 0.4865801437998875,
+   "4": 0.31819466679178526,
+   "5": 0.30245230865103406,
+   "6": 0.31851255347482
+  },
+  "refits": 14,
+  "runs_known": 49,
+  "mean_run_days_calendar": 6.755102040816326,
+  "median_run_days_calendar": 3.0,
+  "run_days_by_state": {
+   "S1": {
+    "runs": 17,
+    "mean": 4.411764705882353,
+    "median": 3.0,
+    "max": 20
+   },
+   "S2": {
+    "runs": 27,
+    "mean": 8.777777777777779,
+    "median": 5.0,
+    "max": 41
+   },
+   "S3": {
+    "runs": 5,
+    "mean": 3.8,
+    "median": 2.0,
+    "max": 11
+   }
+  },
+  "flip_rate_adjacent_known_pairs": 0.020833333333333332,
+  "flip_numerator": 6,
+  "flip_denominator_adjacent_known_pairs": 288,
+  "unknown_breaks_runs": true,
+  "label_counts": {
+   "S2": 237,
+   "NO_MODEL": 182,
+   "UNKNOWN": 96,
+   "S1": 75,
+   "S3": 19
+  },
+  "unknown_reasons": {
+   "ambiguous": 82,
+   "outlier": 14
+  },
+  "drift_refits": []
+ },
+ "S50k": {
+  "k": 3,
+  "silhouette_by_k": {
+   "3": 0.48817138048950776,
+   "4": 0.31586424804872326,
+   "5": 0.30052378705306465,
+   "6": 0.31972198743087954
+  },
+  "refits": 14,
+  "runs_known": 49,
+  "mean_run_days_calendar": 6.836734693877551,
+  "median_run_days_calendar": 3.0,
+  "run_days_by_state": {
+   "S1": {
+    "runs": 19,
+    "mean": 4.157894736842105,
+    "median": 3.0,
+    "max": 20
+   },
+   "S2": {
+    "runs": 25,
+    "mean": 9.48,
+    "median": 5.0,
+    "max": 77
+   },
+   "S3": {
+    "runs": 5,
+    "mean": 3.8,
+    "median": 2.0,
+    "max": 11
+   }
+  },
+  "flip_rate_adjacent_known_pairs": 0.02054794520547945,
+  "flip_numerator": 6,
+  "flip_denominator_adjacent_known_pairs": 292,
+  "unknown_breaks_runs": true,
+  "label_counts": {
+   "S2": 237,
+   "NO_MODEL": 182,
+   "UNKNOWN": 92,
+   "S1": 79,
+   "S3": 19
+  },
+  "unknown_reasons": {
+   "ambiguous": 79,
+   "outlier": 13
+  },
+  "drift_refits": [
+   "M10"
+  ]
+ },
+ "S250k": {
+  "k": 3,
+  "silhouette_by_k": {
+   "3": 0.4742892746206654,
+   "4": 0.3133798226738832,
+   "5": 0.2855253562079083,
+   "6": 0.306306586963364
+  },
+  "refits": 14,
+  "runs_known": 50,
+  "mean_run_days_calendar": 6.48,
+  "median_run_days_calendar": 5.0,
+  "run_days_by_state": {
+   "S1": {
+    "runs": 18,
+    "mean": 4.777777777777778,
+    "median": 3.0,
+    "max": 20
+   },
+   "S2": {
+    "runs": 27,
+    "mean": 8.11111111111111,
+    "median": 6.0,
+    "max": 41
+   },
+   "S3": {
+    "runs": 5,
+    "mean": 3.8,
+    "median": 2.0,
+    "max": 11
+   }
+  },
+  "flip_rate_adjacent_known_pairs": 0.02142857142857143,
+  "flip_numerator": 6,
+  "flip_denominator_adjacent_known_pairs": 280,
+  "unknown_breaks_runs": true,
+  "label_counts": {
+   "S2": 219,
+   "NO_MODEL": 182,
+   "UNKNOWN": 103,
+   "S1": 86,
+   "S3": 19
+  },
+  "unknown_reasons": {
+   "ambiguous": 81,
+   "outlier": 22
+  },
+  "drift_refits": []
+ }
+}

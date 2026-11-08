@@ -1,0 +1,84 @@
+{
+ "suite": "tests/test_mi.py",
+ "mutants": [
+  {
+   "mutant": "MI1 close_asof uses day d's own close (future)",
+   "killed": true,
+   "failing_tests": 1,
+   "first_failure": "FAIL A1 destructive future overwrite: all MI values and regime_asof of day d unchanged 677/1020 values, days ['2024-03-1"
+  },
+  {
+   "mutant": "MI2 volatility window includes day d",
+   "killed": true,
+   "failing_tests": 1,
+   "first_failure": "FAIL A1 destructive future overwrite: all MI values and regime_asof of day d unchanged 798/1020 values, days ['2024-03-1"
+  },
+  {
+   "mutant": "MI3 correlation window looks one day ahead",
+   "killed": true,
+   "failing_tests": 1,
+   "first_failure": "FAIL A1 destructive future overwrite: all MI values and regime_asof of day d unchanged 978/1020 values, days ['2024-03-1"
+  },
+  {
+   "mutant": "MI4 vol band uses the whole period's history",
+   "killed": true,
+   "failing_tests": 1,
+   "first_failure": "FAIL A1 destructive future overwrite: all MI values and regime_asof of day d unchanged 962/1020 values, days ['2024-03-1"
+  },
+  {
+   "mutant": "MI5 eligibility of the next day used",
+   "killed": true,
+   "failing_tests": 1,
+   "first_failure": "FAIL A1 destructive future overwrite: all MI values and regime_asof of day d unchanged 370/1020 values, days ['2024-03-1"
+  },
+  {
+   "mutant": "MI6 loader keeps candles after Development",
+   "killed": true,
+   "failing_tests": 1,
+   "first_failure": "FAIL A2b loader drops candles that do not close inside Development AssertionError()"
+  },
+  {
+   "mutant": "RG1 every refit trained on all of Development",
+   "killed": true,
+   "failing_tests": 1,
+   "first_failure": "FAIL A1 destructive future overwrite: all MI values and regime_asof of day d unchanged 1017/1020 values, days ['2024-03-"
+  },
+  {
+   "mutant": "RG2 past relabelled with the final model",
+   "killed": true,
+   "failing_tests": 2,
+   "first_failure": "FAIL A1 destructive future overwrite: all MI values and regime_asof of day d unchanged 1017/1020 values, days ['2024-03-"
+  },
+  {
+   "mutant": "RG3 k chosen on all of Development",
+   "killed": true,
+   "failing_tests": 3,
+   "first_failure": "FAIL A4 P1: k and silhouettes equal a recomputation on [2024-01-01, 2024-07-01) only (R2) k=3"
+  },
+  {
+   "mutant": "RG4 UNKNOWN days dropped before counting runs (v0.11 bug)",
+   "killed": true,
+   "failing_tests": 5,
+   "first_failure": "FAIL A6 synthetic: S1 S1 UNKNOWN S1 S2 S2 UNKNOWN S2 -> 4 runs (2,1,2,1), 1 flip out of 3 adjacent known pairs {'runs_kn"
+  },
+  {
+   "mutant": "RG5 flip rate counted over non-adjacent known days",
+   "killed": true,
+   "failing_tests": 2,
+   "first_failure": "FAIL A6 synthetic: S1 S1 UNKNOWN S1 S2 S2 UNKNOWN S2 -> 4 runs (2,1,2,1), 1 flip out of 3 adjacent known pairs {'runs_kn"
+  },
+  {
+   "mutant": "PK1 MI reads the full universe files instead of the pack",
+   "killed": true,
+   "failing_tests": 2,
+   "first_failure": "FAIL A7 the pack universe files hold no day after Development 400686"
+  },
+  {
+   "mutant": "PK2 MI reads the full hourly files instead of the pack",
+   "killed": true,
+   "failing_tests": 0,
+   "first_failure": "FileNotFoundError: [Errno 2] No such file or directory: '/tmp/claude-0/-home-claude/e34ca9ce-4819-556e-86f4-6959fa1eb0b8"
+  }
+ ],
+ "survived": 0
+}
