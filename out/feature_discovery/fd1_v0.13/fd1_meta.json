@@ -1,0 +1,19 @@
+{
+ "segment": "development",
+ "days": [
+  "2024-01-01",
+  "2025-08-31"
+ ],
+ "series": 382,
+ "features": 22,
+ "forward_outcome_computed": false,
+ "catalogue_sha256": "c51334e2bbb55ed1d1cfd21cd6350966a93992cae2552e640df5649682024024",
+ "eligible_series_days": {
+  "P1": 143806,
+  "P1_survivors_only": 107568,
+  "S50k": 157216,
+  "S50k_survivors_only": 112618,
+  "S250k": 119226,
+  "S250k_survivors_only": 95939
+ }
+}

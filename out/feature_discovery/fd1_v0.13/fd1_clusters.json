@@ -1,0 +1,466 @@
+{
+ "clusters": {
+  "0.7": [
+   [
+    "F01"
+   ],
+   [
+    "F02"
+   ],
+   [
+    "F03",
+    "F04",
+    "F05"
+   ],
+   [
+    "F06",
+    "F07",
+    "F09",
+    "F11",
+    "F14",
+    "F22"
+   ],
+   [
+    "F08"
+   ],
+   [
+    "F10"
+   ],
+   [
+    "F12"
+   ],
+   [
+    "F13"
+   ],
+   [
+    "F15",
+    "F18",
+    "F19"
+   ],
+   [
+    "F16"
+   ],
+   [
+    "F17"
+   ],
+   [
+    "F20"
+   ],
+   [
+    "F21"
+   ]
+  ],
+  "0.8": [
+   [
+    "F01"
+   ],
+   [
+    "F02"
+   ],
+   [
+    "F03",
+    "F05"
+   ],
+   [
+    "F04"
+   ],
+   [
+    "F06",
+    "F07",
+    "F09",
+    "F11",
+    "F14",
+    "F22"
+   ],
+   [
+    "F08"
+   ],
+   [
+    "F10"
+   ],
+   [
+    "F12"
+   ],
+   [
+    "F13"
+   ],
+   [
+    "F15",
+    "F18",
+    "F19"
+   ],
+   [
+    "F16"
+   ],
+   [
+    "F17"
+   ],
+   [
+    "F20"
+   ],
+   [
+    "F21"
+   ]
+  ],
+  "0.9": [
+   [
+    "F01"
+   ],
+   [
+    "F02"
+   ],
+   [
+    "F03",
+    "F05"
+   ],
+   [
+    "F04"
+   ],
+   [
+    "F06",
+    "F22"
+   ],
+   [
+    "F07",
+    "F09"
+   ],
+   [
+    "F08"
+   ],
+   [
+    "F10"
+   ],
+   [
+    "F11"
+   ],
+   [
+    "F12"
+   ],
+   [
+    "F13"
+   ],
+   [
+    "F14"
+   ],
+   [
+    "F15",
+    "F18"
+   ],
+   [
+    "F16"
+   ],
+   [
+    "F17"
+   ],
+   [
+    "F19"
+   ],
+   [
+    "F20"
+   ],
+   [
+    "F21"
+   ]
+  ]
+ },
+ "representatives_q5": {
+  "0.7": [
+   {
+    "cluster": [
+     "F01"
+    ],
+    "representative": "F01"
+   },
+   {
+    "cluster": [
+     "F02"
+    ],
+    "representative": "F02"
+   },
+   {
+    "cluster": [
+     "F03",
+     "F04",
+     "F05"
+    ],
+    "representative": "F03"
+   },
+   {
+    "cluster": [
+     "F06",
+     "F07",
+     "F09",
+     "F11",
+     "F14",
+     "F22"
+    ],
+    "representative": "F06"
+   },
+   {
+    "cluster": [
+     "F08"
+    ],
+    "representative": "F08"
+   },
+   {
+    "cluster": [
+     "F10"
+    ],
+    "representative": "F10"
+   },
+   {
+    "cluster": [
+     "F12"
+    ],
+    "representative": "F12"
+   },
+   {
+    "cluster": [
+     "F13"
+    ],
+    "representative": "F13"
+   },
+   {
+    "cluster": [
+     "F15",
+     "F18",
+     "F19"
+    ],
+    "representative": "F15"
+   },
+   {
+    "cluster": [
+     "F16"
+    ],
+    "representative": "F16"
+   },
+   {
+    "cluster": [
+     "F17"
+    ],
+    "representative": "F17"
+   },
+   {
+    "cluster": [
+     "F20"
+    ],
+    "representative": "F20"
+   },
+   {
+    "cluster": [
+     "F21"
+    ],
+    "representative": "F21"
+   }
+  ],
+  "0.8": [
+   {
+    "cluster": [
+     "F01"
+    ],
+    "representative": "F01"
+   },
+   {
+    "cluster": [
+     "F02"
+    ],
+    "representative": "F02"
+   },
+   {
+    "cluster": [
+     "F03",
+     "F05"
+    ],
+    "representative": "F03"
+   },
+   {
+    "cluster": [
+     "F04"
+    ],
+    "representative": "F04"
+   },
+   {
+    "cluster": [
+     "F06",
+     "F07",
+     "F09",
+     "F11",
+     "F14",
+     "F22"
+    ],
+    "representative": "F06"
+   },
+   {
+    "cluster": [
+     "F08"
+    ],
+    "representative": "F08"
+   },
+   {
+    "cluster": [
+     "F10"
+    ],
+    "representative": "F10"
+   },
+   {
+    "cluster": [
+     "F12"
+    ],
+    "representative": "F12"
+   },
+   {
+    "cluster": [
+     "F13"
+    ],
+    "representative": "F13"
+   },
+   {
+    "cluster": [
+     "F15",
+     "F18",
+     "F19"
+    ],
+    "representative": "F15"
+   },
+   {
+    "cluster": [
+     "F16"
+    ],
+    "representative": "F16"
+   },
+   {
+    "cluster": [
+     "F17"
+    ],
+    "representative": "F17"
+   },
+   {
+    "cluster": [
+     "F20"
+    ],
+    "representative": "F20"
+   },
+   {
+    "cluster": [
+     "F21"
+    ],
+    "representative": "F21"
+   }
+  ],
+  "0.9": [
+   {
+    "cluster": [
+     "F01"
+    ],
+    "representative": "F01"
+   },
+   {
+    "cluster": [
+     "F02"
+    ],
+    "representative": "F02"
+   },
+   {
+    "cluster": [
+     "F03",
+     "F05"
+    ],
+    "representative": "F03"
+   },
+   {
+    "cluster": [
+     "F04"
+    ],
+    "representative": "F04"
+   },
+   {
+    "cluster": [
+     "F06",
+     "F22"
+    ],
+    "representative": "F06"
+   },
+   {
+    "cluster": [
+     "F07",
+     "F09"
+    ],
+    "representative": "F07"
+   },
+   {
+    "cluster": [
+     "F08"
+    ],
+    "representative": "F08"
+   },
+   {
+    "cluster": [
+     "F10"
+    ],
+    "representative": "F10"
+   },
+   {
+    "cluster": [
+     "F11"
+    ],
+    "representative": "F11"
+   },
+   {
+    "cluster": [
+     "F12"
+    ],
+    "representative": "F12"
+   },
+   {
+    "cluster": [
+     "F13"
+    ],
+    "representative": "F13"
+   },
+   {
+    "cluster": [
+     "F14"
+    ],
+    "representative": "F14"
+   },
+   {
+    "cluster": [
+     "F15",
+     "F18"
+    ],
+    "representative": "F15"
+   },
+   {
+    "cluster": [
+     "F16"
+    ],
+    "representative": "F16"
+   },
+   {
+    "cluster": [
+     "F17"
+    ],
+    "representative": "F17"
+   },
+   {
+    "cluster": [
+     "F19"
+    ],
+    "representative": "F19"
+   },
+   {
+    "cluster": [
+     "F20"
+    ],
+    "representative": "F20"
+   },
+   {
+    "cluster": [
+     "F21"
+    ],
+    "representative": "F21"
+   }
+  ]
+ },
+ "note": "Q5 is descriptive in FD-1; it excludes nothing (FD-2 test family is an open point for its approval)"
+}
