@@ -3,8 +3,9 @@
 Access types (H6, as clarified 2026-11-08):
   ENTRY / LABEL / OUTCOME  -> only inside the assigned segment (entry window for starts; outcome must end inside the
                               segment data range); horizon <= H_max (30 d)
-  FEATURE LOOKBACK at t    -> any research-period history strictly before t (earlier segments and embargoes allowed),
-                              never before RESEARCH_START (Dec-2023 warm-up is forbidden here, T3), never >= t
+  FEATURE at decision t    -> t itself must lie inside the assigned segment's data range (not an embargo, not another
+                              segment); lookback = any research-period history strictly before t (earlier segments and
+                              embargoes allowed), never before RESEARCH_START (Dec-2023 forbidden here, T3), never >= t
   FUTURE timestamp         -> always refused
   Final Holdout            -> sealed (H7): every access raises unless the holdout was opened by the logged one-time event
 """
@@ -65,9 +66,18 @@ class SegmentGuard:
         return True
 
     # --- features (H5)
+    def check_decision_time(self, t):
+        """The decision time itself must lie inside THIS segment's data range (never in an embargo, an earlier or a
+        later segment). This is what keeps a Validation guard from computing features at a Holdout date (H7)."""
+        if not (self.ds <= t < self.de):
+            raise GuardError(f"decision time {t} outside the data range of {self.seg}")
+        return t
+
     def check_feature(self, t, lookback_starts, candle_len=H):
-        """t: decision time; lookback_starts: start times of candles used. Each must close at or before t (T5),
-        and start at or after RESEARCH_START (no Dec-2023 warm-up, T3). Earlier segments/embargoes are allowed."""
+        """t: decision time, inside this segment (check_decision_time). lookback_starts: start times of candles used.
+        Each must close at or before t (T5) and start at or after RESEARCH_START (no Dec-2023 warm-up, T3).
+        Earlier segments and embargoes are allowed as LOOKBACK only."""
+        self.check_decision_time(t)
         for c in lookback_starts:
             if c + candle_len > t:
                 raise GuardError(f"feature candle {c} not closed by decision time {t} (future)")

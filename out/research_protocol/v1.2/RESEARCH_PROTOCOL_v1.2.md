@@ -7,7 +7,7 @@ Status: **SUBMITTED FOR APPROVAL.** It becomes **FIXED** only when the expert ap
 - §1 paths now point to `v1.2/` copies of the same files, which are byte-identical.
 - Every rule of v1.1 is unchanged, word for word.
 
-Rule for this file: it is fixed **before** any strategy research. It must not change while research is running. Any change makes a new version (v1.1, …), which must be:
+Rule for this file: it is fixed **before** any strategy research. It must not change while research is running. Any change makes a new version (v1.3, …), which must be:
 - written **before** looking at any result that the change could affect;
 - hashed and committed;
 - approved by the expert.
@@ -105,7 +105,7 @@ Rule for this file: it is fixed **before** any strategy research. It must not ch
   |---|---|
   | **Entry / label start** at t | only inside the assigned segment's **entry window** (T4) |
   | **Label / outcome** over [t, t+h] | h ≤ H_max, and every candle used starts ≥ t and ends ≤ t+h ≤ the **end of the assigned segment** (T5) |
-  | **Feature lookback** at t | any **research-period** history strictly before t: candles **closed at or before t**, including earlier segments and embargoes (causal warm-up). Never before 2024-01-01 00:00 UTC, because the December 2023 warm-up is forbidden here (T3) |
+  | **Feature lookback** at t | the decision time **t itself must lie inside the assigned segment's data range**: never in an embargo, an earlier segment or a later segment. A Validation guard can therefore never compute a feature at a Holdout or Development date. Lookback = any **research-period** history strictly before t: candles **closed at or before t**, including earlier segments and embargoes (causal warm-up). Never before 2024-01-01 00:00 UTC, because the December 2023 warm-up is forbidden here (T3) |
   | **Future timestamp** (anything not closed by t) | **always refused** |
   | **Final Holdout** | sealed (H7). Every access raises until the logged opening |
 
@@ -187,5 +187,5 @@ Rule for this file: it is fixed **before** any strategy research. It must not ch
   - `lab/liquidity_profile.py` `32fc4fb5…40e9e9`
   - `tests/test_liquidity_pit.py` `8be844ec…48fe26`
   - `lab/guard.py` `2a2e7d88…6e848e7`
-- Segment guard: `lab/segment_loader.py` `686fac62e9864e87721c9451babfcbc3d8752d28cbbea191815f43571bb0eae1`; `tests/test_segment_loader.py` `6a624d758a20ec44dc6da1dbe0ccfb42e95eb2d01c5125dcce8814bca0b11a79` (19/19 pass; 7/7 planted mutants killed).
+- Segment guard: `lab/segment_loader.py` `b1c66eee298c080325b7c542ee576c704d2f9a62b2ffa5d44e98282fb6e25311`; `tests/test_segment_loader.py` `492666b081d37fbddb365257fbb6e9be14823148e5a6ba8fa1e2a9654f4fb344` (27/27 pass; 11/11 planted mutants killed, including 4 that bypass the decision-time check).
 - The sha256 of **this file** is recorded outside it, in `RESEARCH_PROTOCOL_v1.2.sha256`, and in the commit message.

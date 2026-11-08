@@ -1,1 +1,62 @@
-[{"mutant":"M1 allows unclosed candle","failing_tests":1,"killed":true},{"mutant":"M2 allows Dec-2023","failing_tests":1,"killed":true},{"mutant":"M3 MI on any segment","failing_tests":1,"killed":true},{"mutant":"M4 no outcome-end check","failing_tests":1,"killed":true},{"mutant":"M5 holdout unsealed","failing_tests":1,"killed":true},{"mutant":"M6 no entry cut","failing_tests":1,"killed":true},{"mutant":"M7 horizon 60 d","failing_tests":1,"killed":true}]
+{
+ "suite": "tests/test_segment_loader.py",
+ "tests": 27,
+ "mutants": [
+  {
+   "mutant": "M1 allows unclosed candle",
+   "failing_tests": 1,
+   "killed": true
+  },
+  {
+   "mutant": "M2 allows Dec-2023",
+   "failing_tests": 1,
+   "killed": true
+  },
+  {
+   "mutant": "M3 MI on any segment",
+   "failing_tests": 1,
+   "killed": true
+  },
+  {
+   "mutant": "M4 no outcome-end check",
+   "failing_tests": 1,
+   "killed": true
+  },
+  {
+   "mutant": "M5 holdout unsealed",
+   "failing_tests": 2,
+   "killed": true
+  },
+  {
+   "mutant": "M6 no entry cut",
+   "failing_tests": 1,
+   "killed": true
+  },
+  {
+   "mutant": "M7 horizon 60 d",
+   "failing_tests": 1,
+   "killed": true
+  },
+  {
+   "mutant": "M8 feature skips the decision-time check",
+   "failing_tests": 5,
+   "killed": true
+  },
+  {
+   "mutant": "M9 decision-time check without lower bound",
+   "failing_tests": 3,
+   "killed": true
+  },
+  {
+   "mutant": "M10 decision-time check without upper bound",
+   "failing_tests": 2,
+   "killed": true
+  },
+  {
+   "mutant": "M11 decision-time check uses Development range for every guard",
+   "failing_tests": 4,
+   "killed": true
+  }
+ ],
+ "survived": 0
+}

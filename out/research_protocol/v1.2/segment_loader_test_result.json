@@ -1,6 +1,6 @@
 {
- "passed": 19,
- "of": 19,
+ "passed": 27,
+ "of": 27,
  "PASS": true,
  "tests": [
   {
@@ -53,6 +53,38 @@
   },
   {
    "test": "validation label/outcome crossing into embargo 2 refused",
+   "pass": true
+  },
+  {
+   "test": "D1 Validation feature at a Validation date: accepted",
+   "pass": true
+  },
+  {
+   "test": "D2 Validation feature at a Development date: refused",
+   "pass": true
+  },
+  {
+   "test": "D3 Validation feature at a Holdout date (2026-05-01), past candle only: refused",
+   "pass": true
+  },
+  {
+   "test": "D4 Development feature at a Validation date: refused",
+   "pass": true
+  },
+  {
+   "test": "D5 Holdout feature before the official opening: refused",
+   "pass": true
+  },
+  {
+   "test": "D6 Holdout feature after the official opening, past data only: accepted",
+   "pass": true
+  },
+  {
+   "test": "D7 Validation feature at an embargo date: refused",
+   "pass": true
+  },
+  {
+   "test": "D8 Holdout (opened) feature at a Validation date: refused",
    "pass": true
   },
   {

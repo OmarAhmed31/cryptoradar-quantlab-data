@@ -45,6 +45,16 @@ raises("validation feature using a not-yet-closed candle (future) refused", lamb
 raises("validation feature using Holdout-period data refused (future)", lambda: val.check_feature(T(2025, 12, 1), [T(2026, 5, 1)]))
 raises("feature using Dec-2023 warm-up refused (T3)", lambda: dev.check_feature(T(2024, 1, 5), [T(2023, 12, 20)]))
 raises("validation label/outcome crossing into embargo 2 refused", lambda: val.check_outcome(T(2026, 3, 5), H_MAX))
+# decision-time lock (v0.10.6, reviewer finding): t itself must be inside the guard's own segment
+hold = lambda: SegmentGuard("holdout", holdout_opened=True)
+ok("D1 Validation feature at a Validation date: accepted", lambda: val.check_feature(T(2025, 12, 1), [T(2025, 11, 30, 22)]))
+raises("D2 Validation feature at a Development date: refused", lambda: val.check_feature(T(2025, 6, 1), [T(2025, 5, 31)]))
+raises("D3 Validation feature at a Holdout date (2026-05-01), past candle only: refused", lambda: val.check_feature(T(2026, 5, 1), [T(2026, 4, 30)]))
+raises("D4 Development feature at a Validation date: refused", lambda: dev.check_feature(T(2025, 10, 1), [T(2025, 9, 30)]))
+raises("D5 Holdout feature before the official opening: refused", lambda: SegmentGuard("holdout").check_feature(T(2026, 5, 1), [T(2026, 4, 30)]))
+ok("D6 Holdout feature after the official opening, past data only: accepted", lambda: hold().check_feature(T(2026, 5, 1), hrs(T(2026, 4, 1), 720)))
+raises("D7 Validation feature at an embargo date: refused", lambda: val.check_feature(T(2025, 9, 3), [T(2025, 9, 2)]))
+raises("D8 Holdout (opened) feature at a Validation date: refused", lambda: hold().check_feature(T(2026, 2, 1), [T(2026, 1, 31)]))
 # H6: MI / regime fitting only on Development
 raises("MI statistic on Validation refused", lambda: val.check_research_statistic(T(2025, 10, 1), []))
 ok("MI statistic on Development with past data", lambda: dev.check_research_statistic(T(2024, 3, 1), hrs(T(2024, 1, 31), 24)))
