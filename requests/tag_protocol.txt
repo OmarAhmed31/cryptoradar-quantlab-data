@@ -1,1 +1,1 @@
-protocol-v1.1 cfa82ebbe5400d3a4f86036e9824b518e4f3a6c1 Research Protocol v1.1 FIXED sha256 91718b6975614fbfdd74db06104e56c02cb95b8cddcc8a1905f075a777ac678c
+protocol-v1.2 bce37205b49677431c3cbf54674916106a6dbbe4 out/research_protocol/v1.2/RESEARCH_PROTOCOL_v1.2.md 18d5ddcf9e134a3db982a249df0ae96db6818d7d894f1c734cc21722546ed969 Research Protocol v1.2 FIXED
