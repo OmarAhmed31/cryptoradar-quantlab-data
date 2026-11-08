@@ -1,0 +1,44 @@
+1c1
+< # CryptoRadar Quant Lab — RESEARCH PROTOCOL v1.0
+---
+> # CryptoRadar Quant Lab — RESEARCH PROTOCOL v1.1
+3c3
+< Status: **SUBMITTED FOR APPROVAL.** It becomes **FIXED** only when the expert approves **this exact sha256**.
+---
+> Status: **SUBMITTED FOR FINAL APPROVAL.** It becomes **FIXED** only when the expert approves **this exact sha256**.
+5c5
+< The rules U1–U8, D1–D5 and T1–T3 are the ones the expert approved in the v0.10.1 review (2026-11-08). U9 is new and needs confirmation.
+---
+> **Change from v1.0** (sha256 `b40105d0…5743`): **only U9** is rewritten, as the expert requested in the v0.10.2 review, and one data file it uses is added to §1. Every other rule is unchanged, word for word.
+21c21,22
+< | **Universe files (authoritative)** | `out/research_protocol/v1.0/universe/eligibility_daily_{P1,S50k,S250k}.csv.gz` | `eligible` per series per research day |
+---
+> | **Universe files (authoritative)** | `out/research_protocol/v1.1/universe/eligibility_daily_{P1,S50k,S250k}.csv.gz` (byte-identical to v1.0) | `eligible` per series per research day |
+> | **Forced-exit reference (U9)** | `out/research_protocol/v1.1/forced_exit_reference.csv` (built by `lab/forced_exit_reference.py` from the raw 1m files) | For each delisted series: the cut, the last traded minute before it, its price, the gap, and the status |
+51,53c52,64
+< - **U9. Position on a pair that leaves the universe.** A position opened while the pair was eligible may be held. **No new entry** is allowed while the pair is ineligible.
+<   - If a pair is delisted while a position is open, the position is closed at the last traded price before the cut, and this is recorded as a forced exit.
+<   - *(This rule is added here for completeness; the expert must confirm it before research starts.)*
+---
+> - **U9. Exits that do not come from the strategy.** These are recorded as separate exit types, never as an ordinary loss or a stop-loss.
+>   - **U9a. Liquidity exit from the universe** (`LIQUIDITY_INELIGIBLE`). This is not a forced exit: a position opened while the pair was eligible **may be held**, and **no new entry** is allowed while the pair is ineligible.
+>   - **U9b. Delisting forced exit** (`DELISTING_FORCED_EXIT`). A position still open at the official cut (D2) is closed at the **last actual traded price strictly before the cut**:
+>     - **Price source:** the `close` of the last 1-minute candle with volume > 0 whose minute ends at or before the cut, i.e. the price of the last trade in that minute. Minute precision.
+>     - **Never** the close of a candle that contains or passes the cut, never a later price, and never an assumed or ideal price.
+>     - **Recorded for each such exit:** `last_trade_timestamp_utc` (minute), `last_trade_price`, and `minutes_last_trade_to_cut`.
+>   - **U9c. Price reliability.** The exit is **PRICED** only if `minutes_last_trade_to_cut ≤ 60`.
+>     - Otherwise, or if there is no trade before the cut, it is **`UNPRICEABLE_FORCED_EXIT`**.
+>     - In that case no price is assigned, and the trade is reported **separately**, outside the profit and loss figures, with a count and the capital affected.
+>     - The limit of 60 minutes was set in code before the table was computed, and it uses no strategy data.
+>   - **U9d. Relisting.** If a pair is listed again later, it is a **new listing series** (D3). Nothing carries over from the old listing: no position, no eligibility, no history.
+>   - **U9e. Reporting.** `LIQUIDITY_INELIGIBLE`, `DELISTING_FORCED_EXIT` (priced) and `UNPRICEABLE_FORCED_EXIT` are shown as **separate categories** in the trade logs and in every report.
+>   - **Reference values** come from `forced_exit_reference.csv` (149 delisted series). All 149 are PRICED: the median gap is 1 minute, the 90th percentile 7 minutes, and the maximum **60 minutes (KCAL-USDT)**, which sits exactly on the limit.
+74c85,86
+< - `INPUTS_SHA256.txt` sha256 = `b7ce4df7e00f9c318f09cc52e54efc611022649e8129b0ed1180c920fcf13237` (918 files).
+---
+> - `INPUTS_SHA256.txt` sha256 = `b7ce4df7e00f9c318f09cc52e54efc611022649e8129b0ed1180c920fcf13237` (918 files; unchanged from v1.0).
+> - `forced_exit_reference.csv` sha256 = `67221b1037e2800ca4a5a7696b996a78df14df898944e5aecb8f0c924c1e3e59`; `lab/forced_exit_reference.py` sha256 = `a552764df5e848270c4f418d32bd75c1abe71844f437890e8b4f1e20d8bc5a51`.
+83c95
+< - The sha256 of **this file** is recorded outside it, in `RESEARCH_PROTOCOL_v1.0.sha256`, and in the commit message.
+---
+> - The sha256 of **this file** is recorded outside it, in `RESEARCH_PROTOCOL_v1.1.sha256`, and in the commit message.
