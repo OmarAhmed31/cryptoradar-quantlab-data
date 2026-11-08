@@ -1,3 +1,5 @@
+> **SUPERSEDED — NOT AUTHORITATIVE.** Replaced by `docs/MARKET_INTELLIGENCE_PLAN_v0.3.1.md`.
+
 # Market Intelligence — plan v0.3 (aligned with Research Protocol v1.2)
 
 **Authoritative rules:** Research Protocol v1.2, §3 (T4, T5), §4b (H1–H7) and §4c (R1–R6). This plan **adds no rule**. If anything here differs from the protocol, **the protocol wins**.
