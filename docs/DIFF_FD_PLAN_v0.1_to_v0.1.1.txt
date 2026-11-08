@@ -1,0 +1,64 @@
+--- FEATURE_DISCOVERY_PLAN_v0.1.md	2026-11-08 21:37:24.535053502 +0300
++++ FEATURE_DISCOVERY_PLAN_v0.1.1.md	2026-11-08 21:56:23.885820998 +0300
+@@ -1,7 +1,15 @@
+-# Feature Discovery Plan v0.1 — Development only (for review; NOTHING executed)
++# Feature Discovery Plan v0.1.1 — Development only (for review; NOTHING executed)
+ 
+ **Status:** draft for review. No feature has been computed. No code for this phase exists yet.
+ 
++**v0.1.1 changes (reviewer, 2026-11-08), only these four:**
++1. F04 formula corrected.
++2. F05 renamed.
++3. Q6 bootstrap and `LOW_N` fixed exactly.
++4. Raw vs rank use stated explicitly.
++
++D1–D3 are decided as proposed. No other feature, threshold, horizon or protocol rule changed.
++
+ **Governance:** Protocol v1.2 FIXED (sha256 `18d5ddcf…d969`, tag `protocol-v1.2`). MI v0.11.2 is approved (commit `cef23c7`).
+ 
+ **Data:**
+@@ -15,9 +23,9 @@
+ 
+ | # | Question | Proposal |
+ |---|---|---|
+-| D1 | Does this phase include any forward outcome? | **Two parts.** Part 1 (FD-1) uses **no forward outcome**. Part 2 (FD-2, forward association) is **fully pre-registered here** but runs **only after FD-1 is reviewed and FD-2 is separately approved**. Option: drop FD-2 from this phase entirely |
+-| D2 | Conventional thresholds fixed before any result (they cannot come from data that has not been looked at yet) | Redundancy \|ρ\| ≥ 0.80, with sensitivity at 0.70 and 0.90. Benjamini–Hochberg q = 0.10. Minimum 20 series per day (as in R6e). A state with fewer than 30 labelled days is flagged `LOW_N` |
+-| D3 | FD-2 horizons | h ∈ {1, 7, 30} days (all ≤ H_max = 30) |
++| D1 ✅ decided | Does this phase include any forward outcome? | **Two parts.** Part 1 (FD-1) uses **no forward outcome**. Part 2 (FD-2, forward association) is **fully pre-registered here** but runs **only after FD-1 is reviewed and FD-2 is separately approved**. Option: drop FD-2 from this phase entirely |
++| D2 ✅ decided | Conventional thresholds fixed before any result (they cannot come from data that has not been looked at yet) | Redundancy \|ρ\| ≥ 0.80, with sensitivity at 0.70 and 0.90. Benjamini–Hochberg q = 0.10. Minimum 20 series per day (as in R6e). A state with fewer than 30 labelled days is flagged `LOW_N` |
++| D3 ✅ decided | FD-2 horizons | h ∈ {1, 7, 30} days (all ≤ H_max = 30) |
+ 
+ ## 1. Point-in-time convention (same as MI, T5/H5)
+ 
+@@ -37,8 +45,8 @@
+ | F01 | ret_1 | close_asof(d)/close_asof(d-1) − 1 | both closes |
+ | F02 | ret_7 | k = 7 | both closes |
+ | F03 | ret_30 | k = 30 | both closes |
+-| F04 | ret_30_skip7 | close_asof(d-7)/close_asof(d-30) − 1 | both closes |
+-| F05 | resid_mom_30 | ret_30 − beta_btc_30 · BTC ret_30 | F03, F12 |
++| F04 | ret_30_skip7 | close_asof(d-7)/close_asof(d-37) − 1 (30-day return ending 7 days before d) | both closes. This needs 37 days of history, so the first possible value is on 2024-02-08 (close_asof(d-37) is the last close of day d-38) |
++| F05 | btc_beta_adjusted_ret_30 | ret_30 − beta_btc_30 · BTC ret_30 (no intercept; a BTC-beta adjustment, not a regression residual) | F03, F12 |
+ | **Volatility / shape** | | | |
+ | F06 | vol_7 | std of `lr` over 7 days (as MI) | ≥ 50% of hours |
+ | F07 | vol_30 | same, 30 days | ≥ 50% of hours |
+@@ -61,7 +69,10 @@
+ | F21 | dist_low_30 | close_asof(d) / min hourly `low` over 30 days − 1 | ≥ 50% of hours |
+ | F22 | range_7 | mean daily (max high − min low) / last close, 7 days | ≥ 4 traded days |
+ 
+-**Cross-sectional ranks:** every feature is also used as its percentile rank among the series eligible on day d. All tests below use ranks, so the scale of a feature does not matter.
++**Raw values vs ranks:** every feature is also available as its cross-sectional percentile rank among the series eligible on day d.
++- **Rank-based analyses use cross-sectional percentile ranks:** Q3 persistence, Q4 redundancy and the FD-2 IC.
++- **Distribution stability (Q2) and regime relation (Q6) use raw feature values.**
++- Q1 coverage counts values and uses neither.
+ 
+ **Excluded on purpose:**
+ - **Listing age.** The pack starts at 2024-01-01, so age is left-censored. A correct value needs instrument listing times, which are not a protocol input.
+@@ -77,7 +88,7 @@
+ | Q3 Rank persistence | daily Spearman ρ between ranks at d and d+k, k ∈ {1, 7}, over series eligible on both days; d+k < 2025-09-01. *(This uses a later feature value, not an outcome. It stays inside Development.)* | mean, median, IQR across days |
+ | Q4 Redundancy | daily cross-sectional Spearman ρ for every feature pair. Take the median over days. Clusters are connected components of \|median ρ\| ≥ 0.80 (also 0.70 and 0.90) | 22×22 matrix + clusters |
+ | Q5 Cluster representative (fixed rule) | highest Q1 coverage; tie → fewer parameters; tie → lower F-number | list |
+-| Q6 Relation to regimes | daily cross-sectional median of each feature's raw value, grouped by `regime_asof` (P1; as-known labels, from 2024-07-01). The difference between each state's mean and S2's mean (S2 is the largest state) gets a 95% CI from a circular block bootstrap: 7-day blocks, 2,000 resamples, seed 20260108. `UNKNOWN` is reported as its own group | table. S3 has 19 days, so it is marked `LOW_N` |
++| Q6 Relation to regimes | Uses the daily cross-sectional median of each feature's **raw** value, grouped by `regime_asof` (P1; as-known labels; days 2024-07-01 → 2025-08-31). The statistic is the difference between each state's mean of daily medians and S2's mean (S2 is the largest state).<br>**Bootstrap (fixed):**<ul><li>Resampling is from the **full daily time series** (the 427 labelled days, in calendar order).</li><li>Circular blocks of 7 consecutive days are drawn.</li><li>Each day keeps its own feature median **and** its own `regime_asof` label, so the order and the labels move together.</li><li>Inside each resample, the state means and the differences are recomputed.</li><li>2,000 resamples, seed 20260108.</li><li>The 95% CI is the 2.5–97.5 percentile.</li></ul>`UNKNOWN` is reported as its own group. **`LOW_N`:** a state with fewer than 30 labelled days (S3 has 19) gets its mean and difference reported **descriptively only**: no CI or test is presented or interpreted | table with `n_days` and a `LOW_N` flag per state |
+ | Q7 Survivorship | Q1–Q6 recomputed without later-delisted series (as MI M6) | difference table |
+ 
+ **FD-1 makes no selection.** Its output is a description. Clusters (Q4/Q5) only define which features represent each cluster in FD-2. That is fixed by the rule above and decided before FD-2 runs.
