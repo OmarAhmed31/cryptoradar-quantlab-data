@@ -1,6 +1,7 @@
 name: tag-protocol
 
-# Creates an annotated tag for an approved protocol commit. requests/tag_protocol.txt: "<tag> <commit_sha> <message>"
+# Creates an annotated tag for an approved protocol commit.
+# requests/tag_protocol.txt: "<tag> <commit_sha> <protocol_path> <expected_sha256> <message...>"
 on:
   push:
     branches: [main]
@@ -18,8 +19,9 @@ jobs:
           fetch-depth: 0
       - name: Verify protocol hash, then tag
         run: |
-          read tag sha msg < requests/tag_protocol.txt
-          git show $sha:out/research_protocol/v1.1/RESEARCH_PROTOCOL_v1.1.md | sha256sum | grep -q 91718b6975614fbfdd74db06104e56c02cb95b8cddcc8a1905f075a777ac678c
+          read tag sha path want msg < requests/tag_protocol.txt
+          got=$(git show $sha:$path | sha256sum | cut -c1-64)
+          test "$got" = "$want" || { echo "hash mismatch $got != $want"; exit 1; }
           git config user.name "quantlab-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git tag -a "$tag" "$sha" -m "$msg"
