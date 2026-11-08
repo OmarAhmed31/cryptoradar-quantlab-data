@@ -126,18 +126,22 @@ Reported, not gated (`fd1_stability_monthly.csv`).
 | FA2 Guard | Every lookback goes through `check_feature`; a value before its window is complete is refused; Validation inputs and days are refused |
 | FA3 Independent naive recompute | Pure-Python implementation from the raw pack CSVs, all 22 features, relative tolerance 1e-9 |
 | FQ3, FQ4, FQ6, FQ7 | Statistics recomputed independently (scipy Spearman, regimes read from file); the bootstrap block structure is verified; `LOW_N` carries no CI; the survivors mask has no delisted coin |
-| FA5 Mutants | see `fd1_mutation_results.json` |
-| Results files | `fd1_test_result_fast.json`, `fd1_test_result_full.json` |
+| FA5 Mutants | **14/14 killed** (`fd1_mutation_results.json`). M09 (vol_30 window changed to 31 days) is killed by a crash, not by an assertion |
+| Results | Full mode **14/14** (FA1 on 8 days, 66.1M+ values; FA3 on 1,000 series-days = 22,000 values, 0 mismatches). Fast mode **14/14** (4 days, 300 rows). Files: `fd1_test_result_full.json`, `fd1_test_result_fast.json` |
+
+FD-2 mutants (IC overlap, BH, forced exits, outcome crossing) are deferred with FD-2.
 
 ## Reproduction
 
 ```
 cd repro
-python3 -I tests/test_fd1.py --fast          # ~2 min, 300 rows / 4 days
-python3 -I lab/fd1.py out/fd1_check          # ~2 min
+python3 -I tests/test_fd1.py --fast          # ~2 min here; 300 rows / 4 days
+python3 -I tests/test_fd1.py                 # ~3.5 min here (full)
+python3 -I lab/fd1.py out/fd1_check          # ~2 min here
 ```
 
-The outputs are byte-identical to the shipped ones (checked).
+- **Memory:** peak about **3.1 GB** (fast) and **3.7 GB** (full), on 2 CPUs. A sandbox with less memory or a short time limit may not finish.
+- The outputs are **byte-identical** to the shipped ones (checked in `repro/`).
 
 ## Next
 

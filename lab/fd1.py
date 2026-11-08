@@ -228,7 +228,8 @@ def main(out_dir):
         x = F[f].stack(future_stack=True).dropna().rename("value").reset_index()
         x.columns = ["day", "series", "value"]; x["feature"] = f; long.append(x)
     L = pd.concat(long); L["day"] = L["day"].dt.strftime("%Y-%m-%d")
-    L[["day", "series", "feature", "value"]].to_csv(out / "features_daily_raw.csv.gz", index=False, float_format="%.12g")
+    L[["day", "series", "feature", "value"]].to_csv(out / "features_daily_raw.csv.gz", index=False, float_format="%.12g",
+                                                   compression={"method": "gzip", "mtime": 0})
     for k, r in res.items():
         sfx = "" if k == "P1" else f"_{k}"
         r["q1"].to_csv(out / f"fd1_coverage{sfx}.csv", index=False)

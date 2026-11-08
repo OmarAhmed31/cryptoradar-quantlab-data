@@ -1,0 +1,90 @@
+{
+ "mutants": [
+  {
+   "mutant": "M01 same-day close in returns",
+   "file": "lab/fd_features.py",
+   "killed": true,
+   "by": "FAIL FA1 destructive future overwrite: every feature and eligibility mask at days <= d unc; FAIL FA3 independent naive recompute of all 22 features (relative 1e-9) 300 series-days x "
+  },
+  {
+   "mutant": "M02 hourly window includes day d",
+   "file": "lab/fd_features.py",
+   "killed": true,
+   "by": "FAIL FA1 destructive future overwrite: every feature and eligibility mask at days <= d unc; FAIL FA3 independent naive recompute of all 22 features (relative 1e-9) 300 series-days x "
+  },
+  {
+   "mutant": "M03 eligibility of d+1 used",
+   "file": "lab/fd1.py",
+   "killed": true,
+   "by": "FAIL FA1 destructive future overwrite: every feature and eligibility mask at days <= d unc"
+  },
+  {
+   "mutant": "M04 time-series (full-period) ranks instead of daily cross-sectional ranks in Q3",
+   "file": "lab/fd1.py",
+   "killed": true,
+   "by": "FAIL FQ3 persistence equals scipy Spearman on both-days-eligible series; d+k never leaves "
+  },
+  {
+   "mutant": "M05 persistence ignores eligibility on d+k",
+   "file": "lab/fd1.py",
+   "killed": true,
+   "by": "FAIL FQ3 persistence equals scipy Spearman on both-days-eligible series; d+k never leaves "
+  },
+  {
+   "mutant": "M06 regime label of d+1 attached to day d",
+   "file": "lab/fd1.py",
+   "killed": true,
+   "by": "FAIL FQ6 regime means equal an independent recompute from the regimes_asof file "
+  },
+  {
+   "mutant": "M07 bootstrap draws single days (iid), not 7-day blocks",
+   "file": "lab/fd1.py",
+   "killed": true,
+   "by": "FAIL FQ6 bootstrap = circular blocks of 7 consecutive days on the full series (labels trav"
+  },
+  {
+   "mutant": "M08 LOW_N state gets a CI",
+   "file": "lab/fd1.py",
+   "killed": true,
+   "by": "FAIL FQ6 LOW_N states carry no CI; S3 is LOW_N in P1 "
+  },
+  {
+   "mutant": "M09 vol_30 window changed after the catalogue (31 days)",
+   "file": "lab/fd_features.py",
+   "killed": true,
+   "by": "crash: IndexError: index -1 is out of bounds for axis 0 with size 0"
+  },
+  {
+   "mutant": "M10 return window shortened at the research start (wraps to a later day)",
+   "file": "lab/fd_features.py",
+   "killed": true,
+   "by": "crash: lab.segment_loader.GuardError: F01 has a value before its window is complete (first allowed day index 2)"
+  },
+  {
+   "mutant": "M11 survivors lens keeps later-delisted series",
+   "file": "lab/fd1.py",
+   "killed": true,
+   "by": "FAIL FQ7 survivors masks hold no later-delisted series "
+  },
+  {
+   "mutant": "M12 30-day high includes day d",
+   "file": "lab/fd_features.py",
+   "killed": true,
+   "by": "FAIL FA1 destructive future overwrite: every feature and eligibility mask at days <= d unc; FAIL FA3 independent naive recompute of all 22 features (relative 1e-9) 300 series-days x "
+  },
+  {
+   "mutant": "M13 Amihud uses day d",
+   "file": "lab/fd_features.py",
+   "killed": true,
+   "by": "FAIL FA1 destructive future overwrite: every feature and eligibility mask at days <= d unc; FAIL FA3 independent naive recompute of all 22 features (relative 1e-9) 300 series-days x "
+  },
+  {
+   "mutant": "M14 beta window reaches d+1",
+   "file": "lab/fd_features.py",
+   "killed": true,
+   "by": "FAIL FA1 destructive future overwrite: every feature and eligibility mask at days <= d unc; FAIL FA3 independent naive recompute of all 22 features (relative 1e-9) 300 series-days x "
+  }
+ ],
+ "killed": 14,
+ "of": 14
+}

@@ -1,0 +1,78 @@
+{
+ "results": [
+  {
+   "test": "FA0 feature catalogue is the one hashed before any feature was computed",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "FA0 code names and lookbacks equal the catalogue",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "FA1 destructive future overwrite: every feature and eligibility mask at days <= d unchanged (22 features x 6 masks)",
+   "pass": true,
+   "detail": "66105864/66105864 values, days ['2024-03-15', '2024-08-01', '2025-01-20', '2025-08-01']"
+  },
+  {
+   "test": "FA2 a value before its window is complete is refused",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "FA2 a Validation candle in FD input is refused",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "FA2 FD statistic on a Validation day refused",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "FA2 every feature day is a Development day",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "FA3 independent naive recompute of all 22 features (relative 1e-9)",
+   "pass": true,
+   "detail": "300 series-days x 22 = 6600 values; mismatches 0 []"
+  },
+  {
+   "test": "FQ3 persistence equals scipy Spearman on both-days-eligible series; d+k never leaves Development",
+   "pass": true,
+   "detail": "[('F07', 1, 100, 0.993988, 0.993988), ('F07', 1, 400, 0.997286, 0.997286), ('F07', 1, 599, 0.991986, 0.991986)]"
+  },
+  {
+   "test": "FQ4 redundancy cell equals scipy Spearman for a sample day",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "FQ6 regime means equal an independent recompute from the regimes_asof file",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "FQ6 bootstrap = circular blocks of 7 consecutive days on the full series (labels travel with days)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "FQ6 LOW_N states carry no CI; S3 is LOW_N in P1",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "FQ7 survivors masks hold no later-delisted series",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "passed": 14,
+ "of": 14,
+ "PASS": true,
+ "mode": "fast"
+}
