@@ -1,6 +1,6 @@
 {
  "suite": "tests/test_segment_loader.py",
- "tests": 27,
+ "tests": 37,
  "mutants": [
   {
    "mutant": "M1 allows unclosed candle",
@@ -23,8 +23,8 @@
    "killed": true
   },
   {
-   "mutant": "M5 holdout unsealed",
-   "failing_tests": 2,
+   "mutant": "M5 holdout guard skips the opening record",
+   "failing_tests": 5,
    "killed": true
   },
   {
@@ -54,7 +54,42 @@
   },
   {
    "mutant": "M11 decision-time check uses Development range for every guard",
-   "failing_tests": 4,
+   "failing_tests": 5,
+   "killed": true
+  },
+  {
+   "mutant": "M12 boolean switch re-added",
+   "failing_tests": 1,
+   "killed": true
+  },
+  {
+   "mutant": "M13 opening without manifest check",
+   "failing_tests": 2,
+   "killed": true
+  },
+  {
+   "mutant": "M14 opening without protocol check",
+   "failing_tests": 1,
+   "killed": true
+  },
+  {
+   "mutant": "M15 second opening allowed (no exclusive create)",
+   "failing_tests": 1,
+   "killed": true
+  },
+  {
+   "mutant": "M16 record not re-verified against approval",
+   "failing_tests": 2,
+   "killed": true
+  },
+  {
+   "mutant": "M17 commit id not validated",
+   "failing_tests": 1,
+   "killed": true
+  },
+  {
+   "mutant": "M18 missing manifest file tolerated",
+   "failing_tests": 1,
    "killed": true
   }
  ],

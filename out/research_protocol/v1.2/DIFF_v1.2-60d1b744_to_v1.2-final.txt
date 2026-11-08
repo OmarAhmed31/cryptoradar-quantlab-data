@@ -1,0 +1,17 @@
+124c124,133
+<   - Opening it is a logged one-time event.
+---
+>   - **Opening is a one-time, logged, verified event** (`lab/segment_loader.py: open_holdout`). It requires all of these:
+>     - **(i)** a **Candidate Freeze Manifest** file;
+>     - **(ii)** an **approval record** (JSON: `manifest_sha256`, `protocol_sha256`, `approved_by`, `approved_utc`) whose `manifest_sha256` equals the manifest's sha256;
+>     - **(iii)** the FIXED protocol file, whose sha256 equals the approved `protocol_sha256`;
+>     - **(iv)** a 40-hex git commit id.
+>   - It then writes `HOLDOUT_OPENED.json` (opened time, protocol sha256, commit, manifest sha256, approval sha256) with an **exclusive create**, so **a second opening fails**.
+>   - A Holdout guard can **only** be built from that record. Each construction re-verifies the record against the manifest, the approval and the protocol, so a changed manifest or a hand-written record is refused.
+>   - **There is no boolean switch.**
+>   - The real record is written only under `out/holdout_opening/`, which does not exist until the opening. Tests use temporary directories only.
+>   - **Limit:** inside a running program nothing is tamper-proof. The record is tamper-*evident* through its hashes, the git history and review.
+190c199
+< - Segment guard: `lab/segment_loader.py` `b1c66eee298c080325b7c542ee576c704d2f9a62b2ffa5d44e98282fb6e25311`; `tests/test_segment_loader.py` `492666b081d37fbddb365257fbb6e9be14823148e5a6ba8fa1e2a9654f4fb344` (27/27 pass; 11/11 planted mutants killed, including 4 that bypass the decision-time check).
+---
+> - Segment guard: `lab/segment_loader.py` `8f40675a2db701bd06c6151cc2b4f14d23dd7cb724d4c2064455c05992c920d2`; `tests/test_segment_loader.py` `ecf5bdbfa536aa9b16556a1d3bfc9c03b052f54490c8bc4cfce1aa056a4b0e61` (37/37 pass; 18/18 planted mutants killed, including 8 that try to bypass the holdout opening lock).

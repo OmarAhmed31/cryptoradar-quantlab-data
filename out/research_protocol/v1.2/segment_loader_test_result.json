@@ -1,6 +1,6 @@
 {
- "passed": 27,
- "of": 27,
+ "passed": 37,
+ "of": 37,
  "PASS": true,
  "tests": [
   {
@@ -109,6 +109,46 @@
   },
   {
    "test": "holdout entry 2026-10-01 16:00 refused (t + 30 d > T2)",
+   "pass": true
+  },
+  {
+   "test": "O1 holdout guard without an opening record refused",
+   "pass": true
+  },
+  {
+   "test": "O2 boolean switch holdout_opened=True no longer exists",
+   "pass": true
+  },
+  {
+   "test": "O3 opening without a Candidate Freeze Manifest refused",
+   "pass": true
+  },
+  {
+   "test": "O4 manifest not matching the approved sha256 refused",
+   "pass": true
+  },
+  {
+   "test": "O5 protocol not matching the approved protocol sha256 refused",
+   "pass": true
+  },
+  {
+   "test": "O6 official opening once: record has time, protocol, commit, manifest; guard works",
+   "pass": true
+  },
+  {
+   "test": "O7 second opening refused (one-time event)",
+   "pass": true
+  },
+  {
+   "test": "O8 manifest changed after opening -> guard refuses",
+   "pass": true
+  },
+  {
+   "test": "O9 hand-written (forged) record not matching the approval refused",
+   "pass": true
+  },
+  {
+   "test": "O10 opening with a non-commit id refused",
    "pass": true
   }
  ]

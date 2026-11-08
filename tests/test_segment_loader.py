@@ -1,8 +1,24 @@
 """Tests for lab/segment_loader.py (Protocol v1.2 access rules). Synthetic timestamps only; no market data.
 python3 -I tests/test_segment_loader.py [out.json]"""
-import sys, json, pathlib, datetime as dt
+import sys, json, pathlib, datetime as dt, tempfile, hashlib
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
-from lab.segment_loader import SegmentGuard, GuardError, H, H_MAX
+from lab.segment_loader import SegmentGuard, GuardError, H, H_MAX, open_holdout
+
+
+# --- a throw-away opening setup in a temp dir (NEVER the real record location)
+TMP = pathlib.Path(tempfile.mkdtemp(prefix="holdout_test_"))
+def _setup(name, manifest_ok=True, protocol_ok=True):
+    d = TMP / name; d.mkdir()
+    man = d / "candidate_freeze_manifest.json"; man.write_text('{"candidates": ["synthetic-test-only"]}')
+    proto = d / "PROTOCOL.md"; proto.write_text("synthetic protocol for tests")
+    sha = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
+    appr = d / "approval.json"
+    appr.write_text(json.dumps({"manifest_sha256": sha(man) if manifest_ok else "0" * 64, "protocol_sha256": sha(proto) if protocol_ok else "0" * 64,
+                                "approved_by": "test", "approved_utc": "2026-01-01T00:00:00Z"}))
+    return d, man, appr, proto
+COMMIT = "a" * 40
+_d0, _m0, _a0, _p0 = _setup("main")
+REC = open_holdout(_m0, _a0, _p0, COMMIT, _d0 / "rec")
 
 U = dt.timezone.utc
 T = lambda *a: dt.datetime(*a, tzinfo=U)
@@ -46,7 +62,7 @@ raises("validation feature using Holdout-period data refused (future)", lambda: 
 raises("feature using Dec-2023 warm-up refused (T3)", lambda: dev.check_feature(T(2024, 1, 5), [T(2023, 12, 20)]))
 raises("validation label/outcome crossing into embargo 2 refused", lambda: val.check_outcome(T(2026, 3, 5), H_MAX))
 # decision-time lock (v0.10.6, reviewer finding): t itself must be inside the guard's own segment
-hold = lambda: SegmentGuard("holdout", holdout_opened=True)
+hold = lambda: SegmentGuard("holdout", opening_record=REC)
 ok("D1 Validation feature at a Validation date: accepted", lambda: val.check_feature(T(2025, 12, 1), [T(2025, 11, 30, 22)]))
 raises("D2 Validation feature at a Development date: refused", lambda: val.check_feature(T(2025, 6, 1), [T(2025, 5, 31)]))
 raises("D3 Validation feature at a Holdout date (2026-05-01), past candle only: refused", lambda: val.check_feature(T(2026, 5, 1), [T(2026, 4, 30)]))
@@ -61,8 +77,48 @@ ok("MI statistic on Development with past data", lambda: dev.check_research_stat
 raises("MI statistic on Development using future data refused", lambda: dev.check_research_statistic(T(2024, 3, 1), [T(2024, 3, 1, 5)]))
 # H7: holdout sealed
 raises("Final Holdout sealed without the logged opening", lambda: SegmentGuard("holdout"))
-ok("holdout entry cut 2026-10-01 15:00 allowed after opening", lambda: SegmentGuard("holdout", holdout_opened=True).check_outcome(T(2026, 10, 1, 15), H_MAX))
-raises("holdout entry 2026-10-01 16:00 refused (t + 30 d > T2)", lambda: SegmentGuard("holdout", holdout_opened=True).check_entry(T(2026, 10, 1, 16)))
+ok("holdout entry cut 2026-10-01 15:00 allowed after opening", lambda: SegmentGuard("holdout", opening_record=REC).check_outcome(T(2026, 10, 1, 15), H_MAX))
+raises("holdout entry 2026-10-01 16:00 refused (t + 30 d > T2)", lambda: SegmentGuard("holdout", opening_record=REC).check_entry(T(2026, 10, 1, 16)))
+# --- holdout opening procedure (v0.10.7, reviewer finding on H7)
+raises("O1 holdout guard without an opening record refused", lambda: SegmentGuard("holdout"))
+def _o2():
+    try:
+        SegmentGuard("holdout", holdout_opened=True)
+    except TypeError:
+        raise GuardError("boolean switch does not exist")
+raises("O2 boolean switch holdout_opened=True no longer exists", _o2)
+def _o3():
+    d, m, a, p = _setup("o3"); m.unlink(); open_holdout(m, a, p, COMMIT, d / "rec")
+raises("O3 opening without a Candidate Freeze Manifest refused", _o3)
+def _o4():
+    d, m, a, p = _setup("o4", manifest_ok=False); open_holdout(m, a, p, COMMIT, d / "rec")
+raises("O4 manifest not matching the approved sha256 refused", _o4)
+def _o5():
+    d, m, a, p = _setup("o5", protocol_ok=False); open_holdout(m, a, p, COMMIT, d / "rec")
+raises("O5 protocol not matching the approved protocol sha256 refused", _o5)
+def _o6():
+    d, m, a, p = _setup("o6"); r = open_holdout(m, a, p, COMMIT, d / "rec")
+    rec = json.loads(r.read_text())
+    assert rec["commit"] == COMMIT and rec["manifest_sha256"] == hashlib.sha256(m.read_bytes()).hexdigest() and rec["opened_utc"]
+    SegmentGuard("holdout", opening_record=r).check_feature(T(2026, 5, 1), [T(2026, 4, 30)])
+ok("O6 official opening once: record has time, protocol, commit, manifest; guard works", _o6)
+def _o7():
+    d, m, a, p = _setup("o7"); open_holdout(m, a, p, COMMIT, d / "rec"); open_holdout(m, a, p, COMMIT, d / "rec")
+raises("O7 second opening refused (one-time event)", _o7)
+def _o8():
+    d, m, a, p = _setup("o8"); r = open_holdout(m, a, p, COMMIT, d / "rec"); m.write_text('{"candidates": ["changed"]}')
+    SegmentGuard("holdout", opening_record=r)
+raises("O8 manifest changed after opening -> guard refuses", _o8)
+def _o9():
+    d, m, a, p = _setup("o9"); f = d / "forged.json"
+    f.write_text(json.dumps({"event": "FINAL_HOLDOUT_OPENED", "commit": COMMIT, "manifest_sha256": "1" * 64, "protocol_sha256": "2" * 64,
+                             "approval_sha256": "3" * 64, "manifest_file": str(m), "approval_file": str(a), "protocol_file": str(p)}))
+    SegmentGuard("holdout", opening_record=f)
+raises("O9 hand-written (forged) record not matching the approval refused", _o9)
+def _o10():
+    d, m, a, p = _setup("o10"); open_holdout(m, a, p, "HEAD", d / "rec")
+raises("O10 opening with a non-commit id refused", _o10)
+
 out = {"passed": sum(r["pass"] for r in res), "of": len(res), "PASS": all(r["pass"] for r in res), "tests": res}
 print(json.dumps({k: out[k] for k in ("passed", "of", "PASS")}))
 for r in res:
