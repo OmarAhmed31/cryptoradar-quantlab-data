@@ -1,0 +1,213 @@
+{
+ "plan": "docs/FEATURE_DISCOVERY_PLAN_v0.1.1.md",
+ "plan_sha256": "1126d55192e0285dd1e05284a9e891ee1cf54516c7fdadc99201be9b3fe4683a",
+ "conventions": {
+  "known_at": "d 00:00 UTC",
+  "close_asof": "close of the last traded hour of day d-1 (no carry-forward)",
+  "lr": "log close - log previous traded close of the same series (rule-B hours only)",
+  "windows": "a fixed window that is not complete inside [2024-01-01, d) leaves the value missing; F12-F14 count pairs over d-29..d (>= 20) as in MI",
+  "universe": "values are computed for all series and masked per scenario by eligible(d)",
+  "missing": "no imputation"
+ },
+ "q5_parameter_count": "number of window parameters, used only as the Q5 tie-break",
+ "features": [
+  {
+   "id": "F01",
+   "name": "ret_1",
+   "family": "momentum",
+   "definition": "close_asof(d)/close_asof(d-1)-1",
+   "minimum": "both closes",
+   "window_parameters": 1,
+   "lookback_days": 2
+  },
+  {
+   "id": "F02",
+   "name": "ret_7",
+   "family": "momentum",
+   "definition": "close_asof(d)/close_asof(d-7)-1",
+   "minimum": "both closes",
+   "window_parameters": 1,
+   "lookback_days": 8
+  },
+  {
+   "id": "F03",
+   "name": "ret_30",
+   "family": "momentum",
+   "definition": "close_asof(d)/close_asof(d-30)-1",
+   "minimum": "both closes",
+   "window_parameters": 1,
+   "lookback_days": 31
+  },
+  {
+   "id": "F04",
+   "name": "ret_30_skip7",
+   "family": "momentum",
+   "definition": "close_asof(d-7)/close_asof(d-37)-1",
+   "minimum": "both closes; first possible day 2024-02-08",
+   "window_parameters": 2,
+   "lookback_days": 38
+  },
+  {
+   "id": "F05",
+   "name": "btc_beta_adjusted_ret_30",
+   "family": "momentum",
+   "definition": "ret_30 - beta_btc_30 * BTC ret_30 (no intercept; not a regression residual); undefined for BTC",
+   "minimum": "F03, F12",
+   "window_parameters": 2,
+   "lookback_days": 31
+  },
+  {
+   "id": "F06",
+   "name": "vol_7",
+   "family": "volatility",
+   "definition": "std (ddof=1) of hourly lr in days d-7..d-1",
+   "minimum": ">= 84 lr values (50% of hours)",
+   "window_parameters": 1,
+   "lookback_days": 7
+  },
+  {
+   "id": "F07",
+   "name": "vol_30",
+   "family": "volatility",
+   "definition": "std (ddof=1) of hourly lr in days d-30..d-1",
+   "minimum": ">= 360 lr values",
+   "window_parameters": 1,
+   "lookback_days": 30
+  },
+  {
+   "id": "F08",
+   "name": "vol_ratio_7_30",
+   "family": "volatility",
+   "definition": "vol_7 / vol_30",
+   "minimum": "F06, F07",
+   "window_parameters": 2,
+   "lookback_days": 30
+  },
+  {
+   "id": "F09",
+   "name": "downside_vol_30",
+   "family": "volatility",
+   "definition": "sqrt(mean(min(lr,0)^2)) over days d-30..d-1",
+   "minimum": ">= 360 lr values",
+   "window_parameters": 1,
+   "lookback_days": 30
+  },
+  {
+   "id": "F10",
+   "name": "skew_30",
+   "family": "shape",
+   "definition": "adjusted Fisher-Pearson skewness G1 = g1*sqrt(n(n-1))/(n-2) of hourly lr, days d-30..d-1",
+   "minimum": ">= 360 lr values and m2 > 0",
+   "window_parameters": 1,
+   "lookback_days": 30
+  },
+  {
+   "id": "F11",
+   "name": "max_hr_ret_7",
+   "family": "shape",
+   "definition": "max hourly lr over days d-7..d-1",
+   "minimum": ">= 84 lr values",
+   "window_parameters": 1,
+   "lookback_days": 7
+  },
+  {
+   "id": "F12",
+   "name": "beta_btc_30",
+   "family": "market",
+   "definition": "OLS slope (with intercept) of daily r_1 on BTC r_1 over days d-29..d; undefined for BTC",
+   "minimum": ">= 20 pairs",
+   "window_parameters": 1,
+   "lookback_days": 31
+  },
+  {
+   "id": "F13",
+   "name": "corr_btc_30",
+   "family": "market",
+   "definition": "Pearson correlation of the same pairs; undefined for BTC",
+   "minimum": ">= 20 pairs",
+   "window_parameters": 1,
+   "lookback_days": 31
+  },
+  {
+   "id": "F14",
+   "name": "idio_vol_30",
+   "family": "market",
+   "definition": "sqrt(SSR/(n-2)) of the F12 regression residuals; undefined for BTC",
+   "minimum": ">= 20 pairs",
+   "window_parameters": 1,
+   "lookback_days": 31
+  },
+  {
+   "id": "F15",
+   "name": "log_dv30_med",
+   "family": "liquidity",
+   "definition": "ln(DV30_med) of the universe row of day d (days d-30..d-1)",
+   "minimum": "assessable and DV30_med > 0",
+   "window_parameters": 1,
+   "lookback_days": 30
+  },
+  {
+   "id": "F16",
+   "name": "thr30",
+   "family": "liquidity",
+   "definition": "THR30 of the universe row of day d",
+   "minimum": "assessable",
+   "window_parameters": 1,
+   "lookback_days": 30
+  },
+  {
+   "id": "F17",
+   "name": "dv_ratio_7_30",
+   "family": "liquidity",
+   "definition": "median daily quote volume over traded days in d-7..d-1 / same over d-30..d-1",
+   "minimum": ">= 4 of 7 and >= 15 of 30 traded days",
+   "window_parameters": 2,
+   "lookback_days": 30
+  },
+  {
+   "id": "F18",
+   "name": "amihud_30",
+   "family": "liquidity",
+   "definition": "median over days j in d-30..d-1 of |ln(lastclose_j/lastclose_(j-1))| / quote volume_j (USDT)",
+   "minimum": ">= 15 such days",
+   "window_parameters": 1,
+   "lookback_days": 31
+  },
+  {
+   "id": "F19",
+   "name": "traded_min_share_7",
+   "family": "liquidity",
+   "definition": "sum traded_minutes over days d-7..d-1 / 10080",
+   "minimum": "none",
+   "window_parameters": 1,
+   "lookback_days": 7
+  },
+  {
+   "id": "F20",
+   "name": "dist_high_30",
+   "family": "position",
+   "definition": "close_asof(d) / max hourly high over days d-30..d-1 - 1",
+   "minimum": ">= 360 candles",
+   "window_parameters": 1,
+   "lookback_days": 30
+  },
+  {
+   "id": "F21",
+   "name": "dist_low_30",
+   "family": "position",
+   "definition": "close_asof(d) / min hourly low over days d-30..d-1 - 1",
+   "minimum": ">= 360 candles",
+   "window_parameters": 1,
+   "lookback_days": 30
+  },
+  {
+   "id": "F22",
+   "name": "range_7",
+   "family": "position",
+   "definition": "mean over traded days j in d-7..d-1 of (max high_j - min low_j)/last close_j",
+   "minimum": ">= 4 traded days",
+   "window_parameters": 1,
+   "lookback_days": 7
+  }
+ ]
+}
