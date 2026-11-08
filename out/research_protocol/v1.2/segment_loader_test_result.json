@@ -1,6 +1,6 @@
 {
- "passed": 37,
- "of": 37,
+ "passed": 32,
+ "of": 32,
  "PASS": true,
  "tests": [
   {
@@ -72,19 +72,11 @@
    "pass": true
   },
   {
-   "test": "D5 Holdout feature before the official opening: refused",
-   "pass": true
-  },
-  {
-   "test": "D6 Holdout feature after the official opening, past data only: accepted",
+   "test": "D5 Holdout feature: refused (no Holdout guard can exist in v1.2)",
    "pass": true
   },
   {
    "test": "D7 Validation feature at an embargo date: refused",
-   "pass": true
-  },
-  {
-   "test": "D8 Holdout (opened) feature at a Validation date: refused",
    "pass": true
   },
   {
@@ -104,51 +96,39 @@
    "pass": true
   },
   {
-   "test": "holdout entry cut 2026-10-01 15:00 allowed after opening",
+   "test": "holdout entry cut constant = 2026-10-01 16:00 = T2 - 30 d (static check)",
    "pass": true
   },
   {
-   "test": "holdout entry 2026-10-01 16:00 refused (t + 30 d > T2)",
+   "test": "O1 holdout guard with no argument refused",
    "pass": true
   },
   {
-   "test": "O1 holdout guard without an opening record refused",
+   "test": "O2 boolean switch holdout_opened=True does not exist",
    "pass": true
   },
   {
-   "test": "O2 boolean switch holdout_opened=True no longer exists",
+   "test": "O3 reviewer's forgery: hand-written record with CORRECT hashes cannot open a Holdout guard",
    "pass": true
   },
   {
-   "test": "O3 opening without a Candidate Freeze Manifest refused",
+   "test": "O4 opening with a valid-looking manifest + approval + protocol + commit refused",
    "pass": true
   },
   {
-   "test": "O4 manifest not matching the approved sha256 refused",
+   "test": "O5 a refused opening writes nothing (no record dir created)",
    "pass": true
   },
   {
-   "test": "O5 protocol not matching the approved protocol sha256 refused",
+   "test": "O6 deleting a record and re-opening refused",
    "pass": true
   },
   {
-   "test": "O6 official opening once: record has time, protocol, commit, manifest; guard works",
+   "test": "O7 opening with keyword arguments only refused",
    "pass": true
   },
   {
-   "test": "O7 second opening refused (one-time event)",
-   "pass": true
-  },
-  {
-   "test": "O8 manifest changed after opening -> guard refuses",
-   "pass": true
-  },
-  {
-   "test": "O9 hand-written (forged) record not matching the approval refused",
-   "pass": true
-  },
-  {
-   "test": "O10 opening with a non-commit id refused",
+   "test": "O8 no record-verification code path exists in the module",
    "pass": true
   }
  ]

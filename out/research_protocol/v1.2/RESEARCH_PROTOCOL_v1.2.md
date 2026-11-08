@@ -121,16 +121,10 @@ Rule for this file: it is fixed **before** any strategy research. It must not ch
     - Every planted mutant of the guard is killed.
 - **H7. Final Holdout seal.**
   - Nothing is computed or shown on the Final Holdout before the candidates and their rules are frozen and hashed. That includes descriptive statistics, charts and counts.
-  - **Opening is a one-time, logged, verified event** (`lab/segment_loader.py: open_holdout`). It requires all of these:
-    - **(i)** a **Candidate Freeze Manifest** file;
-    - **(ii)** an **approval record** (JSON: `manifest_sha256`, `protocol_sha256`, `approved_by`, `approved_utc`) whose `manifest_sha256` equals the manifest's sha256;
-    - **(iii)** the FIXED protocol file, whose sha256 equals the approved `protocol_sha256`;
-    - **(iv)** a 40-hex git commit id.
-  - It then writes `HOLDOUT_OPENED.json` (opened time, protocol sha256, commit, manifest sha256, approval sha256) with an **exclusive create**, so **a second opening fails**.
-  - A Holdout guard can **only** be built from that record. Each construction re-verifies the record against the manifest, the approval and the protocol, so a changed manifest or a hand-written record is refused.
-  - **There is no boolean switch.**
-  - The real record is written only under `out/holdout_opening/`, which does not exist until the opening. Tests use temporary directories only.
-  - **Limit:** inside a running program nothing is tamper-proof. The record is tamper-*evident* through its hashes, the git history and review.
+  - **Under this protocol version there is no way to open the Final Holdout at all.** `lab/segment_loader.py` refuses every Holdout guard and every call to `open_holdout`, whatever files, records, flags or arguments are passed. A refused attempt writes nothing.
+  - A hand-written opening record with **correct** hashes is refused as well, because no code path reads records.
+  - **Opening requires Protocol v1.3.** It must define, test and get approval for an **externally verifiable** approval *before* any opening. That means a cryptographic signature that cannot be produced inside the lab, plus a one-time consumption logged in an **external, append-only** place (for example a GitHub-verified commit by the owner's account, executed by a dedicated workflow).
+  - **Limit:** whoever can edit the code can remove the seal. Any such edit is visible in the git history and the code hash (§7), and it breaks the approved hash.
 
 ## 4c. Regime models (point-in-time)
 
@@ -196,5 +190,5 @@ Rule for this file: it is fixed **before** any strategy research. It must not ch
   - `lab/liquidity_profile.py` `32fc4fb5…40e9e9`
   - `tests/test_liquidity_pit.py` `8be844ec…48fe26`
   - `lab/guard.py` `2a2e7d88…6e848e7`
-- Segment guard: `lab/segment_loader.py` `8f40675a2db701bd06c6151cc2b4f14d23dd7cb724d4c2064455c05992c920d2`; `tests/test_segment_loader.py` `ecf5bdbfa536aa9b16556a1d3bfc9c03b052f54490c8bc4cfce1aa056a4b0e61` (37/37 pass; 18/18 planted mutants killed, including 8 that try to bypass the holdout opening lock).
+- Segment guard: `lab/segment_loader.py` `158eac908876f27098280f2ea6952d0eb39e44fc4f12e4b0841725f7db4f7ff3`; `tests/test_segment_loader.py` `2a893057ee4e8e23546c307c0ed91ea504da1590e1675bb3912cc40d3d06d725` (32/32 pass; 16/16 planted mutants killed, including 6 that try to re-open the Holdout).
 - The sha256 of **this file** is recorded outside it, in `RESEARCH_PROTOCOL_v1.2.sha256`, and in the commit message.

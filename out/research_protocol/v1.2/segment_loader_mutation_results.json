@@ -1,6 +1,6 @@
 {
  "suite": "tests/test_segment_loader.py",
- "tests": 37,
+ "tests": 32,
  "mutants": [
   {
    "mutant": "M1 allows unclosed candle",
@@ -23,11 +23,6 @@
    "killed": true
   },
   {
-   "mutant": "M5 holdout guard skips the opening record",
-   "failing_tests": 5,
-   "killed": true
-  },
-  {
    "mutant": "M6 no entry cut",
    "failing_tests": 1,
    "killed": true
@@ -39,12 +34,12 @@
   },
   {
    "mutant": "M8 feature skips the decision-time check",
-   "failing_tests": 5,
+   "failing_tests": 4,
    "killed": true
   },
   {
    "mutant": "M9 decision-time check without lower bound",
-   "failing_tests": 3,
+   "failing_tests": 2,
    "killed": true
   },
   {
@@ -54,41 +49,36 @@
   },
   {
    "mutant": "M11 decision-time check uses Development range for every guard",
-   "failing_tests": 5,
+   "failing_tests": 3,
    "killed": true
   },
   {
-   "mutant": "M12 boolean switch re-added",
+   "mutant": "H1 holdout guard allowed (seal removed)",
+   "failing_tests": 3,
+   "killed": true
+  },
+  {
+   "mutant": "H2 boolean switch re-added",
    "failing_tests": 1,
    "killed": true
   },
   {
-   "mutant": "M13 opening without manifest check",
-   "failing_tests": 2,
-   "killed": true
-  },
-  {
-   "mutant": "M14 opening without protocol check",
+   "mutant": "H3 record argument re-added and trusted",
    "failing_tests": 1,
    "killed": true
   },
   {
-   "mutant": "M15 second opening allowed (no exclusive create)",
+   "mutant": "H4 open_holdout succeeds",
+   "failing_tests": 3,
+   "killed": true
+  },
+  {
+   "mutant": "H5 open_holdout writes a record",
    "failing_tests": 1,
    "killed": true
   },
   {
-   "mutant": "M16 record not re-verified against approval",
-   "failing_tests": 2,
-   "killed": true
-  },
-  {
-   "mutant": "M17 commit id not validated",
-   "failing_tests": 1,
-   "killed": true
-  },
-  {
-   "mutant": "M18 missing manifest file tolerated",
+   "mutant": "H6 a verification path is re-added",
    "failing_tests": 1,
    "killed": true
   }

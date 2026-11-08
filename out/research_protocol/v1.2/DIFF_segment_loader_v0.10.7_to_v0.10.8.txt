@@ -1,0 +1,88 @@
+10,21c10,12
+<   Final Holdout            -> sealed (H7): a guard for "holdout" can only be built from a valid OPENING RECORD, created
+<                               once by open_holdout(), which requires a Candidate Freeze Manifest whose sha256 matches an
+<                               approval record, and the FIXED protocol hash. There is no boolean switch.
+< 
+< Holdout opening (H7):
+<   approval JSON  {"manifest_sha256", "protocol_sha256", "approved_by", "approved_utc"}   (written by the reviewer)
+<   open_holdout(manifest, approval, protocol_file, commit, record_dir)
+<       -> verifies manifest/approval/protocol hashes, then creates <record_dir>/HOLDOUT_OPENED.json with an exclusive
+<          create (a second opening fails), recording opened_utc, protocol_sha256, commit, manifest_sha256, approval_sha256.
+<   SegmentGuard("holdout", opening_record=<record_dir>/HOLDOUT_OPENED.json)
+<       -> re-verifies the record against the manifest, approval and protocol files on every construction.
+< Limit: inside one Python process nothing is tamper-proof; the record is tamper-EVIDENT (hashes + git history + review).
+---
+>   Final Holdout            -> SEALED WITHOUT ANY OPENING PATH under Protocol v1.2 (H7). Every opening and every Holdout
+>                               guard is refused, whatever files or arguments are given. Opening needs Protocol v1.3, which
+>                               must define an externally verifiable approval (signature + append-only external record).
+24,28d14
+< import hashlib
+< import json
+< import os
+< import pathlib
+< import re
+54,55c40,41
+< def _sha(path):
+<     return hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest()
+---
+> HOLDOUT_SEALED_MSG = ("Final Holdout is sealed (H7, Protocol v1.2): there is no opening path in this version. "
+>                       "Opening requires an approved Protocol v1.3 with an externally verifiable approval.")
+58,103c44,46
+< def _verify_inputs(manifest, approval, protocol_file):
+<     for f in (manifest, approval, protocol_file):
+<         if not pathlib.Path(f).is_file():
+<             raise GuardError(f"holdout opening: missing file {f}")
+<     a = json.loads(pathlib.Path(approval).read_text())
+<     for k in ("manifest_sha256", "protocol_sha256", "approved_by", "approved_utc"):
+<         if not a.get(k):
+<             raise GuardError(f"holdout opening: approval record lacks {k}")
+<     if _sha(manifest) != a["manifest_sha256"]:
+<         raise GuardError("holdout opening: Candidate Freeze Manifest does not match the approved sha256")
+<     if _sha(protocol_file) != a["protocol_sha256"]:
+<         raise GuardError("holdout opening: protocol file does not match the approved protocol sha256")
+<     return a
+< 
+< 
+< def open_holdout(manifest, approval, protocol_file, commit, record_dir):
+<     """The one-time, logged opening of the Final Holdout (H7). Returns the record path."""
+<     if not re.fullmatch(r"[0-9a-f]{40}", commit or ""):
+<         raise GuardError("holdout opening: commit must be a 40-hex git commit id")
+<     a = _verify_inputs(manifest, approval, protocol_file)
+<     rec = {"event": "FINAL_HOLDOUT_OPENED", "opened_utc": dt.datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
+<            "protocol_sha256": a["protocol_sha256"], "commit": commit, "manifest_sha256": a["manifest_sha256"],
+<            "approval_sha256": _sha(approval), "approved_by": a["approved_by"], "approved_utc": a["approved_utc"],
+<            "manifest_file": str(manifest), "approval_file": str(approval), "protocol_file": str(protocol_file)}
+<     path = pathlib.Path(record_dir) / "HOLDOUT_OPENED.json"
+<     path.parent.mkdir(parents=True, exist_ok=True)
+<     try:
+<         fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o444)      # exclusive: a second opening fails
+<     except FileExistsError:
+<         raise GuardError("holdout opening: the Final Holdout was already opened (one-time event)")
+<     with os.fdopen(fd, "w") as f:
+<         f.write(json.dumps(rec, indent=1))
+<     return path
+< 
+< 
+< def verify_opening_record(record):
+<     p = pathlib.Path(record) if record else None
+<     if p is None or not p.is_file():
+<         raise GuardError("Final Holdout is sealed (H7): no opening record")
+<     r = json.loads(p.read_text())
+<     if r.get("event") != "FINAL_HOLDOUT_OPENED" or not re.fullmatch(r"[0-9a-f]{40}", r.get("commit", "")):
+<         raise GuardError("Final Holdout is sealed (H7): invalid opening record")
+<     a = _verify_inputs(r["manifest_file"], r["approval_file"], r["protocol_file"])
+<     if (r["manifest_sha256"], r["protocol_sha256"], r["approval_sha256"]) != (a["manifest_sha256"], a["protocol_sha256"], _sha(r["approval_file"])):
+<         raise GuardError("Final Holdout is sealed (H7): opening record does not match manifest / approval / protocol")
+<     return r
+---
+> def open_holdout(*args, **kwargs):
+>     """No opening exists under Protocol v1.2, whatever is passed (manifest, approval, record, commit, flags)."""
+>     raise GuardError(HOLDOUT_SEALED_MSG)
+107c50
+<     def __init__(self, segment, opening_record=None):
+---
+>     def __init__(self, segment):
+111c54
+<             self.opening = verify_opening_record(opening_record)
+---
+>             raise GuardError(HOLDOUT_SEALED_MSG)
