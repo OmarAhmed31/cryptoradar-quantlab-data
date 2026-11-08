@@ -37,6 +37,9 @@ def _inside(p, roots):
     return any(rp == r or rp.startswith(r + os.sep) for r in roots)
 
 
+_orig_getaddrinfo = None
+
+
 def _hook(event, args):
     roots = _cfg["write_roots"]
     if event == "open":
@@ -117,6 +120,21 @@ def install(write_dirs=("out", "state", "registry", "reports"), net_hosts=(), me
                     _cfg["net_ips"].add(ai[4][0])
             except OSError:
                 pass
+        # v0.4: CDN names (static.okx.com) rotate IPs during a long job. Every later lookup of a PERMITTED name
+        # also adds the addresses it returns. The audit hook still refuses the lookup of any other name, so only
+        # addresses of permitted names can ever become connectable (same policy as before, applied at use time).
+        global _orig_getaddrinfo
+        if _orig_getaddrinfo is None:
+            _orig_getaddrinfo = socket.getaddrinfo
+
+            def _getaddrinfo(host, *a, **k):
+                res = _orig_getaddrinfo(host, *a, **k)
+                h = host.decode() if isinstance(host, bytes) else host
+                if h in _cfg["net_hosts"]:
+                    for ai in res:
+                        _cfg["net_ips"].add(ai[4][0])
+                return res
+            socket.getaddrinfo = _getaddrinfo
     for k, v in ((resource.RLIMIT_AS, mem_mb), (resource.RLIMIT_FSIZE, fsize_mb)):
         b = v * 1024 * 1024
         resource.setrlimit(k, (b, b))

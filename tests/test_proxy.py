@@ -205,6 +205,27 @@ class P(unittest.TestCase):
         self.assertTrue(res.startswith("RESULT:ISOLATION"), res)
         self.assertIn("connect blocked: 127.0.0.2", res)
 
+    # P12 (guard v0.4): a permitted name whose IP was NOT known at install time (CDN rotation) becomes connectable
+    # on its next lookup; a forbidden name cannot add anything; an IP no permitted name resolved to stays blocked
+    def test_P12_permitted_name_rotated_ip_added_at_lookup_forbidden_name_cannot(self):
+        res, out = child("guard.install(job='p12', net_hosts=('localhost',)); import socket" + body([
+            "guard._cfg['net_ips'].clear()                       # simulate: install-time IPs are stale",
+            "s = socket.socket(); s.settimeout(3)",
+            "try:\n        s.connect(('127.0.0.1', %d)); print('RESULT:UNEXPECTED_OK')\n    except guard.IsolationError: pass" % self.px.port,
+            f"s2 = socket.create_connection(('localhost', {self.px.port}), timeout=5); s2.sendall(b'ROT\\r\\n\\r\\n'); s2.close()"]), self.px.port, use_proxy=False)
+        time.sleep(0.3)
+        self.assertEqual(res, "RESULT:OK", res + out[-300:])
+        self.assertIn(b"ROT", self.px.received())
+        res, out = child("guard.install(job='p12b', net_hosts=('localhost',)); import socket" + body([
+            "socket.getaddrinfo('cryptoradar2.pages.dev', 443)"]), self.px.port, use_proxy=False)
+        self.assertTrue(res.startswith("RESULT:ISOLATION"), res)
+        self.assertIn("network blocked: cryptoradar2.pages.dev", res)
+        res, out = child("guard.install(job='p12c', net_hosts=('localhost',)); import socket" + body([
+            "socket.getaddrinfo('localhost', 80)",
+            f"s = socket.socket(); s.settimeout(3); s.connect(('127.0.0.2', {self.px.port}))"]), self.px.port, use_proxy=False)
+        self.assertTrue(res.startswith("RESULT:ISOLATION"), res)
+        self.assertIn("connect blocked: 127.0.0.2", res)
+
 
 if __name__ == "__main__":
     r = unittest.main(verbosity=2, exit=False)

@@ -1,0 +1,50 @@
+name: active-retry
+
+# Re-download the pairs whose files failed in run 42445808350 (guard blocked rotated CDN IPs; fixed in guard v0.4).
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["requests/active_retry.txt"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: okx-collect
+  cancel-in-progress: false
+
+jobs:
+  retry:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      TAG: active-raw-retry-${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Guard tests on this runner (incl. P12)
+        run: python3 -I tests/test_proxy.py
+      - name: Download + build the retry pairs
+        run: python3 -I lab/active_build.py shard out/active_dataset/plan_retry/plan.csv 0 1 out/active_dataset/retry_${{ github.run_id }}
+      - name: Publish raw + hourly of the retry
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          d=out/active_dataset/retry_${{ github.run_id }}
+          tar -C $d -cf raw_retry.tar raw; tar -C $d -cf hourly_retry.tar hourly
+          sha256sum raw_retry.tar hourly_retry.tar > $d/release_sha256.txt
+          gh release create "$TAG" raw_retry.tar hourly_retry.tar $d/download_manifest_shard0.csv --title "Active dataset retry (run ${{ github.run_id }})" --notes "Re-download of 5 pairs whose files failed in run 42445808350."
+          rm -rf $d/raw
+      - name: Commit (no raw)
+        if: always()
+        run: |
+          git config user.name "quantlab-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -- reports 2>/dev/null || true
+          git add out
+          git commit -m "active retry ${{ github.run_id }}" || echo "nothing to commit"
+          git pull --rebase origin main
+          git push
