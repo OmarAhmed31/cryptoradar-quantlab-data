@@ -3,3 +3,6 @@ __pycache__/
 *.tmp*
 # raw OKX archive files of the delisted dataset: published as GitHub release assets (sha256 in download_manifest.csv)
 out/delisted_dataset/*/raw/
+
+# hourly of the active dataset: published as release assets
+out/active_dataset/*/hourly/

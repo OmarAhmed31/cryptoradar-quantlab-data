@@ -1,0 +1,37 @@
+{
+ "dataset": "Active Assets Historical Dataset (current listings of live OKX SPOT USDT pairs; NOT the complete historical market)",
+ "built_from": {
+  "main_run": "42445808350 (release active-raw-42445808350)",
+  "retry_run": "42448392394 (release active-raw-retry-42448392394)",
+  "retried_pairs": [
+   "COMP-USDT",
+   "GALFT-USDT",
+   "XNOW-USDT",
+   "XOUST-USDT",
+   "XQCOM-USDT"
+  ]
+ },
+ "pairs": 466,
+ "files_planned": 8223,
+ "files_ok": 8223,
+ "files_failed": 0,
+ "months_MISSING_FILE": 0,
+ "raw_bytes": 5746092473,
+ "hours_built": 5765916,
+ "hours_span": 5882259,
+ "hours_left_empty": 116343,
+ "missing_minutes_total": 186,
+ "pairs_with_missing_minutes": 153,
+ "duplicate_conflicts": 0,
+ "rows_other_instrument": 0,
+ "checks": {
+  "pairs": 466,
+  "hourly_files": 466,
+  "rows": 5765916,
+  "rows_outside_start_end": 0,
+  "duplicate_hours": 0,
+  "bad_rows": 0,
+  "problems": [],
+  "PASS": true
+ }
+}
