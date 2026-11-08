@@ -1,0 +1,29 @@
+{
+ "run": "20261108T041031Z_jan2024_addendum",
+ "dataset": "Delisted Assets Historical Dataset — Jan 2024 addendum (v0.7.1 unchanged)",
+ "source_ledger": "out/ledger/ar_pre2024/delisting_ledger.csv",
+ "pairs": [
+  "CAPO-USDT",
+  "CVP-USDT",
+  "DASH-USDT",
+  "FSN-USDT",
+  "XMR-USDT",
+  "ZEC-USDT",
+  "ZEN-USDT",
+  "ZKS-USDT"
+ ],
+ "dataset_pairs": 8,
+ "excluded_pairs": [],
+ "hourly_files": 8,
+ "files": 8,
+ "files_ok": 8,
+ "raw_bytes": 1214391,
+ "hours_built": 1557,
+ "hours_span": 1568,
+ "hours_left_empty": 11,
+ "pairs_with_missing_file_months": 0,
+ "pairs_with_no_data": 0,
+ "pairs_traded_after_delisting": 8,
+ "traded_minutes_after_delisting_dropped": 688,
+ "duplicate_conflicts": 0
+}

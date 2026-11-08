@@ -1,0 +1,9 @@
+pair,effective_delisting_utc,effective_delisting_utc8,files,files_ok,files_failed,months_monthly_file,months_daily_fallback,months_before_first_file,months_MISSING_FILE,missing_months,first_minute_utc,last_minute_before_delisting_utc,last_traded_minute_before_delisting_utc,last_trade_to_delisting_minutes,META_last_actual_traded_minute_utc,META_last_actual_trade_minutes_past_effective,minutes_in_range,missing_minutes_inside,duplicate_minutes,duplicate_conflicting,minutes_at_or_after_delisting_dropped,traded_minutes_after_delisting_dropped,hours_span,hours_with_trades,hours_without_trades_left_empty
+CAPO-USDT,2024-01-12 08:00,2024-01-12 16:00,1,1,0,1,0,0,0,,2023-12-31 16:00,2024-01-12 07:59,2024-01-12 07:59,1.0,2024-01-12 08:04,4,16800,0,0,0,10,5,280,280,0
+CVP-USDT,2024-01-12 08:00,2024-01-12 16:00,1,1,0,1,0,0,0,,2023-12-31 16:00,2024-01-12 07:59,2024-01-12 07:59,1.0,2024-01-12 08:03,3,16800,0,0,0,4,2,280,280,0
+DASH-USDT,2024-01-05 08:00,2024-01-05 16:00,1,1,0,1,0,0,0,,2023-12-31 16:00,2024-01-05 07:59,2024-01-05 07:53,7.0,2024-01-05 13:32,332,6720,0,0,0,4286,143,112,112,0
+FSN-USDT,2024-01-12 08:00,2024-01-12 16:00,1,1,0,1,0,0,0,,2023-12-31 16:00,2024-01-12 07:59,2024-01-12 07:59,1.0,2024-01-12 08:02,2,16800,0,0,0,3,3,280,273,7
+XMR-USDT,2024-01-05 08:00,2024-01-05 16:00,1,1,0,1,0,0,0,,2023-12-31 16:00,2024-01-05 07:59,2024-01-05 07:59,1.0,2024-01-05 13:39,339,6720,0,0,0,4287,144,112,112,0
+ZEC-USDT,2024-01-05 08:00,2024-01-05 16:00,1,1,0,1,0,0,0,,2023-12-31 16:00,2024-01-05 07:59,2024-01-05 07:59,1.0,2024-01-05 13:54,354,6720,0,0,0,4286,151,112,112,0
+ZEN-USDT,2024-01-05 08:00,2024-01-05 16:00,1,1,0,1,0,0,0,,2023-12-31 16:00,2024-01-05 07:59,2024-01-05 07:59,1.0,2024-01-05 13:57,357,6720,0,0,0,4283,238,112,112,0
+ZKS-USDT,2024-01-12 08:00,2024-01-12 16:00,1,1,0,1,0,0,0,,2023-12-31 16:00,2024-01-12 07:59,2024-01-12 07:59,1.0,2024-01-12 08:01,1,16800,0,0,0,3,2,280,276,4

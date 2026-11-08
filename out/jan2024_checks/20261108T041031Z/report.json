@@ -1,0 +1,17 @@
+{
+ "run": "20261108T041031Z",
+ "old7": {
+  "pairs": 97,
+  "with_2024_01_file": 0,
+  "with_any_2024_file": 0,
+  "review": []
+ },
+ "jan8": {
+  "addendum_dir": "out/delisted_dataset/20261108T041031Z_jan2024_addendum",
+  "pairs": 8,
+  "files": 8,
+  "files_ok": 8
+ },
+ "listing_calls": 28,
+ "listing_errors": []
+}

@@ -1,0 +1,9 @@
+pair,in_dataset,hourly_file,effective_delisting_utc
+CAPO-USDT,1,hourly/CAPO-USDT.csv.gz,2024-01-12 08:00
+CVP-USDT,1,hourly/CVP-USDT.csv.gz,2024-01-12 08:00
+DASH-USDT,1,hourly/DASH-USDT.csv.gz,2024-01-05 08:00
+FSN-USDT,1,hourly/FSN-USDT.csv.gz,2024-01-12 08:00
+XMR-USDT,1,hourly/XMR-USDT.csv.gz,2024-01-05 08:00
+ZEC-USDT,1,hourly/ZEC-USDT.csv.gz,2024-01-05 08:00
+ZEN-USDT,1,hourly/ZEN-USDT.csv.gz,2024-01-05 08:00
+ZKS-USDT,1,hourly/ZKS-USDT.csv.gz,2024-01-12 08:00

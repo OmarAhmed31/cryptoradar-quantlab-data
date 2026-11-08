@@ -1,0 +1,12 @@
+{
+ "pairs_in_index": 8,
+ "excluded": [],
+ "problems": [],
+ "hourly_rows": 1557,
+ "rows_at_or_after_delisting": 0,
+ "duplicate_hours": 0,
+ "bad_rows": 0,
+ "report_hours_built": 1557,
+ "totals_match": true,
+ "PASS": true
+}
