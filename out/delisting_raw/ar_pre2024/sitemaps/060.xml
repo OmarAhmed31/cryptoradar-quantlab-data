@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+    <url>
+        <loc>https://www.okx.com/orbit/topic/usjobsbeatexpectations-92083777573792</loc>
+        <news:news>
+            <news:publication>
+                <news:name>OKX</news:name>
+                <news:language>en</news:language>
+            </news:publication>
+            <news:publication_date>2026-11-06T19:19:24.036Z</news:publication_date>
+            <news:title>USJobsBeatExpectations</news:title>
+        </news:news>
+        <image:image>
+            <image:loc>https://static.okx.com/cdn/oksupport/common/topic_light.c77dda65ea1b91.png</image:loc>
+        </image:image>
+    </url>
+</urlset>
