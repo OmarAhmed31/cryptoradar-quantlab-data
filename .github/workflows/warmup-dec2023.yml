@@ -1,0 +1,49 @@
+name: warmup-dec2023
+
+# December 2023 WARM-UP data for liquidity eligibility only (never research data).
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["requests/warmup_dec2023.txt"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: okx-collect
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      TAG: warmup-raw-${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Guard tests on this runner
+        run: python3 -I tests/test_proxy.py
+      - name: Warm-up download + build
+        run: python3 -I lab/warmup_build.py out/warmup_dec2023/run_${{ github.run_id }}
+      - name: Publish raw as release asset
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          d=out/warmup_dec2023/run_${{ github.run_id }}
+          tar -C $d -cf raw_warmup.tar raw; sha256sum raw_warmup.tar > $d/raw_release_sha256.txt
+          gh release create "$TAG" raw_warmup.tar $d/download_manifest.csv --title "Warm-up Dec 2023 raw OKX files (run ${{ github.run_id }})" --notes "WARM-UP ONLY (liquidity eligibility). Not research data."
+          rm -rf $d/raw
+      - name: Commit (no raw)
+        if: always()
+        run: |
+          git config user.name "quantlab-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -- reports 2>/dev/null || true
+          git add out
+          git commit -m "warm-up dec 2023 ${{ github.run_id }}" || echo "nothing to commit"
+          git pull --rebase origin main
+          git push
