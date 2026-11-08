@@ -1,0 +1,39 @@
+name: delist-pre2024
+
+# Archive verification: listing-only coverage (142 pairs), 1 month 1m candles BTC/ETH/SAND, one delisted pair end check.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["requests/delist_pre2024.txt"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: okx-collect
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Guard tests on this runner
+        run: python3 -I tests/test_proxy.py
+      - name: Pre-2024 delisting search
+        run: python3 -I lab/delist_pre2024.py
+      - name: Commit results
+        if: always()
+        run: |
+          git config user.name "quantlab-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -- reports 2>/dev/null || true
+          git add out
+          git commit -m "delist pre2024 $(date -u +%FT%TZ)" || echo "nothing to commit"
+          git pull --rebase origin main
+          git push
