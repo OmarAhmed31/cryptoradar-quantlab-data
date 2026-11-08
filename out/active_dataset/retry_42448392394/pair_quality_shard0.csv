@@ -1,0 +1,6 @@
+pair,start_utc,start_basis,end_exclusive_utc,current_run_utc8,earlier_runs_excluded,months_planned,files_ok,files_failed,months_MISSING_FILE,missing_months,first_minute_utc,last_minute_utc,first_traded_minute_utc,minutes_in_range,missing_minutes_inside,duplicate_minutes,duplicate_conflicting,rows_other_instrument,minutes_outside_range_dropped,hours_span,hours_with_trades,hours_without_trades_left_empty
+COMP-USDT,2024-01-01 00:00,2024-01-01 (current listing began before 2024),2026-10-31 16:00,2020-06..2026-10,0,34,34,0,0,,2024-01-01 00:00,2026-10-31 15:59,2024-01-01 00:00,1489919,1,45,0,0,480,24832,24826,6
+GALFT-USDT,2024-01-01 00:00,2024-01-01 (current listing began before 2024),2026-10-31 16:00,2022-06..2026-10,0,34,34,0,0,,2024-01-01 00:00,2026-10-31 15:59,2024-01-01 00:10,1489920,0,45,0,0,480,24832,22604,2228
+XNOW-USDT,2026-08-18 08:30,listTime,2026-10-31 16:00,2026-08..2026-10,0,3,3,0,0,,2026-08-18 09:30,2026-10-31 15:59,2026-08-18 09:30,106950,0,0,0,0,0,1783,659,1124
+XOUST-USDT,2026-10-09 10:30,listTime,2026-10-31 16:00,2026-10..2026-10,0,1,1,0,0,,2026-10-09 11:30,2026-10-31 15:59,2026-10-09 11:30,31950,0,0,0,0,0,533,110,423
+XQCOM-USDT,2026-08-21 06:30,listTime,2026-10-31 16:00,2026-08..2026-10,0,3,3,0,0,,2026-08-21 07:30,2026-10-31 15:59,2026-08-21 07:31,102748,2,0,0,0,0,1713,1398,315
