@@ -1,0 +1,35 @@
+{
+ "tests": [
+  {
+   "test": "T1 mid-day listing: first assessable = listing day + 31",
+   "pass": true,
+   "detail": "2024-04-01 00:00:00+00:00"
+  },
+  {
+   "test": "T2 exactly 29 full prior days -> not assessable; 30 -> assessable",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "T3 calendar gap: days whose window contains the gap are not assessable",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "T4 delisting cut at 08:00 -> that day partial (480 listed minutes)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "T5 destructive leakage: day d metrics unchanged when d and all later days are overwritten",
+   "pass": true,
+   "detail": "110/110 points, 19 series"
+  },
+  {
+   "test": "T6 metrics equal direct computation over calendar days d-30..d-1",
+   "pass": true,
+   "detail": "110/110 points"
+  }
+ ],
+ "PASS": true
+}

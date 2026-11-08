@@ -1,0 +1,43 @@
+{
+ "series": 615,
+ "research_pair_days": 305317,
+ "assessable_research_pair_days": 296027,
+ "THR30_quantiles": {
+  "0.05": 0.9417,
+  "0.1": 0.9833,
+  "0.25": 1.0,
+  "0.5": 1.0,
+  "0.75": 1.0,
+  "0.9": 1.0,
+  "0.95": 1.0
+ },
+ "DV30_med_quantiles_usd": {
+  "0.05": 24633,
+  "0.1": 45476,
+  "0.25": 129867,
+  "0.5": 487770,
+  "0.75": 2095950,
+  "0.9": 7435384,
+  "0.95": 15734851
+ },
+ "by_group": {
+  "active": {
+   "series": 401,
+   "assessable_pair_days": 236800,
+   "THR30_median": 1.0,
+   "DV30_med_median_usd": 669483
+  },
+  "delisted": {
+   "series": 141,
+   "assessable_pair_days": 59159,
+   "THR30_median": 1.0,
+   "DV30_med_median_usd": 180893
+  },
+  "delisted_jan2024": {
+   "series": 8,
+   "assessable_pair_days": 68,
+   "THR30_median": 1.0,
+   "DV30_med_median_usd": 346033
+  }
+ }
+}

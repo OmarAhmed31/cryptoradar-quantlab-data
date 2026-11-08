@@ -1,0 +1,72 @@
+{
+ "v0.10 (row window)": {
+  "assessable_pair_days": 288084,
+  "eligible_pair_days": 228102,
+  "jan2024_eligible_pair_days": 222
+ },
+ "v0.10.1 calendar+full-day, no warm-up": {
+  "assessable_pair_days": 287817,
+  "eligible_pair_days": 227918,
+  "jan2024_eligible_pair_days": 222
+ },
+ "v0.10.1 + Dec-2023 warm-up (FINAL)": {
+  "assessable_pair_days": 296027,
+  "eligible_pair_days": 234837,
+  "jan2024_eligible_pair_days": 7141
+ },
+ "days assessable in v0.10 but not under the full-day rule": 267,
+ "series affected by the full-day rule": 267,
+ "jan2024_addendum": {
+  "CAPO-USDT": {
+   "assessable_days": 12,
+   "eligible_days": 12
+  },
+  "CVP-USDT": {
+   "assessable_days": 12,
+   "eligible_days": 12
+  },
+  "DASH-USDT#old_listing": {
+   "assessable_days": 5,
+   "eligible_days": 5
+  },
+  "FSN-USDT": {
+   "assessable_days": 12,
+   "eligible_days": 0
+  },
+  "XMR-USDT": {
+   "assessable_days": 5,
+   "eligible_days": 5
+  },
+  "ZEC-USDT#old_listing": {
+   "assessable_days": 5,
+   "eligible_days": 5
+  },
+  "ZEN-USDT#old_listing": {
+   "assessable_days": 5,
+   "eligible_days": 5
+  },
+  "ZKS-USDT": {
+   "assessable_days": 12,
+   "eligible_days": 12
+  }
+ },
+ "first_eligible_day_min": "2024-01-01",
+ "warmup_partial_series": [
+  [
+   "ACE-USDT",
+   "2023-12-18 06:00"
+  ],
+  [
+   "ARTY-USDT",
+   "2023-12-21 12:00"
+  ],
+  [
+   "AVIVE-USDT",
+   "2023-12-19 10:00"
+  ],
+  [
+   "SATS-USDT",
+   "2023-12-18 08:00"
+  ]
+ ]
+}

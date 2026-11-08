@@ -1,0 +1,4 @@
+{"suite": "tests/test_liquidity_pit.py", "mutants": [
+ {"mutant": "M1 window includes day d (closed='both')", "failing_tests": 5, "killed": true},
+ {"mutant": "M2 partial day counted as full (listed_minutes >= 1)", "failing_tests": 2, "killed": true},
+ {"mutant": "M3 29-day window ('29D')", "failing_tests": 4, "killed": true}], "survived": 0}
