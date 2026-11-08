@@ -1,0 +1,10 @@
+{
+ "pairs": 466,
+ "hourly_files": 466,
+ "rows": 5751614,
+ "rows_outside_start_end": 0,
+ "duplicate_hours": 0,
+ "bad_rows": 0,
+ "problems": [],
+ "PASS": true
+}
