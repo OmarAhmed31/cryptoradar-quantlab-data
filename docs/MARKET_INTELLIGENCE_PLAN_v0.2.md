@@ -1,3 +1,5 @@
+> **SUPERSEDED — NOT AUTHORITATIVE.** Replaced by `docs/MARKET_INTELLIGENCE_PLAN_v0.3.md` and Research Protocol v1.2. Kept only as a record of the review history. Where this file differs from Protocol v1.2, **the protocol wins**.
+
 # Market Intelligence — plan v0.2 (for approval; nothing computed)
 
 **Status:** PROPOSAL.

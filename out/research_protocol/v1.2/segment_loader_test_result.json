@@ -1,0 +1,83 @@
+{
+ "passed": 19,
+ "of": 19,
+ "PASS": true,
+ "tests": [
+  {
+   "test": "dev entry 2025-08-01 23:00 allowed",
+   "pass": true
+  },
+  {
+   "test": "dev entry 2025-08-02 00:00 refused",
+   "pass": true
+  },
+  {
+   "test": "dev last entry + 30 d ends inside dev",
+   "pass": true
+  },
+  {
+   "test": "val entry 2026-03-02 00:00 refused",
+   "pass": true
+  },
+  {
+   "test": "val entry in embargo 1 refused",
+   "pass": true
+  },
+  {
+   "test": "horizon 31 d refused (H1)",
+   "pass": true
+  },
+  {
+   "test": "outcome candle starting before t refused (T5)",
+   "pass": true
+  },
+  {
+   "test": "H3 purge: outcome crossing segment end refused even if the entry window were wrong",
+   "pass": true
+  },
+  {
+   "test": "validation feature at 2025-09-10 uses 30 d of Development + embargo history",
+   "pass": true
+  },
+  {
+   "test": "validation feature using a not-yet-closed candle (future) refused",
+   "pass": true
+  },
+  {
+   "test": "validation feature using Holdout-period data refused (future)",
+   "pass": true
+  },
+  {
+   "test": "feature using Dec-2023 warm-up refused (T3)",
+   "pass": true
+  },
+  {
+   "test": "validation label/outcome crossing into embargo 2 refused",
+   "pass": true
+  },
+  {
+   "test": "MI statistic on Validation refused",
+   "pass": true
+  },
+  {
+   "test": "MI statistic on Development with past data",
+   "pass": true
+  },
+  {
+   "test": "MI statistic on Development using future data refused",
+   "pass": true
+  },
+  {
+   "test": "Final Holdout sealed without the logged opening",
+   "pass": true
+  },
+  {
+   "test": "holdout entry cut 2026-10-01 15:00 allowed after opening",
+   "pass": true
+  },
+  {
+   "test": "holdout entry 2026-10-01 16:00 refused (t + 30 d > T2)",
+   "pass": true
+  }
+ ]
+}

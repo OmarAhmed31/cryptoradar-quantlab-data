@@ -96,14 +96,29 @@ Rule for this file: it is fixed **before** any strategy research. It must not ch
   - The cut is fixed by time, independent of how long any trade actually lasts.
   - The full 30 days of outcome data, up to the last complete candle, lie inside the segment.
 - **H3. Purge (safety net).** Any observation whose outcome interval is not fully inside one segment is removed from every statistic, label, metric and report. The expected count is **0**, and this is tested.
-- **H4. Embargo.** The two 7-day embargoes (T4) hold no observation, label or entry. With H2, the gap between the last outcome data of one segment and the first entry of the next is **≥ 37 days**.
-- **H5. Causal warm-up.** A **feature** at t may use any data before t, from earlier segments or embargoes.
-  - It may **not** use the December 2023 warm-up, because T3 limits that to liquidity eligibility.
-  - Market Intelligence features therefore start once their own lookback exists inside the research period.
-  - **A label or outcome may never use data after the end of its own segment.**
-- **H6. Segment isolation.**
-  - MI, feature selection, regime fitting and every choice of k, a threshold or a parameter use **Development observations only**.
-  - The data loader takes a segment name and **raises** on any timestamp outside it. Feature lookback is allowed only for times before t.
+- **H4. Embargo.** The two 7-day embargoes (T4) hold no observation, label or entry.
+  - The minimum separation between the last permitted entry in one segment and the first permitted entry in the next segment is **37 days**: the 30-day outcome horizon is completed inside the originating segment, followed by the 7-day embargo.
+  - The last outcome data of a segment therefore precedes the first permitted entry of the next segment by **7 days** (the embargo).
+- **H5. Access types.** Every read of data is one of these, and is checked by `lab/segment_loader.py`:
+
+  | Access | Rule |
+  |---|---|
+  | **Entry / label start** at t | only inside the assigned segment's **entry window** (T4) |
+  | **Label / outcome** over [t, t+h] | h ≤ H_max, and every candle used starts ≥ t and ends ≤ t+h ≤ the **end of the assigned segment** (T5) |
+  | **Feature lookback** at t | any **research-period** history strictly before t: candles **closed at or before t**, including earlier segments and embargoes (causal warm-up). Never before 2024-01-01 00:00 UTC, because the December 2023 warm-up is forbidden here (T3) |
+  | **Future timestamp** (anything not closed by t) | **always refused** |
+  | **Final Holdout** | sealed (H7). Every access raises until the logged opening |
+
+- **H6. Segment isolation of research.**
+  - Market Intelligence statistics, feature selection, regime-model fitting and every choice of k, a threshold or a parameter are computed **only for days inside Development**.
+  - Their inputs follow the feature-lookback rule of H5, so they use only research-period history before the day.
+  - **Validation and Final Holdout data never enter them.**
+  - Validation and Holdout entries may use earlier history as feature lookback (H5). That is the only way earlier data reaches them.
+  - **Test requirement:** `tests/test_segment_loader.py` must show four things:
+    - Validation can use Development and embargo history as feature lookback.
+    - Validation **cannot** read a future timestamp or Holdout-period data.
+    - Market Intelligence on Validation is refused.
+    - Every planted mutant of the guard is killed.
 - **H7. Final Holdout seal.**
   - Nothing is computed or shown on the Final Holdout before the candidates and their rules are frozen and hashed. That includes descriptive statistics, charts and counts.
   - Opening it is a logged one-time event.
@@ -135,7 +150,7 @@ Rule for this file: it is fixed **before** any strategy research. It must not ch
     - If a matched centroid is more than **2.0** anchor-scaled units from its anchor centroid, the refit is flagged `DEFINITION_DRIFT`. It is reported, never silently renamed.
   - **d) `UNKNOWN`.** A day is `UNKNOWN` if any of these holds:
     - any input is missing;
-    - (distance to the nearest centroid) / (distance to the second nearest) > **0.80** (ambiguous);
+    - (distance to the nearest centroid) / (distance to the second nearest) > **0.80** (ambiguous). If the second-nearest distance is 0, the day is `UNKNOWN`: two centroids coincide, so the case is ambiguous by definition. If only the nearest distance is 0, the ratio is 0 and the day is not ambiguous;
     - the distance to the nearest centroid is above the **95th percentile** of the training-set nearest-centroid distances of the model in force (outlier).
   - **e) Missing values.** **No imputation.**
     - Training uses complete rows only, and the number of dropped rows is logged per refit.
@@ -172,4 +187,5 @@ Rule for this file: it is fixed **before** any strategy research. It must not ch
   - `lab/liquidity_profile.py` `32fc4fb5…40e9e9`
   - `tests/test_liquidity_pit.py` `8be844ec…48fe26`
   - `lab/guard.py` `2a2e7d88…6e848e7`
+- Segment guard: `lab/segment_loader.py` `686fac62e9864e87721c9451babfcbc3d8752d28cbbea191815f43571bb0eae1`; `tests/test_segment_loader.py` `6a624d758a20ec44dc6da1dbe0ccfb42e95eb2d01c5125dcce8814bca0b11a79` (19/19 pass; 7/7 planted mutants killed).
 - The sha256 of **this file** is recorded outside it, in `RESEARCH_PROTOCOL_v1.2.sha256`, and in the commit message.
