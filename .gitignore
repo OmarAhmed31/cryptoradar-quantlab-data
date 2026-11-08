@@ -6,3 +6,6 @@ out/delisted_dataset/*/raw/
 
 # hourly of the active dataset: published as release assets
 out/active_dataset/*/hourly/
+
+# Development pack hourly (size): shipped in the MI ZIP; per-file sha256 in PACK_MANIFEST.json
+out/market_intelligence/dev_pack_v1/hourly/

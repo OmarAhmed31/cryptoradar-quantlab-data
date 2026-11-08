@@ -1,0 +1,107 @@
+{
+ "passed": 20,
+ "of": 20,
+ "PASS": true,
+ "tests": [
+  {
+   "test": "A1 destructive future overwrite: all MI values and regime_asof of day d unchanged",
+   "pass": true,
+   "detail": "1020/1020 values, days ['2024-03-15', '2024-08-01', '2025-01-20', '2025-08-31']"
+  },
+  {
+   "test": "A2 a Validation candle in MI input is refused",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "A2 MI statistic on a Validation day refused",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "A2 loaded data ends inside Development",
+   "pass": true,
+   "detail": "2024-01-01 00:00:00+00:00 .. 2025-08-31 23:00:00+00:00"
+  },
+  {
+   "test": "A2 every output day is a Development day",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "A2b loader drops candles that do not close inside Development",
+   "pass": true,
+   "detail": "2025-08-31 23:00:00+00:00"
+  },
+  {
+   "test": "A3 no forward/label/outcome column exists (0 label starts, 0 crossing intervals)",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "test": "A4 every regime label comes from the model in force that day, trained only on earlier days",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "A4 P1: k and silhouettes equal a recomputation on [2024-01-01, 2024-07-01) only (R2)",
+   "pass": true,
+   "detail": "k=3"
+  },
+  {
+   "test": "A4 S50k: k and silhouettes equal a recomputation on [2024-01-01, 2024-07-01) only (R2)",
+   "pass": true,
+   "detail": "k=3"
+  },
+  {
+   "test": "A4 S250k: k and silhouettes equal a recomputation on [2024-01-01, 2024-07-01) only (R2)",
+   "pass": true,
+   "detail": "k=3"
+  },
+  {
+   "test": "A4 no label before the first model (NO_MODEL until 2024-07-01)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "A6 synthetic: S1 S1 UNKNOWN S1 S2 S2 UNKNOWN S2 -> 4 runs (2,1,2,1), 1 flip out of 3 adjacent known pairs",
+   "pass": true,
+   "detail": "{'runs_known': 4, 'mean_run_days_calendar': 1.5, 'median_run_days_calendar': 1.5, 'run_days_by_state': {'S1': {'runs': 2, 'mean': 1.5, 'median': 1.5, 'max': 2}, 'S2': {'runs': 2, 'mean': 1.5, 'median': 1.5, 'max': 2}}, 'flip_rate_adjacent_known_pairs': 0.3333333333333333, 'flip_numerator': 1, 'flip_denominator_adjacent_known_pairs': 3, 'unknown_breaks_runs': True}"
+  },
+  {
+   "test": "A6 synthetic: a missing calendar day breaks a run",
+   "pass": true,
+   "detail": "{'runs_known': 2, 'mean_run_days_calendar': 1.5, 'median_run_days_calendar': 1.5, 'run_days_by_state': {'S1': {'runs': 2, 'mean': 1.5, 'median': 1.5, 'max': 2}}, 'flip_rate_adjacent_known_pairs': 0.0, 'flip_numerator': 0, 'flip_denominator_adjacent_known_pairs': 1, 'unknown_breaks_runs': True}"
+  },
+  {
+   "test": "A6 P1: run statistics equal an independent recount from regimes_asof",
+   "pass": true,
+   "detail": "49 runs, mean 6.755"
+  },
+  {
+   "test": "A6 S50k: run statistics equal an independent recount from regimes_asof",
+   "pass": true,
+   "detail": "49 runs, mean 6.837"
+  },
+  {
+   "test": "A6 S250k: run statistics equal an independent recount from regimes_asof",
+   "pass": true,
+   "detail": "50 runs, mean 6.480"
+  },
+  {
+   "test": "A7 the pack holds no hourly candle that closes after Development",
+   "pass": true,
+   "detail": "2025-08-31 23:00"
+  },
+  {
+   "test": "A7 the pack universe files hold no day after Development",
+   "pass": true,
+   "detail": "0"
+  },
+  {
+   "test": "A7 lab/mi.py references no input outside the pack",
+   "pass": true,
+   "detail": ""
+  }
+ ]
+}

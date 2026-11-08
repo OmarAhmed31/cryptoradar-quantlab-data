@@ -3,7 +3,7 @@ Descriptive and point-in-time. No forward quantity, label, entry, exit or P&L is
 
 python3 -I lab/mi.py <out_dir>
 
-Inputs: rule-B hourly files (Active v0.9, Delisted v0.7.1, Jan-2024 addendum) and the fixed universe files (P1/S50k/S250k).
+Inputs: ONLY the Development pack out/market_intelligence/dev_pack_v1 (built by lab/mi_dev_pack.py from the rule-B hourly\nfiles and the fixed universe files; it contains no row after Development).
 Point-in-time convention (T5/H5): a value for UTC day d is known at d 00:00 and uses only candles CLOSED by d 00:00
 (hour start + 1 h <= d) and the eligibility of day d (itself computed from days d-30..d-1).
 Fixed definitions (written before any output was computed):
@@ -25,10 +25,8 @@ from lab.segment_loader import SegmentGuard, RESEARCH_START, SEGMENTS
 
 LAB = pathlib.Path(__file__).resolve().parents[1]
 DEV_START, DEV_END = [pd.Timestamp(x) for x in SEGMENTS["development"][:2]]
-SRC = {"active": LAB / "out/active_dataset/final_42445808350_retry_42448392394/hourly",
-       "delisted": LAB / "out/delisted_dataset/20261107T192715Z_rebuild/hourly",
-       "delisted_jan2024": LAB / "out/delisted_dataset/20261108T041031Z_jan2024_addendum/hourly"}
-UNIV = LAB / "out/research_protocol/v1.2/universe"
+PACK = LAB / "out/market_intelligence/dev_pack_v1"          # Development-only inputs (lab/mi_dev_pack.py); MI reads nothing else
+UNIV = PACK / "universe"
 SCEN = {"P1": "eligibility_daily_P1.csv.gz", "S50k": "eligibility_daily_S50k.csv.gz", "S250k": "eligibility_daily_S250k.csv.gz"}
 MIN_N = 20
 BTC = "BTC-USDT"
@@ -42,7 +40,7 @@ def load_eligibility():
         d["day"] = pd.to_datetime(d["day"]).dt.tz_localize("UTC")
         d = d[(d["day"] >= DEV_START) & (d["day"] < DEV_END)]              # Development days only (H6)
         E[k] = d.pivot(index="day", columns="series", values="eligible").fillna(False).astype(bool)
-    groups = pd.read_csv(UNIV / SCEN["P1"], usecols=["series", "group"]).drop_duplicates().set_index("series")["group"]
+    groups = pd.read_csv(PACK / "groups.csv").set_index("series")["group"]
     return E, groups
 
 
@@ -59,7 +57,7 @@ def load_hourly(groups):
     The loader refuses anything outside [RESEARCH_START, DEV_END)."""
     cols = {}
     for s, g in groups.items():
-        f = SRC[g] / f"{s.split('#')[0]}.csv.gz"
+        f = PACK / "hourly" / f"{s}.csv.gz"
         x = pd.read_csv(f, usecols=["ts_utc_ms", "close"], dtype={"ts_utc_ms": "int64", "close": "float64"})
         t = pd.to_datetime(x["ts_utc_ms"], unit="ms", utc=True)
         keep = (t >= pd.Timestamp(RESEARCH_START)) & (t + pd.Timedelta(hours=1) <= DEV_END)

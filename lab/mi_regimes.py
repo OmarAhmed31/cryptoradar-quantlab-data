@@ -136,16 +136,43 @@ def regimes(mi):
         stab.append({"refit": new["id"], "refit_utc": new["refit_utc"], "agreement_on_previous_window": float(np.mean(agree)) if agree else np.nan,
                      "n_compared": len(agree), "definition_drift": new["definition_drift"],
                      "max_match_dist": max(new["match_dist"].values())})
+    run_stats = calendar_runs(L["regime_asof"])
     lab = L["regime_asof"]
-    known = lab[~lab.isin(["NO_MODEL", "UNKNOWN"])]
-    flips = (known != known.shift(1)).iloc[1:].mean() if len(known) > 1 else np.nan
-    runs = (known != known.shift(1)).cumsum()
-    dur = known.groupby(runs).size().mean() if len(known) else np.nan
-    summary = {"k": k, "silhouette_by_k": sil, "refits": len(models), "flip_rate_known_days": float(flips),
-               "mean_run_days": float(dur), "label_counts": lab.value_counts().to_dict(),
+    summary = {"k": k, "silhouette_by_k": sil, "refits": len(models), **run_stats, "label_counts": lab.value_counts().to_dict(),
                "unknown_reasons": L.loc[lab == "UNKNOWN", "reason"].value_counts().to_dict(),
                "drift_refits": [m["id"] for m in models if m["definition_drift"]]}
     return L, models, pd.DataFrame(stab), summary, anchor
+
+
+def calendar_runs(lab):
+    """Runs on the CALENDAR (v0.11.1): the label series is placed on every calendar day; UNKNOWN and NO_MODEL BREAK a
+    run (they are never dropped first, so two separate periods can never merge). A run = maximal block of consecutive
+    calendar days with the same KNOWN state. Flip rate = share of adjacent calendar-day pairs, both known, whose state
+    differs; its denominator is reported."""
+    cal = pd.date_range(lab.index.min(), lab.index.max(), freq="D", tz=lab.index.tz)
+    x = lab.reindex(cal).fillna("MISSING_DAY")
+    known = ~x.isin(["NO_MODEL", "UNKNOWN", "MISSING_DAY"])
+    runs, cur, n = [], None, 0
+    for v, k in zip(x.values, known.values):
+        if k and v == cur:
+            n += 1
+        else:
+            if cur is not None:
+                runs.append((cur, n))
+            cur, n = (v, 1) if k else (None, 0)
+    if cur is not None:
+        runs.append((cur, n))
+    pairs = [(a, b) for a, b, ka, kb in zip(x.values[:-1], x.values[1:], known.values[:-1], known.values[1:]) if ka and kb]
+    flips = sum(a != b for a, b in pairs)
+    by_state = {}
+    for st, ln in runs:
+        by_state.setdefault(st, []).append(ln)
+    return {"runs_known": len(runs), "mean_run_days_calendar": float(np.mean([r[1] for r in runs])) if runs else float("nan"),
+            "median_run_days_calendar": float(np.median([r[1] for r in runs])) if runs else float("nan"),
+            "run_days_by_state": {k: {"runs": len(v), "mean": float(np.mean(v)), "median": float(np.median(v)), "max": int(max(v))} for k, v in sorted(by_state.items())},
+            "flip_rate_adjacent_known_pairs": float(flips / len(pairs)) if pairs else float("nan"),
+            "flip_numerator": int(flips), "flip_denominator_adjacent_known_pairs": len(pairs),
+            "unknown_breaks_runs": True}
 
 
 def models_json(models, anchor):
