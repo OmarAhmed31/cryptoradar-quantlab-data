@@ -1,0 +1,1 @@
+protocol-v1.1 cfa82ebbe5400d3a4f86036e9824b518e4f3a6c1 Research Protocol v1.1 FIXED sha256 91718b6975614fbfdd74db06104e56c02cb95b8cddcc8a1905f075a777ac678c

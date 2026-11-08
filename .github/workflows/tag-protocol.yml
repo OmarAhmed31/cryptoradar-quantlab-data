@@ -1,0 +1,26 @@
+name: tag-protocol
+
+# Creates an annotated tag for an approved protocol commit. requests/tag_protocol.txt: "<tag> <commit_sha> <message>"
+on:
+  push:
+    branches: [main]
+    paths: ["requests/tag_protocol.txt"]
+
+permissions:
+  contents: write
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify protocol hash, then tag
+        run: |
+          read tag sha msg < requests/tag_protocol.txt
+          git show $sha:out/research_protocol/v1.1/RESEARCH_PROTOCOL_v1.1.md | sha256sum | grep -q 91718b6975614fbfdd74db06104e56c02cb95b8cddcc8a1905f075a777ac678c
+          git config user.name "quantlab-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -a "$tag" "$sha" -m "$msg"
+          git push origin "refs/tags/$tag"
