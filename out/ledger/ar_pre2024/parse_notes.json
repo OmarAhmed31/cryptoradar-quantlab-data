@@ -1,0 +1,47 @@
+{
+ "announcements": 19,
+ "rows": 170,
+ "corrections_applied": 0,
+ "spot_usdt_effective_from_2024": [
+  [
+   "CAPO-USDT",
+   "2024-01-12 08:00",
+   "okx-to-delist-several-spot-trading-pairs-12-29"
+  ],
+  [
+   "CVP-USDT",
+   "2024-01-12 08:00",
+   "okx-to-delist-several-spot-trading-pairs-12-29"
+  ],
+  [
+   "DASH-USDT",
+   "2024-01-05 08:00",
+   "okx-to-delist-several-spot-trading-pairs-12-29"
+  ],
+  [
+   "FSN-USDT",
+   "2024-01-12 08:00",
+   "okx-to-delist-several-spot-trading-pairs-12-29"
+  ],
+  [
+   "XMR-USDT",
+   "2024-01-05 08:00",
+   "okx-to-delist-several-spot-trading-pairs-12-29"
+  ],
+  [
+   "ZEC-USDT",
+   "2024-01-05 08:00",
+   "okx-to-delist-several-spot-trading-pairs-12-29"
+  ],
+  [
+   "ZEN-USDT",
+   "2024-01-05 08:00",
+   "okx-to-delist-several-spot-trading-pairs-12-29"
+  ],
+  [
+   "ZKS-USDT",
+   "2024-01-12 08:00",
+   "okx-to-delist-several-spot-trading-pairs-12-29"
+  ]
+ ]
+}
