@@ -1,0 +1,47 @@
+{
+ "passed": 8,
+ "of": 8,
+ "PASS": true,
+ "tests": [
+  {
+   "test": "A1 destructive future overwrite: all MI values and regime_asof of day d unchanged",
+   "pass": true,
+   "detail": "1020/1020 values, days ['2024-03-15', '2024-08-01', '2025-01-20', '2025-08-31']"
+  },
+  {
+   "test": "A2 a Validation candle in MI input is refused",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "A2 MI statistic on a Validation day refused",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "A2 loaded data ends inside Development",
+   "pass": true,
+   "detail": "2024-01-01 00:00:00+00:00 .. 2025-08-31 23:00:00+00:00"
+  },
+  {
+   "test": "A2 every output day is a Development day",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "A3 no forward/label/outcome column exists (0 label starts, 0 crossing intervals)",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "test": "A4 every regime label comes from the model in force that day, trained only on earlier days",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "A4 no label before the first model (NO_MODEL until 2024-07-01)",
+   "pass": true,
+   "detail": ""
+  }
+ ]
+}

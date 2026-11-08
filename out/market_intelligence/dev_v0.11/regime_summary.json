@@ -1,0 +1,76 @@
+{
+ "P1": {
+  "k": 3,
+  "silhouette_by_k": {
+   "3": 0.4865801437998875,
+   "4": 0.31819466679178526,
+   "5": 0.30245230865103406,
+   "6": 0.31851255347482
+  },
+  "refits": 14,
+  "flip_rate_known_days": 0.0696969696969697,
+  "mean_run_days": 13.791666666666666,
+  "label_counts": {
+   "S2": 237,
+   "NO_MODEL": 182,
+   "UNKNOWN": 96,
+   "S1": 75,
+   "S3": 19
+  },
+  "unknown_reasons": {
+   "ambiguous": 82,
+   "outlier": 14
+  },
+  "drift_refits": []
+ },
+ "S50k": {
+  "k": 3,
+  "silhouette_by_k": {
+   "3": 0.48817138048950776,
+   "4": 0.31586424804872326,
+   "5": 0.30052378705306465,
+   "6": 0.31972198743087954
+  },
+  "refits": 14,
+  "flip_rate_known_days": 0.0718562874251497,
+  "mean_run_days": 13.4,
+  "label_counts": {
+   "S2": 237,
+   "NO_MODEL": 182,
+   "UNKNOWN": 92,
+   "S1": 79,
+   "S3": 19
+  },
+  "unknown_reasons": {
+   "ambiguous": 79,
+   "outlier": 13
+  },
+  "drift_refits": [
+   "M10"
+  ]
+ },
+ "S250k": {
+  "k": 3,
+  "silhouette_by_k": {
+   "3": 0.4742892746206654,
+   "4": 0.3133798226738832,
+   "5": 0.2855253562079083,
+   "6": 0.306306586963364
+  },
+  "refits": 14,
+  "flip_rate_known_days": 0.06811145510835913,
+  "mean_run_days": 14.08695652173913,
+  "label_counts": {
+   "S2": 219,
+   "NO_MODEL": 182,
+   "UNKNOWN": 103,
+   "S1": 86,
+   "S3": 19
+  },
+  "unknown_reasons": {
+   "ambiguous": 81,
+   "outlier": 22
+  },
+  "drift_refits": []
+ }
+}

@@ -1,0 +1,11 @@
+{
+ "segment": "development",
+ "days": [
+  "2024-01-01",
+  "2025-08-31"
+ ],
+ "series": 615,
+ "hourly_rows": 4096814,
+ "max_candle_start_used": "2025-08-31 23:00:00+00:00",
+ "min_candle_start_used": "2024-01-01 00:00:00+00:00"
+}
