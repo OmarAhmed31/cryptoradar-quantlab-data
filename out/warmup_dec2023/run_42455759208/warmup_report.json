@@ -1,0 +1,16 @@
+{
+ "purpose": "WARM-UP ONLY: December 2023 for point-in-time liquidity eligibility; never research data",
+ "window_utc": [
+  "2023-12-01 00:00",
+  "2024-01-01 00:00"
+ ],
+ "series": 283,
+ "instruments": 283,
+ "files": 566,
+ "files_ok": 566,
+ "missing_files": 0,
+ "jan2024_crosscheck": 283,
+ "jan2024_identical": 283,
+ "series_full_december": 279,
+ "listing_errors": []
+}
