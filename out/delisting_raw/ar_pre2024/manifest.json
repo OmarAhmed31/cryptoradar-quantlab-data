@@ -1,0 +1,45 @@
+{
+ "locale": "ar_pre2024",
+ "served_path": "/ar/help/<slug>",
+ "window_published": [
+  "2023-07-01",
+  "2024-01-05"
+ ],
+ "collected_utc": "2026-11-08T03:53:14Z",
+ "sitemaps_fetched": 1,
+ "delist_slugs_found": 1,
+ "articles_fetched": 1,
+ "items": 1,
+ "pages_fetched": 0,
+ "list": [
+  {
+   "slug": "okx-to-delist-several-spot-trading-pairs-12-29",
+   "href": "/ar/help/okx-to-delist-several-spot-trading-pairs-12-29",
+   "title": "OKX to delist several spot trading pairs | OKX",
+   "date_text": "2023-12-29T08:00:00.000Z",
+   "datePublished": "2023-12-29T08:00:00.000Z",
+   "fetched": true
+  }
+ ],
+ "fetch_log": [
+  {
+   "url": "https://www.okx.com/sitemap.xml",
+   "at_utc": "2026-11-08T03:53:12Z",
+   "status": 404,
+   "error": "http 404",
+   "final_url": "https://www.okx.com/sitemap.xml",
+   "kind": "sitemap"
+  },
+  {
+   "url": "https://www.okx.com/ar/help/okx-to-delist-several-spot-trading-pairs-12-29",
+   "at_utc": "2026-11-08T03:53:13Z",
+   "final_url": "https://www.okx.com/ar/help/okx-to-delist-several-spot-trading-pairs-12-29",
+   "status": 200,
+   "bytes": 84608,
+   "sha256": "a1bd16e2c91caa081c8e09955ba4f4de258a13bcb25c8db34366607c5abc7d6c",
+   "kind": "article",
+   "slug": "okx-to-delist-several-spot-trading-pairs-12-29",
+   "datePublished": "2023-12-29T08:00:00.000Z"
+  }
+ ]
+}
