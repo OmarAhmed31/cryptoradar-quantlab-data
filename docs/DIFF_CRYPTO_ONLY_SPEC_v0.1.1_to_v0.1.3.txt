@@ -1,0 +1,364 @@
+--- docs/CRYPTO_ONLY_STRATEGY_SPECIFICATION_v0.1.1.md	2026-11-09 21:03:47.148150323 +0300
++++ docs/CRYPTO_ONLY_STRATEGY_SPECIFICATION_v0.1.3.md	2026-11-09 21:34:11.161764366 +0300
+@@ -1,12 +1,20 @@
+-# Crypto-Only Strategy Specification v0.1.1 (P0.1.1): unified (DRAFT for review; NOTHING computed)
++# Crypto-Only Strategy Specification v0.1.3 (P0.1.2 content, complete): DRAFT for review; NOTHING computed
++
++**Version note:**
++- The file name **v0.1.2** was already used, by a partial draft (sha256 `e6c8ea09…7ec7`, commit `3c058b9`) written before the reviewer's U1–U7 decisions arrived.
++- Every upload gets a new version number, so the **complete** P0.1.2 requested by the reviewer is issued as **v0.1.3**.
++- It contains:
++  - all of P0.1.1, unchanged except where a decision requires a change;
++  - the reviewer's decisions U1, U2, U3, U5, U6 and U7;
++  - U8;
++  - the experiment registry, multiple-testing controls and the proposed Holdout budget;
++  - a list of the items still pending.
+ 
+ **Status:**
+-- Specification revision only: **no code, no simulation, no backtest, no new calculations**.
+-- **It supersedes** the P0 v0.1 spec (sha256 `9b1267e2…1109`) and folds in the reviewer's "Unified Strategy Specification P0.1.1" message.
+-- It is consistent with Protocol v1.2 FIXED and with every earlier decision.
+-- **P1 waits for explicit approval of this document.**
+-- **Every number marked `CONV` is a convention fixed before any result.**
+-- **Every item marked ❓ is UNRESOLVED.** No value was invented for it, and §15 lists them for the reviewer.
++- No code, no simulation, no backtest, no returns.
++- Protocol v1.2 FIXED. The Final Holdout is sealed.
++- **P1 is NOT approved** until this document is explicitly approved.
++- `CONV` = a convention fixed before any result. `PROPOSED` = a numeric proposal **that needs the reviewer's review and fixing before P1**. ❓ = still pending.
+ 
+ ## 1. Goal
+ 
+@@ -45,7 +53,7 @@
+ | USTC | stablecoin by design, de-pegged in 2022 | excluded (reviewer) |
+ | XAUT, PAXG | gold-backed | excluded |
+ | STETH, BETH, JITOSOL, OKSOL | staked or wrapped | excluded |
+-| **CGL** ❓ | **not verified.** A search suggests a gaming token, but no primary source was obtained | **excluded provisionally**. If it is still unverified at P1 start, it stays excluded. One coin either way is immaterial |
++| **CGL** | **not verified** (no primary source) | **excluded (U6, reviewer)** until a reliable primary source establishes its economic nature. The project is not held up for one asset |
+ | everything else, including BTC, ETH, LUNA/LUNC, OKB, BNB and meme coins | ordinary crypto | allowed |
+ 
+ The classification is fixed **before** P1 and hashed. No future information is used for past eligibility.
+@@ -77,7 +85,7 @@
+ - If there is no traded minute, the result is **NOT_EXECUTED**. It is logged and is not a trade.
+ - **One open position per coin.** A re-entry needs a new full 7-day window after the exit.
+ 
+-**5.6 Market-state filter:** see §10, where this is ❓ unresolved.
++**5.6 Market-state filter:** §10 (PROPOSED numbers; they must be fixed before P1).
+ 
+ ## 6. Stop loss (reviewer rules)
+ 
+@@ -85,33 +93,75 @@
+ - **The stop is never widened or moved away from its original level.**
+ - Stops are checked on 1-minute candles. **If the stop and the target are both touched in the same minute, the stop is assumed first.** If a minute opens beyond the stop (a gap), the fill is that minute's open. No ideal fills are assumed.
+ 
+-## 7. Exit templates (exactly three; the trailing template is removed per the reviewer)
++## 7. Exit templates (exactly three; the trailing template is removed)
+ 
+ | Template | Target |
+ |---|---|
+-| **X1** | **2R**: entry + 2 × (entry − stop) `CONV` |
+-| **X2** | **Next resistance**: the lowest **confirmed** swing high above the entry within the prior 90 days. A confirmed swing high is a bar whose high is the max of the 24 bars before **and** after it, and the 24 bars after it must have closed before t. If there is none, the target is 3R `CONV` |
+-| **X3** | **A small fixed net target of +2%** `CONV` (reviewer). The target price is set so that the trade nets **+2% after** the entry fee, the entry half-spread, the entry slippage, the exit fee and the exit half-spread. The exact formula is in §9. ❓ Whether a slippage add-on also applies **at the target fill** is unresolved (U3) |
+-
+-**Time exit (all templates):**
+-- A maximum hold of **7 days** `CONV`, then an exit at the first traded minute.
+-- **Descriptive only:** the same trades **without** the time exit, capped at **30 days**, the protocol's H_max (H1). They can never run without limit, because the protocol caps every forward quantity at 30 days.
+-
+-**Delisting during a trade:** U9b forced exit at the last trade price, minus costs.
+-
+-## 8. Capital and position management
+-
+-- **Target risk: 1% of equity per trade** `CONV`. Notional = 1% × equity / ((entry − stop)/entry).
+-- **Caps:**
+-  - ≤ **10% of equity** per position `CONV`;
+-  - ≤ 1% of DV30_med;
+-  - limited by the available cash;
+-  - costs are included.
+-- **When a cap binds, the actual risk taken is reported. It is never claimed to be 1%.**
+-- **Scenario A, single position (PRIMARY):** at most 1 open trade. ❓ Sizing is **unresolved** (U2): 1% risk with a 10% cap gives a position of about 10% of equity, which is **not** how the trades are placed today (the whole capital in one trade).
+-- **Scenario B, multi-position (future):** at most **10** open trades `CONV`. Signals are processed in time order, then by ticker. If there is no room, the signal is SKIPPED_CAPITAL and logged.
+-- Both scenarios are fixed **before** P1 and reported separately. **B can never replace A after the results.**
+-- **Capital levels:** $10,000 and $1,000, with $100,000 for capacity display only, as decided before.
++| **X1** | **2R**: entry_ref + 2 × (entry_ref − stop) `CONV`, where entry_ref is the entry fill price before costs |
++| **X2** | **Next resistance**: the lowest **confirmed** swing high above the entry within the prior 90 days. A confirmed swing high is a bar whose high is the max of the 24 bars before and after it, and those after-bars must have closed before t. If there is none, the target is 3R `CONV` |
++| **X3** | **A small fixed net target of +2%** `CONV`, using the formula below (U3) |
++
++**X3 formula (U3, reviewer):** it is built on the **actual all-in entry cost**, never on the breakout bar's close.
++
++- `entry_all_in = P_fill × (1 + fee + hs + slip_entry)`, where:
++  - `P_fill` = the open of the first traded 1-minute candle after the breakout bar closes (§5.5);
++  - `fee` = 0.10% taker (0.20% in the sensitivity run);
++  - `hs` = the Corwin–Schultz half-spread (§9);
++  - `slip_entry` = ½ × (high − low)/open of the fill minute (§9).
++- `T_X3 = entry_all_in × 1.02 / (1 − fee)`.
++- At the target the costs are: **the taker exit fee only**.
++  - **No breakout slippage at the target** (U3).
++  - **No maker fee** is assumed.
++  - The half-spread at a resting-target exit is not applied (PROPOSED: a resting sell at T receives T; to be confirmed, item P-3 in §15).
++
++**Target fill assumption (all templates, documented):**
++- A target is filled at its price when a 1-minute candle's **high ≥ target**.
++- **1-minute data does not prove queue priority or that a resting order was actually filled.** This is an assumption, and it is stated as such.
++- The stop-first rule (§6) applies whenever both levels are touched in the same minute.
++
++**Exit costs by exit type:**
++
++| Exit type | Costs |
++|---|---|
++| target | fee |
++| stop or gap | fee + hs + slippage of the fill minute |
++| time exit | fee + hs + slippage of the fill minute |
++| delisting | fee + hs at the U9b last trade price |
++
++**Time exit:**
++- **7 days** maximum `CONV`, then an exit at the first traded minute.
++- **Descriptive only:** the same trades without the time exit, capped at **30 days** (protocol H_max).
++
++**Delisting during a trade:** U9b forced exit.
++
++## 8. Capital and position management (U2, reviewer)
++
++**P1 scenarios (single position: at most 1 open trade):**
++
++| Scenario | Sizing | Role |
++|---|---|---|
++| **A1, full available capital** | position = all available cash (after entry costs), capped only by **1% of DV30_med** and by execution | **PRIMARY**, the closest to current trading |
++| **A2, 1% target risk** | notional = 1% × equity / ((entry_all_in − stop)/entry_all_in), capped by the available cash and by 1% of DV30_med | comparison |
++| **B, up to 10 positions** | — | **NOT in P1.** A separate future experiment. Never used to raise the trade count |
++
++**Conflict removed:**
++- **The earlier 10%-of-equity per-position cap is removed for A1 and A2.** It contradicted A1.
++- The caps that stay are the available cash (no leverage) and 1% DV30_med.
++- A per-position cap for scenario B will be set in B's own plan.
++
++**Invested ≠ at risk:**
++- Investing 100% of capital does **not** mean risking 100%.
++- The loss is set by the stop distance, gaps, slippage and costs.
++- Every trade reports:
++  - **the invested share** = position / equity;
++  - **the planned risk share** = position × (entry_all_in − stop)/entry_all_in / equity;
++  - **the realised risk** when a gap or costs exceed the plan.
++
++The stop is **never** widened.
++
++**The A1 test simulates the current trading style. It is NOT a recommendation to use full capital in real trading.**
++
++**Capital levels:** $10,000 and $1,000 (with $100,000 for capacity display only), as decided earlier.
+ 
+ ## 9. Costs and execution
+ 
+@@ -120,52 +170,44 @@
+ | **Fee** | 0.10% taker per side, a conservative assumption based on the account's observed fee. **A 0.20% sensitivity is run** |
+ | **Half-spread** | Corwin–Schultz, frozen as before: hours d-30…d-1, median, clipped at 0, ≥ 360 pairs. If it cannot be estimated, the trade is skipped and logged |
+ | **Breakout slippage at entry, stop, gap and time exits (data-based)** | **½ × (high − low)/open of the fill minute** |
+-| **X3 target price** | entry_fill_all_in × 1.02 / (1 − fee − half-spread [− slippage, ❓ U3]) |
++| **X3 target price** | the §7 formula: `T = entry_all_in × 1.02 / (1 − fee)`. No breakout slippage at the target (U3) |
+ 
+ If the data cannot support an executable cost, the trade is not taken, and the constraint is recorded. No value is invented.
+ 
+-## 10. Market adaptability (reviewer requirement): ❓ the main unresolved block
++## 10. Market states as point-in-time features (U1, reviewer): numbers PROPOSED, to be fixed before P1
+ 
+-**Fixed principles:**
+-- the state is known **at decision time only**;
+-- no look-ahead;
+-- rules per state are allowed **only if fixed in advance**;
+-- trading is never forced in any state;
+-- results are **reported per state**, and no state's losses are hidden in an average;
+-- no rule is changed after results;
+-- **one adaptive system**, not a set of ad-hoc strategies.
++**Decided:**
++- The state is a **point-in-time feature** (`check_feature`), from past data only.
++- **The MI-learned model is not used outside Development.**
++- **The trend reference is the Equal-Weight crypto index of the eligible universe**, not BTC alone. BTC stays as the coin's relative-strength reference.
++- There are **two independent dimensions** plus a Transition override, so the states are **not** mutually exclusive: Bull + High Volatility is possible.
++
++**Index (PROPOSED):**
++- `EW_ret(d)` = the mean of r_1(s, d) over the coins **allowed** on day d (crypto-only, P1-eligible) that have a value. r_1 is FD-1 F01: close_asof(d)/close_asof(d−1) − 1, known at d 00:00.
++- If fewer than **20** `CONV` coins have a value, the day is `UNCERTAIN`.
++- `EW_index(d)` = the cumulative product of (1 + EW_ret) from 2024-01-01.
++- The state of day d is computed at **d 00:00** and applies to every hourly decision that day.
+ 
+-**Required states:** Bull, Bear, Sideways, High Volatility, Low Volatility, Transition/Uncertain.
++| Dimension | Definition (PROPOSED) | Needs |
++|---|---|---|
++| **Trend** | **Bull** if EW_index(d) > its 50-day mean **and** the 20-day EW return > +5%. **Bear** if EW_index(d) < its 50-day mean **and** the 20-day EW return < −5%. **Sideways** otherwise | ≥ 50 days of index, so it starts around 2024-02-20 (before the first signals, around July 2024) |
++| **Volatility** | the std of EW_ret over the prior 30 days. Its percentile among **all prior** days (expanding, ≥ 60 prior values; the MI M2 rule reused): **High** > ⅔, **Low** < ⅓, **Normal** otherwise | ≥ 90 days |
++| **Transition / Uncertain** (overrides the trend) | **Transition** if the trend label changed at least once in the last **5** days (d−4 … d). **Uncertain** if the index or a dimension is missing (fewer than 20 coins, or not enough history) | — |
+ 
+-**Required behaviour:**
++**Per-state actions (PROPOSED; they keep the number of alternatives small):**
+ 
+-| State | Behaviour |
++| State | Action |
+ |---|---|
+-| Bull | breakouts and continuation |
+-| Bear | not every breakout; exceptional strength and stronger confirmation; abstaining allowed |
+-| Sideways | real accumulation and range breakouts |
+-| High Volatility | tighter entry and smaller risk |
+-| Low Volatility | watch the contraction |
+-| Transition | reduce exposure or abstain |
+-
+-### Technical conflicts found
+-
+-1. **The protocol forbids MI regime statistics outside Development.** `check_research_statistic` is Development-only, and the MI regime models (k = 3 clusters, S1/S2/S3 + UNKNOWN) produce no labels on Validation or the Holdout.
+-   - **Resolution path (no protocol change):** define the state as a **point-in-time feature**. It is computed from past data only, with **fixed rules and no fitted model**, and is allowed at any decision time through `check_feature`, exactly as the 22 features are.
+-2. **The MI clusters do not map onto the six states.** The six states need **new fixed definitions.**
+-
+-### Unresolved items (no value is invented here)
+-
+-- **U1a, trend state:** which index (BTC, or the equal-weight crypto universe) and which look-backs and thresholds define Bull / Bear / Sideways.
+-- **U1b, volatility state:** for example the existing MI M2 band (the percentile of market volatility among prior days, with LOW < ⅓ and HIGH > ⅔ already defined in MI). Is that reused?
+-- **U1c, Transition:** a definition, for example a trend state that changed within the last N days.
+-- **U1d, per-state action:** for each state, which of these applies:
+-  - trade normally;
+-  - a stricter confirmation (with which stricter number);
+-  - smaller risk (how much);
+-  - abstain.
++| Bull | the normal §5 rules |
++| Sideways | the normal §5 rules (range breakouts are the design itself) |
++| Bear | **stricter confirmation:** RVOL ≥ **3** instead of 2, **and** the coin's 7-day return > BTC's 7-day return. Otherwise **abstain** |
++| High Volatility (any trend) | **skip** if the stop distance > **8%** (instead of 15%). In A2, the risk drops to **0.5%** |
++| Low Volatility | the normal rules |
++| Transition / Uncertain | **abstain** (no new entries). Open trades follow their own exits |
+ 
+-  **Each option adds alternatives, so the total must stay small**, because of the data-snooping risk.
++**Missing data:** a missing input means `UNCERTAIN`, which means abstain. There is no imputation.
++
++**Reporting:** every result is shown **per trend state and per volatility state**, and no state's losses are hidden in a total.
+ 
+ ## 11. Evaluation
+ 
+@@ -197,19 +239,36 @@
+ `BELOW_BTC` is shown whenever the system trails BTC.
+ 
+ **P1 GO gate (exploratory; it decides only whether to continue):**
+-- It is evaluated on **Scenario A**, at $10,000 **and** $1,000, for at least one exit template.
+-- It needs **≥ 100 completed trades** `CONV`, otherwise the result is INCONCLUSIVE.
++- It is evaluated on **Scenario A1 (primary)**, at $10,000 **and** $1,000, for at least one exit template. A2 is reported for comparison.
++- It needs **≥ 100 completed trades** `CONV`.
+ - It needs a net expectancy > 0 with a 95% CI lower bound > 0, and a total net return > Cash and > Equal-weight crypto.
+ - Otherwise: **STOP**. Nothing is tweaked to rescue it.
+-- ❓ **U7:** a single-position system with state filters may produce **fewer than 100 trades** on about 14 months of Development (signals start around July 2024). The reviewer should decide now whether INCONCLUSIVE in that case means STOP or something else.
+ 
+-## 12. Final test and independent data
++**U7, the trade minimum (reviewer):**
++
++| Result | Decision |
++|---|---|
++| ≥ 100 completed trades | evaluate the other P1 conditions |
++| < 100 | **INCONCLUSIVE**, and **P1 stops with this result** |
++| < 100 with a positive return | **not** a success |
++| < 100 with a negative return | **not** enough evidence that the hypothesis failed |
++
++**Forbidden in that case:**
++- lowering the 100;
++- changing filters after seeing results;
++- adding positions to reach 100;
++- widening the period or changing the design without a separate, pre-registered plan.
++
++## 12. Final test and independent data (U5, reviewer)
+ 
+ - **The earlier Validation is not clean for this direction.**
+-- **Proposed confirmatory test: the Final Holdout** (2026-04-08 → 2026-10-31). It stays sealed through P0 and P1.
+-- It opens only after the strategy, code, tests and selection are frozen, and only through the formal procedure: **Protocol v1.3 with the external signature** (H7).
+-- ❓ **U5:** **who signs**, and how that signature is recorded, should be fixed now.
+-- If the opening cannot be approved, it is **not** opened, and the test plan does **not** change after results.
++- **Proposed confirmatory test: the Final Holdout** (2026-04-08 → 2026-10-31). It stays **sealed** through P0, P1 and any further development.
++- **Opening conditions (U5):**
++  - **Protocol v1.3**;
++  - **an independent, authorised reviewer**, who is **not** the simulation developer and **not** the person who chose the strategy;
++  - **a separate approval document** bound to the sha256 of the plan, code and tests, recording **the name of the authority, the approval date and the Protocol v1.3 hash**.
++- **A review or approval by the assistant is NOT an external signature and does not authorise opening.**
++- **No Holdout opening or test happens in this phase.** If the opening cannot be approved, it does not happen, and the test plan does not change after results.
+ - **Forward Shadow** (from 2026-11-01) is for operational verification and prospective evidence. It is paper only.
+ 
+ ## 13. Relation to CryptoRadar
+@@ -229,18 +288,78 @@
+ 
+ | Phase | Status | Content |
+ |---|---|---|
+-| **P0.1.1** | **this document** | for review |
+-| **P1** | not started; needs approval of P0.1.1 | trade simulator, tests and mutants **before any result**; the breakout study on **Development only**; comparisons; per-state results |
++| **P0.1.2** (file v0.1.3) | **this document** | for review |
++| **P1** | not started; needs explicit approval of this document | trade simulator, tests and mutants **before any result**; the breakout study on **Development only**; comparisons; per-state results |
+ | P2 | optional; only if P1 succeeds **and** a specific question needs it | trades data, taker side |
+ | P3 | after a frozen system | the Final Holdout through its formal opening; Forward Shadow |
+ 
+-## 15. Unresolved items for the reviewer
++## 15. U8: Multi-Strategy Research & Historical Backtesting (reviewer decision; documentation only)
++
++**Official project goal:** a system that can discover, evaluate and historically test **a library of Spot swing strategies** over the whole available data and universe, and use the strategy that suits each market state.
++
++1. **Several independent strategies** on one shared foundation. Candidate patterns, **not** approved or proven:
++   - Accumulation Breakout (the current P1);
++   - Momentum Continuation;
++   - Volatility Expansion;
++   - Mean Reversion;
++   - Trend Following;
++   - Range Breakout.
++
++   Each will be added **later** through its own frozen plan.
++2. **Prior research as input:** FD-1, FD-2, Validation and the tested features generate hypotheses. They are not redone without a reason, and they are never automatic evidence of profit.
++3. **Historical scope:**
++   - active **and** delisted coins under the eligibility and timing rules, with no survivorship bias;
++   - all available periods;
++   - every market state (§10);
++   - liquidity levels under the approved caps;
++   - several capital sizes and position scenarios.
++4. **One unified simulator** with the same fees, spread and slippage, liquidity and position sizing, entry and exit execution, stop and target handling, gap handling, and capital and risk management. Any difference between strategies is documented and justified.
++5. **Strategy by market state:**
++   - use a strategy for a state only if testing shows it works there;
++   - reduce exposure when conditions are weak;
++   - abstain when there is no opportunity.
++
++   The selection system is **never** built or tuned on final-test periods.
++6. **Current limit:** **no** backtest, simulation or return now. **P1 is not widened** and no extra strategy runs in this version.
++
++## 16. Experiment registry, multiple testing and the Holdout budget (U8 §6; the author's U9 folded in)
++
++1. **A central registry** of every experiment: successful and failed strategies, variants, hypotheses, frozen plans (with hashes), results and decisions.
++2. **Selection accounts for the total number of experiments and tests**, never the best result alone, with a suitable **multiple-testing correction** for statistical comparisons.
++3. **No strategy is re-tested on the same Holdout** after its results were seen and the strategy was changed.
++4. **The experiment budget is fixed before the Holdout is reached.**
++5. **PROPOSED Holdout budget:**
++   - **at most 3 candidate strategies per opening cycle**, all **frozen** (plans, rules, code and tests) **before** the opening;
++   - all evaluated in the **same** cycle under a pre-registered plan, with a correction for the number of candidates;
++   - **no reopening** for a fourth strategy, or to fix one that failed.
++
++   This number must be fixed in the formal opening plan. It does **not** change Protocol v1.2, and it does not bypass the v1.3 and independent-signature requirements.
++6. **Execution order:**
++   1. fix the U1 states;
++   2. fix the unified simulator and the execution and cost rules;
++   3. create the registry;
++   4. develop and test strategies under separate frozen plans;
++   5. choose candidates by pre-set criteria, not by top return;
++   6. fix the number of finalists and the Holdout budget before requesting the formal opening.
++
++## 17. Fixed controls
++
++- Protocol v1.2 stays fixed. The Final Holdout stays sealed.
++- No code, simulation, backtest or returns under this document.
++- No threshold or filter changes after seeing results.
++- Every new experiment needs a frozen specification and test plan before it runs.
++- Earlier associational results are not proof of profit.
++- The earlier Validation is not a new independent confirmation.
++- Execution and cost rules must not differ between strategies in a way that prevents a fair comparison.
++
++## 18. Items still needing a decision or approval
+ 
+-| # | Item | Why it is open |
++| # | Item | Status |
+ |---|---|---|
+-| **U1a–d** | Market-state definitions and per-state actions (§10) | A new requirement. MI clusters cannot be used outside Development. The numbers must come from the reviewer or from stated conventions |
+-| **U2** | Scenario A sizing | 1% risk (about 10% of equity per trade) **or** the full capital per trade (current practice) **or** both, reported separately with A as primary |
+-| **U3** | X3: is the exit slippage add-on included at the target fill? | Target fills are touches of a resting price, so they may not need the breakout slippage add-on |
+-| **U5** | Who gives the external signature for the Holdout, and how it is recorded | Required by H7 / v1.3 |
+-| **U6** | CGL classification | No primary source yet. It is excluded until verified |
+-| **U7** | The P1 gate when there are fewer than 100 trades | It is likely with a single position and state filters |
++| **P-1** | **U1 numbers** in §10: the index construction, 50-day mean, ±5% over 20 days, 30-day vol and ⅓ / ⅔ percentiles, the 5-day Transition window, the 20-coin minimum | **PROPOSED**, to be fixed before P1 |
++| **P-2** | **U1 per-state actions** in §10: Bear RVOL ≥ 3 plus 7-day strength over BTC; High-Vol stop limit 8% and A2 risk 0.5%; Transition abstains | **PROPOSED**, to be fixed before P1 |
++| **P-3** | Whether the half-spread is applied at a resting-target exit (§7) | **PROPOSED** "not applied", to be confirmed |
++| **P-4** | The **name** of the independent authorised reviewer for the Holdout (U5) | needed before any opening request; **not needed for P1** |
++| **P-5** | The Holdout budget of **3** candidates (§16.5) | **PROPOSED**; it is fixed in the formal opening plan |
++| **P-6** | CGL classification | excluded until a primary source is found (U6) |
++| — | **P1 itself** | **NOT approved.** It needs explicit approval of this document, then a review of the simulator design and its tests |
