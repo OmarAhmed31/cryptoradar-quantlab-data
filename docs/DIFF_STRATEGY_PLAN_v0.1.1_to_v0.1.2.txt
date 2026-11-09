@@ -1,0 +1,36 @@
+--- STRATEGY_PLAN_v0.1.1.md	2026-11-09 15:28:50.895220342 +0300
++++ STRATEGY_PLAN_v0.1.2.md	2026-11-09 16:24:58.264260310 +0300
+@@ -1,8 +1,8 @@
+-# Strategy Plan v0.1.1: long-only spot portfolio from the replicated clusters (APPROVED with clarifications 2026-11-09; NOTHING executed)
++# Strategy Plan v0.1.2: long-only spot portfolio from the replicated clusters (APPROVED with clarifications 2026-11-09; NOTHING executed)
+ 
+ **Status:**
+ - **Approved** by the reviewer on 2026-11-09, with the 5 clarifications in §0.1.
+-- **Execution waits for the documented OKX fee (S5).**
++- **v0.1.2:** the S5 fee is documented (§0.2). Nothing else changed from v0.1.1.
+ - **No simulation, backtest, portfolio return, cost or P&L has been computed.**
+ - Protocol v1.2 FIXED. FD-1, FD-2 and Validation v0.16 are accepted (`VAL_REVIEW_RECORD.md`, commit `7b646d7`). The Final Holdout stays sealed (H7).
+ - **The CryptoRadar engine v24.65, Router A/B, the forward counters and validate.py are not touched.** No order is ever sent. The lab holds no exchange keys.
+@@ -53,6 +53,22 @@
+      - The coin's spread is the **median S over pairs, clipped at 0**. It needs ≥ 360 pairs, the same 50% rule as vol_30; otherwise the coin is not bought.
+      - **Half-spread = spread / 2.**
+ 
++## 0.2 S5: documented fee (added in v0.1.2)
++
++**Evidence:** the user's own OKX account trade history (an app screenshot, kept privately and NOT committed, because the public repo must never hold real trades or balances).
++- It shows **8 spot fills** that all belong to one order and carry the same timestamp, so they are **taker** fills.
++- For **every** fill, fee / filled amount = **0.10000%**, computed fill by fill.
++- A separate app screen shows the account is **not VIP** (a regular account).
++
++**Fixed for the run:**
++
++| Item | Value |
++|---|---|
++| **Fee per side** | **0.10%**, taker. Every rebalance trade is treated as taker. This is conservative, because no maker fill is assumed. The maker rate is not documented and **is not used** |
++| **2× sensitivity** | **0.20%** per side |
++
++This applies equally to the strategy, B1 and B2 (§0.1.4).
++
+ ## 1. Execution model (point-in-time; the same conventions as FD/Validation)
+ 
+ - **Decision time:** a rebalance day d at 00:00 UTC. The signal uses features known at d (frozen FD code), over the coins **eligible on d** in P1.
