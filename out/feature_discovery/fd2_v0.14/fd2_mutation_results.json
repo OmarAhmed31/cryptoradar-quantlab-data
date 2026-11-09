@@ -1,0 +1,71 @@
+{
+ "mutants": [
+  {
+   "mutant": "N01 IC t-stat without overlap correction (lag 0 for every h)",
+   "killed": true,
+   "by": "FAIL T7 Newey-West t (Bartlett, lag h-1) and two-sided p equal an independent im"
+  },
+  {
+   "mutant": "N02 BH replaced by raw p",
+   "killed": true,
+   "by": "FAIL T8 BH and BY (q = 0.10, same 64 p-values) equal the step-up definition; adj"
+  },
+  {
+   "mutant": "N03 delisted removed from outcomes (forced exits dropped)",
+   "killed": true,
+   "by": "FAIL T3 independent naive outcome recompute (normal + every eligible forced exit"
+  },
+  {
+   "mutant": "N04 forced exit only when the cut is before the last day (cuts on day d+h-1 priced late)",
+   "killed": true,
+   "by": "FAIL T4 forced-exit count equals an independent recount for each h; no CUT_BEFOR"
+  },
+  {
+   "mutant": "N05 outcome crossing Development end (entry window to 2025-08-31)",
+   "killed": true,
+   "by": "crash: lab.segment_loader.GuardError: entry/label start 2025-08-02 00:00:00+00:00 outside entry window of development"
+  },
+  {
+   "mutant": "N06 entry price from day d itself (lookahead)",
+   "killed": true,
+   "by": "FAIL T3 independent naive outcome recompute (normal + every eligible forced exit"
+  },
+  {
+   "mutant": "N07 exploratory cells included in BH",
+   "killed": true,
+   "by": "FAIL T8 BH and BY (q = 0.10, same 64 p-values) equal the step-up definition; adj"
+  },
+  {
+   "mutant": "N08 BY used as the candidate rule",
+   "killed": true,
+   "by": "FAIL T9 candidates = BH & 3/3 sub-period signs & same sign in S50k and S250k; BH"
+  },
+  {
+   "mutant": "N09 sub-period rule relaxed to 2 of 3",
+   "killed": false,
+   "by": ""
+  },
+  {
+   "mutant": "N10 S250k sign check dropped",
+   "killed": false,
+   "by": ""
+  },
+  {
+   "mutant": "N11 bootstrap with 1-day blocks",
+   "killed": true,
+   "by": "FAIL T10 block bootstrap CI equals an independent loop (block = max(7, h)) "
+  },
+  {
+   "mutant": "N12 eligibility ignored in the IC",
+   "killed": true,
+   "by": "FAIL T5 later-delisted series keep their outcomes; IC n_series counts them outco; FAIL T6 daily IC = scipy Spearman over series eligible on d "
+  },
+  {
+   "mutant": "N13 one-sided p instead of two-sided",
+   "killed": true,
+   "by": "FAIL T7 Newey-West t (Bartlett, lag h-1) and two-sided p equal an independent im"
+  }
+ ],
+ "killed": 11,
+ "of": 13
+}
