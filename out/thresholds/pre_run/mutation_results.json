@@ -1,0 +1,66 @@
+{
+ "mutants": [
+  {
+   "mutant": "TM1 range high includes bar t",
+   "killed": true,
+   "by": "crash: IndexError: list index out of range"
+  },
+  {
+   "mutant": "TM2 RVOL baseline includes bar t",
+   "killed": true,
+   "by": "FAIL RD5 independent recompute (synthetic): indicators on 400 sampled "
+  },
+  {
+   "mutant": "TM3 peak window overlaps the range",
+   "killed": true,
+   "by": "FAIL RD5 independent recompute (synthetic): indicators on 400 sampled "
+  },
+  {
+   "mutant": "TM4 excluded (pegged) coins kept",
+   "killed": true,
+   "by": "FAIL RD5 independent recompute (synthetic): indicators on 400 sampled ; FAIL RD6 no circularity: the derivation functions hold no current spec"
+  },
+  {
+   "mutant": "TM5 eligibility ignored",
+   "killed": true,
+   "by": "FAIL RD5 independent recompute (synthetic): indicators on 400 sampled ; FAIL RD6 no circularity: the derivation functions hold no current spec"
+  },
+  {
+   "mutant": "TM6 a stop limit applied before E5",
+   "killed": true,
+   "by": "FAIL RD5 independent recompute (synthetic): indicators on 400 sampled "
+  },
+  {
+   "mutant": "TM7 RVOL >= 2 applied before R3",
+   "killed": true,
+   "by": "FAIL RD5 independent recompute (synthetic): indicators on 400 sampled "
+  },
+  {
+   "mutant": "TM8 percentile levels swapped (E3 <-> R3)",
+   "killed": true,
+   "by": "FAIL RD5 independent recompute (synthetic): indicators on 400 sampled "
+  },
+  {
+   "mutant": "TM9 High-Vol from the full-period distribution",
+   "killed": true,
+   "by": "FAIL RD8 High-Vol flag of day d uses prior days only (independent reco"
+  },
+  {
+   "mutant": "TM10 an outcome module imported",
+   "killed": true,
+   "by": "FAIL RD2 no outcome code: static imports within the allowed set; no fo"
+  },
+  {
+   "mutant": "TM11 E2 taken from BO instead of H",
+   "killed": true,
+   "by": "FAIL RD5 independent recompute (synthetic): indicators on 400 sampled "
+  },
+  {
+   "mutant": "TM12 volatility window includes day d",
+   "killed": true,
+   "by": "FAIL RD8 High-Vol flag of day d uses prior days only (independent reco"
+  }
+ ],
+ "killed": 12,
+ "of": 12
+}
