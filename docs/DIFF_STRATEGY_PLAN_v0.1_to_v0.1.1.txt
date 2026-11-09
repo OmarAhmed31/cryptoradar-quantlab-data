@@ -1,0 +1,57 @@
+--- STRATEGY_PLAN_v0.1.md	2026-11-09 15:19:06.086469538 +0300
++++ STRATEGY_PLAN_v0.1.1.md	2026-11-09 15:28:50.895220342 +0300
+@@ -1,7 +1,8 @@
+-# Strategy Plan v0.1: long-only spot portfolio from the replicated clusters (DRAFT for review; NOTHING executed)
++# Strategy Plan v0.1.1: long-only spot portfolio from the replicated clusters (APPROVED with clarifications 2026-11-09; NOTHING executed)
+ 
+ **Status:**
+-- Draft.
++- **Approved** by the reviewer on 2026-11-09, with the 5 clarifications in §0.1.
++- **Execution waits for the documented OKX fee (S5).**
+ - **No simulation, backtest, portfolio return, cost or P&L has been computed.**
+ - Protocol v1.2 FIXED. FD-1, FD-2 and Validation v0.16 are accepted (`VAL_REVIEW_RECORD.md`, commit `7b646d7`). The Final Holdout stays sealed (H7).
+ - **The CryptoRadar engine v24.65, Router A/B, the forward counters and validate.py are not touched.** No order is ever sent. The lab holds no exchange keys.
+@@ -21,11 +22,42 @@
+ | S7 | **Capacity** | Reported at capital levels of $1k, $10k and $100k. A position may not exceed **1% of the coin's DV30_med**. The excess stays in cash and is reported. **1% is a convention**, to be accepted or changed by the reviewer **before** the run |
+ | S8 | **After a PASS** | **No live trading.** The next step is a separate, approved plan for **Forward Shadow paper tracking** (from 2026-11-01: counters only). It would run in the lab, not in the CryptoRadar counters. Opening the Holdout would need Protocol v1.3 with an external signature, and it is not proposed |
+ 
++## 0.1 Reviewer clarifications (binding)
++
++1. **S3 tie-break.** The variant with the highest Development mean weekly net excess return over B1 is selected.
++   - Tie → the **lower average turnover**.
++   - Still tied → **Top 10**.
++   - Validation is never used to select.
++2. **S4 status of Validation.**
++   - Validation was already used to replicate the features, and those replicated features now design the strategy.
++   - A Validation run of the selected variant is therefore **a performance and screening check, NOT an independent proof**. Its success is never described as independent evidence.
++   - The final test not affected by this selection remains the **Final Holdout**: after the strategy is frozen, and only once its opening conditions are met (Protocol v1.3 with an external signature, H7). **Nothing here opens it.**
++3. **S6 decision rule, bootstrap included.**
++   - Both statistics are computed on the series of non-overlapping weekly net excess returns over B1:
++     - a **Newey-West** t with lag 0, giving a one-sided p;
++     - a **circular block bootstrap** with a block of max(7, h) = 7 days = 1 week, 2,000 resamples and seed 20260108, giving a one-sided p = the share of resampled means ≤ 0.
++   - Both are reported with their values and the 95% CI.
++   - **PASS requires both one-sided p ≤ 0.05**, at the documented fee, **and** a mean > 0 at 2× the fee.
++   - The `RELATIVE_ONLY — NOT_PROFITABLE_ABSOLUTE` flag rule is unchanged.
++4. **S7 capacity applies to the baselines too.**
++   - B1 uses the same 1% cap of DV30_med per coin and the same fee, spread and turnover cost model as the strategy.
++   - B2 (BTC) also uses the cap and the costs.
++5. **Prices and the spread estimator.**
++   - `close_asof(d)` is a **reference proxy** for historical execution: the last traded close before the decision time. It is **not** an actual executable price at the rebalance.
++   - The **Corwin–Schultz** half-spread is frozen exactly as follows, and tested (SA4) before any computation:
++     - For each pair of **consecutive traded hours** (t, t+1h), both inside days d-30 … d-1:
++       - β = ln(H_t/L_t)² + ln(H_{t+1}/L_{t+1})²
++       - γ = ln(max(H_t, H_{t+1}) / min(L_t, L_{t+1}))²
++       - α = (√(2β) − √β)/(3 − 2√2) − √(γ/(3 − 2√2))
++       - S = 2(e^α − 1)/(1 + e^α)
++     - The coin's spread is the **median S over pairs, clipped at 0**. It needs ≥ 360 pairs, the same 50% rule as vol_30; otherwise the coin is not bought.
++     - **Half-spread = spread / 2.**
++
+ ## 1. Execution model (point-in-time; the same conventions as FD/Validation)
+ 
+ - **Decision time:** a rebalance day d at 00:00 UTC. The signal uses features known at d (frozen FD code), over the coins **eligible on d** in P1.
+ - **Prices:**
+-  - A trade at d uses `close_asof(d)`, the last traded close before d, as the reference.
++  - A trade at d uses `close_asof(d)`, the last traded close before d, as a **reference proxy** (§0.1.5).
+   - **Buy price** = reference × (1 + fee + half-spread). **Sell price** = reference × (1 − fee − half-spread).
+   - Each holding period ends at the next rebalance, d + 7.
+ - **Half-spread, estimated from data:** the Corwin–Schultz high-low estimator. It is computed on the coin's hourly high/low over days d-30 … d-1 (closed by d), takes the median of the hourly-pair estimates, and is clipped at 0.
