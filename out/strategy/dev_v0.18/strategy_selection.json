@@ -1,0 +1,6 @@
+{
+ "selected": "A_N10",
+ "gating_capital": 10000.0,
+ "rule": "max mean weekly net excess vs B1 (P1, fee 0.10 %); tie: lower turnover, then Top 10",
+ "dev_summary_sha256": "85bd8132cb0708f4ed072167fec8b44682fa7e22cce906bed184a619122c7812"
+}
