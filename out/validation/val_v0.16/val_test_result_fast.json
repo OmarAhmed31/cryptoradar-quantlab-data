@@ -1,0 +1,48 @@
+{
+ "results": [
+  {
+   "test": "VA0 FD code byte-identical to its accepted commits; family and catalogue hashes frozen",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "VA1 isolation: no candle closing after 2026-04-01, no universe day >= 2026-04-01, cuts < 2026-04-01; Holdout sealed",
+   "pass": true,
+   "detail": "last candle 2026-03-31 23:00, last day 2026-03-31"
+  },
+  {
+   "test": "VA2 entries 2025-09-08..2026-03-01 (175), none in the embargo, outcomes inside Validation, H3 = 0, guard refusals",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "VA3 every FD-1 Development feature value is reproduced by the Validation context (same code, 1e-11)",
+   "pass": true,
+   "detail": "3688909/3688909 values"
+  },
+  {
+   "test": "VA4 destructive overwrite: features at t unchanged after corrupting candles >= t; outcomes unchanged after >= t+h",
+   "pass": true,
+   "detail": "21150/21150, days ['2025-10-15', '2026-02-20']"
+  },
+  {
+   "test": "VA5 independent naive outcomes (incl. every eligible forced exit) and IC = scipy Spearman on eligible series",
+   "pass": true,
+   "detail": "1433 outcomes (533 forced exits); mismatches 0"
+  },
+  {
+   "test": "VA6 41 frozen hypotheses in order; NW (lag h-1), one-sided p, BH/BY and labels equal independent derivations",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "VA6 synthetic: label rule, BY label, ratio N/A rule and the fixed cluster rule",
+   "pass": true,
+   "detail": "[]"
+  }
+ ],
+ "passed": 8,
+ "of": 8,
+ "PASS": true,
+ "mode": "fast"
+}
