@@ -1,0 +1,136 @@
+--- docs/REGIME_THRESHOLD_DERIVATION_PLAN_v0.1.md	2026-11-09 21:53:45.374427209 +0300
++++ docs/REGIME_THRESHOLD_DERIVATION_PLAN_v0.2.md	2026-11-09 21:58:59.806792382 +0300
+@@ -1,71 +1,73 @@
+-# Regime threshold derivation plan v0.1: P-1 / P-2 (DRAFT for review; NOTHING computed)
++# Threshold derivation plan v0.2: entry + market-state thresholds, one run (DRAFT for review; NOTHING computed)
+ 
+-**Context:**
+-- This plan belongs to Spec v0.1.3 (sha256 `46a2b1de…a441a`), items P-1 and P-2.
+-- The reviewer agreed **in principle** to derive the market-state thresholds from **indicator distributions on Development only**, with **no trading outcome of any kind**. He asked for the scope to be fixed exactly before any computation.
+-- This document is that scope. **No distribution has been computed. P1 is not approved.**
+-
+-## 1. Hard rules for the derivation run
+-
+-1. **Inputs:**
+-   - the Development pack (2024-01-01 → 2025-08-31);
+-   - the frozen FD-1 feature code;
+-   - the crypto-only universe (Spec §3).
+-   - **Nothing from Validation, the embargo or the Holdout.**
+-2. **Forbidden:**
+-   - any forward return;
+-   - any outcome;
+-   - any trade, P&L, win rate, expectancy, or IC with future returns;
+-   - any strategy result.
+-
+-   The derivation code may import **only** the feature code, the eligibility and universe code, and the hourly bars up to each bar's close. **It may not import the FD-2, Validation, strategy or simulator modules.** A test checks this (§4).
+-3. **One run.** Each threshold comes from **one pre-stated statistic** (a fixed percentile or median), not from a search over candidates.
+-4. The output is a frozen `regime_thresholds.json` with sha256, committed **before** P1 code is run.
+-5. **Using full-Development distributions** to fix constants that are later applied point-in-time is the same as fitting any rule on the design segment. It is allowed under T4 ("Development: … strategy generation"), and it is stated, not hidden.
+-
+-## 2. What is derived, and how (one statistic each)
+-
+-| Item | Current proposal (Spec §10) | Derivation rule (fixed now) | Source distribution |
+-|---|---|---|---|
+-| **Trend thresholds** (Bull / Bear on the 20-day EW return) | ±5% `CONV` | **Bull if** the 20-day EW return > its **67th percentile**. **Bear if** it is < its **33rd percentile**. The Bull/Bear/Sideways split then follows the index's own spread of 20-day moves (tertiles). The 50-day-mean condition stays | the daily 20-day EW-index returns, Development, with ≥ 20 coins per day |
+-| **Volatility bands** | ⅓ / ⅔ of the expanding prior percentile | **No new constant.** The band is already a percentile of the index's own past (the MI M2 rule, approved earlier). It stays as is | — |
+-| **Bear: stricter confirmation** | RVOL ≥ 3 `CONV` | RVOL ≥ the **75th percentile of RVOL among bars that already pass the normal confirmation** (M: RVOL ≥ 2, CLV ≥ 0.70, stronger than BTC). "Stricter" then means the strongest quarter of confirmations | hourly breakout bars (A1 ∧ A2 ∧ C ∧ B ∧ M), Development |
+-| **High volatility: maximum stop distance** | 8% `CONV` | **The median stop distance** (entry − R_low)/entry among the same candidate setups. In High Vol, setups wider than the typical setup are skipped | the same setups, Development, with the entry approximated by the breakout close **for this distribution only** (no fills, no outcomes) |
++**Changes from v0.1** (sha256 `712553fb…84dc`), all at the reviewer's request:
++1. **The 5 entry thresholds are added.**
++2. **Every threshold has ONE statistic fixed now.**
++3. **No circularity:** every reference sample is defined **without** the threshold being derived, and without any other derived threshold.
++4. **A test proves that outcome files cannot affect the result.**
+ 
+-## 3. What stays a design rule, and why
++**Status:** nothing has been computed, and P1 is not approved. Spec v0.1.3 (sha256 `46a2b1de…a441a`) stays the base.
+ 
+-These are stated as **design conventions**, because no distribution identifies them without outcomes:
++## 1. Hard rules (unchanged from v0.1)
+ 
+-| Item | Value | Why it stays a convention |
+-|---|---|---|
+-| Window lengths | 20-day trend return, 50-day mean, 30-day volatility | Window lengths are **horizon choices**. A distribution of the indicator does not pick a window, only thresholds within one. They match the FD-1 windows (7 / 30 days) where possible |
+-| Transition window | 5 days | A "recent change" horizon. It could be tied to the median length of trend runs, but those runs depend on the thresholds above. To avoid a loop, it stays 5 days and is reported with the derived run-length distribution **for information only** |
+-| A2 risk in High Vol | 0.5% (half of 1%) | A risk-policy choice, not a market property |
+-| Minimum coins for the index | 20 | Already approved (R6e) |
++- **Inputs:** the Development pack only (bars closing ≤ 2025-09-01; universe days < 2025-09-01), the frozen FD-1 feature code, and the crypto-only universe.
++- **No forward return or outcome of any kind.** The module may not import `fd2`, `val`, `strategy`, `strategy_attrib` or any simulator.
++- **One run.** The output `thresholds.json` is committed with sha256 **before** any P1 code runs.
++- Constants fitted on full Development and later applied point-in-time are allowed (T4: Development is for design). This is stated openly.
++
++## 2. Reference populations (defined with NO derived threshold)
++
++| Population | Definition |
++|---|---|
++| **H**: all hours | Every hourly bar t on Development for a coin that is crypto-only and P1-eligible on t's day, and whose prior 168 bars hold ≥ 84 traded bars (50%, the FD-1 rule) |
++| **BO**: breakout bars | The bars of H with **close_t > R_high**, where R_high is the max high of the prior 168 bars. The breakout itself is structural (a close above the range), so it has **no tunable constant**. Each indicator is computed on BO **before any filter** |
++| **D**: Development days | The days with the EW index defined (≥ 20 coins; R6e) |
++
++## 3. The thresholds: one fixed statistic each
++
++| # | Threshold (Spec ref) | Current value | Statistic, fixed now | Population | Meaning of the choice |
++|---|---|---|---|---|---|
++| **E1** | A1, tight range (§5.1) | 25th percentile of the coin's own prior 180-day widths | **Unchanged: it is already data-derived per coin.** The rule *is* "the lower quartile of the coin's own history". Deriving a level for a percentile rank from that same rank's distribution would be circular (it is uniform by construction) | — | "tighter than 3 out of 4 of its own past weeks" |
++| **E2** | A2, below the prior peak (§5.1) | 0.80 | **The 25th percentile** of R_high / (the max high of the 90 days before the window) | H | "a range sitting clearly below the recent peak": the lower quartile of the market's usual distance from the peak |
++| **E3** | M, relative volume (§5.4) | 2× | **The 75th percentile of RVOL** | BO | "the strongest quarter of breakouts by volume" |
++| **E4** | M, close strength (§5.4) | 0.70 | **The median CLV** | BO | "a stronger close than the typical breakout". The median is used, not the 75th, because E3 already keeps only the top quarter, and two top-quarter filters would shrink the sample sharply (the 100-trade minimum, U7) |
++| **E5** | Maximum stop distance (§6) | 15% | **The 90th percentile of (close_t − R_low)/close_t, computed BEFORE any stop limit** (reviewer point 2) | BO | "skip only the widest tenth of breakouts", the outliers |
++| **R1/R2** | Trend Bull / Bear (§10) | ±5% over 20 days | **The 67th and 33rd percentiles of the 20-day EW-index return** | D | the tertiles of the market's own 20-day moves |
++| **R3** | Bear, stricter volume (§10) | 3× | **The 90th percentile of RVOL** | **BO (the same population as E3; it does not depend on E3's value)** | "the strongest tenth of breakouts", which is strictly above E3's quarter by construction. **This removes the circularity** of v0.1, which sampled only bars that had already passed RVOL ≥ 2 (reviewer point 1) |
++| **R4** | High volatility, maximum stop distance (§10) | 8% | **The median stop distance** | **BO on High-Vol days.** The band is the expanding-prior percentile, which uses no derived constant | "in high volatility, only setups no wider than the typical high-vol breakout" |
++| — | Volatility bands | ⅓ / ⅔ of the expanding prior percentile | **No constant** (the MI M2 rule, already approved) | — | — |
+ 
+-**Out of scope here:** the Spec §5 entry thresholds (25th percentile, 0.80, RVOL 2×, CLV 0.70, 15% stop). The reviewer's request covered P-1/P-2 only. If the reviewer wants those derived the same way, that is a separate, explicit decision **before** this run, because the run happens once.
++**Computation order:** E2, E3, E4, E5 and R3 (all independent), then R1/R2, then the High-Vol day set, then R4. **No step uses a value derived in a later step.**
++
++## 4. What stays a design or policy rule (stated, not derived)
++
++| Rule | Value | Why |
++|---|---|---|
++| Window lengths | 7-day range, 180-day history, 90-day peak, 20 / 50 / 30-day state windows, 24-hour strength over BTC | A distribution chooses thresholds, not horizons |
++| Contraction (C) | 7-day vol < 30-day vol | A ratio below 1 is a structural definition, not a tuned level |
++| Transition window | 5 days | The run-length distribution is reported for information only (§5) |
++| Policy | X3 +2% net, 2R / 3R targets, 7-day time exit, A2 risk 1% (0.5% in High Vol), 20-coin minimum | Trading-policy choices, kept as decided earlier |
++
++## 5. Output (no performance number of any kind)
++
++`thresholds.json`, holding:
++- the 9 derived values (E2–E5, R1–R4);
++- for each: the population size, the deciles, and the share of the population each threshold keeps;
++- the trend-run-length distribution (information only);
++- the input and code hashes.
+ 
+-## 4. Acceptance tests (written before the run)
++## 6. Acceptance tests (written before the run)
+ 
+ | Test | What it checks |
+ |---|---|
+-| RD1 Isolation | The inputs hold no candle closing after 2025-09-01 and no universe day ≥ 2025-09-01 |
+-| RD2 No outcomes | The derivation module imports none of `fd2`, `val`, `strategy`, `strategy_attrib` or a simulator. A static check covers the module source, and a runtime check covers `sys.modules` |
+-| RD3 Point-in-time indicators | Destructive overwrite of the future: every indicator value at t is unchanged when every bar at or after t is corrupted |
+-| RD4 Independent recompute | The percentiles are recomputed by a separate naive implementation |
+-| RD5 One statistic per item | The output JSON holds exactly the 4 derived numbers of §2 plus the reported distributions. Nothing else is tunable |
+-
+-## 5. Output
+-
+-- `regime_thresholds.json`, holding:
+-  - the derived values;
+-  - the count of observations behind each;
+-  - the distribution summaries (deciles);
+-  - the run-length distribution, for information only;
+-  - the input and code hashes.
+-- A short report. **It contains no performance number of any kind.**
++| RD1 Isolation | No input candle closes after 2025-09-01, and no universe day ≥ 2025-09-01 |
++| RD2 No outcome code | A static scan and a runtime `sys.modules` check: none of the forbidden modules is imported |
++| RD3 Point-in-time indicators | Destructive overwrite of every bar at or after t, for sampled bars, leaves their RVOL, CLV, R_high/R_low, stop distance, peak ratio and index return unchanged |
++| **RD4 Outcomes cannot matter** (reviewer) | The run is repeated in a copy where **every earlier outcome file** (FD-2, Validation, strategy, attribution outputs) is **deleted or corrupted**. `thresholds.json` must be byte-identical |
++| RD5 Independent recompute | Each population and each percentile is recomputed by a separate naive implementation |
++| RD6 No circularity | E3, E5 and R3 are computed on BO with no entry filter. The test shows that changing the current constants (2×, 15%, 3×, 0.80, 0.70) leaves every derived value unchanged |
++| RD7 Mutants (≥ 8), all killed | Planted defects: a Validation bar in the input; a filter applied before E5; RVOL ≥ 2 applied before R3; percentile levels swapped; a window that includes bar t; excluded coins kept; an outcome module imported; deciles taken from the wrong population |
+ 
+-## 6. Decision requested
++## 7. Decision requested
+ 
+-1. Approve **this scope**: the 4 derived items, the rules in §2, and the conventions in §3.
+-2. Say whether the **§5 entry thresholds** should **also** be derived in the same single run (yes or no), before it runs.
++Approve v0.2: the populations (§2), the 9 statistics (§3), the stated conventions (§4) and the tests (§6). After approval: code and tests are committed first, then the **one** run, then `thresholds.json` is frozen. **No P1 work starts before that.**
