@@ -170,7 +170,14 @@ cm = sum(1 / i for i in range(1, 65))
 ok8 = set(np.where(cc.bh_sig)[0]) == stepup(pv, 0.10) and set(np.where(cc.by_sig)[0]) == stepup(pv, 0.10, cm)
 rr = np.random.default_rng(1).uniform(0, 0.05, 64)
 ok8 &= set(np.where(F2.bh(rr) <= 0.1)[0]) == stepup(list(rr), 0.1) and set(np.where(F2.by(rr) <= 0.1)[0]) == stepup(list(rr), 0.1, cm)
-rec("T8 BH and BY (q = 0.10, same 64 p-values) equal the step-up definition", ok8)
+def adj_naive(p, c=1.0):
+    m = len(p); o = sorted(range(m), key=lambda k: p[k]); a = [0.0] * m
+    for r in range(m):
+        a[o[r]] = min(1.0, min(p[o[k]] * m * c / (k + 1) for k in range(r, m)))
+    return a
+for col, c in (("p_bh", 1.0), ("p_by", cm)):
+    ok8 &= all(same(float(x), y, 1e-12) for x, y in zip(cc[col], adj_naive(pv, c)))
+rec("T8 BH and BY (q = 0.10, same 64 p-values) equal the step-up definition; adjusted values equal an independent formula", ok8)
 
 # T9 candidate rule (plan §4) re-derived independently; BY never changes it; labels
 S = T.set_index(["scenario", "feature", "h_days"])["mean_ic"]
