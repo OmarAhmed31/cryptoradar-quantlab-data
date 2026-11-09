@@ -1,0 +1,24 @@
+{
+ "segment": "validation",
+ "entry_days": [
+  "2025-09-08",
+  "2026-03-01"
+ ],
+ "n_entry_days": 175,
+ "hypotheses": 41,
+ "q": 0.1,
+ "purge_count_H3": 0,
+ "family_sha256": "ff2df7b9d634f281deca08c01791a1c36617f9946fb4eb1f7dc40eac78264250",
+ "labels": {
+  "REPLICATED": 35,
+  "REVERSED": 3,
+  "NOT_REPLICATED": 2,
+  "REPLICATED — BH_ONLY — FAILS_BY_SENSITIVITY": 1
+ },
+ "cluster_labels": {
+  "CLUSTER_REPLICATED": 9,
+  "CLUSTER_REVERSED": 2,
+  "CLUSTER_NOT_REPLICATED": 1
+ },
+ "pack_manifest_sha256": "8c9195ce7c82d3e93e12122ff85972dd713d153796b358d2e4aff41795bd79f4"
+}

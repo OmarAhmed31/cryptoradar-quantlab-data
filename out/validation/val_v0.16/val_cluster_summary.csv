@@ -1,0 +1,13 @@
+cluster,n,replicated,reversed,not_replicated,median_val_ic,label,note
+F01,1,0,1,0,0.0019870901325827342,CLUSTER_REVERSED,"summary of members, not a separate test"
+F02,1,1,0,0,-0.025672820559402763,CLUSTER_REPLICATED,"summary of members, not a separate test"
+F03+F05,3,0,1,2,-0.0057221428317194385,CLUSTER_NOT_REPLICATED,"summary of members, not a separate test"
+F06+F07+F09+F11+F14+F22,18,18,0,0,-0.1725056871233993,CLUSTER_REPLICATED,"summary of members, not a separate test"
+F08,1,1,0,0,-0.03234992260992983,CLUSTER_REPLICATED,"summary of members, not a separate test"
+F10,3,3,0,0,-0.095733664687345,CLUSTER_REPLICATED,"summary of members, not a separate test"
+F13,3,3,0,0,0.07059972193874224,CLUSTER_REPLICATED,"summary of members, not a separate test"
+F15+F18+F19,3,3,0,0,-0.034402739163936276,CLUSTER_REPLICATED,"summary of members, not a separate test"
+F16,1,0,1,0,-0.011320986421916118,CLUSTER_REVERSED,"summary of members, not a separate test"
+F17,1,1,0,0,-0.029034692061288173,CLUSTER_REPLICATED,"summary of members, not a separate test"
+F20,3,3,0,0,0.10254174221781678,CLUSTER_REPLICATED,"summary of members, not a separate test"
+F21,3,3,0,0,-0.08769465156951474,CLUSTER_REPLICATED,"summary of members, not a separate test"
