@@ -9,3 +9,4 @@ out/active_dataset/*/hourly/
 
 # Development pack hourly (size): shipped in the MI ZIP; per-file sha256 in PACK_MANIFEST.json
 out/market_intelligence/dev_pack_v1/hourly/
+out/validation/val_pack_v1/hourly/
