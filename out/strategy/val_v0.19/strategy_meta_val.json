@@ -1,0 +1,41 @@
+{
+ "mode": "val",
+ "rebalance_days": [
+  "2025-09-08",
+  "2026-02-23"
+ ],
+ "weeks": 25,
+ "incident": "lab/strategy.py main() wrote both result files, then raised IndexError while formatting this metadata (FF.DAYS had already been restored after the Validation context). No rerun: this metadata was written separately, from the fixed schedule, without touching the results.",
+ "selected": "A_N10",
+ "gate_per_capital": {
+  "10000": {
+   "PASS": true,
+   "p_nw": 0.0021615841575203,
+   "p_boot": 0.0015,
+   "mean_excess_fee_0.10": 0.0302799782772543,
+   "mean_excess_fee_0.20": 0.0301329107980163,
+   "total_net_return_fee_0.10": -0.2375985628574132,
+   "flag": "RELATIVE_ONLY — NOT_PROFITABLE_ABSOLUTE"
+  },
+  "1000": {
+   "PASS": true,
+   "p_nw": 0.0021619468249015,
+   "p_boot": 0.0015,
+   "mean_excess_fee_0.10": 0.0302794688068756,
+   "mean_excess_fee_0.20": 0.0301326797017844,
+   "total_net_return_fee_0.10": -0.2376083170173457,
+   "flag": "RELATIVE_ONLY — NOT_PROFITABLE_ABSOLUTE"
+  },
+  "100000": {
+   "PASS": true,
+   "p_nw": 0.0008282992475142,
+   "p_boot": 0.001,
+   "mean_excess_fee_0.10": 0.0340689983843271,
+   "mean_excess_fee_0.20": 0.0340138765760595,
+   "total_net_return_fee_0.10": -0.1591189705492823,
+   "flag": "RELATIVE_ONLY — NOT_PROFITABLE_ABSOLUTE"
+  }
+ },
+ "overall_PASS_10k_AND_1k": true,
+ "note": "100000 is display only"
+}
