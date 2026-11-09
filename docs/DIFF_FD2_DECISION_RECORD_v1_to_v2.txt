@@ -1,0 +1,45 @@
+--- FD2_DECISION_RECORD_v1.md	2026-11-09 07:26:20.752085098 +0300
++++ FD2_DECISION_RECORD_v2.md	2026-11-09 07:29:34.693726572 +0300
+@@ -1,4 +1,6 @@
+-# FD-2 Decision Record v1 (recorded before any FD-2 computation)
++# FD-2 Decision Record v2 (recorded before any FD-2 computation)
++
++**v2 change:** Q-BY is now decided as **D6**. D4 and D5 are unchanged from v1 (sha256 `975bc56b…39ff`).
+ 
+ **Status:**
+ - FD-2 has **not** been run.
+@@ -11,7 +13,7 @@
+ - Feature Discovery Plan v0.1.1 §4 (FD-2), sha256 `1126d551…683a`.
+ - FD-1 v0.13, commit `64591c5`, report §⚠️.
+ 
+-## Reviewer decisions (2026-11-09)
++## Reviewer decisions (2026-11-09; D4, D5 and D6 all approved)
+ 
+ ### D4 — The two FD-1 / FD-2 overlapping tests are excluded from the confirmatory family
+ 
+@@ -41,15 +43,17 @@
+ | 7 days | F01, F03–F22 (21; F02 excluded) |
+ | 30 days | F01–F22 (22) |
+ 
+-## Open point (not decided; needs the reviewer)
++### D6 — Q-BY: BH stays the rule; BY is a reported sensitivity (decided 2026-11-09)
++
++**Reason:** negative correlations between features are possible. PRDS therefore cannot be assumed, and BH's theoretical guarantee cannot be claimed under this dependence. BY is valid under arbitrary dependence.
+ 
+-**Q-BY. Dependence between features.**
+-- BH controls the FDR under independence or positive regression dependence (PRDS).
+-- FD-1 shows strong dependence: 3 multi-feature clusters at |ρ| ≥ 0.80, which can include negative correlations.
+-- **Proposal:** keep **BH q = 0.10 as the primary rule, as approved**. Add **Benjamini–Yekutieli (BY), q = 0.10** as a **reported sensitivity only**. BY is valid under any dependence.
+-  - A candidate would be flagged if it **fails** under BY.
+-  - The candidate rule itself would not change.
+-- Alternatively, keep BH only. **The reviewer decides before FD-2 is approved.**
++**Fixed now:**
++1. **Same family, same p-values.** BH and BY are applied to the same 64 confirmatory tests and the same two-sided p-values (from the plan §4 Newey-West statistic).
++2. **q = 0.10 in both.**
++3. **The candidate rule of plan §4 is unchanged.** It uses **BH**. BY never adds, removes or changes a candidate.
++4. **BY is reported as a sensitivity.** Each test shows its BH-adjusted and its BY-adjusted value. A candidate that passes BH but fails BY carries the label **`BH_ONLY — FAILS_BY_SENSITIVITY`**.
++5. **Reading:** BY is usually more conservative. Failing BY does not make the BH result wrong; it means the evidence is weaker under a guarantee that holds under general dependence.
++6. **No FD-2 computation** is done before this record (v2) is committed and FD-1 is accepted.
+ 
+ ## Unchanged
+ 
