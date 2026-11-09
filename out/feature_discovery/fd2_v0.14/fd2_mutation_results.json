@@ -38,17 +38,17 @@
   {
    "mutant": "N08 BY used as the candidate rule",
    "killed": true,
-   "by": "FAIL T9 candidates = BH & 3/3 sub-period signs & same sign in S50k and S250k; BH"
+   "by": "FAIL T9 candidates = BH & 3/3 sub-period signs & same sign in S50k and S250k; BH; FAIL T12 synthetic table: 3/3 sub-periods, S50k AND S250k signs, BH rule, BY lab"
   },
   {
    "mutant": "N09 sub-period rule relaxed to 2 of 3",
-   "killed": false,
-   "by": ""
+   "killed": true,
+   "by": "FAIL T12 synthetic table: 3/3 sub-periods, S50k AND S250k signs, BH rule, BY lab"
   },
   {
    "mutant": "N10 S250k sign check dropped",
-   "killed": false,
-   "by": ""
+   "killed": true,
+   "by": "FAIL T12 synthetic table: 3/3 sub-periods, S50k AND S250k signs, BH rule, BY lab"
   },
   {
    "mutant": "N11 bootstrap with 1-day blocks",
@@ -66,6 +66,6 @@
    "by": "FAIL T7 Newey-West t (Bartlett, lag h-1) and two-sided p equal an independent im"
   }
  ],
- "killed": 11,
+ "killed": 13,
  "of": 13
 }
