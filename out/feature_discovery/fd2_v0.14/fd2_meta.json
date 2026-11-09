@@ -1,0 +1,24 @@
+{
+ "segment": "development",
+ "entry_days": [
+  "2024-01-01",
+  "2025-08-01"
+ ],
+ "n_entry_days": 579,
+ "horizons": [
+  1,
+  7,
+  30
+ ],
+ "confirmatory_tests": 64,
+ "exploratory_cells": [
+  "F01x1",
+  "F02x7"
+ ],
+ "q": 0.1,
+ "purge_count_H3": 0,
+ "candidates": 41,
+ "bh_significant": 41,
+ "by_significant": 37,
+ "forced_exit_pack_sha256": "5610358b93933c0dd887367811fe10fd25857b863124338c880ce36dd374809f"
+}

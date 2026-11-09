@@ -1,0 +1,88 @@
+{
+ "results": [
+  {
+   "test": "T0 confirmatory family = exactly the 64 cells of Decision Record v2",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "T0 exploratory cells = {F01 x 1, F02 x 7}, labelled EXPLORATORY_SEEN_IN_FD1, outside BH/BY",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "T1 entry days: 2024-01-01 .. 2025-08-01 (t < 2025-08-02), 579 days",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "T1 H3 purge count = 0 and no outcome on a non-entry day",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "T1 guard refuses an entry on 2025-08-02, a 31-day horizon and an outcome candle after t+h",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "T2 destructive overwrite after t+h: every outcome (d, h) unchanged",
+   "pass": true,
+   "detail": "2292/2292, days ['2024-05-10', '2025-07-15']"
+  },
+  {
+   "test": "T3 independent naive outcome recompute (normal + every eligible forced exit)",
+   "pass": true,
+   "detail": "2514 outcomes (1614 forced exits); mismatches 0 []"
+  },
+  {
+   "test": "T4 forced-exit count equals an independent recount for each h; no CUT_BEFORE_ENTRY among eligible entries",
+   "pass": true,
+   "detail": "{1: (48, 48), 7: (320, 320), 30: (1246, 1246)}"
+  },
+  {
+   "test": "T5 later-delisted series keep their outcomes; IC n_series counts them",
+   "pass": true,
+   "detail": "outcomes of later-delisted series: 105129"
+  },
+  {
+   "test": "T6 daily IC = scipy Spearman over series eligible on d",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "T7 Newey-West t (Bartlett, lag h-1) and two-sided p equal an independent implementation",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "T8 BH and BY (q = 0.10, same 64 p-values) equal the step-up definition; adjusted values equal an independent formula",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "T9 candidates = BH & 3/3 sub-period signs & same sign in S50k and S250k; BH_ONLY label exactly where BY fails",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "T12 synthetic table: 3/3 sub-periods, S50k AND S250k signs, BH rule, BY label and exploratory exclusion all enforced",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "T10 block bootstrap CI equals an independent loop (block = max(7, h))",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "T11 the 3 fixed sub-periods partition the days with an IC",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "passed": 16,
+ "of": 16,
+ "PASS": true,
+ "mode": "fast"
+}
