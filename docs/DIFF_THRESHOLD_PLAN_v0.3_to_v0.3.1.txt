@@ -1,0 +1,42 @@
+--- docs/REGIME_THRESHOLD_DERIVATION_PLAN_v0.3.md	2026-11-09 22:03:34.718185377 +0300
++++ docs/REGIME_THRESHOLD_DERIVATION_PLAN_v0.3.1.md	2026-11-09 22:20:53.550506721 +0300
+@@ -1,4 +1,6 @@
+-# Threshold derivation plan v0.3: entry + market-state thresholds, one run (DRAFT for review; NOTHING computed)
++# Threshold derivation plan v0.3.1: entry + market-state thresholds, one run (DRAFT for review; NOTHING computed)
++
++**v0.3.1 = v0.3 + two clarifications required by the reviewer** (v0.3 sha256 `2c816497…d8e8d`): candidate bars ≠ completed trades (§5), and what R3 actually keeps (§3). Nothing else changed.
+ 
+ **Changes from v0.2** (sha256 `c211f466…096b`, approved in principle with 3 required amendments):
+ - **(a)** Sample sizes are reported at every stage, and the derived values are never changed to reach 100 trades (§5).
+@@ -40,7 +42,7 @@
+ | **E4** | M, close strength (§5.4) | 0.70 | **The median CLV** | BO | "a stronger close than the typical breakout". The median is used, not the 75th, because E3 already keeps only the top quarter, and two top-quarter filters would shrink the sample sharply (the 100-trade minimum, U7) |
+ | **E5** | Maximum stop distance (§6) | 15% | **The 90th percentile of (close_t − R_low)/close_t, computed BEFORE any stop limit** (reviewer point 2) | BO | "skip only the widest tenth of breakouts", the outliers |
+ | **R1/R2** | Trend Bull / Bear (§10) | ±5% over 20 days | **The 67th and 33rd percentiles of the 20-day EW-index return** | D | the tertiles of the market's own 20-day moves |
+-| **R3** | Bear, stricter volume (§10) | 3× | **The 90th percentile of RVOL** | **BO (the same population as E3; it does not depend on E3's value)** | "the strongest tenth of breakouts", which is strictly above E3's quarter by construction. **This removes the circularity** of v0.1, which sampled only bars that had already passed RVOL ≥ 2 (reviewer point 1) |
++| **R3** | Bear, stricter volume (§10) | 3× | **The 90th percentile of RVOL** | **BO (the same population as E3; it does not depend on E3's value)** | "about the strongest tenth of breakouts". The value is ≥ E3's value by construction. **With tied values, the share of bars it keeps may not be exactly 10%.** The actual share is reported and never described as exactly 10%. **This removes the circularity** of v0.1, which sampled only bars that had already passed RVOL ≥ 2 (reviewer point 1) |
+ | **R4** | High volatility, maximum stop distance (§10) | 8% | **The median stop distance (close_t − R_low)/close_t**, taken **before any stop limit** (neither E5 nor R4 is applied to the sample) | **BO bars on High-Vol days.** "High-Vol on day d" is the band **known at d 00:00**: the percentile of the EW index's 30-day volatility (days d-30 … d-1) among the values of **all earlier days only** (expanding, ≥ 60 prior values), > ⅔. It is **never** recomputed with later data. A test checks it (RD8) | "in high volatility, only setups no wider than the typical high-vol breakout" |
+ | — | Volatility bands | ⅓ / ⅔ of the expanding prior percentile | **No constant** (the MI M2 rule, already approved) | — | — |
+ 
+@@ -61,7 +63,12 @@
+ - The report gives the size of every population: H, BO, BO on Bear days, BO on High-Vol days, D.
+ - It also gives **the number of BO bars that remain after each entry condition is applied in turn**: A1, A2/E2, C, E3, E4, the BTC strength rule, E5, the state actions.
+ - These are **counts of candidate bars, not trades and not returns.**
+-- **The final sample may fall below 100. If it does, the derived values are NOT changed, and the U7 rule applies in P1 (INCONCLUSIVE, then STOP).**
++- **Candidate bars and completed trades are different units:**
++  - A count of candidate bars is a **count of candidate opportunities**, not of trades.
++    - **Fewer than 100 candidate bars** is recorded as a **warning** about opportunity volume. It is **not** declared INCONCLUSIVE on that basis alone.
++    - **More than 100 candidate bars** does **not** guarantee 100 completed trades either. Capital, one-position-per-coin, NOT_EXECUTED and SKIPPED cases all reduce the number.
++  - **U7 (≥ 100) applies only to completed trades in the P1 simulation.** If P1 completes fewer than 100 trades, the result is INCONCLUSIVE and P1 stops.
++- **In every case, the derived values are never changed to reach any count.**
+ 
+ 
+ `thresholds.json`, holding:
+@@ -85,7 +92,7 @@
+ 
+ ## 7. Decision requested
+ 
+-Approve v0.3: the populations (§2), the 9 statistics (§3), the stated conventions (§4) and the tests (§6). **Order after approval:**
++Approve v0.3.1: the populations (§2), the 9 statistics (§3), the stated conventions (§4) and the tests (§6). **Order after approval:**
+ 1. Code and tests are written, committed and **sent for review**.
+ 2. After that review: the **one** run.
+ 3. `thresholds.json` is frozen with its sha256.
