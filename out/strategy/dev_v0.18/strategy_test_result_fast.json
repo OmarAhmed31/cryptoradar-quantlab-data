@@ -1,0 +1,38 @@
+{
+ "results": [
+  {
+   "test": "SA1 schedule every 7 days inside the entry windows (Dev start = first day with >= 20 B-tradeable coins; Val 25 weeks 2025-09-08..2026-02-23), guard refusals, Holdout sealed",
+   "pass": true,
+   "detail": "dev weeks 79"
+  },
+  {
+   "test": "SA4 Corwin-Schultz half-spread equals an independent implementation; never negative; fee constants 0.10 % / 0.20 %",
+   "pass": true,
+   "detail": "75 coin-days"
+  },
+  {
+   "test": "SA2 destructive overwrite of candles >= d: selections (4 variants, B1, B2), half-spreads and reference prices at d unchanged",
+   "pass": true,
+   "detail": "days ['2024-04-10']"
+  },
+  {
+   "test": "SA3/SA5 independent naive simulator (selection, 1 % cap, costs, forced exits, marks) = code, weekly returns, incl. B1 and B2",
+   "pass": true,
+   "detail": "[('B', 10, 10000, True), ('A', 20, 100000, True), ('B1', 0, 10000, True), ('B2', 1, 1000, True)]"
+  },
+  {
+   "test": "SA6 synthetic: selection (P1, gating capital, fee 0.10 %; tie -> lower turnover -> Top 10); gate needs both p <= 0.05 and mean > 0 at 0.20 %; RELATIVE_ONLY flag",
+   "pass": true,
+   "detail": "('B_N10', {'10000': True, '1000': False, '100000': False})"
+  },
+  {
+   "test": "SA6b one-sided Newey-West (lag 0) and 1-week-block bootstrap p equal independent formulas",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "passed": 6,
+ "of": 6,
+ "PASS": true,
+ "mode": "fast"
+}

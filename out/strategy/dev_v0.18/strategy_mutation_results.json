@@ -1,0 +1,79 @@
+{
+ "mutants": [
+  {
+   "mutant": "X01 same-day reference price (lookahead)",
+   "killed": true,
+   "by": "FAIL SA2 destructive overwrite of candles >= d: selections (; FAIL SA3/SA5 independent naive simulator (selection, 1 % cap"
+  },
+  {
+   "mutant": "X02 buying ineligible coins",
+   "killed": true,
+   "by": "FAIL SA3/SA5 independent naive simulator (selection, 1 % cap"
+  },
+  {
+   "mutant": "X03 spread cost skipped on turnover",
+   "killed": true,
+   "by": "FAIL SA3/SA5 independent naive simulator (selection, 1 % cap"
+  },
+  {
+   "mutant": "X04 spread from a window reaching day d",
+   "killed": true,
+   "by": "FAIL SA4 Corwin-Schultz half-spread equals an independent im; FAIL SA2 destructive overwrite of candles >= d: selections (; FAIL SA3/SA5 independent naive simulator (selection, 1 % cap"
+  },
+  {
+   "mutant": "X05 delisted dropped (forced-exit proceeds lost)",
+   "killed": true,
+   "by": "FAIL SA3/SA5 independent naive simulator (selection, 1 % cap"
+  },
+  {
+   "mutant": "X06 forced exit at a later price (hourly mark)",
+   "killed": true,
+   "by": "FAIL SA3/SA5 independent naive simulator (selection, 1 % cap"
+  },
+  {
+   "mutant": "X07 selection not restricted to fee 0.10 % (any fee row)",
+   "killed": true,
+   "by": "FAIL SA6 synthetic: selection (P1, gating capital, fee 0.10 "
+  },
+  {
+   "mutant": "X08 two-sided p",
+   "killed": true,
+   "by": "FAIL SA6b one-sided Newey-West (lag 0) and 1-week-block boot"
+  },
+  {
+   "mutant": "X09 B1 without costs",
+   "killed": true,
+   "by": "FAIL SA3/SA5 independent naive simulator (selection, 1 % cap"
+  },
+  {
+   "mutant": "X10 1 % cap ignored",
+   "killed": true,
+   "by": "FAIL SA3/SA5 independent naive simulator (selection, 1 % cap"
+  },
+  {
+   "mutant": "X11 tie-break prefers Top 20",
+   "killed": true,
+   "by": "FAIL SA6 synthetic: selection (P1, gating capital, fee 0.10 "
+  },
+  {
+   "mutant": "X12 Development start not the first day with >= 20 B-tradeable coins",
+   "killed": false,
+   "by": "",
+   "equivalent_on_this_data": true,
+   "evidence": "start 2024-01-31 has 222 B-tradeable coins; each of the 5 days before has 0, so every threshold from 1 to 222 gives the same start day (no behavioural difference)"
+  },
+  {
+   "mutant": "X13 RELATIVE_ONLY flag dropped",
+   "killed": true,
+   "by": "FAIL SA6 synthetic: selection (P1, gating capital, fee 0.10 "
+  },
+  {
+   "mutant": "X14 gate ignores the 2x-fee condition",
+   "killed": true,
+   "by": "FAIL SA6 synthetic: selection (P1, gating capital, fee 0.10 "
+  }
+ ],
+ "killed": 13,
+ "of": 14,
+ "note": "13 killed; X12 is an equivalent mutant on this data (proved, not hidden)"
+}
