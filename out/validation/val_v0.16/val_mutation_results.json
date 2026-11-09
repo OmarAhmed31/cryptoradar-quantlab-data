@@ -1,0 +1,76 @@
+{
+ "mutants": [
+  {
+   "mutant": "W01 two-sided p instead of one-sided",
+   "killed": true,
+   "by": "FAIL VA6 41 frozen hypotheses in order; NW (lag h-1), one-sided p, BH/"
+  },
+  {
+   "mutant": "W02 direction not taken from FD-2 (always +1)",
+   "killed": true,
+   "by": "FAIL VA6 41 frozen hypotheses in order; NW (lag h-1), one-sided p, BH/"
+  },
+  {
+   "mutant": "W03 family re-selected (BH_ONLY dropped)",
+   "killed": true,
+   "by": "crash: AssertionError"
+  },
+  {
+   "mutant": "W04 entries in the embargo",
+   "killed": true,
+   "by": "crash: lab.segment_loader.GuardError: entry/label start 2025-09-01 00:00:00+00:00 outside entry window of validation"
+  },
+  {
+   "mutant": "W05 outcomes crossing 2026-04-01 (entries to 2026-03-31)",
+   "killed": true,
+   "by": "crash: lab.segment_loader.GuardError: entry/label start 2026-03-02 00:00:00+00:00 outside entry window of validation"
+  },
+  {
+   "mutant": "W06 same-day entry price (lookahead, shared FD-2 code)",
+   "killed": true,
+   "by": "FAIL VA0 FD code byte-identical to its accepted commits; family and ca; FAIL VA5 independent naive outcomes (incl. every eligible forced exit)"
+  },
+  {
+   "mutant": "W07 delisted dropped (forced exits removed)",
+   "killed": true,
+   "by": "FAIL VA0 FD code byte-identical to its accepted commits; family and ca; FAIL VA5 independent naive outcomes (incl. every eligible forced exit)"
+  },
+  {
+   "mutant": "W08 forced exit at a later day",
+   "killed": true,
+   "by": "FAIL VA0 FD code byte-identical to its accepted commits; family and ca"
+  },
+  {
+   "mutant": "W09 no overlap correction (lag 0)",
+   "killed": true,
+   "by": "FAIL VA6 41 frozen hypotheses in order; NW (lag h-1), one-sided p, BH/"
+  },
+  {
+   "mutant": "W10 BY used as the rule",
+   "killed": true,
+   "by": "FAIL VA6 41 frozen hypotheses in order; NW (lag h-1), one-sided p, BH/; FAIL VA6 synthetic: label rule, BY label, ratio N/A rule and the fixed"
+  },
+  {
+   "mutant": "W11 eligibility ignored in the IC",
+   "killed": true,
+   "by": "FAIL VA5 independent naive outcomes (incl. every eligible forced exit)"
+  },
+  {
+   "mutant": "W12 cluster rule relaxed (one replicated member is enough)",
+   "killed": true,
+   "by": "FAIL VA6 synthetic: label rule, BY label, ratio N/A rule and the fixed"
+  },
+  {
+   "mutant": "W13 ratio shown even when the Development CI includes 0",
+   "killed": true,
+   "by": "FAIL VA6 synthetic: label rule, BY label, ratio N/A rule and the fixed"
+  },
+  {
+   "mutant": "W14 Validation features with a window reaching day d (shared FD code)",
+   "killed": true,
+   "by": "FAIL VA0 FD code byte-identical to its accepted commits; family and ca; FAIL VA3 every FD-1 Development feature value is reproduced by the Val; FAIL VA4 destructive overwrite: features at t unchanged after corrupti"
+  }
+ ],
+ "killed": 14,
+ "of": 14
+}
