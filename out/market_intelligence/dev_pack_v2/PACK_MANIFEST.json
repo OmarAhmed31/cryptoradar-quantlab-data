@@ -1,0 +1,15 @@
+{
+ "purpose": "FD-2 Development inputs = dev_pack_v1 + forced exits with cut inside Development",
+ "extends": {
+  "dev_pack_v1/PACK_MANIFEST.json": "e582ca5f098035276bcd17b25d6ee98dac457124fc74664e81d2f07f45759d65"
+ },
+ "files": {
+  "forced_exit_dev.csv": {
+   "sha256": "5610358b93933c0dd887367811fe10fd25857b863124338c880ce36dd374809f",
+   "rows": 106,
+   "rows_with_cut_after_development_not_copied": 43,
+   "source": "out/research_protocol/v1.2/forced_exit_reference.csv",
+   "source_sha256": "67221b1037e2800ca4a5a7696b996a78df14df898944e5aecb8f0c924c1e3e59"
+  }
+ }
+}
