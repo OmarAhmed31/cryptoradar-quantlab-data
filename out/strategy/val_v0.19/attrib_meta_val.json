@@ -1,0 +1,17 @@
+{
+ "1000": {
+  "weeks": 25,
+  "sum_weekly_returns": -0.2616396413167118,
+  "sum_cost_shares": 0.01162259688502014
+ },
+ "10000": {
+  "weeks": 25,
+  "sum_weekly_returns": -0.2616269045572832,
+  "sum_cost_shares": 0.011622598985498268
+ },
+ "100000": {
+  "weeks": 25,
+  "sum_weekly_returns": -0.16690140188045888,
+  "sum_cost_shares": 0.0082470520671554
+ }
+}
