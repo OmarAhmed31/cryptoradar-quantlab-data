@@ -16,6 +16,11 @@
    "detail": "2800 indicator values"
   },
   {
+   "test": "RD3b R_high/R_low use only the 168 bars BEFORE t: on new-high bars R_high < high_t; breakout bars exist (BO not empty)",
+   "pass": true,
+   "detail": "1053 new-high bars checked, BO bars 64118"
+  },
+  {
    "test": "RD3 destructive overwrite of bars after t: every indicator at t unchanged (synthetic)",
    "pass": true,
    "detail": ""
@@ -31,8 +36,8 @@
    "detail": "[0.25, 0.33, 0.5, 0.67, 0.75, 0.9]"
   }
  ],
- "passed": 6,
- "of": 6,
+ "passed": 7,
+ "of": 7,
  "PASS": true,
  "data": "synthetic (+ real manifest for RD1)"
 }

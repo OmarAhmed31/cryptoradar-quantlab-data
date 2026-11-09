@@ -3,7 +3,7 @@
   {
    "mutant": "TM1 range high includes bar t",
    "killed": true,
-   "by": "crash: IndexError: list index out of range"
+   "by": "FAIL RD5 independent recompute (synthetic): indicators on 400 sampled ; FAIL RD3b R_high/R_low use only the 168 bars BEFORE t: on new-high bar"
   },
   {
    "mutant": "TM2 RVOL baseline includes bar t",

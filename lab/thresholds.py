@@ -1,4 +1,4 @@
-"""Threshold derivation (plan docs/REGIME_THRESHOLD_DERIVATION_PLAN_v0.3.1.md). Development only, ONE run.
+"""Threshold derivation (plan docs/REGIME_THRESHOLD_DERIVATION_PLAN_v0.3.2.md). Development only, ONE run.
 Indicator DISTRIBUTIONS only: no forward return, no outcome, no trade. Allowed imports: numpy, pandas, stdlib,
 lab.fd_features (pack loader + frozen feature code), lab.segment_loader, lab.universe_crypto_only. Nothing else.
 

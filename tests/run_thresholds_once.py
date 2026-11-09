@@ -12,6 +12,12 @@ PACK = "out/market_intelligence/dev_pack_v1"
 CODE = ["lab/__init__.py", "lab/thresholds.py", "lab/fd_features.py", "lab/segment_loader.py", "lab/universe_crypto_only.py",
         "out/feature_discovery/feature_catalogue.json"]
 OUTCOME_DIRS = ["out/feature_discovery/fd2_v0.14", "out/validation", "out/strategy"]
+# Strategy ATTRIBUTION outputs live under out/strategy/dev_v0.18 and out/strategy/val_v0.19 (attrib_*). The runner
+# verifies that below: every attribution file anywhere under out/ must be inside OUTCOME_DIRS, else it stops.
+_attr = [f for f in (REPO / "out").rglob("attrib*") if f.is_file()]
+_outside = [str(f.relative_to(REPO)) for f in _attr if not any(str(f.relative_to(REPO)).startswith(d + "/") for d in OUTCOME_DIRS)]
+if not _attr or _outside:
+    raise SystemExit(f"RD4 precondition failed: attribution files missing or outside the corrupted paths: {_outside}")
 
 def run(cwd, dest, isolate=False):
     cmd = [sys.executable, "-I", "lab/thresholds.py", str(dest)]
@@ -27,20 +33,21 @@ tmp = pathlib.Path(tempfile.mkdtemp(prefix="thr_rd4_"))
 c2 = tmp / "corrupted"; c2.mkdir()
 for p in CODE: (c2 / p).parent.mkdir(parents=True, exist_ok=True); shutil.copy2(REPO / p, c2 / p)
 shutil.copytree(REPO / PACK, c2 / PACK)
-n_corrupt = 0
+n_corrupt = 0; n_attr_corrupt = 0
 for d in OUTCOME_DIRS:
     for f in (REPO / d).rglob("*"):
         if f.is_file():
             g = c2 / f.relative_to(REPO); g.parent.mkdir(parents=True, exist_ok=True); g.write_bytes(b"CORRUPTED" * 7); n_corrupt += 1
+            n_attr_corrupt += f.name.startswith("attrib")
 b2 = run(c2, tmp / "out2")
 c3 = tmp / "isolated"; c3.mkdir()
 for p in CODE: (c3 / p).parent.mkdir(parents=True, exist_ok=True); shutil.copy2(REPO / p, c3 / p)
 shutil.copytree(REPO / PACK, c3 / PACK)
 present = sorted(str(p.relative_to(c3)) for p in c3.rglob("*") if p.is_file() and not str(p).startswith(str(c3 / PACK)))
 b3 = run(c3, tmp / "out3", isolate=True)
-same = b1 == b2 == b3
+same = (b1 == b2 == b3) and int(n_attr_corrupt) == len(_attr)
 (out / "thresholds.json").write_bytes(b1)
-res = {"RD4_PASS": same, "sha256": [hashlib.sha256(b).hexdigest() for b in (b1, b2, b3)], "outcome_files_corrupted_in_run2": n_corrupt,
+res = {"RD4_PASS": same, "sha256": [hashlib.sha256(b).hexdigest() for b in (b1, b2, b3)], "outcome_files_corrupted_in_run2": n_corrupt, "attribution_files_found": len(_attr), "attribution_files_corrupted_in_run2": int(n_attr_corrupt),
        "isolated_run3_files_besides_pack": present, "isolated_run3_network": "disabled (unshare -rn)"}
 (out / "rd4_result.json").write_text(json.dumps(res, indent=1))
 shutil.rmtree(tmp)

@@ -1,0 +1,28 @@
+--- docs/REGIME_THRESHOLD_DERIVATION_PLAN_v0.3.1.md	2026-11-09 22:20:53.550506721 +0300
++++ docs/REGIME_THRESHOLD_DERIVATION_PLAN_v0.3.2.md	2026-11-09 22:34:29.169220456 +0300
+@@ -1,4 +1,6 @@
+-# Threshold derivation plan v0.3.1: entry + market-state thresholds, one run (DRAFT for review; NOTHING computed)
++# Threshold derivation plan v0.3.2: entry + market-state thresholds, one run (DRAFT for review; NOTHING computed)
++
++**v0.3.2 = v0.3.1 + one count correction** (v0.3.1 sha256 `0e3b6024…8708`): the derived values are **8**, not 9 (E2, E3, E4, E5, R1, R2, R3, R4). No statistic, population or order changed, and no threshold was added.
+ 
+ **v0.3.1 = v0.3 + two clarifications required by the reviewer** (v0.3 sha256 `2c816497…d8e8d`): candidate bars ≠ completed trades (§5), and what R3 actually keeps (§3). Nothing else changed.
+ 
+@@ -72,7 +74,7 @@
+ 
+ 
+ `thresholds.json`, holding:
+-- the 9 derived values (E2–E5, R1–R4);
++- the **8** derived values (E2, E3, E4, E5, R1, R2, R3, R4);
+ - for each: the population size, the deciles, and the share of the population each threshold keeps;
+ - the trend-run-length distribution (information only);
+ - the input and code hashes.
+@@ -92,7 +94,7 @@
+ 
+ ## 7. Decision requested
+ 
+-Approve v0.3.1: the populations (§2), the 9 statistics (§3), the stated conventions (§4) and the tests (§6). **Order after approval:**
++Approve v0.3.2: the populations (§2), the 8 derived values with their fixed statistics (§3), the stated conventions (§4) and the tests (§6). **Order after approval:**
+ 1. Code and tests are written, committed and **sent for review**.
+ 2. After that review: the **one** run.
+ 3. `thresholds.json` is frozen with its sha256.

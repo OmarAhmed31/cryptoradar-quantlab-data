@@ -85,7 +85,9 @@ for _ in range(400):
     for k, e in exp.items():
         g = float(ind[k].iat[t, j]); ok &= same(g, float(e), 1e-12); checked += 1
 def q_naive(x, p):
-    x = sorted(v for v in x if not math.isnan(v)); n = len(x); pos = (n - 1) * p; lo = int(math.floor(pos)); hi = min(lo + 1, n - 1)
+    x = sorted(v for v in x if not math.isnan(v)); n = len(x)
+    if n == 0: return float("nan")
+    pos = (n - 1) * p; lo = int(math.floor(pos)); hi = min(lo + 1, n - 1)
     return x[lo] + (x[hi] - x[lo]) * (pos - lo)
 U = FF.load_pack(pack)[1]
 uni = pd.read_csv(pack / "universe" / FF.SCEN["P1"])                        # independent of TH.allowed_mask
@@ -103,6 +105,21 @@ okq = same(T["E3_rvol_P75"], q_naive(ind["rvol"].values[(BO & ind["rvol"].notna(
       same(T["R3_bear_rvol_P90"], q_naive(ind["rvol"].values[(BO & ind["rvol"].notna()).values], .90))
 rec("RD5 independent recompute (synthetic): indicators on 400 sampled bars, populations H/BO, excluded coin removed, percentile formula",
     ok and okp and okq, f"{checked} indicator values")
+
+# RD3b R_high / R_low exclude bar t (behavioural, independent): on every bar that makes a new 168-bar high, the range
+# high known before the bar must be BELOW that bar's high and equal the max of the 168 prior highs; breakouts must exist.
+hv, rhv = Hi.values, ind["R_high"].values; lv, rlv = Lo.values, ind["R_low"].values
+n_new = n_bad = 0
+for j in range(hv.shape[1]):
+    for t in range(TH.W, hv.shape[0], 97):
+        prior = hv[t - TH.W:t, j]; pl = lv[t - TH.W:t, j]
+        if np.isnan(hv[t, j]) or np.isnan(prior).all(): continue
+        pm = np.nanmax(prior)
+        n_bad += int(not same(float(rhv[t, j]), float(pm))) + int(not same(float(rlv[t, j]), float(np.nanmin(pl))))
+        if hv[t, j] > pm:
+            n_new += 1; n_bad += int(not (rhv[t, j] < hv[t, j]))
+rec("RD3b R_high/R_low use only the 168 bars BEFORE t: on new-high bars R_high < high_t; breakout bars exist (BO not empty)",
+    n_bad == 0 and n_new > 0 and int(BO.values.sum()) > 0, f"{n_new} new-high bars checked, BO bars {int(BO.values.sum())}")
 
 # RD3 point-in-time indicators (synthetic): corrupt every bar >= t, indicators at t unchanged
 bad = 0
