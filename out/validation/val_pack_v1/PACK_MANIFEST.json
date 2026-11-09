@@ -1,0 +1,3846 @@
+{
+ "purpose": "Validation inputs (Plan v0.1.1): lookback from 2024-01-01, nothing closing after 2026-04-01",
+ "end": "2026-04-01 00:00:00+00:00",
+ "stop_condition_1": {
+  "ledger_latest_effective_utc": "2026-10-03 08:00",
+  "forced_exits_in_validation_window": 32,
+  "all_priced_gap_le_60": true
+ },
+ "files": {
+  "universe/eligibility_daily_P1.csv.gz": {
+   "sha256": "86f5049d8df7b04c5f407dd8ebe80a46cbfd664bacded99a78c1a8e2ec147c4a",
+   "rows": 231955,
+   "lines_on_or_after_end_skipped_unparsed": 73362,
+   "source_sha256": "1bbad60e87d977decbdaa16d923707e25eee1021e1e99d32cae31c5196eba10c"
+  },
+  "universe/eligibility_daily_S50k.csv.gz": {
+   "sha256": "d47b9080070bfdf9ac713a236df013596b3918380059e6412a55159d39ee7dcd",
+   "rows": 231955,
+   "lines_on_or_after_end_skipped_unparsed": 73362,
+   "source_sha256": "0946424b7976a542985f0a5422224f97b5053d3c2d97327e280c484dcbcbc8a8"
+  },
+  "universe/eligibility_daily_S250k.csv.gz": {
+   "sha256": "f7fe68da0ce3d5fee3ccb3ef46bbc1c53e516fd5c85fb3ec0014ad8dd00b1a14",
+   "rows": 231955,
+   "lines_on_or_after_end_skipped_unparsed": 73362,
+   "source_sha256": "482c681dea9b266c30957a83b3cd41016f1f077077a9f18d1abdb904af00835c"
+  },
+  "hourly/1INCH-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "3033a2957cee26de3d78f2c81859d212bf375838a9c603661208477e1415ef72",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "b00fd932b5d651e4da24b0e36794ffaf0cca45eff0956af4d1a7ac0285e798b4"
+  },
+  "hourly/2Z-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "0e9a27e062242ca04bb77946de4760d4f0ff32f33a7ca29f6ad68a89b5c1da50",
+   "rows": 3303,
+   "first_candle_utc": "2025-11-14 09:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "6c43c7ede56f9e35e0442b7103c24cd8f132733d5880e242022be1b402dd15fb"
+  },
+  "hourly/A-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "8aaddea94412689e8fdad8ce6e4259a4165dcf340e5a1fac0a18cd692bc73dae",
+   "rows": 7358,
+   "first_candle_utc": "2025-05-29 10:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "1bdc274aee00b2a9a5fe7e2c8a8e6205ae85ec13bbe6d33e6b884499e432134b"
+  },
+  "hourly/AAVE-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "d1e6cd59d4c7972d9f3599a68ae2581d302d56f9026050f7168685deaf56138a",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "19d8629b57d2ac443165cd08b3711c949d35646a48a401fc90501f93ebeef86d"
+  },
+  "hourly/ACE-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "0707c95e8aad87b8d0341c1d73afbc26dee26257d03cac66a419086ca8faed48",
+   "rows": 19703,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "55f3baabd8c2398502a39fec3f9dffba8d4b095407da9da23fbf7e386905bdc7"
+  },
+  "hourly/ACH-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "efc6520b862a673b9723e1b0bd3b301c67287cc2eb962deb4d38adbc10d12be0",
+   "rows": 19695,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "54e7c743a825921f81576e2d8147c3cadc8d9f4fab45aa18122f118c2a606816"
+  },
+  "hourly/ACT-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "7a1611aa38543f2262249e1ece5a90f657657c38dcff42458021a1af2e6ac783",
+   "rows": 12062,
+   "first_candle_utc": "2024-11-14 10:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "d97f770add7a18c07dcff6dd31d97b93067c6bfd4c438c21f2fa928b2a5831c4"
+  },
+  "hourly/ADA-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "6fc72f0decb8f35c45b9015a99bd08633f2fe223609800dbfa74e5691eae7789",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "7d7b79d1f22bdf524c18605e1fab492e3d7c5bc7c75511b2d76fcdecfc724672"
+  },
+  "hourly/AEVO-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "790d05b5c35c5bb45152cf8605251fe8a5a4995025538e0614c61e0e642f147e",
+   "rows": 17965,
+   "first_candle_utc": "2024-03-13 10:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "596010c75f44814fb20575e614528e47d2710465aa3ad50470e8ea6051672912"
+  },
+  "hourly/AGLD-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "ac29c20790acf7b09a1a56ca4f495a8a6381dc85e4cf7b8bf181382e015fc4df",
+   "rows": 19703,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "0aad9fb703cbda3a8c48b1247d1fa4577b66b3511e9aa06d453a652cc71854cb"
+  },
+  "hourly/AIDOGE-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "a561f557d6938a3d48f1abeaef19d43a7e6b939ada2b14235409d6df4ff59deb",
+   "rows": 15872,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-10-23 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "6ac23b2f2872a10db8f22871626846715f6e3fdb9cc3cc5777281e2a73d143e0"
+  },
+  "hourly/AIXBT-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "5350361a651de6c4f52855c161399b5ebfd454e04b62dd8dc4664d775640f839",
+   "rows": 10571,
+   "first_candle_utc": "2025-01-15 13:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "919e6db2aa2507f4ef75ca5d1ec9e37842850252cf38d54a0a649d2208546fff"
+  },
+  "hourly/AKITA-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "e5ea0188ea0bd6062c98f00e2fe0b2ea11c5272a269a66b5f9dcb6a5d9c04f8a",
+   "rows": 5809,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-08-30 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "741f1eb093466c91e12fc9b1644a9141a7e1d91aa1e5ba14bf1b0277b2866c6b"
+  },
+  "hourly/ALCX-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "48b37564ad98e55385ba335a6e8e30f588fcd5600af8acda17b791b2564fead3",
+   "rows": 12677,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-06-20 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "4283d8b25145d879d6d90fa41168eee511139cf0875ffe033706d9724f246ee8"
+  },
+  "hourly/ALGO-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "2bf2254a5a5e4897c2f9c85e31f3f92009df5c8cb3f7093d978f8a35bfef0893",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "45fbf839f64f2583c941d888e1fbb4cea00b29ce8b3e408f9511d9e909a7e1e5"
+  },
+  "hourly/ALLO-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "c56f56e679b6986f0e7deb1e5725018016b715d299ddeea5adcd848feff6e2b5",
+   "rows": 3371,
+   "first_candle_utc": "2025-11-11 13:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "cdeab1c4f79a321d5916ff8fc5035fa12fb5274d08c3d60059c2fbb819f77898"
+  },
+  "hourly/ALPHA-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "8990250c5b4be3d56564e1beaa7af25754464a0e1f9c1673c1826e34f25ece7e",
+   "rows": 15862,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-10-23 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "5407ebb9dc2a9b6cd8ac73fab96223c4ab1504d711fead0a70e39f250fd1e92b"
+  },
+  "hourly/ANIME-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "84fc2c2662d0e9d2342037aa3db63ea9349fd25d57fd0159e6342646e18f2d7b",
+   "rows": 10378,
+   "first_candle_utc": "2025-01-23 14:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "e4707b984d5f318d54ab6b6cc2b353fc968093708c379475915081336f185169"
+  },
+  "hourly/ANT-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "b638174cc0cd3d218578b7e5d833cd2fbe2199cc92d0a4dc6eaaab78f9111eaa",
+   "rows": 4651,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-07-16 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "f255c083a956e94fd3c2900ec30b7ce11569dacd0dd4dda5eb44abd695008b14"
+  },
+  "hourly/APE-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "59d8b24b91319d1eebb4830c43d3ea7b019777627d3a6a93ad701b78e0310790",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "139c70ae55d5ad56e3128cfb581efa5e0b46ea84262cf773ac9abf5b99a6b954"
+  },
+  "hourly/API3-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "cc7aea3f8f95e3c866b663d10b56e1de4b43e4cff253f53e6d2fc015510d0ad4",
+   "rows": 19703,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "de5154c308f8e2a8e4554596591b52ea0ff4b2e026a6f89a43da2a59f9f029ff"
+  },
+  "hourly/APM-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "0bd0fae9d75d8a507bc30177a47181ed4db01a67ac8284b7d73ef552208a070c",
+   "rows": 4871,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-07-23 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "83ec0966e7e4930178b03d5b33ccee1b5cb5a7a25e85010d3694213daf2681b3"
+  },
+  "hourly/APT-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "981712d160d2f4e2fc7d48fa1ae325a51d614f1be99c16d0e4128e266f957f44",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "e6f21216fa93fae5dfb28365af02b8471bbace01de09e41a92fd09fc3bef3de4"
+  },
+  "hourly/AR-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "44f20d2c564591d5d1b3f18d88fccd44cbbcb56bf199c6c8cca295d426918f24",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "725205c0d996b4d7cafbc4a25968561c63f232add59c4d33f39500a7114d6abc"
+  },
+  "hourly/ARB-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "110b8c9bf4770e29c13f756cc8e00ca9e48132d9d9a7a437cb4031d138175dda",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "c9896b0ae66b81d217720a8a756cdd3d271b1f93ecb048f1e932a2b22d9d3fda"
+  },
+  "hourly/ARG-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "c59969e95313272ff3cba56e11ac7ea15f541334cc0233f21cc5d0c740f337f7",
+   "rows": 19464,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "3f579bc5de691764d09659e4fb8d84dda5986b7b949c3396ba862b05174d95dc"
+  },
+  "hourly/ARKM-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "b43d89eac65b6d89d0f18d30067f3b50de12b32d48d4fc52b27c13464233e31b",
+   "rows": 14250,
+   "first_candle_utc": "2024-08-15 06:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "b664c2d720b1f076bcf035a1ee1af435cbee3ab221007e3c622838d5e64b8f9a"
+  },
+  "hourly/ARTY-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "2020638aa06d15ae3b496be56c7d44b5ab4d82e746c91fbadf7aa4acf773656a",
+   "rows": 12443,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-06-04 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "9f22dfa65b45f3ace6e734eefa29a42a0e707b30b2ce73e1a44dcbfc6abda9ad"
+  },
+  "hourly/ASP-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "42f1f106e50b0d266815d05893c647ef9f5212258a8a5db79edd3934445fd558",
+   "rows": 5979,
+   "first_candle_utc": "2025-07-24 12:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "ad2d16cc978cdb508c2553a7894aa0a6444f9ae63dc9a8744f8c06a4b66eb959"
+  },
+  "hourly/AST-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "3a31388ceec1d93f7421dc1c7e8356aa5568a0524174558fb69e809f95bda3c7",
+   "rows": 6745,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-10-24 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "08120f65be9199d6f0311911d0f1fe340bd265d263a9bbc752d03d44235dde46"
+  },
+  "hourly/ASTER-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "74f264397fdd98d634a6c37d2639529d853710caedf89d615c14269f9b18f651",
+   "rows": 3978,
+   "first_candle_utc": "2025-10-17 06:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "255e5fe857d8662dc612d03e002f429426940669cf4a6cc373085f18214dbcba"
+  },
+  "hourly/ASTR-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "9843e6105a3b455cd7c13000afaa3f5818a71fa69a1c64bcfe931d8084d2a711",
+   "rows": 19654,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "f88f1d080bed464c2dcbe1aa6fdc1f82b536bf17a37cffbcc6a43a16a4c37572"
+  },
+  "hourly/ATH-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "53327deda25c0e8f1169449ff8aeca44c7f8dfde351f2c6779eabebe944205bc",
+   "rows": 15782,
+   "first_candle_utc": "2024-06-12 10:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "c69a31b92c8da8b924db9b89a7c7f45daa2a8126059381f9be63b45f40158d38"
+  },
+  "hourly/ATOM-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "ab476f82db57b9de99e029097ece5cd9affd651362ad36e0f5081ca95c41fffd",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "c1ca762adb381d2557391aa6ce6645da203c5e3a1abb12f481a2645de7f0801c"
+  },
+  "hourly/AUCTION-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "4e538a3d00ec5ffffec422f990b1051dda7b2b121144dbed8ec06f7f9b639b4f",
+   "rows": 19699,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "dff1855e3671e43a0a21c0f0591d507b9bae99480aa7d20440a7b02cc29b07a0"
+  },
+  "hourly/AVAX-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "037e0c04f5c7d11329634ed3c8bdeee8c1656cf87ea83991962fd560124c4bd4",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "a89b35ef123806d0db7203dff7503ed23d78f0cd80e74c812f69368259bea739"
+  },
+  "hourly/AVIVE-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "78dbbffb38c8f4ffb6377360d64afa504cfe06ccb91458f19334c64f63bf2339",
+   "rows": 7472,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-11-07 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "530610297415011bde58fc6e753f66d2294fe76249e29e87e2f3094973a6837a"
+  },
+  "hourly/AVNT-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "c7798e0096140aa810f4a166401e57846a72ca8c9a9dd3d577e357a41dc7ce3d",
+   "rows": 4211,
+   "first_candle_utc": "2025-10-07 13:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "a058d17b555c8716e48ccdd05fc7a35f9f1295390ce3b8db9414ec2e296a731f"
+  },
+  "hourly/AXS-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "b235990a9bb7912c3421eeca3f2631ddd54bf49d54b01f17470f8c0dd7b70319",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "c52a48c38960b396bb1b972f151de378f4752d68a9cf48b0883b50292e1c7a45"
+  },
+  "hourly/AZY-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "ae882137ae988b97e7c274f094bb439eedd7027c026e5f98227b2e25751e4898",
+   "rows": 4716,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-07-16 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "8a0d9671c8ab27383ea27c54aa79bde4b0e3fae453d7663434e084eabce2da96"
+  },
+  "hourly/BABY-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "ec6d81728e7e2477a74a02c28a386c24fff5b4d7d81a161552414b64e88af10d",
+   "rows": 8532,
+   "first_candle_utc": "2025-04-10 10:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "1fa73c80c52c85da484725996ff2d6d51896e6ccce4b176ce88c90de5389c598"
+  },
+  "hourly/BABYDOGE-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "00bef8f2919ad19e9b650b3ab1c2a35ed289014ed5e9c65fc75978310d82117d",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "8b11de55366f5a4ce698f6fbbc50e9048a635cd1539c711ad1aa9193a6a3c747"
+  },
+  "hourly/BADGER-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "7faf2843ac02f949ca2e073b610d065d9dc33e1d636869422b56e4fed72d24d6",
+   "rows": 15872,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-10-23 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "d35aadfc4ca11b227d79576799cc8a6b1d7b8ee46e2e39646d29cf25aca7064a"
+  },
+  "hourly/BAL-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "4f94b90ca2bbe77be0600af25aa6bd6cc37ef7b3cf03085abce8796d0d757cb0",
+   "rows": 16460,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-11-22 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "9d25471bab1a78cf878e75a033deb1b6f9337e008ad978d52f2c6916a23445aa"
+  },
+  "hourly/BANANA-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "a38ce714984c44071f4532d5785cec0d1267a8f81de9c37d726ca80476952a95",
+   "rows": 12657,
+   "first_candle_utc": "2024-10-18 10:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "6ce6a470657922214d3ed5acb14dfb631d894ffe81a02d0ef61bdca63d7b6cb5"
+  },
+  "hourly/BAND-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "63798127bc157b4c99110e2884c1b97024fc97409a24f55cb53b5b2ed6b3deed",
+   "rows": 19570,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 22:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "a52eb48889fec495b1b11cd1aa99a6507912381878be7837d3b928f80e9cc2e8"
+  },
+  "hourly/BARD-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "afe3b4df075a548a7e86eb8bcc949625e0814bb831b9f10dd44b8badbbb6a8d8",
+   "rows": 4669,
+   "first_candle_utc": "2025-09-18 11:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "bd4f833a29a461553a6b032411e3b73ac2dfa9abaa8f9a50a70df38d3d7a0660"
+  },
+  "hourly/BASED-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "1db214ee083fa0b63aca9f988937ae241bb5a5feecf1a6e2f6c25da90b9f097d",
+   "rows": 38,
+   "first_candle_utc": "2026-03-30 10:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "b2a8576c39fdcfcc7575acce2dcab610a57d9e6b0501a93422a154bac34a9dff"
+  },
+  "hourly/BAT-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "4e7c0c389d63639ad583e0940b1b79f1baa466fe8fad5f28825f906e1ec0efcb",
+   "rows": 19698,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "861faf04d02c4bcc97e8557d31c96728394dda47ad5c7362dfc2ae47f2f0597f"
+  },
+  "hourly/BCH-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "66eb567bdc21481efe9fb23f3dacff6892a45986983ec144e622b2a68a257d03",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "b36015d6aa84051a2a7fe73ca69d4097e98d1d2f2819c7715eacaf3b714da81e"
+  },
+  "hourly/BERA-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "79adb0e2e3d90e40681a7e1cbbf6ab201e9989750f90cdc83d12ca74696a86df",
+   "rows": 10043,
+   "first_candle_utc": "2025-02-06 13:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "8516b7634dc1104eaaa29585c237f2a12110a923d5e1f39e6a62aee24c21c05f"
+  },
+  "hourly/BETH-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "d781ed16f8195d21a098b05719e098d918e770bf76a6eeb5883332f3ed0d81fb",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "b76e8b68800da53d0688c3d0b57d4106089bc76c4c7641ca8007beef8453d2b2"
+  },
+  "hourly/BICO-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "541f38a56826193449a109f35cc10aba8374a49b5b51db07351e0a2c4458bb11",
+   "rows": 19690,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "4f148216a10828bb6b483e993ce50adec8e97c9c7653f26c7829cc2df56b72b3"
+  },
+  "hourly/BIGTIME-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "1d28f8a390cd052587d455d571de885631f3006482d6ab618ab87e3c373c2fc8",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "fd7f1604191c07a76f7fa0857382a6bf053814995d6ab64d62bc894b28a1dbd6"
+  },
+  "hourly/BIO-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "72401bed80f0e15624a50a5dbd8b44dc58d173255e81e737e15a971546f476e3",
+   "rows": 10862,
+   "first_candle_utc": "2025-01-03 10:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "5cce7ca84f8a5927ac1438e469644a83998e24024c714760e8bc255576360317"
+  },
+  "hourly/BLOCK-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "e87c5a3ae6123f7bf6de446a41bc1ac7501ff8c8de17494eb9018beef1e801d5",
+   "rows": 4698,
+   "first_candle_utc": "2024-04-11 12:00",
+   "last_candle_utc": "2024-10-24 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "5d4d7922569ea2aa90ee8f446771ad8c504c3adc0cd577b06189558295be2713"
+  },
+  "hourly/BLOK-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "1b9142a913ef00107227e3f2715d5da261e3d2b98b5d79aa9840741c0ac1db01",
+   "rows": 5614,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-08-23 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "6d57bbe46c0edda8c7741a0217b6a487211e95be943d22aedf4b0a3665ba7b6b"
+  },
+  "hourly/BLUR-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "d8610fd9c07252042f3956ef5d3cf7280cfec82dc8e5ca7f13b0e58c608ff1c5",
+   "rows": 19696,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "e36431a510d5b3c04d9bd4cdf733700608dbf97a6dfc6a7c7d0ffe3b8becafb8"
+  },
+  "hourly/BNB-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "7de04d9dc55d0b848db5d04d31402ce78e4d4080c64cd725736c6b4ed1b27f64",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "34aa999967e2cf387818a3a6ee0933849a70ea349d52463329e7a21628a04b9f"
+  },
+  "hourly/BNT-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "fd2b0a44ab1629cf982c1457358a8baad70fda1b0bc70ee544f22ad0f220e536",
+   "rows": 18424,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "8fdc825b3f9510ca5494e84bdcb13610f980e07deffedc954304d21364d9c53a"
+  },
+  "hourly/BOME-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "a25efb3e27b68f16fc600f10149e1cef2907cd9e36b286f7f399f777cb2fbc4a",
+   "rows": 14245,
+   "first_candle_utc": "2024-08-15 10:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "0e6144d8828b8b3f1c2e751c66348dfce82276b894fdd004b232a4158deceded"
+  },
+  "hourly/BONE-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "fefca670f92e8a17af3eb190d073ccb00d7793e63a732ba193d3ac3f35304a6d",
+   "rows": 13276,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-07-07 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "95690a4a864ed4ae96fc0c7d85ea8d2ab791662c3f2dd56c5afe6c366afaf9ce"
+  },
+  "hourly/BONK-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "84b3304cee0eeab628ba941ca4a3358e50d0d327b14d962c96bf4909118f0d02",
+   "rows": 19530,
+   "first_candle_utc": "2024-01-08 06:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "a63103c7cc999058df1a271fecbe626e68654fbebc92273710efe8a4d8b3f8f0"
+  },
+  "hourly/BORA-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "70ca3d717336fafc7d9d59f0df0000d816ec8538a30024b8c3ad4157de9ec1b9",
+   "rows": 12272,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-06-20 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "9cf03597c9271aaa9301d05ae9f61e16440831ad8523252326e1590f83578b11"
+  },
+  "hourly/BORING-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "d837bb16f3028061395e6ffd3e6e82f3c4c8be6659217e6f8b7cefd372124349",
+   "rows": 7462,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-11-07 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "79b0fb13c34e94d27d79a410e51c4fdf85946fa09b52cfdb1cb3dae786bc7eb2"
+  },
+  "hourly/BREV-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "10331079ec496d5db06a427163dbde03f0b3259821c0f73ecbdb2707fb9192fa",
+   "rows": 2026,
+   "first_candle_utc": "2026-01-06 14:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "d442725ce783060c666b2ff98cdfbfd949814d17e30081258900cf746bf907ae"
+  },
+  "hourly/BRL1-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "e2da793b3802cfd3dc9c855047fb86bbb6fded4fe119c40477eef5f5baa02517",
+   "rows": 1147,
+   "first_candle_utc": "2025-12-26 11:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "495098be79c61fee302b41d1115074ff279a5a9240fd286f017453817f0fade3"
+  },
+  "hourly/BRWL-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "5f55c8f4e58ee11189886dcfebdbec6d38d407fa2a38c520abb88008c4323d85",
+   "rows": 5618,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-08-23 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "153b911bb3ecf7085987f79ab0f53713dfa6c8789e3015fcfb8597194f190da4"
+  },
+  "hourly/BSV-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "c4eac1dbd12c6d9350e13a830e5d820f14c39946ea27040c831847ac1071c3af",
+   "rows": 13280,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-07-07 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "dc0baaf424092378b1b478dbbbcffef0a8d7baa854e099d0e1082de5c1b3d70e"
+  },
+  "hourly/BTC-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "007c351ae514fe81199ee926a8d2e31f30b48dbc2d3f4f80177854bc705f0e1e",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "65630023daa830c0909225e4aa43c0f9c1b974f23b1d1195726fbda8e4554303"
+  },
+  "hourly/BZZ-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "ce74c3f1f386c94dc119fe8c57b0258db565938fbb57c09b87b1c91909096c63",
+   "rows": 10589,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-03-20 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "85f584cb1c47f737f87a44a1f9da0d7e23aaf7e76f925f2a7576fe7ce302159e"
+  },
+  "hourly/CAPO-USDT.csv.gz": {
+   "group": "delisted_jan2024",
+   "sha256": "c39a814158c7755019db820c05fdadaa3585e3922a1195a484bb2aea3a51ccc8",
+   "rows": 272,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-01-12 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "e652c7e3aa3771d9fa5508066fd900bf99a103180afe32c3e2ef0c15cc236537"
+  },
+  "hourly/CAT-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "bae90a1dbf6cd7771042027dabd8df74de82edee4bb5771e0011598c7198030a",
+   "rows": 12532,
+   "first_candle_utc": "2024-10-25 11:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "8f0b9f3553a52629c464e0b90353e41da5eebc164dc4bd9b54c123de15d15f29"
+  },
+  "hourly/CATI-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "08105af03fba61abadd159515fb108c8a46e393bbf059ec7e5862c94c7daf927",
+   "rows": 13369,
+   "first_candle_utc": "2024-09-20 10:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "ab4760f9336da2510081b1ab3eb757b9fe6bf3ea4fe6005cdb241a223653a8fb"
+  },
+  "hourly/CC-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "5ab0492c53c941a7afb43792d6d1d0aa81d0ce52858f8dbf0f655eb4a1a734a0",
+   "rows": 1142,
+   "first_candle_utc": "2026-02-12 10:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "3855caf4c43d563d3ff5e64f72326bd55843ee402f5101b5f894f86fae3f294c"
+  },
+  "hourly/CEEK-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "acc2ba12ad33a653e7bf4b4715d22383466fbad8ce1bb17978d08d86ee762e7d",
+   "rows": 7415,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-11-07 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "8cb71ed760ea56242d3a6f6385729f6d7beb7e40a98fb70419d6ec37e6b48291"
+  },
+  "hourly/CEL-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "f3e32a33a907f0d4604392e8ddc52e13af6c84546d8b86bba9caa4ea58e8d87d",
+   "rows": 4904,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-07-23 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "190f9b653989159ab299854cb5d7f7d32563be0e810bf0e3328401fdf0cac630"
+  },
+  "hourly/CELO-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "85a63d81d2099e63726cbaf49b38278b095b29fca55dc2eaed61d497b5e4c89e",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "af318b66dd4c3846579192e8d8190cfa35b32f3763b731117dcbe9a55a80ac5c"
+  },
+  "hourly/CELR-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "c0625c7e0e3b32f4345d21147ca6defb3c07a7514616a055015603de19f900ce",
+   "rows": 19028,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "2b6f6b803d2584032c1207723946863d81e62e1fd5a6cce5265130136fc47914"
+  },
+  "hourly/CETUS-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "e916fa3c93c9a38602eef70538cf64511b64b739e2f332c9a519d68e6b0c7eb4",
+   "rows": 19699,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "a294ffd2ff2957915c83d6aae4b1768019aefb21418e231d5a5d670961108be0"
+  },
+  "hourly/CFG-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "144e2a6c4b6096718b23ef5041d1078caf8f183218b987df64915b10d0284961",
+   "rows": 19678,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "c95dbc3783e39567b84baa75b615479313ec9e9dbdb6e0e62e394ffad1dc2a0f"
+  },
+  "hourly/CFX-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "96e5938e75185d95f39d7cbfd8537530dbc97e435bd6a99607bd6f2461b37ef1",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "f991f39c1627a046002eca329ad57d4498b02885d198e13c9a26997689b637e3"
+  },
+  "hourly/CGL-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "8a934272c71c8c92b31ef85f4cb396da31a79360290bd3cf0afbc57412c97828",
+   "rows": 3940,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-06-14 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "4019e17dc0e4d3b3b0aa71f9d5dba15e485941e814fecff030e67b7f1b941f8c"
+  },
+  "hourly/CHZ-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "246e3a1747cf5c097bd557c39b38cb2dbf58e976b5ee152c32806adb85fb49b6",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "dc586b724fd8896c0fdb73228da30c97ce54f9973d4ef80dddb387e0eaad2eeb"
+  },
+  "hourly/CITY-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "a55d2af3a884b1b55fca0e699926369d17a3292d3a0f6bed2cf7d9e50120bcb5",
+   "rows": 18560,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "9a92cf94c68493e40ed5e8e7327ecdafbffc8ff13306e60be14a06c0d66334ce"
+  },
+  "hourly/COMP-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "7daa917dbd622621cd0ba354dec37451d22d7b6ddd549b41e1e3080f15bc69a9",
+   "rows": 19703,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "c24b752a229733bc32cc3a115fd93afe64fd298868926acde0d746f012fe0087"
+  },
+  "hourly/CONV-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "b37ee95d3fb883b2a8e31a9de2deebdf62294a3c121851d9b714b08220232158",
+   "rows": 5644,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-08-23 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "43f52b45c77769b8aebc355fd9a18c27a60d365b01bc1777b87e9e5e159b60c0"
+  },
+  "hourly/CORE-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "73c196293883ca083d76c84eb26ff4031bbb8d8a4d0fee0e4ea5246a1197204b",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "df53c0e74b3276efb2b73f596218deafee1accd7f1c7123634f0fc305b327d38"
+  },
+  "hourly/CRO-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "9708a26f8b32e6e83eaf72f23325914648c96ba39bb0f069dbc9e5ed797dfacd",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "f9e0d6505cc7c0baa19199848919d6824c6e96f1adc286b590e135ca091443d2"
+  },
+  "hourly/CRV-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "534373b8723cef7ac50dec25bea51b2f83e5301e13e0cdf9901deefc1de537f9",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "7d359532b2779bb7ae177c2012894211ba93429da4f36a972aaabfeb93d05db6"
+  },
+  "hourly/CSPR-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "5f2fe59c97e579730c615f0638edbbc7ad38e58403f00cac91b16ef62ba88c64",
+   "rows": 19702,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "eb401e64cc55e5fa643aae347b0ff8d4ce445d502a214b0fcf2aa0f151b4e5bf"
+  },
+  "hourly/CTC-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "66e2bfc4299d3d8035aa6c77856db937467b9a6a635e4e0d854838d8ebbf1231",
+   "rows": 19703,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "07677812b4162312d11bb816c27d95195b501a2d823e13845eb269eab8871923"
+  },
+  "hourly/CTXC-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "4d2b6e4d80f038598164095168f876a77a34f8bb9cf8c0e45e49438b49007858",
+   "rows": 12867,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-06-20 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "6f2e9c14d8a5307bb7643ab918e4841b0fc13ac3e76ced9dd0b73aabc7e3477d"
+  },
+  "hourly/CVC-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "d1873ea8eb33e39c1221ce21ead49e239a4d80b14c7b3b5f89d70681177e24f9",
+   "rows": 19668,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "796e7a6e4443f20f149a5d62542176aa1db361c705be0cc801e703dea9b3b9af"
+  },
+  "hourly/CVP-USDT.csv.gz": {
+   "group": "delisted_jan2024",
+   "sha256": "3cd30b464971d178e792c9112e741f123c7c180cfd654d5e6a76be05e71dcc3f",
+   "rows": 272,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-01-12 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "906c2432005121d9ee7b6237da52eeec6e2ae7e370cca05d3f4d1c0564d78c38"
+  },
+  "hourly/CVX-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "3a56ad8cd3fe38e0b2bf56b473f4f41117843a9957825461a4c962b1285d2e59",
+   "rows": 19649,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "57ec6e8ac3581ff22214697575e6057beb088b698f5862b9c0967d6cb7f557bb"
+  },
+  "hourly/CXT-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "4ac5c9761f35c2f457694a6a545363405e167919e10ee90d6bd9fcad306247b7",
+   "rows": 13526,
+   "first_candle_utc": "2024-07-15 08:00",
+   "last_candle_utc": "2026-01-30 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "952460b36683de5559d82e93cb46e021991bed9889bdc29bc33d2a479d686954"
+  },
+  "hourly/DAO-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "53c1de51ce55c23182e8936d3d9eb068f0253c2a22c1ab43e4f32eff59d3714b",
+   "rows": 18046,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-01-30 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "daa185a5b81e0c015348d2d5f92d2d4a873fc8cd1da45eb7cc9d15b418da8a69"
+  },
+  "hourly/DASH-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "eb8d9d556e13c665f3d50972c9f497dd9c42df293b7d6d154037bd0dcbee7062",
+   "rows": 3012,
+   "first_candle_utc": "2025-11-26 12:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "787ba227ad392b099419417a47e50c8032435ec434399e40858ab22d7b145f72"
+  },
+  "hourly/DASH-USDT#old_listing.csv.gz": {
+   "group": "delisted_jan2024",
+   "sha256": "2636aec28d5e4eddda5c52babaa82ef506f1ca00882f502bed2a2767124188e3",
+   "rows": 104,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-01-05 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "c6f70a42df0e2ea8c66f5f1b68bb88a1677c1b02b7c770e6ba003ae1c75a0749"
+  },
+  "hourly/DCR-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "f53b867cf4cc6d0ca083e228a69812bb3b9d7c3fb19f72bb691afd5d2d40532f",
+   "rows": 4802,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-07-23 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "5e4264c2f50ece2e69029aa6829bb7dde8055a6c2bbf76aa0b0f4961760d4e44"
+  },
+  "hourly/DEGEN-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "c09415fb2cfea848c6610e313e328de6a308edfa442bc2e5cc357c4a3ac14aca",
+   "rows": 14790,
+   "first_candle_utc": "2024-07-23 09:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "978d1eec072dcb2468d1b5c3f8c7f35a75940f4e060a198ea9e6b4e99772b537"
+  },
+  "hourly/DEP-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "ce1bbe8048f9ccf3d86b3267faf750dacecf5b91b776c5a8db3928ee513927ff",
+   "rows": 16531,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-11-22 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "23c64770a20fcc5da0476e43b23caf939caff41c8a3da6c9d4a7c755e72e9911"
+  },
+  "hourly/DGB-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "7403bf45a62d2a6c1414ce826d240b966bd3add6a5b6ddf0ba308474e82acafe",
+   "rows": 19628,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "3cfb3db962a2db783ca95816ddb97e054d3209a884e887088809f6e288830dd8"
+  },
+  "hourly/DIA-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "6b9c15980e1df55ac4b408d8af621c24dfb6724227453780d735b29e0f084fd2",
+   "rows": 12918,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-07-07 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "34afb9e4554936a47a13acc7950d434357b958eb19613c6d6fab970b88892071"
+  },
+  "hourly/DOGE-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "f03fa162f18685ca22a2ed2b52ccd0902d8d28ce88f8cc1e89fc7e9f9464e7ac",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "0b3f18b6d219000716c24838a231eb31d12f14c0d6ee2a8606a5936e8cb5fd73"
+  },
+  "hourly/DOGS-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "faa55534b2e114a7d9fb69cb61c9079097c56ddb59ed00f30c114c573e855680",
+   "rows": 13980,
+   "first_candle_utc": "2024-08-26 12:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "bd8d247716e2be6f5a8e520f2371e059ace026b263c46688ea961063598b6231"
+  },
+  "hourly/DOME-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "45fefbb839c8036cf118f9c2769e144cfd02dcac6cb0ee8dab874ceb9044d4e9",
+   "rows": 272,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-01-12 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "a3450dc07c6b14fed245054f878468d0cd5ee3d96fdec7444f5a517fe4434969"
+  },
+  "hourly/DOOD-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "8a8f59ff7127e3fb67b32fc477d24f867478054ba1c29e38a4c9deeba6cd05d6",
+   "rows": 3973,
+   "first_candle_utc": "2025-10-17 11:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "9ce45f66fc30477ffc0a3da2aa24b76e569772c279a5b1b4b91fbdf5e5425d39"
+  },
+  "hourly/DORA-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "bf63a3f1399294621dd06712c6e7ca4a2ee7869d18a1e0ea3d4581dd554b3e77",
+   "rows": 19466,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "37ddccaec670bb8202b6c636065a60efed9e0b47f93f9cb69c3061f7b2d6bc8d"
+  },
+  "hourly/DOSE-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "2c78910553f4590c52094a8cf7587cc4459620349b851c0efda57af72eee5701",
+   "rows": 4735,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-07-16 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "bef6c0e2d769e3c4234cc93766f8febb1b815605f790f47422208c398db4b370"
+  },
+  "hourly/DOT-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "fa73599ea49d8d2eed505aaad09c06e2a7fb7a993ce00054e0be58203bac19a4",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "7653f1f97ec86beaf728e97d7478d79b11bf1d7029e22118f10be3fedc2de297"
+  },
+  "hourly/DUCK-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "e886b8394158cb9ea7ed57689ceef2efa00ce5fa92c89742572ecfa813aa9a51",
+   "rows": 10543,
+   "first_candle_utc": "2025-01-16 10:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "295429592ec9b0de388a76e3dfd940fdb2c6267ccea5d0e35d0a1835059b406e"
+  },
+  "hourly/DYDX-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "305d4832df8903ae829add99aca2713308062c8a99d745f4d653299f9454e0cd",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "caf185e8abd2979b9df40b299c46ad925445f93ab1cc692f3376a81397c7eee0"
+  },
+  "hourly/EGLD-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "311a0b7af84e0ab7f8b056abce12209fcc721d9e4053ed99a65128ac226a194f",
+   "rows": 19699,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "58228c1a984b0a7909811e5075b24664b43099a406faf4063345d11ffdc1a442"
+  },
+  "hourly/EIGEN-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "aea470c7c92899e04a3e8a1ea630746a79ea00f952545220afe89e2037f093aa",
+   "rows": 13122,
+   "first_candle_utc": "2024-10-01 06:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "2efa189768bc7062d39db66e36601350cef903112d7ec3bfb59b7fcbab69337c"
+  },
+  "hourly/ELF-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "3ff96b6cf7f6c740f475a5db2c0d1d47b59c9ff01fdca9bf4f83e7c640bf5f9e",
+   "rows": 19446,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "37b0baa4e9eec28e761363ccff573d32308b83d3fbacbe1f45f426baaea5a58c"
+  },
+  "hourly/ELON-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "a7e869c2fc438e5eb1098717cb650bef94a92bee0729f925643b9c244ee2eab5",
+   "rows": 18244,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-01-30 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "af807bda9ed11b2332649624447504597eb182d339f0c8dc81ae8db5214cc468"
+  },
+  "hourly/EM-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "5cdb2487988b56abd6aa6e47fb3ae880c30403b70afe4725daebc605cf86a6f5",
+   "rows": 3536,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-05-27 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "3fc999972feb240fdee1a0249f83a9c2e08e150f419e488c5b7cf8f81fc54c19"
+  },
+  "hourly/ENA-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "0c1febd59f1f1709001b58e12f5652eb19fbb82234f0b89cdd971251ac3b084c",
+   "rows": 4697,
+   "first_candle_utc": "2025-09-17 07:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "7375c58af58cf48d9a59d2049ff36c86ac3b6c7dd40f2f937a11348a29474215"
+  },
+  "hourly/ENJ-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "12d6e9b80749fa14059593abccfb92cc5ae076fa0ce878747267be228d4090c1",
+   "rows": 19689,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "d8de665f835ead4608cf94ee6780e9ae6902e454031f4fd3d12023b206284e0c"
+  },
+  "hourly/ENS-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "b78ca323d7711c7c9599ff82bb80a112e745ba7f7807410c0b3a1a99d3092f3c",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "429eddf5faef99f7fb40e8e87c34f2969234cb3e7d3247454f5493ce78e700b3"
+  },
+  "hourly/ETC-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "4f38da5ebcd7d0863b57d3dc818dba095de00a5866348689d5fc796c05d5cdfc",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "147a28c59ff741bf262595b1f7392de0ad3acd5958651e42906e863c946f2dba"
+  },
+  "hourly/ETH-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "0074d8a51ba48bad9b4cfd9df807ab979a7d2b3f53717a924bf81952f38ea83a",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "d75bf49d29481b58ad8e71380144f74a691702a001051936ee382a1fe695fbc7"
+  },
+  "hourly/ETHFI-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "d4539e5390f17ed9cda0159d4b3eb3f207133b6e2a17693d48b00e166588dde4",
+   "rows": 17844,
+   "first_candle_utc": "2024-03-18 12:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "44f375b8f6f82b19965f8293f109e59f4537b5eb1377b7531cd0f5c37a588d02"
+  },
+  "hourly/ETHW-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "9bc6197c757d5ae13043e03451ef2cb905a38bb723e0b349d4eac0f99b212c6c",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "d328d4b06d094371eb196c65540d45f124797ca05a7284c4a81c4163a557ec27"
+  },
+  "hourly/EURT-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "72fe11e0fd8656444e55ea3379412319dd993bfcce494c28545e589662338066",
+   "rows": 4332,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-08-09 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "c8b60cc1e744abedd6fc248228eaea18d1505c16cdbbecc456ccce8cac849ce2"
+  },
+  "hourly/FAME-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "af9f767d26b97ea678f1a9a7aa97cf037ec21767cc6d951af073f50d4a2f0fdf",
+   "rows": 272,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-01-12 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "f32a11461cb43e49330f4c1251bbdf8763ab007e4ff4584a28cf792d33acbdd2"
+  },
+  "hourly/FET-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "53362c770f2301f177884731c3e8c7ba42497594d00aa3687f6d621f24d9e7b8",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "d3b4426e183621b4722bf90bc8c8a8583e4c7b609c9b7423e404c897173be4e6"
+  },
+  "hourly/FIL-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "efef4d80ff5295facc95bf7bc93d55d0a868ae904eb5fc903205c4125d11ebbb",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "ac22b11103eccde773b90e97a0f173c5a86b96ff292e72487f78e975a02aebd5"
+  },
+  "hourly/FITFI-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "e3c96bdc185d2ce4611ec89c0f5d5417dd6c8967dba5f83a845da19e89afc9d0",
+   "rows": 5816,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-08-30 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "f050d4ab5780a9559674595172a2d25b39b8932042db1b2e2c02169461af4338"
+  },
+  "hourly/FLM-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "8da5b2c76af7499fe1143a3f1dc96b98f5ccc5b7240b5eeec7c46f2867a93a87",
+   "rows": 16583,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-11-22 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "ff955972e66334fc400de7c33d6c9ab993bcf60a694920c7cebfc1ce76fa8130"
+  },
+  "hourly/FLOKI-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "ce409a96ee52eb30c9cb7b07ca02d692d9dcaa9fd24adea2f62edeb0e061f11e",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "caaf973ef5c60df17cf792bb4027f51e038d8c89f7f1e4f3620f28a5291e282f"
+  },
+  "hourly/FLOW-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "bec37e9db253896da9bbaccf926112b3f1b504508c13a8e74c96154f78c04175",
+   "rows": 19696,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "7b3144d58151fee54d0782d405189b4ef20b6062556f824006bc63412cb59434"
+  },
+  "hourly/FLR-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "96946362a2f4cea831529724a67ae6806142185ae6368aa9bab66f3eee9b626c",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "52be39c37e2e1d1ec0c13af5ee7ef123b90d5e5c60ebc4a265d9aff867cefb18"
+  },
+  "hourly/FLUID-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "ba80bb2344eada34e5a7017b64da054eebc8cd7b8f0deb6141e78e54a281d6aa",
+   "rows": 8855,
+   "first_candle_utc": "2025-03-27 10:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "5121ebaeb8cac5a1ec068e08d65a7d1d190a8f5c483d73c51c7bb9b50e654763"
+  },
+  "hourly/FOGO-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "d42b979cf007e95e268a9a5b9ca492bc9bb50295eca2df719065c2bf625d4f04",
+   "rows": 1810,
+   "first_candle_utc": "2026-01-15 14:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "402e794be0112fccb9d71fbce5d827e8c01fb7126ea0ae1a99f1e9eed9ccd37b"
+  },
+  "hourly/FORTH-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "cf5630cb41e5cf2764c7ef9c3c8f4ae6624bc2a9d71435d4ae83695594ef824d",
+   "rows": 15259,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-09-29 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "3b755d8812a5a730261a4c4a43f052464ed926948a7a7f0b455d468633dd088c"
+  },
+  "hourly/FRONT-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "34d2e9889538d5baff1dc9b16073bfedae48e0785b8f3df481abcb46a95a57ff",
+   "rows": 6146,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-09-13 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "6d01cd3f290a036fce82d6e9cda52ad9ce1bf060af286157f4764cc549b76bc6"
+  },
+  "hourly/FSN-USDT.csv.gz": {
+   "group": "delisted_jan2024",
+   "sha256": "07609756895d3796c386432ffd6ad3ee2b251b730453823f0a801a29bb9e4a0b",
+   "rows": 265,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-01-12 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "c6fce11226561162195a7dec003bbdbc35e9c11e676d4818ec50ab1b0dc2ba35"
+  },
+  "hourly/G-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "7f83fc72ff0c04803eec3aedac5644e95f9c0b89e9c911705b49577205183ba8",
+   "rows": 14600,
+   "first_candle_utc": "2024-07-26 06:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "d0ad46e64d67335f156302bd419153592cf2b085651426ca6c791731f1bebb97"
+  },
+  "hourly/GALA-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "8206b72073b2cb4010d82768c19a54f16296d8ef01c5428a07b265a700e8f3db",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "0a72310dbfd715ba934c6398279258e13220cfc81c4f29bc93f5574858111c06"
+  },
+  "hourly/GALFT-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "0a9eeb45104a1d8d792e2e3d9db80a63f30b1fb46e13fd3dca11c6f34856ff92",
+   "rows": 18173,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "368773e58d3319dbb8070eb3227353de60fa514dcd96395b3dc85a46a387cf6f"
+  },
+  "hourly/GARI-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "d127d7ef73cb057316417eb951b39b6a9cfcd26ff15975143a6681cf7ac4e3b9",
+   "rows": 5801,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-08-30 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "0cdcd0888ebd55c860cd31f4e0bd5bba8fb66dda6c1a107567eada16d5a1b72d"
+  },
+  "hourly/GAS-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "7dcf2b62d77a9f3482bc5fe0681ad3c3cf8c211304b39fb83f2b3332eb3aa76a",
+   "rows": 19694,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "0a5a18c0a186af4863ac605299df5b310ddd3c948bb340528f73f57174cd67e5"
+  },
+  "hourly/GEAR-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "c27b960f0d50e74d10deb4f79a52d2e5b863fe3af728b79861ba5e8ec8d85295",
+   "rows": 18071,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-01-30 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "36224626eecf333c72861032b8b82b4ae36663e6e3361ae198622513ded7b25f"
+  },
+  "hourly/GFT-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "7c5771a8f8181a6c175c9441af148e9016d62c4a079ee9a8402b50188d1b2e89",
+   "rows": 8097,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-12-03 08:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "deac0759dc1e5d62ca33cedf1c5aff546eecf7d32feb937cf9b15691b6c42fac"
+  },
+  "hourly/GHST-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "941a70b813f8f1afcb536be59c725a58a4af0a49eed0c69c51cd1ff0910c352e",
+   "rows": 18255,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-22 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "93a1e4f01967556d232eddc18d0cd52492d8940910097f36f5a5c0f1d8225b1a"
+  },
+  "hourly/GLM-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "59fe887add64ae773032f62c57938a252f9fc44b26778db400a92a918e70b200",
+   "rows": 19498,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 22:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "4c9fae892264fabe907bd74064f4a1d5762e79f28746c4cda4c71774074fc726"
+  },
+  "hourly/GMT-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "13c5ba2ae39795b3ac8b357c612d6897ca5cfca50af8c7b2cac17a94c2ac517b",
+   "rows": 19700,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "19f504c1f3c8add314f59a8a3880c3315ed1b75184edcc7d98c0edea4d3c8fe9"
+  },
+  "hourly/GMX-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "66198d0d183614ce32ca167a58ae97f3a3b808dcf142b0ef76d077c34df31d25",
+   "rows": 19654,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "e87aa079af5da74f60125bf3854955162ab69fbfa0665d4316be245ae3431a39"
+  },
+  "hourly/GOAL-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "7b1765a45855f7224b5a8ccc49755c939be7827c70f976f898d2911c1e5ace49",
+   "rows": 10391,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-03-20 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "394e34d9aa3b7faa6674658c43a0f1ce01a862cfdafde01187a3f9816139404c"
+  },
+  "hourly/GOAT-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "06e62a501031412c623b9de2835404735f93d640fff1df87f38665a246ebc833",
+   "rows": 11382,
+   "first_candle_utc": "2024-12-12 10:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "b86f30a62d4ab323447c1fe13da2a800b1ad9dd62070862f86d01b419ee9259d"
+  },
+  "hourly/GODS-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "7837b7e1666bc7556c73e9393296c478a6192b07511cf8b0da9138fb090367e5",
+   "rows": 19666,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "3c78f37dbf22e614fb6d92df947648301be2ae55346fab5f47c9e9ec6ac605a3"
+  },
+  "hourly/GOG-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "92eed5b6bfe53832ac3cd04b36e29d0f8cd381c28ca0894bb3e68531a4dbec2f",
+   "rows": 13264,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-07-07 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "f27cdea7814c48c7d63098bd8e9100e854e61793a9e574754bca63c4c1433d6e"
+  },
+  "hourly/GPT-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "a273fa49020cebedba1eb2148c8bd3aa85f0beb8fe1374a5271e421e5a65a55f",
+   "rows": 9260,
+   "first_candle_utc": "2024-02-28 12:00",
+   "last_candle_utc": "2025-03-20 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "b743e483813659650f66694f112d6a569bf190a67ee7123ec34679ddef20a4e5"
+  },
+  "hourly/GRT-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "9a951bcdb8313e2dbf76ecff4fcdf65f24f9243eb463af75c9d397d47a9f2c91",
+   "rows": 19691,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "317d29234e3cf1358759c047e17fe1a9fefaf30676e63899e560938ed1c4687a"
+  },
+  "hourly/HBAR-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "779f160dae66d1e5c6b366302e48483d2258fca3e0747736863778cb905ac4ba",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "ffe20d2ed5de6c5449b7d442e4ce5aec7295b1850b8307d80755d43ec9e76881"
+  },
+  "hourly/HC-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "5df8152ce523067b687560f54402cf8eef3691c50d2b747acaad2a0c9db7f973",
+   "rows": 2405,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-04-12 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "12539da101e8ad56390932c804928baf05e4610e223ca94a1633d3c34d91f9a8"
+  },
+  "hourly/HMSTR-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "7c6446bc050e03f83ae00403cf3cb17824d36e77c7b2535aaac1579663c2f906",
+   "rows": 13236,
+   "first_candle_utc": "2024-09-26 12:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "661ecb1a0ac3178282388d1750f342d0328279eb775818fe27ac2d54a603d2a0"
+  },
+  "hourly/HUMA-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "ae70f3f360c951a76ac1361daf01db213d93d47033f71d1b9bc86aab94b2e6b4",
+   "rows": 7427,
+   "first_candle_utc": "2025-05-26 13:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "227c717fd7a7a3a0e04213c199c65d7ed276ad6fb330898ebcdb4605e67ac12c"
+  },
+  "hourly/HYPE-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "89d6445469d7e9eb8a5e9731e0b42722c03fdc275deb2a3429a58df8cf76519e",
+   "rows": 3538,
+   "first_candle_utc": "2025-11-04 14:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "2e679cc5b5c99a7eca6c3c972f36d6978b92ea094184b93c0d783d0df5cd9007"
+  },
+  "hourly/ICE-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "fd3b222370a91f48018619eae19f161bb6c390ae3a4cff364a474fb8d1f3e6d9",
+   "rows": 16726,
+   "first_candle_utc": "2024-01-19 10:00",
+   "last_candle_utc": "2025-12-16 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "ae5c91e0b599dc7f786f278e45412e930949918959fe3b107b75a2f4a2d7fcee"
+  },
+  "hourly/ICP-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "7dc0b5c6ad76453dc9c3a270aa79497c717c8d385d278b81688277fcdfab4c1d",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "5b87dcfd3129df58ed699a41ffab398cc1a9b2d21ade9e557c5778bb1e41dccd"
+  },
+  "hourly/ICX-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "49ff7d678487ba467c862af188859bf0ad8a3e5a8f4f134b3b29354fa97db0ff",
+   "rows": 19654,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "c33d024cb490228f5d90855616a7a071f607b388b784d7714c65f83dd81cb7fa"
+  },
+  "hourly/ID-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "9cb412960b67a48d4510472ddf52968262933dd001ec9ec8f1861b08c4e07486",
+   "rows": 19514,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "606ee80af505cf7f0ba2e7f8c89d823c639b698611439929cf35c7869fb71ed3"
+  },
+  "hourly/IGU-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "661c23b5d96c2cebc9efa65e9e34f4989aad48902974d8210f726af510706ad8",
+   "rows": 5303,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-08-09 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "3149d5880c046b1af2723220eeefc9d77e432a0cdb4cecddb0f8ee4b27f19402"
+  },
+  "hourly/ILV-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "f5d4afb6c492dcce51affe049d3bca2c3d7225d9879435827d923d764f362e82",
+   "rows": 19690,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "8f46741b71ce0db4bba13fdfe8d097fe839f401de7ac249ae53b41439591cabd"
+  },
+  "hourly/IMX-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "4d73f82b07dddad5d32a52522c4a4c8c3249a4251b2ed5f2e278e015c47c5127",
+   "rows": 19703,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "f685e7c27ee734cc08fda6468e5ef7d62c045da70ab155fda84ec5970ab8df89"
+  },
+  "hourly/INJ-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "080e0901676d83f8475d5e39880d7c4ee6871aaf1b43b22baa7bf85b83d8a531",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "179dfa12c718460c049575e17357c4282be77f68070881a61740b734d4f2d7fd"
+  },
+  "hourly/IOST-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "e06b4a05c31c6e861077756dba6629b0922e7cc9406ddec647116387501bed29",
+   "rows": 19696,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "72907dae50686bf40c9510cae5a89bf7e3eab116d656018c7c8a4be7a999b82d"
+  },
+  "hourly/IOTA-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "20c9f713ca0b7c23aa47abb1ac47d565e3ca64bc2e26c2d6a93a489d9a533d34",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "fc08f5a73ec2dd3ff069ec79988fbf29046025f3cd4d5f3fbc469b70bf0385c2"
+  },
+  "hourly/IQ-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "1ee6edc0cf8deea9e7af3d8ff39a5e4d8cd136dc49c3fc8acc12089ac2844321",
+   "rows": 12340,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-06-04 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "1e78421a6f2fe70ba59f899be7f018a603608b4567ddcf8b95782819bf1d6414"
+  },
+  "hourly/J-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "0a66a32cb7e44240afdda1913ff2f7a72f989b45311573ed884fb8e95e96d4c2",
+   "rows": 10351,
+   "first_candle_utc": "2025-01-22 10:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "0280751bbdc45b0091338cf967539542cabf429ba15180351a72a57fe63eaae9"
+  },
+  "hourly/JITOSOL-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "59ad786e74a3d56f32065c655109f6086a73cd024eb8be4010b25b8ffa547914",
+   "rows": 7659,
+   "first_candle_utc": "2025-05-09 08:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "ae32db669cfe8c0179c31d401aac49cf13fc8662db77bf5ddbb4ef0a28757880"
+  },
+  "hourly/JOE-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "27b996cf07844614ac1d39e58cf7cd1e53a8d04c18554276298811a1de5991cb",
+   "rows": 19135,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 22:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "11d568482bed954dd7631967645e9d59c3421bc0a1a388a5bf3255670496d307"
+  },
+  "hourly/JTO-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "d8e3399dadcb834b106ef1cf40d3878e0f1160300734f7b3a7b5f7ff6bc2ddcb",
+   "rows": 19530,
+   "first_candle_utc": "2024-01-08 06:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "82e90948eb0ee3bfb1f4147d0c2260f6f3f6f536c8489e555ff383cf898dd680"
+  },
+  "hourly/JUP-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "7d6ec78e532c54a32eb277250148e79f6cb28b2210bc8ab5b86c65c2f9ee156f",
+   "rows": 18969,
+   "first_candle_utc": "2024-01-31 15:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "50c07901372666ff420b39562d500a47de685f8bbe2e496d1776d800fb2dafc5"
+  },
+  "hourly/KAIA-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "6411b5518728c6f650225acc6bb1c242bf545718887bdf91246cee0108bb4936",
+   "rows": 12391,
+   "first_candle_utc": "2024-10-31 08:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "7e0d8f95bcdc07820462873a07cd6a84ad379d2730e541034eac7cd09c8ef936"
+  },
+  "hourly/KAITO-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "1224b6c5c075cf8fec4c9f2abdb396b23b66a8c2347edeed8981e07a6423b464",
+   "rows": 9707,
+   "first_candle_utc": "2025-02-20 13:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "235827c067507b3c201a74f34d8e5b65d14bbc076b2b6a38434a95b36f2e1805"
+  },
+  "hourly/KAN-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "4bcf3a0e88a45bd296089131196b56d0aead13abe25e2da69659edd751ef2034",
+   "rows": 7282,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-11-07 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "77ea4a75e3737982a499cffbaf3dcd9571622ca1255e6ecf94c97495686280db"
+  },
+  "hourly/KAR-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "88fa402451c98f1fba5f4fd1cf25acb1ec1714be6972d1d9a9e2abe5aa0113ef",
+   "rows": 2448,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-04-12 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "bc1332cd9048c0f4ac19e67ff67f5ca447169d192a9571297bdd845ca84b070c"
+  },
+  "hourly/KAT-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "0ef0f5a954e46b4d4a23bf29a10371e75944933c8def995301956950ab09a49e",
+   "rows": 323,
+   "first_candle_utc": "2026-03-18 13:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "19c5a485a84deb4ffd7cf78542361db157cfd3b7ab4fa5752696838755dfe977"
+  },
+  "hourly/KCAL-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "d4c1c80a15c2a4c2c83a23c95851bef3abb97cfd69ec2cbcacb1238aac0493d5",
+   "rows": 4667,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-07-16 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "39b6f1792b6ddb970fb21bb4957e28115ffb4504a4d05fed1e68196dc13a7f25"
+  },
+  "hourly/KDA-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "92c0f3e76a77ab6a740a37a887a9188f6cfdd0a672875ac7b2fbd701e51afbec",
+   "rows": 16011,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-10-29 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "28e078173863f524df081f44704da1c081edd812a88c753d8845245f5732570b"
+  },
+  "hourly/KINE-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "f6a1ece3bc2074e7abfb49d3e9f76b865b7602dfba1ba76f86fb49aa3404b6b3",
+   "rows": 6548,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-10-08 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "f220618928d7649aa2272e6130c5f424e3d7142cdf4e371df7dcf57c6f927344"
+  },
+  "hourly/KISHU-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "f363b714eb0f57c7bff4e111b5f7ab4b0766fc17d66051e97c23ae7412126e1d",
+   "rows": 11624,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-04-29 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "daa4db6617ebfe1dbbfd93870ae932f85c650b8545c4c562bbdc72b91b912b68"
+  },
+  "hourly/KITE-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "b3b97969c8fc1542666aa65f1803fc9ee7420fc7804367c8a3edf47eeb31028e",
+   "rows": 3563,
+   "first_candle_utc": "2025-11-03 13:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "8cdd96995724c9abf7834a1eb10983dc624aa3cbb724efa30f0ec110956d1d10"
+  },
+  "hourly/KMNO-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "62ec9dd5485b7bd22b08cce21ea8f1d45279a91b709801dbfe0242d785996f00",
+   "rows": 7339,
+   "first_candle_utc": "2025-05-30 03:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "e939a6f98c04098e47042bdbc7977e5498d9434e4665a1f1e365b400dc382e1c"
+  },
+  "hourly/KNC-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "990439c3969a58d23bb56b45b4677b1e08a3536df22b7bf0a4d988011447e29a",
+   "rows": 18972,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "a20e87b66a97a2c8a22ff9a202fee6cb7c14ae10a8b8d8b38c326026d2901c20"
+  },
+  "hourly/KP3R-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "b04c1efda81c4b2fc9b7340d41e3898f3755bcc9effd2fc8017aea83dff05ee3",
+   "rows": 10531,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-03-20 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "c30920992299927ef0bcff479ae2ecbbb5a029c49a65500341e4570ecb8c630d"
+  },
+  "hourly/KSM-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "d7040d86546d0f44794af5312a5d1137694a406daaee05763c0417dad5268c37",
+   "rows": 19700,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "ad50e613924c71ed6b6bdd243e5647ee02e7f816a27037a7ee664bad2da45ff9"
+  },
+  "hourly/LAMB-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "cefcf103b71c2658d6d3f747750b86e0b67cdba8749184b60ad57a3f7d7a0937",
+   "rows": 10657,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-03-20 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "584756ef413baa2257fcaf3032075d3071ce08d269c08da1c5246e29b0385934"
+  },
+  "hourly/LAT-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "e9b8891c112425376608424cb7aca6684af35e6a81b0c5d592944108007b590c",
+   "rows": 19701,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "778c504ce79056217f2f8ff836dbeae259b9efa7e62b85d8f103ab8201d3f27c"
+  },
+  "hourly/LAYER-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "9e19b4c76de43d4486cffeab791a8fbf0740984ed9a301d1ef2a2d188a5abdfc",
+   "rows": 8167,
+   "first_candle_utc": "2025-04-25 10:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "de245a7f5e40b0c14bfb928e6acb0eff7eeac2d2659ab96cad396e4357a0e671"
+  },
+  "hourly/LBR-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "ace03b50576ce6387c8bcecf829bcd10f29c4f4208aa97aac1cc6567a8fd4b91",
+   "rows": 10663,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-03-20 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "f077b4606f47232a202cd024f46d7f231c079ddd0548efc526be4d19c786fbab"
+  },
+  "hourly/LDO-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "be6afe443bd141246b005f364bbe8f2d2ae71a48c9b43297f83e0fbff2e3304d",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "109bf955e42db5955725f49f3b0dd7d4c4494b667ef2d68db901d655971b8ced"
+  },
+  "hourly/LEASH-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "86df46d08435248294daac6a0375b4577f2b18824b507febcacf422b40ce0e3b",
+   "rows": 6670,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-10-08 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "fbfedeb4be5bf118f129ed0d9558e1c38e5b81d4eaab45a5c4d3f3d48346eabe"
+  },
+  "hourly/LEO-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "e50695646099de7a469d0c9a85541795475e788435093d0884d72920b11de906",
+   "rows": 15360,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "7e13844d37c3aa9a236c7849f449a13f1b073d624db3eee7e6ebaeb3ee76aed8"
+  },
+  "hourly/LET-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "31f8af74d2e3ca65976f60779c1388f270a5a07a89e564dcc2953de042002c93",
+   "rows": 3536,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-05-27 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "9c455c96556d246670713c752bf09f028c45881d5f43a91f12ab309e32c62915"
+  },
+  "hourly/LHINU-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "414d18c8a21102f41f9908d68562e32f4e49ef2c320aa9fb43b04882ee634249",
+   "rows": 4820,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-07-23 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "51e1942d3e8dedaaaacdc65cfdaf0b2be0a639d4e58a5e193654ab8ef8b026df"
+  },
+  "hourly/LINEA-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "baec0591cdd7dfeaf93b69121d1fdb63c16a920f9d0ec3f7f6112e1341de91fc",
+   "rows": 4857,
+   "first_candle_utc": "2025-09-10 15:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "030074ceaff334e49b982402f7899dbc4ffaf8455ed265f7d4f5e684fe0acaf4"
+  },
+  "hourly/LING-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "959399a5a4f657d16ccd76f51124e18dddfe5aabcecee914c02c821ae148251d",
+   "rows": 3965,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-06-14 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "648f8371b2581b5f2f236baafde5f19a3f97c2a52688d54c31d5050ae95360b3"
+  },
+  "hourly/LINK-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "1b277ea648712c2a6560e8912b4a38275cc8d6e674eb1a2bcb6ec4f032c0318f",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "93be908ce055f9f2b071acbfdfa0454fbdd0c8050bcf378a0851df23ea535052"
+  },
+  "hourly/LIT-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "edd5418300b09c175986efa61a2d626a71f46cc8ff2e6edf967d20a7e049c3e9",
+   "rows": 1809,
+   "first_candle_utc": "2026-01-15 15:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "3fa23b596f1b3ce25631828a249ae2af0b94785172d1cd44794864fd86315652"
+  },
+  "hourly/LON-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "7761bab3eb2ea9fb2b1b7be5aa039de4fae132dd8d0f375aeece372c1346485b",
+   "rows": 7039,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-11-28 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "b7cf2ec82f17621194b9c1db3726e1fab30f50f478fcdbbac0010b913eaf4412"
+  },
+  "hourly/LOOKS-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "56e3cd299be9b63c230b63a6d2e1e408c2f037b7b09f42b8d7a6264d3c5a9f25",
+   "rows": 16592,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-11-22 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "86d2952acdf7ad3a90da41d330e2a8e679ee2c644ee8487532fd66fa09a5a2f5"
+  },
+  "hourly/LPT-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "07aa2c4bf7a5d4749a97659ee98a65a258d59fe642ff4175c8a54aad295abbb7",
+   "rows": 19702,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "49271cddf020ae4361193f95c1ca4301fba2a025749f38186a50af838675364c"
+  },
+  "hourly/LQTY-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "6762a7fdb195e38431e09ea350641e7b38de6ceca999878724a51e6a54d60b68",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "c831b8d5a254dfae1d32303cdcdf0fc5e7f59bee9cc06fd1e4da3f71c996ac4c"
+  },
+  "hourly/LRC-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "5b6ad1110d371cd82a8ce5bc50ef8a41cab572e62c453084c25d9b32c794dca4",
+   "rows": 19690,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "748983e12f4fa7626cc396d969ef4f6ff122985208d84e271b839aa271ea9e43"
+  },
+  "hourly/LSK-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "c042cdd9da7b6a12b99314694524a966d935aad8f1f3296349eee0b50e965549",
+   "rows": 19574,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "1e0f1b0863d1abc4d91c34943011f6baf05fc7fdc7de79d31722e11cfa9de7d3"
+  },
+  "hourly/LTC-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "f75c5298b6bb0061f288957daddb38a56a55d45fb95a50b8acd0cecc2ae70325",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "c479f26c366cfa4af146a330dade7962147f0f8fa6944c340039e47ff259734d"
+  },
+  "hourly/LUNA-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "c2303ee5f96f87e084a45fc6c37fa0c7ac2135f3d25464f7374c96be2e07d367",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "dabaf34c39ac669279bdfb25404fbffbd993e115f6156e6ce0afcc59f46b5511"
+  },
+  "hourly/LUNC-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "9737570859477890c41e9856f438a2b678a9338cf311b8b267f0afe81c3388d0",
+   "rows": 15296,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-09-29 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "766df6f8f97817780a2b983b4519616b6bc5e488ee4f22e00aa990c08bfebebf"
+  },
+  "hourly/MAGIC-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "b0ad420d6315606e8b7e16a9f7fc57437da5ac11583781651023c6eba0c0b72b",
+   "rows": 19703,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "6e24285e05338bdfc5a4b9af3bec242aa894d776d1c6a35fa1221daee6c0555c"
+  },
+  "hourly/MAJOR-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "8feefff9a0639f92b9246d98f110f98ef31d30e44ca2f2778158363f09e07a91",
+   "rows": 11698,
+   "first_candle_utc": "2024-11-28 12:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "b74c0050a0e850895a1c7263284bb10658f89391b5256d1ed3d0a56b7cc06b49"
+  },
+  "hourly/MANA-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "7859a56b7453256485105ab0dcbb6dc2bb6af0a43e335fcb9fe44d7246ff4201",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "a7193951869c9680522b9c15b9530943c28f4e0fd2ffd507c21154bfd8177648"
+  },
+  "hourly/MASK-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "6d18e602ad82ff4ca7e9c24dc0ba61eaf33e8e98449113968b8d813c450a0a96",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "67da0b9be9f6c4405fa76d84739ed3f740966e4a59eac018bd82e6b3317fa332"
+  },
+  "hourly/MAX-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "5590c122ad13976334346ecd72039599301948803d7029d364b5582505545f93",
+   "rows": 6406,
+   "first_candle_utc": "2024-08-05 10:00",
+   "last_candle_utc": "2025-04-29 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "518d10488455a736a0f3ab1ed2941cafc41ec9a07ccfb0e25f61b06091d2e7ee"
+  },
+  "hourly/MDT-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "b9faf77437bebb4a54ec752aadf51dad2ae57b4d25ab596bee749c0272036511",
+   "rows": 12782,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-06-20 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "7bf41f28485f2d68105d9c14c2449b8c1fdd3e1d54bdbfa55e0dbfcde6460e0a"
+  },
+  "hourly/ME-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "89eb6ff9f22953f643846fbb11addedff4820e4d1db9be808f5de0af057a95ec",
+   "rows": 11434,
+   "first_candle_utc": "2024-12-10 14:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "f6845aa8ec21951ad5df9ccc5df025a908ad9b7d060e259618c040fae3c04544"
+  },
+  "hourly/MEME-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "ce0858783417b38d31f497fea9da1c77d70bc0f9a07f40376c03626b4155e565",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "6dbda27b66aac630afb87f7f523fcfc7363edf434f017c98ba4e852304b21e39"
+  },
+  "hourly/MEMEFI-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "ffe88a3e8aa78d4875c45e9927eb71399447ca06cf0853801fbd12aa12da99ce",
+   "rows": 11634,
+   "first_candle_utc": "2024-11-22 13:00",
+   "last_candle_utc": "2026-03-22 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "c4bb83dbc726133376d4c09532a8ab8b058211ddec9a0c4847e9e566056719a3"
+  },
+  "hourly/MENGO-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "e02bf993e587e0b6b4864d41c4591977091e873486a0ecd42185201879d9c9b7",
+   "rows": 18401,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "688f17e9b6a915f3eede1e4caeb8ab8a9231443db499e9dcfef382cd42f60179"
+  },
+  "hourly/MERL-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "55866ac4032b3f5c53a86282ba3c030a60aacd4984f2f0ffbf4c7d9f6ecb108f",
+   "rows": 17078,
+   "first_candle_utc": "2024-04-19 10:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "500f9df2f80bf92fcf7cb7193f3cd86ec9c853d41a10ca8fa961325f8cee2c8d"
+  },
+  "hourly/MET-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "06ecb67e7a9d1da1ec70e175d2d70551c97f19a032151caea5f1527c866a2634",
+   "rows": 3826,
+   "first_candle_utc": "2025-10-23 14:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "9ebb14bc8f4a1c0e26ca625765944de871ad658ff92b9183e2d4cf3591540770"
+  },
+  "hourly/METIS-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "f7de0941cbabb092f9c50378a7969070c483c9b0ab175ac3f7b4733d1e30b8c5",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "c28f5c624c2cb572330aba0a5ed7dc2b1c59235f8b9a6352f0f8ee6f4e6d4bcd"
+  },
+  "hourly/MEW-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "902ecb938e25fc8681b42fb0ab70220f8bae1c7434764350a0d04f11b7fadedb",
+   "rows": 17176,
+   "first_candle_utc": "2024-04-15 08:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "cd549caeac60d1537da9863149465438b4804ad4dd3944fd5a06a04220877dd7"
+  },
+  "hourly/MILO-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "eb7ed45ca10f0493383c3b13aff362eb80c5957725167b4e29915514adbb9607",
+   "rows": 11613,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-04-29 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "34e8dc86f09406dd0e96f2d6efc70fcc3148612416c6fa2447adb71bfcf392b2"
+  },
+  "hourly/MINA-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "9522df8968eb69377f85b4d4b9ec9624e8edce0dfde0271ab4e6def37c89d5a7",
+   "rows": 19703,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "059d26cc9d1c95ca00d3db215cefe56bf98194fe81e58c522b0254e1d059aea1"
+  },
+  "hourly/MLN-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "21e36ccca6cda6060424af30b92dd0bee891c4756804bc76b66f603d09a1e8d3",
+   "rows": 15382,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-10-23 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "b85173a1734234491a6f399f89efd07574bba0ab9de6fe97fc2c28ef4a57d4d7"
+  },
+  "hourly/MMT-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "892ba28684d6d228b965e559f53a2e18572e1d257dc05a0b6dbe2bda5cf1ad6e",
+   "rows": 3540,
+   "first_candle_utc": "2025-11-04 12:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "c42007bcae44c3fcea6a0533b9fea2166d0027297f65b9515a401aab2d79d118"
+  },
+  "hourly/MON-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "62a9241d6fe8f0553acd565918923053eb83b3b2a56a4111a44414daf291d500",
+   "rows": 205,
+   "first_candle_utc": "2026-03-23 11:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "976e9dd8825b0bb894490d9ef0cc39aaeaa59c7cb8131a2c3627237f0c532117"
+  },
+  "hourly/MOODENG-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "08d4c4a3924415bac7688174ca8fe8526ad9993027b375f53312798d60d064fd",
+   "rows": 12036,
+   "first_candle_utc": "2024-11-15 12:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "987abb4afa5f9d5505107a6bdd51e18848bf6b4794abea83291b945e35a45b79"
+  },
+  "hourly/MORPHO-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "0f9373c79e25d92acbcf1132928b991515e835419b3b389ff755a9b66951a008",
+   "rows": 11893,
+   "first_candle_utc": "2024-11-21 10:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "ca7ce769d52735e114c6773fa9adf4c3c0e24b8dbd1160fe3ce6a4157fb8ef74"
+  },
+  "hourly/MOVE-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "139251207f85cb5f0c829cc932dea24ed8e93d176a3020b8ad40d5d343ad6276",
+   "rows": 11460,
+   "first_candle_utc": "2024-12-09 12:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "0d62d19d1e19c5b64bf8f3bf658d3064af89e1107fa4a2079afafc8314896a50"
+  },
+  "hourly/MOVEZ-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "f5c2077eaa2fccc9f56ce30ad75c86e5b1930e90da6b381bd44ef96497722723",
+   "rows": 3507,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-05-27 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "381b76fbd7ccddd2c5c399e146f55f1839469d9f063dffcea3864a44b2dde8e0"
+  },
+  "hourly/MRST-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "0dc82eef190e2495c2570fe8322d9fe55185f715af69a1c635b82b1bcdf9824f",
+   "rows": 3483,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-05-27 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "e0aaa270dc02b7dbe55acf183260d50cb7937e35c175b4099ec7c9633d3e7842"
+  },
+  "hourly/MSN-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "cfa0e6beb641665981be174ac0dd084b69a17f30511254c0102972076e01dc5a",
+   "rows": 2450,
+   "first_candle_utc": "2024-04-29 06:00",
+   "last_candle_utc": "2024-08-09 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "ae5ed08f624f92727c5a38ca9fe2817d18430b1f1d5a036d7107d56c4019582b"
+  },
+  "hourly/MXC-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "8928df14340f4276d53c0a2bd52083d437e2e88b56c595540d917559fb21b13e",
+   "rows": 11610,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-04-29 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "be03ca765a9a1bd3f0ea75e15a1bd5f7b86902bae1812dce1c3c05df8c561e17"
+  },
+  "hourly/MYRIA-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "f0bb0a679f8da34881cc8ded4a696899738576c4df47331847d4818e1838af1c",
+   "rows": 7591,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-11-12 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "6df4b53c8c510afb351aedab8e97de9339ad48bdcf7f4d470d88fd7a839f7f62"
+  },
+  "hourly/NAVX-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "74ac0cf3e0b2103d2d3e4ed5c258ad1b3a6225d04fa49d69b8db8ef8a0246721",
+   "rows": 8814,
+   "first_candle_utc": "2025-03-25 10:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "b77fa3d39b21394200b630701402ac2f733caebdbfc219025c5ee04135d61a7e"
+  },
+  "hourly/NC-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "2172d1fd85bf6aa01401d9a4360453918901127024eb5180df5e15f3191921e4",
+   "rows": 7409,
+   "first_candle_utc": "2025-01-17 10:00",
+   "last_candle_utc": "2025-11-22 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "665fb94ec819b758c2a9a50cef9107e0747eca1b7eff701f6edfcd226a7b3b75"
+  },
+  "hourly/NEAR-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "3cec8b66ccdb098d363dbde9279b1cd4d3e00e223197e36ef7ca395dad460f90",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "58a3b93784527112192e50a79d9baebd5a680a96ecbf93e57886099d3a067da1"
+  },
+  "hourly/NEIRO-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "0ecd7926bc3852a8d53c9da1da9a10d1040729134b35370c04fcc4484a76de3a",
+   "rows": 12614,
+   "first_candle_utc": "2024-10-22 10:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "2203ca9c7b4bf29502cebc4531cb2633de32af225e559618f1ce7d2d3d8c8d45"
+  },
+  "hourly/NEO-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "a62443d752799e9ec738c3e70fe8582ca70dc1d95c44d6c31961f37fdf7d1b2c",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "9e9e65af5ccfe4f6e2f7cd873973c315d6e7aca23bb79fd750b0df1555ad0675"
+  },
+  "hourly/NFT-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "ff4b048a27e6957a3723556c7f2becd1ad9529e2ccd7f7dd6a247a6aa3f69ef4",
+   "rows": 19536,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "a222eba21f340e5fd6980113e551e4fab0a9248eaac2fe2a0e48af1d5af457f9"
+  },
+  "hourly/NIGHT-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "1e8adb335a9ab2f2e841adcca2a44754cba3e8076eb9c462d6e98d8dd55797be",
+   "rows": 2702,
+   "first_candle_utc": "2025-12-09 10:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "3bc340cb5754ec8e77c3cfc170f3e89678bd30f55a6e738501cf493b9f3d87a8"
+  },
+  "hourly/NMR-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "828fdc60284da72921ebb589a5fa2095cdd303cf389feb0e7ac7b1dcee661067",
+   "rows": 19666,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "9f7a10133c0c8d8baeb836bb86e17d944db03a66e0d68781456118196ce29646"
+  },
+  "hourly/NOT-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "ffb05b164cb05fc6ad6890ca9191d4477174569590cddc5b55a12386c9f89383",
+   "rows": 16428,
+   "first_candle_utc": "2024-05-16 12:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "ac8bc65dbfdf6f2c7d65f404f1851102f0c13fbcccecfa19a460b948e27450b7"
+  },
+  "hourly/NULS-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "293b4b6d623b405c95c54029d1bcf9b371021fbf7ba7a1560637a36cd55a1143",
+   "rows": 12834,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-06-20 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "f2a09eb193e895235315774708196df741af9085576e7a0eac1c07f83ce45b1a"
+  },
+  "hourly/NYM-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "6f08e5da24c389623fd61db36774c46b30775d714234d51ba0b00da6ae28a38b",
+   "rows": 5596,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-08-23 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "744a2b4c148fa539e2bf80a291e1ca672a7ada38204500ad6c99e1ec24b03d7d"
+  },
+  "hourly/OAS-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "d04143a07006a572c2a492c629a5a9a9768628aaa22b0943893ee1b91eef472f",
+   "rows": 15838,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-10-23 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "5849cf484d791eaad8a66bf860c0cd0d151f9df584eaa45dde30bfdf44af956e"
+  },
+  "hourly/OKB-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "e19f455bacdd796a53fa338183c3e497c83e05e803d8aa3104256a403ecd40b4",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "f8dc6e46323407b5280bc6b01f10c91b7c9d32dd0a973f525f10496b86e9f787"
+  },
+  "hourly/OKSOL-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "cdfa7d84528c6fadf2db98a78eb269c8ce941d156ad69ca4084f84a9ce5d7b2a",
+   "rows": 11414,
+   "first_candle_utc": "2024-12-11 08:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "fa0995335e74c793d2f0c8bb3b14594542c16bc52fd5ab679d1a9a5b8c86e025"
+  },
+  "hourly/OL-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "872ba958d3b786be494b000a44fdaf36ffcf1917b130ab3ee25150107c1af9b2",
+   "rows": 11936,
+   "first_candle_utc": "2024-11-19 13:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "f703fc1fb5b935e7a78b612ddd42b2691288e6baba2ff68b40dadb23d45c92a0"
+  },
+  "hourly/OMG-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "f12e062441d1720f14ecd9576178a785507c87efdf239dba4d37d772e2b737bc",
+   "rows": 4904,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-07-23 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "b82828748d895084fc06ecd3b0267fc33f4401e9b3906ac1708e071d9676a63e"
+  },
+  "hourly/OMI-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "a43fbb1378fa8e6243ba349322097022999cbeb8d17e0c284c91ef9e08f1f566",
+   "rows": 19578,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "34781fd942b891c60a1aa740fa8e847161f829e1a2b0d94aff8c97bc97d7d1d2"
+  },
+  "hourly/OMN-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "89835e820c14d15b90548ebfb9667d096104f584842635475816b0fb39dfdae8",
+   "rows": 5299,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-08-09 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "962ca813b45634e6b6a2c93716d75ebf99f12482d4afff443a600ea47040b54c"
+  },
+  "hourly/ONDO-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "b7e4bfb015dc7628dd11fed73e49beeec69554ebdf40d9accbecf2a0810ef4a3",
+   "rows": 14656,
+   "first_candle_utc": "2024-07-29 08:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "eb7c3684170aa7730b21b4d4bb9e8ff7f716117786be2696690c67a63caa645a"
+  },
+  "hourly/ONE-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "8414698ec8a7ead01e356686e55e356d00444c969c5735fcc7c0e26497bb7707",
+   "rows": 19664,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "3ca94f6f88774a4afe09e92a3f8d3c0ce990452317b2b3458c3a0c9d5f68c57d"
+  },
+  "hourly/ONT-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "201949820f8acc43d601ba02070c8fc363099e79986dd855232bed1b9f455f2c",
+   "rows": 19700,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "08f4cdd8705f24fe85e5bd7c34503d58905cb57291d5a8d02abbe24e5e84aa0d"
+  },
+  "hourly/OP-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "8de82442cfdfeb980781878438866a8113fb4729412445f65aa0a3986d187d13",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "7e3a5eb404272e972f891ac4c3e9595c2f2fb0ccc2b09290ee758f8ce95947a0"
+  },
+  "hourly/ORB-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "edd61785fef01b58141cc11849c760a089e436dd6b0ee41a6caf8543c5fa123b",
+   "rows": 6728,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-10-08 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "799bc850514db64ce3ce8cac30ab230482efed2b5c4a6a05145b56c5ad23319e"
+  },
+  "hourly/ORBS-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "fc191af4bcfae5ee7c57a914b9058d1e76b4a87e7a4627e0084f448a056250db",
+   "rows": 19497,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "1832b915bbc3f69d76707024f6a17c983c594642359528df49483352cf5adfde"
+  },
+  "hourly/ORDI-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "06b7fbf1a52f9b342e7f4bceb436f6a44ad46c26cb49697fe728808b8338eba5",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "9e798d133a9be74edeb1dab59cc0c54cc6ce5c84428e5f976aaa5e70d1f448b6"
+  },
+  "hourly/OXT-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "3163cea7e289b2cf00a4061545be2456721426fe1b08eaa996509ed9c47fe667",
+   "rows": 13187,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-07-07 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "ae403563be5aab8b34ae2da64b0336dbfb667c108db416b8bc5d85a3a050938a"
+  },
+  "hourly/PARTI-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "2055d380bddd48f052a839b64541a3619d6148ade16e05d7e6fc38b272decb75",
+   "rows": 8915,
+   "first_candle_utc": "2025-03-25 13:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "b7abedbfe59da63dcfb7d81a1c35869e9f7e5968f671ac641978ff17bdde527b"
+  },
+  "hourly/PAXG-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "85f1a4735015b4b969a1e8c00b841eaf20111aa677ca7194faef8d668b14f9d8",
+   "rows": 4025,
+   "first_candle_utc": "2025-10-15 07:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "f340444a3472ff528f1488220ee8bdf737c6e947a1b0064d692939a33b6bec14"
+  },
+  "hourly/PCI-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "62d3c92fd165e6af747ba49ab046ce241a1207aaebeef1e8defc134e29521a44",
+   "rows": 5257,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-08-09 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "be1cb0e6747003f9e5b487f4c395378ef2d53fca140f4e954ee518b163526d74"
+  },
+  "hourly/PENDLE-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "6dbd627bf7b53e4685131c28321862e2dd3fff164c7f5ef9f53d573f64bbb19b",
+   "rows": 13215,
+   "first_candle_utc": "2024-09-27 07:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "80d2046ee7fc5e1c4746720f7dd1306e5aaaa0e53575bb29ce81d754bead87dd"
+  },
+  "hourly/PENGU-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "65874f1fce10d49e462fb7579d253d44b3649fac0b35284690595412b3489255",
+   "rows": 11266,
+   "first_candle_utc": "2024-12-17 14:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "d07e6f231d618826b0e5b158f2530cb74f7f88bfbcc24ffc465dfef49d45f8bd"
+  },
+  "hourly/PEOPLE-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "a75739c962679933686be390c012d2dbf254be79f433c7664fae68025dbc7ecb",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "38824cd4d5faa98eb52f779d002ec06bf7543d8efab9f81bec542176d9312eda"
+  },
+  "hourly/PEPE-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "f8125a7e9bd447068fc564ceba22c9477b27c213415191aa19f660eb55a610e9",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "e589043174cbb8dcce340f1206c6485cdf85030662f434c038ef807cca8328d1"
+  },
+  "hourly/PERP-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "fed55728f6d49df2935545e8ad3428b71fd9f2be7da794cbf9a084717d83d909",
+   "rows": 16565,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-11-22 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "12ca53bcff3ae82a66b42fb00892ed3f87df4d72f8808636b77e1851ab373191"
+  },
+  "hourly/PHA-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "64fb41e7a76d388689798801611dd3f108e26c3c4b3585ef23012645a92a7539",
+   "rows": 19662,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 22:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "06479478b0e78dabe8838cf3b5ec964d1b9b634bb6701aaeffa59b9cc3b32f0f"
+  },
+  "hourly/PI-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "7c8ff4a189f1c6e545b87bd781eac42edcec025d1d73cb0b021a238cdffc87b2",
+   "rows": 9712,
+   "first_candle_utc": "2025-02-20 08:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "767950282c6400c9cedf1339fc67327e02725e8e845cc484e022191700329ada"
+  },
+  "hourly/PIT-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "e25a7b696a0ae496bb98dc4ed484ccb9de778f1e97a296fae1e59fea34b03eca",
+   "rows": 3527,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-05-27 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "240c6f65498045066e4d128f79504b920a2770d6ca627e422b33ced076abff97"
+  },
+  "hourly/PIXEL-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "8e48ec68dbd67ab55b152a7d2034ffbe94e73953eac499b97e986d6f79d0ec82",
+   "rows": 14247,
+   "first_candle_utc": "2024-08-15 08:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "1b3ebe9de133bb02307a206a420fd0fd255e46334528438b3742bdb90c3d1b41"
+  },
+  "hourly/PNUT-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "b48ebd947437282030ee35c7670eadba2dbdf0005a66fc287c170267dfadae08",
+   "rows": 12133,
+   "first_candle_utc": "2024-11-11 10:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "7667e7feb9b52d97eaabfc860f9dfd675b1dc26dbc1870b9061d0e4cf6e871f2"
+  },
+  "hourly/POL-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "3875e0d11966df1740696efecaf7c01c322dfbd270dbd8da239c2db4df652818",
+   "rows": 13763,
+   "first_candle_utc": "2024-09-04 13:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "81355884dd5f3722371b0a7de9c867eebd30e626614645c0101db64fe0e172d2"
+  },
+  "hourly/POLS-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "acc3ea099f16988ce61fbfafa22a5166bbd560d238630271e754811928438736",
+   "rows": 4677,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-07-23 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "8e63ac8d4a953e9b310f0a32c5295400faa97508adadf46e800ab1aad76f91a2"
+  },
+  "hourly/POLYDOGE-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "f5b74768250dc5f1f0fe4759f7be853016fee07762ae45294660d3f37f1aaa4b",
+   "rows": 15291,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-09-29 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "d3b59b9d352233c2afcc39268ed9533eb61d173525682baf97025c195c6a0791"
+  },
+  "hourly/POR-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "06bc478bf2f9d4d88eae4ee8e77a5347212c6ad7259ffd0e64ef6c91e8838119",
+   "rows": 19411,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "ffb8ed13db6aabad0bb561cf7b81657863e1b96b98f10cbaec13f01d55d1fcd6"
+  },
+  "hourly/PRCL-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "e7745bbfe5bf626b8bd0632368253bb129302b81b8718afe1c21fa5e83694749",
+   "rows": 17145,
+   "first_candle_utc": "2024-04-16 13:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "3fc02e8c1568e7284de6aab3bea0ebcc57e84d236ce255182407e5d758b960ab"
+  },
+  "hourly/PROMPT-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "9dbddccbd8d64bfd974b60bd4536a718d689b626818cc6f4cb2aa6447f5dc914",
+   "rows": 8531,
+   "first_candle_utc": "2025-04-10 13:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "32fbfae3de543efdaa9fff5b3caa7ff021219f81b8324bd850e9400268e8d402"
+  },
+  "hourly/PROVE-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "f30907622bf937e451033dece876cee97239657805fe267a6af6529cde1000fa",
+   "rows": 3971,
+   "first_candle_utc": "2025-10-17 11:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "5c5b5ac29593d2136285b4677122665a80f2ab4931897acc09c3fed8915e8d3a"
+  },
+  "hourly/PRQ-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "57cbffe050c3181349d0396303816e0f56949a6aff7658c8e8d68fcdb6681c3a",
+   "rows": 12418,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-06-04 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "03713e924ed8edcb0ca8c4c21d23070563f930cca8326031215f1144b9051f99"
+  },
+  "hourly/PUMP-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "09b8f0774c79b2fbd06d3025d4be55a254b12887d914e4e58dc683c6b38a32ac",
+   "rows": 6161,
+   "first_candle_utc": "2025-07-18 07:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "fd36e710fba0175a438111eac03c2ed0fb2fea09c06c20ac6085e8c16b075211"
+  },
+  "hourly/PYTH-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "9a8a4db5eaa370cca4677023187472a7422b810ea53d1e14873f08f92bc8eedf",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "b7dc0dc1541ba528f833a29c60c1e31309d0368962983c09603280d6d1fdae0a"
+  },
+  "hourly/PYUSD-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "766f0b2e7b647c766e9c01782c8f656c25a26c5436f49de4944aef1da77c870d",
+   "rows": 12678,
+   "first_candle_utc": "2024-10-03 12:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "a7c959e532374ce398f85786c18a894208d49f707b6e456b843e4597c3885991"
+  },
+  "hourly/QTUM-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "abba7a37871cd871c2a3e0d80794adc284c6f8e6a8cf3e5f6620deace3837537",
+   "rows": 19689,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "e7c9db93aada12a36ab6ad9078c64db48f796091060349f10cc8b448217bdda9"
+  },
+  "hourly/RADAR-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "082959c73d44b5de0a53274dbbadd9575d0186bee1028025752291a5f8d7fe86",
+   "rows": 12352,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-06-20 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "5ab53af4713eca2e849f86f1758c4ffbb9c8961ca596f5439acad77c28e8355d"
+  },
+  "hourly/RAY-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "f75d1b3f269832e5ca76b05142fef9e36cb69c2026993f0be1b25afdc8a72383",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "371244d0acba1c867573458094e0f9ca352885bdc59777de5b6e9bb6243c1e21"
+  },
+  "hourly/RDNT-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "3717606145a53245162ec5ed0f646fa579892665892ea7a9a626bab6cdc3681f",
+   "rows": 18206,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-01-30 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "4a8ff167f64ea094679a3de5169044e7d714fc140f4a9ee73599de1d5727c454"
+  },
+  "hourly/REN-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "6bcab01e7fccba64f5843e45057c30f1268630d48f1b2c4a248330d8106fa499",
+   "rows": 6749,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-10-08 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "04647cb447e79dd27e0899fe06813f7856b4ce14f611dba6260bbbb0ef1cec30"
+  },
+  "hourly/RENDER-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "3aa9416866a62bcfc4dc4f6172fcda033db7fc1229d91c42f011784c6df2a7b7",
+   "rows": 14993,
+   "first_candle_utc": "2024-07-15 07:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "fdd9d6ff2219cf9724072e89bfa5889a1d24a1202d479dfcbe004b22fb910150"
+  },
+  "hourly/REP-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "25db0a26bd6720b7b99c3f0439d04692ef6cdc82e5501eb3bbf63f2825d309b8",
+   "rows": 5241,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-08-09 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "839bc92d30dd6f19e99514b70b480aa1beea477623634c9b88a6d5d0f1be99f5"
+  },
+  "hourly/RESOLV-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "f60c14862d2547bc2c1e43fd2938d32521c0f2eee3595dac2cd5fa6bf34e9b99",
+   "rows": 7066,
+   "first_candle_utc": "2025-06-10 14:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "484c0edb83bc462689b8af1fb13e047f01c643de8833b5cf1ab0bcf62b08cfbf"
+  },
+  "hourly/RIO-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "15299c19b48497a753a100e99f1941aeb85491a5e8b116f4ce472fff2f3fc321",
+   "rows": 19463,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-22 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "cdbfe0ff73576c03b04b564433fa36344d1660ee06147c70534ebd89b1f619c7"
+  },
+  "hourly/ROBO-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "ad06ed48af9672b00f69880650181210743a08f8183467e548fdf253e3cc7ed9",
+   "rows": 638,
+   "first_candle_utc": "2026-03-05 10:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "e2ca1a7e8b9c5c577c2ae3f3c31d45f11b4d4f2e20480e464e1db405c12b5200"
+  },
+  "hourly/RON-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "814b24060615b8b6cd8fedf4a2fc8e21d8f2d78e7d003e84dc8c9cc8103cf975",
+   "rows": 19701,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "8c47c7432f2db2a754a4b4d037193ac8a7b0d30cea477316f4dca7730ff19761"
+  },
+  "hourly/RPL-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "f21f623f9f70698ec19653a713849f3dea466e93a377df6575e212efbcc2bb50",
+   "rows": 19564,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "60c5ebd5c2cf72974c7caec740200936a176711773e5f0070d7e9e8060f5b4e6"
+  },
+  "hourly/RSR-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "34afae277449398b3ffea94a031c823be38335ad7a67381dbd37048cc2dcc03f",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "331788490bf1b84f21b5dd845364503c5d5b91779baab46d74e7b16f64c99b80"
+  },
+  "hourly/RSS3-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "33c8ff82f2b94bf2c5d4c78df1317e31b40dd588278745ce508c7854232555c4",
+   "rows": 19465,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-22 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "35879a5858746737a8260f63fa1e862ca90cd846c20258ff52ad6f7753193e42"
+  },
+  "hourly/RUNECOIN-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "9bdb5420193ffe19ee6293fc12097bf604ac7d17f8dccbbbc9ee5e98d1234569",
+   "rows": 12405,
+   "first_candle_utc": "2024-04-30 10:00",
+   "last_candle_utc": "2025-09-29 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "9c845169f22055fb193a5724ff84f4f5d5e7f769209c35c7651328981456aea5"
+  },
+  "hourly/RVN-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "db38c1a465854403d40a2816c0e3f7f71e55a505f8f4ed8e937932a5e607b593",
+   "rows": 19694,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "7ac0d392a960ec2a5afb00f7a2f45f42d7141194f2a1294f392f49f89dfb187f"
+  },
+  "hourly/S-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "b3a549ce001f4b3fcb607966b183051a2df4d93dc10111741662690cd3bab3bc",
+   "rows": 10433,
+   "first_candle_utc": "2025-01-21 07:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "3c655b6aa6221de4b2653b78c6643dfd505156f16f7f59771bcd17de0b67cebf"
+  },
+  "hourly/SAFE-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "d140a41cc2d4b7e3a1a842f61f32ae8cf291ef62dfaf7632da403a96395d0c72",
+   "rows": 16971,
+   "first_candle_utc": "2024-04-23 07:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "53922d1e769982458510db4a8fbe6d11d13c3c1d2df4edfaa071d1a7490f61d6"
+  },
+  "hourly/SAHARA-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "69edd6bce185721648ef343a8be94209b07dd4070a95763bcb09f6227813e8db",
+   "rows": 6681,
+   "first_candle_utc": "2025-06-26 12:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "1ed9e67b8a80acced69fe1f0451b122550a765063192922f1baa660358ab9ff1"
+  },
+  "hourly/SAMO-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "da27de065ac749e41cc2e17a5f6b0489b84490b70dda51c9f966721cc227623e",
+   "rows": 12487,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-06-04 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "26c48b5dba78a7e6f234f5832a95af995506fd4ac4ef7883d73315fc472035ec"
+  },
+  "hourly/SAND-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "8b699de16ae5f83c3de3591861aa6cc7176273c1e5b38cc9152ffcc146bec196",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "4f864c83fd0dc00b6139c8a70e635bf6f3a4fcaef22ca984062d624088a41798"
+  },
+  "hourly/SATS-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "56971b812b40c6c8d8dcc69a90be54a2404a9ce34ce491c7e856f44115c081a8",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "ca771607f613773b39ca3541e91957d22697dcc6a775495319c43d5ffa4a53c6"
+  },
+  "hourly/SC-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "317a53cca416807d71c2f7b2ce70e5b53329dec3bf8be992eccd209bd9bc3cc1",
+   "rows": 15285,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-09-29 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "a78748d3ccddfda4f20d9cdc24a94487beb9bad9109fc10776a1d981ff87a552"
+  },
+  "hourly/SCR-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "d585da8193bf3f4bdb115269346ca8e535e602741062f3ab9d64791da7ad728e",
+   "rows": 12302,
+   "first_candle_utc": "2024-11-04 08:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "909b953c7627595d38aef9383de8f0893dbe269aae2845ee95096c78d2e02414"
+  },
+  "hourly/SD-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "2661a0b59859a4477526774a9eef589ad9c4d971e3ad9335c2d3c30d7c16604d",
+   "rows": 19573,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "cc628128ad782cebeb0b93acb66716e6814033e654ec68e6ec5a6e7eea5d002d"
+  },
+  "hourly/SEI-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "56ec3292a3c032dc5d9247382c2c5a65ac8a1fc59be687c73d30b02260304ceb",
+   "rows": 3305,
+   "first_candle_utc": "2025-11-14 07:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "f5be7e58befea7b809d325d05096901ca1bd8cc960be19192c6539e86c66fa38"
+  },
+  "hourly/SENT-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "c3896fe12c932506e25fd0ded5bc7e8941c968e602128d93bb0abccc52ce6bd8",
+   "rows": 1524,
+   "first_candle_utc": "2026-01-27 12:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "9f41769815a40fb36c34b96570b38e0e6085fdce8e5e1a978bbbcd39b4b02603"
+  },
+  "hourly/SHIB-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "c32f57b4a2f77327acf3353181ef0d5eecd1dc78d2037618da4dbb540817543c",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "b39f93c87dd3d5e322a84458faee3f94a03adaac50dc5d7516a0d0d67036826e"
+  },
+  "hourly/SIS-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "b77ccf56fdaef374be59479bd6679c679f381a8ad0d685decf23cec2bb73da0d",
+   "rows": 7109,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-10-24 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "7719f13e0bbe632a0cc7a80edee6d8ce546cd2d36601323e847322dec4fdedc0"
+  },
+  "hourly/SKEB-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "b327c7b0699587c08cdd6dbf9bf8b48424c3c909dc9d14802c2a4316aea49c1d",
+   "rows": 2436,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-05-27 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "4be535972dc785ca9b0168660975d3da4321426e2fa985379017d8bcddadba26"
+  },
+  "hourly/SKL-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "7a7eeb56223e701da9014f6454454ec08407aaf2ed265b6f2868deb68330c93c",
+   "rows": 19671,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "ee443467153173652f6e1dd2a9c383adeae3111c10975d4f62f6aa10aebca461"
+  },
+  "hourly/SKY-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "317a811c8c84b4444cb5bfc52ca7070b43ec92db5829d33f6802987847dfb9dc",
+   "rows": 4837,
+   "first_candle_utc": "2025-09-11 11:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "83acf85b6e87f5d33a3f07ea16e4da41ea236dab2027c42eedb3e84a0660cfb2"
+  },
+  "hourly/SLERF-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "b5015ccb71a4767efc581fb12909aa48f7ebdb9be8657f605116b7eb6c725258",
+   "rows": 10949,
+   "first_candle_utc": "2024-07-23 08:00",
+   "last_candle_utc": "2025-10-23 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "84c6675cf9363aa43fcc00a777c49c8cdc948bac18d58775173689dfe4f8c20e"
+  },
+  "hourly/SLN-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "0621e7f5ffcb43fc1dc43fc90bc0300f1b963257eb2b058dab8c9079a5321f81",
+   "rows": 4028,
+   "first_candle_utc": "2024-02-23 08:00",
+   "last_candle_utc": "2024-08-09 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "8369eb80d313af0ab0060fdf2bbb9a24dd074640db6a14ea072b984598e8f5de"
+  },
+  "hourly/SLP-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "3095ec5e047742a561616ad3406d8604148d2064896c7167fabe1036664c6dff",
+   "rows": 19673,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "b6c6d43debd3177ff1e4b4273cd021fd5eb13c0a45e02bede102f1027ddd8184"
+  },
+  "hourly/SNT-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "eefd7a34d1c1e1fe0f065e2cfac92824eb935bd3c3b439a2743ed9f8fa8d3770",
+   "rows": 19600,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "ffc07a01723ff00a78e6f03530b1f68362bc60ec4c0af8041a66520161fd129d"
+  },
+  "hourly/SNX-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "d390619d94b8aae1c1e05bd15db3ce6216f4b69d11b50ad1ebb36406e85dbb32",
+   "rows": 19703,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "b460290c5262d9b7593026a723ba869c9944fa56943c261879a4e43555d6378c"
+  },
+  "hourly/SOL-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "0402694afa0893b2c296c646542dc25861bfa39dc110c90fcdef30ca1f571679",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "8563b677de91eea32e6d9d724bd396e9b85dccb7f7e22eb2c8ac3a091becfd2d"
+  },
+  "hourly/SONIC-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "1161a21827012bc0c2cf96d18b1a29178aeac74a7ce9355da8c4a90552486638",
+   "rows": 10740,
+   "first_candle_utc": "2025-01-07 12:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "9bc3ccae09456bc795838a8b9e37e320106cfee50b1b3e8d9987120f452e9ea2"
+  },
+  "hourly/SOPH-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "002e93e90cd957cf57a0b81872c82852c37a9faf5aa642746c58fb2122d6ac03",
+   "rows": 7374,
+   "first_candle_utc": "2025-05-28 13:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "0b740c7f691d6190a231659133efa32a04c92d0a06a78db7ab8d88198f01ed6c"
+  },
+  "hourly/SPACE-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "0c9afcc4b1dd138acd53eeec0b8e08eb3f5fa358adbdf5ff77177438427b11f3",
+   "rows": 1620,
+   "first_candle_utc": "2026-01-23 12:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "f289ce609b6d8d357eef9d516819f58e12756f82335941b8841f29283d86d3d5"
+  },
+  "hourly/SPELL-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "92ab3b47fa863be68e1e8db21ce133d2190e660989073439e304b97df201adaf",
+   "rows": 4897,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-07-23 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "5b82390ec8b753ce989e0f19a78a955609e0f3332535b8f235230b2319424cf5"
+  },
+  "hourly/SPK-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "3d523bb26660d4dc5775a52849037288b3a003b1ae124735efdbc958c08d71be",
+   "rows": 6902,
+   "first_candle_utc": "2025-06-17 10:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "5659546e24d15f0a4e3d4b30fa1823932a434ffa3bf60a0a1a63aa92bb793733"
+  },
+  "hourly/SPURS-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "410c47fd2d159276390aef9d049c97b062380a78bc7410a60541fb358476c51c",
+   "rows": 18688,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "48e096986629159fb02f4f354207910bb3d077c192c794b6601afcd983c1cddc"
+  },
+  "hourly/SSV-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "836e2d26567ebe227768349907f2d848bce7e0543b724125ff25c9dfb54abc78",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "f8f6883874a1aeca8a6ae90443ced8e0bf29231d96529e7b51afae6629e11158"
+  },
+  "hourly/SSWP-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "9d918c56edb66cf394aa231d8b3afaec0e0440e87d34f638b28aa3b426bdff75",
+   "rows": 11621,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-04-29 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "878dc482edac1a5d440c5503052c96e25e45913eebf0dcf2f57a6894c5250e12"
+  },
+  "hourly/STETH-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "0d091f6e213d56d1be7cd438adedeb9f96d63ebdbeb24a2a8414b908d39b91e9",
+   "rows": 19520,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "01375a5c452840addd0e1dd6593262d65ff05737b665e41d26728d75eecfe955"
+  },
+  "hourly/STORJ-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "249114ba895f87ef38e46557b31cd8f402ebfb0622e70abfc01567095eb47274",
+   "rows": 19367,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "865680f23a319030eb52cd3500d79e5db6baca2b59c935ce3da77a8fa023677a"
+  },
+  "hourly/STRK-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "5f9b8edb5d98747dfa7ea55d30713f3ee89a586afb2175718e6e62e2c5d90ca0",
+   "rows": 18492,
+   "first_candle_utc": "2024-02-20 12:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "8ad9476fa632efb97992cf56a00bc61b8fd94e302c96a566a4bef36db39f88fb"
+  },
+  "hourly/STX-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "d9b7c9f8ed02e65ab056a482e24164874177fea68f15e111d84ed6eff13ee014",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "ede86ecdd1a2ee392ddeeb5fa469720949d63ac58722a49d6851fdfe9bcba15b"
+  },
+  "hourly/SUI-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "7b3fe23028de44b2f4dd8c889dbf25bbef3964bb637f99861a11a62b765c2022",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "469eebc2d8fd51fc54926812e5f2146fae8cac04be0ca7c1a04a9cbf8d758b73"
+  },
+  "hourly/SUN-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "587549f5ac68ec2e243b24d739f6edcd4433338fce648030e22c9df68c908e6c",
+   "rows": 4651,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-07-18 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "c607f381e9b432a9e16f4ece8e29101edbdc812c258a2a67c14db66661f531c2"
+  },
+  "hourly/SUSHI-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "f0453226e290f427275d59bfa2663286332e54795da95c4e456ad51019de08be",
+   "rows": 19698,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "ba3d94dca6bc8aa82f95b67b92bcf5048ef647a44734da5c3bc583ae3c9bf6b4"
+  },
+  "hourly/SWEAT-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "98b806ef076f219649749caa9b2f5d1a9bd544013441e2ce507b21e86ea799e6",
+   "rows": 19449,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-22 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "d1a997a6b7901374d2cb5f782abcd434d7c28fd3734ab704f493cdd0f9c80b1f"
+  },
+  "hourly/SWFTC-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "de00bdc0e843c3cb0d37066e475659e96b16401d2a34ca04e721fd65c569bd7d",
+   "rows": 19515,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "cd1eae5cbeafad0e57b6a38f7baa96f6b52f6dd0246f38b68856a78765be4cf8"
+  },
+  "hourly/T-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "d526f4b47787f2ae253cb56b7211972f6e0afd25d49bf7f5173e2c76198dbe37",
+   "rows": 18936,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "5dfbb979340a724953735867ec93a07d0e74e47b35df8929965e92c21e782c52"
+  },
+  "hourly/TAKI-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "b29a43abd57cad332990a9ea0047c5975ae8e7adcf6791c18b43fbcd3dda42c9",
+   "rows": 6517,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-10-08 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "7e2cc55d65eb75a4a84a0dabc62ed38bf9f0a339e6c33a9c2892dc96cab7b286"
+  },
+  "hourly/TAMA-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "2de8e6ce4117920624071fca773483111fcd6dc543070fd9b0fc4e67409a3e31",
+   "rows": 5572,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-08-30 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "252724b69441aa6ad30b6407a2c386f4102ff225c4e19ca0b328002373d929e9"
+  },
+  "hourly/THETA-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "cfad697dcf062117f8e866cac86a4c94ed032f6633b5b08d92ad790dc080f206",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "d17c881b9c3f6821139c7daf4dba29ff91c90650aceb1acf2ee83d1d27200af0"
+  },
+  "hourly/THG-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "af986f4c4d13066a2b71eb265d046f33036d06670d111a215487082f4f3baf6a",
+   "rows": 5501,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-08-23 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "fd39f6bffce556e149566773125d85373fd219ef0604de0ffbddeb4f86dfc10e"
+  },
+  "hourly/TIA-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "67156f6b7e229ad01a01ed0325081dfaeb34189b289cc220df722bab5bd0c424",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "2b600cc9ec6fed042e7cbf6f37209c799fdeed8635b8514e395f9cf7b27405d7"
+  },
+  "hourly/TNSR-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "4543c63058de3d1d10520cc08a302df46f680c110464e83de73f2d05272ee54a",
+   "rows": 17337,
+   "first_candle_utc": "2024-04-08 15:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "64ada9b7c32f106a175842b0fc06b0be8a803cbe0978fc66b54127c05445a265"
+  },
+  "hourly/TOSHI-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "f7270c41dd5b654db368fbbf83293d3be7065181825c7b439c3daff11d118a34",
+   "rows": 4207,
+   "first_candle_utc": "2025-10-07 13:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "e369156a9fff0397c80f3393b7580994b71a4586b7ea1260c6531bdd6c3d112c"
+  },
+  "hourly/TRA-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "18a802f211f34744d4d8c7203ad350af51158c26a5cd58989ed69d48d149a07a",
+   "rows": 18883,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "64d97d4beb4a99a51dc25e3ac0c1239ee7e028003b4b97b558cdb07fd8193505"
+  },
+  "hourly/TRB-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "2c82302172fe26747411e4ce19fa51479eed14dd9234dd380f27a0b1983f728d",
+   "rows": 19703,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "c99eda9edc750a21c246212d69e0397e1cdb53ae2d9373cb439c8c4043d0c08f"
+  },
+  "hourly/TRUMP-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "819fa0ac5bdb78181f908be8f735e91316880e8c57e87e4ea65639b67637bb93",
+   "rows": 10483,
+   "first_candle_utc": "2025-01-19 05:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "e945fc892e6a59dfed4f974a9fa0d575db3f868e76a2608f14971d0af86ccd2e"
+  },
+  "hourly/TRX-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "948744087d3609c367a27fd6cee9ae9c0ae4987960242c1ba12fb262589fd241",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "db587c30af6d5d1e3ad0932c7d26e8c3636f7c105293acf83ec1e3d0e3847032"
+  },
+  "hourly/TUP-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "a26fd6c562c3fbbbe4f68c910d3e2aee1bcfc6951b199205db689a719e15ff7c",
+   "rows": 5448,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-08-23 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "2de87af131ab0bfcc71090aace42a63a0273aa283ec1c4b81cd237ca20bf75a3"
+  },
+  "hourly/TURBO-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "c0a19c76d0e56032dc7b145c17980bc99e02efd8f21396974b3cfe667abc5187",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "0f8677cebba1b79f4436b679c98fa039bae2c194b21efb622ef30bb6b49acdc8"
+  },
+  "hourly/ULTI-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "9ed0c41b518a56ea2270647ca7944bfab6ee4e94e35d48c1225d0d0dc4a22578",
+   "rows": 14454,
+   "first_candle_utc": "2024-06-06 10:00",
+   "last_candle_utc": "2026-01-30 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "53a9fd58880764e124978c2d2766afcf303ad49fade95f08eacf6962a35cfd05"
+  },
+  "hourly/UMA-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "585b8776ee13c75678ea8ed0ab709776eb3d411a999fc8334908161819eee1a8",
+   "rows": 19649,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "da53eaa7b1246d970d606275a804ac6553bf3dd281a3f60de9d6f6cf90521a48"
+  },
+  "hourly/UNI-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "e09d973c036c3c30fc1c6ce80acd652b039d1d2720b42881ef63c63653f9355b",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "477401c5cbee2e01e7df2ce197ee5339c243ad999e615022c5079d012904d633"
+  },
+  "hourly/USAT-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "26a40879e5510c1ac1ab357bd56861d8992731ca5a6d10bab5104982b2508f38",
+   "rows": 1364,
+   "first_candle_utc": "2026-01-27 15:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "bbf98539fd0457cdf94cdf0865b7e1c557bf9b429180315076a2f185dac17a86"
+  },
+  "hourly/USD1-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "461775d53425ba01664fdf6778bc69c6bed1a2b593b92af0e35cdad732e28cb0",
+   "rows": 4042,
+   "first_candle_utc": "2025-09-02 11:00",
+   "last_candle_utc": "2026-03-31 21:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "fb089aed87cb4abbe7502c75eb3624ddbfef9fefba328758e1f30418b6b59b9c"
+  },
+  "hourly/USDC-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "8b1cacf1bf3a46bfdcd0cc31ea0a92f72bbc794bc17a7c368b614847ffbd62dd",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "0d0092dd8c3ba2ec066b51a95b252bb086607bae26f0d45fc6515ff95a213ccb"
+  },
+  "hourly/USDG-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "05287f4e411a21cb6567a92381768383b810dc79081f471ec3f860f1f7389ebd",
+   "rows": 6698,
+   "first_candle_utc": "2025-06-11 13:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "645348d29072ba518433cd2da60bc977ce79055c9770603c4438cbca0b9c9603"
+  },
+  "hourly/USTC-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "791473e28af8603bba516010730e5fbc0b39bbac794625d5313f3fb7473aefe4",
+   "rows": 15294,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-09-29 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "743e3995474905886a5390b8d371b5e763a335b8ec74d01da5b76d4ab2c90a05"
+  },
+  "hourly/UTK-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "1f69dcadbd4e30ab3359f30d52a5fa7c65ae3260789b1b3ebb7322eb7ecaeae6",
+   "rows": 6747,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-10-24 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "d3697548801e67e5aa9223c0c543e182215608abc4a0f1ef499589ef7f5e36ca"
+  },
+  "hourly/UXLINK-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "7e3d232de66e4c2413255c0b6623386c5630d3b82a7580b3fa491a3039edd10f",
+   "rows": 14919,
+   "first_candle_utc": "2024-07-18 08:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "3dc959abf6840f24fed6c14cd85bef507c939f61fb63f86f69536efa837abc10"
+  },
+  "hourly/VELA-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "2836b30c0f830da491ee1fcd6aa5ca2a9c99c490464d8a763e8df87a9fae9557",
+   "rows": 7391,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-11-07 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "92f72681a1b922fba203f5e8f5736b6438e71cf6569ab9c72fe3514ef5d24960"
+  },
+  "hourly/VELO-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "59342c9118fc067eb8c8cae5fa6eb54ef27aca6b9ed4f9aa1d40b97eb3bc60ff",
+   "rows": 19703,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "f266568eca6f61ddd0e841a6ea0dd6c0f62f0d5c7e93672d739eb7ea7cb51a48"
+  },
+  "hourly/VENOM-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "641759e2ab4e2fb847074775b957656b632d8fb48690e16fe1bd8025a5e2557d",
+   "rows": 10835,
+   "first_candle_utc": "2024-03-25 08:00",
+   "last_candle_utc": "2025-06-20 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "79c6c0f94170906cb7d5ea60d9e0cc8e749cf56ecbaee5e795f93bd05cbaf474"
+  },
+  "hourly/VINE-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "772b6225319446e9941adcda45068dc87af923d124cbf238e98fa31bcc5016b1",
+   "rows": 10310,
+   "first_candle_utc": "2025-01-26 10:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "dc2c0d9442940246651d15c9e6466b98be02ec29f50949e82417714e2954a6dd"
+  },
+  "hourly/VIRTUAL-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "6d1da462a7def96f4f8dd042050fd20cce26f679d261649eb1cc1408bae79e57",
+   "rows": 3712,
+   "first_candle_utc": "2025-10-28 08:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "6dcab25737ba85ef39bd2fcf33b328443ebea912ecca666ca25a97d6647bf5f1"
+  },
+  "hourly/VRA-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "40e2838e1512c47e779e806e434971e64c4c3fb9434533904f9cdcb824546045",
+   "rows": 18248,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-01-30 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "d86b61c9507a2e270a8093310ea935478d6f355b91f04597bed24c72ef700cb1"
+  },
+  "hourly/VSYS-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "d34d4ecb2eade831c7ab36633e577a42ad7a41bf0bce54ff449e7c5fd81f4034",
+   "rows": 2422,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-04-12 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "81fe8cab1a698db55dc4b26f2ace22b79acbdc48ccdaa93cdff1964c03062f50"
+  },
+  "hourly/W-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "2781ec7461d54d26ffa3de7d16c28e21d695ffd9ea10358a6db9d8a04ce376d9",
+   "rows": 17460,
+   "first_candle_utc": "2024-04-03 12:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "7298c64c4af3cb20a1eeb76f7e6ad650c00b84d500b76f5b3ee1132e00c8b8f9"
+  },
+  "hourly/WAXP-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "4d31d84d099bb64c3b0083278fcb41443fe6459b11cfc840b19aeec10b77ea14",
+   "rows": 19469,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "75cea13ad148e24d4975cfaab632cc224656b63267bd77b015572bbb2efa4728"
+  },
+  "hourly/WCT-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "accbaab72d7ee82f0ec10e09f79853a3b8a4be8139040082a1ab9f6b69bfd303",
+   "rows": 8413,
+   "first_candle_utc": "2025-04-15 11:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "99cd29be147801966aec25d92f6a4a108a4575374f9818a303f52ac55a96becb"
+  },
+  "hourly/WET-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "4faaf6b7d0fd90048c9199225a89436ed0917cafb06cdacd3e3c3e9f2a524910",
+   "rows": 2695,
+   "first_candle_utc": "2025-12-09 15:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "fe40fae23d0b37f5723e59a1f32e61f4cbe11519049247f308498414a81e2fe8"
+  },
+  "hourly/WIF-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "9f01f294280a303d42f26346fd474340b20208e138b4788ead203ed5b96813c1",
+   "rows": 17175,
+   "first_candle_utc": "2024-04-15 09:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "8af18c9d7ffeccd0007645c1937b3446b8a503d80181a0f2642861fd912b96f2"
+  },
+  "hourly/WIFI-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "bb2696cd928a51607de99700b6d2481dfc03e3e6e5e5d6e08106020243abaac3",
+   "rows": 7094,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-10-24 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "17e0a67ec190a83e19bf3bf1b18fb07efcf9774c6f4c050224cdfd67ed322072"
+  },
+  "hourly/WIN-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "bf0d8fc456e60aa00569b696ce027ad6f1dc072b97032c8759aec46ce84da1b8",
+   "rows": 19212,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "d74af27f0b8f7d1af6a3ebcb3b7b624bdfa6fa5e6b80d56a7c7877ba269353e8"
+  },
+  "hourly/WLD-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "e5dbd19f51103f36fc7acc2d3694349aa2d5a95af28886b1910672006a576621",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "4834da7c7104de91cc738b8e8dcc9d738af2a9e157beb444677d55ce9720d4cb"
+  },
+  "hourly/WLFI-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "4b59881c6739b968c156a05abffd3738ffdedece7d11ae354fc352a01fd51d1d",
+   "rows": 5075,
+   "first_candle_utc": "2025-09-01 13:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "5c1f7011c1a1446ce16274ebd61169a60dfa070116703907682488fc801ec7b6"
+  },
+  "hourly/WNCG-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "fb571306ee91f6456eb84d4c3c761b158ae729023edaf35c549d317422de5fa6",
+   "rows": 5651,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-08-30 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "211592e1748608dd749e6da5719428941ed043170f1ca4094aff0c6908f106cc"
+  },
+  "hourly/WOO-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "13bfedcb452d9032f9a76d67f806fbdf37662566b8a1eade183e894e6159be8b",
+   "rows": 19695,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 22:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "ac4373b689c907ffe0eda22b12f13b5b032ed696eb6cd6ae029396e1d13bef9c"
+  },
+  "hourly/WSM-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "4233d07d795a230f7d6cab248a77400eeba61f64e9c0f66f4581356500076fb7",
+   "rows": 7468,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-11-07 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "32537cee17a291f15cdbbd6bab7bfdc49dd313ffd0f77289ac3ac2ded18c4750"
+  },
+  "hourly/WXT-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "ce5b8b19b193f1be272d0160890db69648ba2cafe74a405a8039a154734c414d",
+   "rows": 6558,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-10-24 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "8a8d8ef74d1797bbfdfe2de8a7726f5921994e531ac274cbb49c9dc9dec8bcdd"
+  },
+  "hourly/X-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "baf773bc8411a379da032e68564ef2c0b15b269e764c74eb8025e25e266d1f8d",
+   "rows": 6140,
+   "first_candle_utc": "2024-10-24 12:00",
+   "last_candle_utc": "2025-07-07 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "b3799247744dbb9646570488eab1c9122f4149cd53c928ff48ca267099df79c6"
+  },
+  "hourly/XAUT-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "39cc9438154c198002c04700ecce4d621d56072b9f49c459d7c4e84f010fc7d7",
+   "rows": 19549,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "dfc6ce477ae249d567829cedb8f7aacbbf872c1674a716e3e702e09918ff683f"
+  },
+  "hourly/XCH-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "c54014017f920279efd14c5e60cf85c0e7b61cbde641fcb9e1a2191614e476fe",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "cf4aa12ca60e392b71cf517ee0d3048bc46269a0b25c428b01ef4529d29c1d04"
+  },
+  "hourly/XEM-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "9a117e694e7b1153cb93454aab07d8488acb927645ea1150f1dafcf0bd359747",
+   "rows": 4727,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-07-16 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "5b3d5943f7403da03039449c89db1792753fbbbdfb84c2511f13f120e23e297d"
+  },
+  "hourly/XETA-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "8259c22c91e527c184824577739882ceda6faa41c6f2862f09859eafdbf47601",
+   "rows": 2456,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-04-12 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "8b3389260a618efe85d6fc2770804c136d0f14f35cd682c988f1f49889df6c01"
+  },
+  "hourly/XLM-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "76ca24502e560c17383ec06fca0c06f03f5a582b4fd22c271ab624f480c07a8f",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "ec8560594b1af49f75317e7b4192304310a1c28ac036e5c8ef9882ddec35dac5"
+  },
+  "hourly/XMR-USDT.csv.gz": {
+   "group": "delisted_jan2024",
+   "sha256": "3a4170180b2317adbbfbc24ff24cc7601129f3bcd47796706528ec4f7a5a2849",
+   "rows": 104,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-01-05 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "22652ec84026616c923ef96356afedc7e9692f1fc6ce0528b586da984522ec45"
+  },
+  "hourly/XNO-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "9ea27afc64243e8c83666ba1ed5c2c566c1b456184b89d67303bf0088f91d086",
+   "rows": 11856,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2025-06-20 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "c2836148ab8f0824897b57ca103bd9b0f2c0044d19a39a09d6ca0fd30c110366"
+  },
+  "hourly/XPL-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "a1ffc9dd777a80756d61e12db2af65912a9087d21dbe1e37389cc00e0913ba36",
+   "rows": 4499,
+   "first_candle_utc": "2025-09-25 13:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "97ba5364baf333b88e2bb25d429f64a689fcb237ac2410f05cf22143dab600e6"
+  },
+  "hourly/XPR-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "00f962bcea4db9cbba17c4d01df4d34edd42a50e05df61e765761e3215047a0c",
+   "rows": 5762,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-08-30 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "5952af9364d09db3260cb8a5e26b063519c2720c089e7cd946c310d27f5ab379"
+  },
+  "hourly/XR-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "9472aa02646b7e170723ef55888843b4e571e0de60e96197e3881eb1399cbce2",
+   "rows": 6023,
+   "first_candle_utc": "2024-07-11 08:00",
+   "last_candle_utc": "2025-03-20 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "5da1d09de681b8376cdb48a91e4dca9767436ae9aa6662f130653607b6e1b818"
+  },
+  "hourly/XRP-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "dd400ce84ad85da171dd125f662cb02ca05477eabc8877f3e632dc862bd64bfc",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "6eb6b871125eb99b610bac2c40aed55ff41793e0f5d3ed977a85122d5e620835"
+  },
+  "hourly/XTZ-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "c9c6efe64836a8addb4be0b8406e4611b3da689a2cb876f23bac57b7d80a56b3",
+   "rows": 19701,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "c0828b3b595063db603233a0fdaa1cab868726deb2a8e7fd94cef874839f3a63"
+  },
+  "hourly/YB-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "764a3b9ae42fdf37c23d23f928e43dd50403cd4fed99ec533f43b260ed992405",
+   "rows": 4020,
+   "first_candle_utc": "2025-10-15 11:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "f44c912f962f6129c8eeec776aa70702301067cb96c97375ae6e6858eab6057f"
+  },
+  "hourly/YFI-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "ee0b2f6a5540542fb1d45ca19b9570d2281bca2edce7167fa00c020955f8487c",
+   "rows": 19658,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "323661407285de3ecbb150c622fc74635918e4de9f2ca1447f48f8b7235d46fa"
+  },
+  "hourly/YGG-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "5f2f1b4a3dc3c0c754be33fc6900e6ca8ced88d8272b42d0c0595b67362bd478",
+   "rows": 19704,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "1d514df4cfcf1beca266ecd2e084aaf59d3174f386addd14f4e199423e5aeaf2"
+  },
+  "hourly/ZAMA-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "98e582d2c321b2b590dfa739c2d742b1803d6e1375aeda6838b96373854f8d7f",
+   "rows": 1379,
+   "first_candle_utc": "2026-02-02 13:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "7ec13b2a55a936a2e2e4f852ae2510a88855c80428bba7ac1560ac0935402685"
+  },
+  "hourly/ZBCN-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "a3857a9d3726a1864dc98e6662d522844f6dcc569dd70a0913fcb7533b3cc0d2",
+   "rows": 17152,
+   "first_candle_utc": "2024-04-16 08:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "e4c57f5c4b49df11023271d5692af3becd1ba42954b54ed6dbdcca5bb9432b79"
+  },
+  "hourly/ZEC-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "7167b76bdbfbd4223cd8a372ad7c01a6b340c3588edda76267813d85ad8371c7",
+   "rows": 3060,
+   "first_candle_utc": "2025-11-24 12:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "08c783e1c6fc57ce46ed299f02a0116d859b186d32b3819c29cb79c2a0222b05"
+  },
+  "hourly/ZEC-USDT#old_listing.csv.gz": {
+   "group": "delisted_jan2024",
+   "sha256": "c879a853832039d3744b98683c57b1170749271aca940599bf027b4aa5723e56",
+   "rows": 104,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-01-05 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "3c02dab0830c4a0ec7085dcbe200960bd40a6b5194e0152311733d5b0fcd9681"
+  },
+  "hourly/ZEN-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "d81d0f14b3b0a389d19ed43483f7edec4b5883eb3eda97cb27db8355479ea52b",
+   "rows": 3210,
+   "first_candle_utc": "2025-11-18 06:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "de0a9e4df6980571427172f3cc39b0bf375b70053c0c1249959e0099ab756ac9"
+  },
+  "hourly/ZEN-USDT#old_listing.csv.gz": {
+   "group": "delisted_jan2024",
+   "sha256": "d55028ddc3cd6a5aa7d24ecc697c22b44bd5f842a185295b8a147fa96db710eb",
+   "rows": 104,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-01-05 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "dfd39293e8648b6a9904f796d3f175f3fb89e712b9e5d63ee1bbfa1f0ddecc89"
+  },
+  "hourly/ZENT-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "666cdbc71a7f7b30056af4e51eee3b8d203a2c0c14195eaac99685fe59736f93",
+   "rows": 16674,
+   "first_candle_utc": "2024-05-06 06:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "2f86c350fafaa802cb12700664e9d64fac29203975893256d4483868dec8e3cc"
+  },
+  "hourly/ZERO-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "8162db07c14bef1fa0119e7b77723e45198b25b02cff9417ee96c1c596e0b65e",
+   "rows": 9447,
+   "first_candle_utc": "2024-05-06 08:00",
+   "last_candle_utc": "2025-06-04 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "becf106fa00fa61022fdbbbf21b02d936a745183968f31552d86a9d4f8a4583d"
+  },
+  "hourly/ZETA-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "15875296fd41ac85def4e1ff916a111e04843bd6a0a2a5542c2c11bc07eab5e5",
+   "rows": 18957,
+   "first_candle_utc": "2024-02-01 03:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "37036c45044c88a19d2648be834f79f76587e11fda535ec9673bee38c4118410"
+  },
+  "hourly/ZEUS-USDT.csv.gz": {
+   "group": "delisted",
+   "sha256": "dd763ca463e9c784f3e87632444cd498b9d86af46ca0c7c88092953e296a0973",
+   "rows": 17408,
+   "first_candle_utc": "2024-04-04 14:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "34ac9e424a738a6a8bbdbaa749a10078ab28777cbb76a367100afceb5f56945a"
+  },
+  "hourly/ZIL-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "6e1d1322de7527b21ff76e8695507005bd7083150c8462520570e7ae7a48bd5e",
+   "rows": 19703,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "864ce0303196eddae2c670bf07a665713deb06187f254756ebf9624fd9ac58b4"
+  },
+  "hourly/ZK-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "0de90f95442b80d85169ce2df5ac12649b22b8e9a6606b1bcb760fdd8cc310b9",
+   "rows": 15640,
+   "first_candle_utc": "2024-06-18 08:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "f73cdd6fb9ddb0d6d98a38e8bd9123c3703d5bc8ca3a3b1829873f4f04ad590c"
+  },
+  "hourly/ZKJ-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "903f7bdd0fe13fa15e50509738bd058e2b87a65f432bfdffeab5814705d6f6f2",
+   "rows": 15656,
+   "first_candle_utc": "2024-06-17 07:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "270244f9cce7cc988f43b2239b57d99cedb6493f39df50a707c7acb302057296"
+  },
+  "hourly/ZKS-USDT.csv.gz": {
+   "group": "delisted_jan2024",
+   "sha256": "facf70093ac8b9af82e18ba11730821e7f286e05e6a55586ea28176d5e8a8cf3",
+   "rows": 268,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2024-01-12 07:00",
+   "stopped_at_validation_end": false,
+   "source_sha256": "9a7f26560c92a1def848ca6b4a5388e5118c9db89dea3be555d320a67189a19e"
+  },
+  "hourly/ZORA-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "fdb854263e2040afd75715af0fd1a25194a8495690c2fad7c6294ebc27047117",
+   "rows": 3970,
+   "first_candle_utc": "2025-10-17 12:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "a07103b43d89b9dc880ea7e111b5dc287ba900d184a08cfb7cda4412f4264bb0"
+  },
+  "hourly/ZRO-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "48afb7ea2c7a809c62b60c126c1c76a1c7bbf882a8d3d18fd12c1ab72ce7adca",
+   "rows": 15588,
+   "first_candle_utc": "2024-06-20 12:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "717da04bb0334117b7ebe1f63d1ce64473973909338368a382e5d5ff8013c5ab"
+  },
+  "hourly/ZRX-USDT.csv.gz": {
+   "group": "active",
+   "sha256": "993eed90d5e5054d25be5c4276954247d835ebd1baf5ba58776e9d73c25da7d9",
+   "rows": 19668,
+   "first_candle_utc": "2024-01-01 00:00",
+   "last_candle_utc": "2026-03-31 23:00",
+   "stopped_at_validation_end": true,
+   "source_sha256": "aa8729dd978272c21c6121c35ef5cf34add57900e5a4bd52177a1b6067b5696a"
+  },
+  "groups.csv": {
+   "sha256": "46f3deabcc8caf990ec3213c84fd813cd5a87b9b71a844110b8aea8caf6ba433",
+   "rows": 423
+  },
+  "forced_exit_val.csv": {
+   "sha256": "faec5b4ab3b6e7d0afed8807508a17bf00bb528acbcb4f78587f8cf30a7ecb10",
+   "rows": 138,
+   "source_sha256": "67221b1037e2800ca4a5a7696b996a78df14df898944e5aecb8f0c924c1e3e59"
+  }
+ },
+ "max_candle_start_in_pack": "2026-03-31 23:00"
+}

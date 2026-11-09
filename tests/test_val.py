@@ -151,11 +151,11 @@ def nw_naive(x, L):
     x = [v for v in x if not math.isnan(v)]; Tn = len(x); m = sum(x) / Tn
     g = lambda l: sum((x[t] - m) * (x[t - l] - m) for t in range(l, Tn)) / Tn
     v = g(0) + 2 * sum((1 - l / (L + 1)) * g(l) for l in range(1, L + 1)); return m / math.sqrt(v / Tn)
-Phi = lambda z: 0.5 * (1 + math.erf(z / math.sqrt(2)))
+from scipy.stats import norm          # sf is accurate in the tail (1 - cdf is not)
 for _, r in R.iterrows():
     ic, _ = daily["P1"][(r.feature, r.h_days)]
     t = nw_naive(list(ic.iloc[eidx].values), r.h_days - 1)
-    ok &= same(r.nw_t, t, 1e-9) and same(r.p_one_sided, 1 - Phi(r.direction * t), 1e-7) and r.nw_lag == r.h_days - 1
+    ok &= same(r.nw_t, t, 1e-9) and same(r.p_one_sided, float(norm.sf(r.direction * t)), 1e-7) and r.nw_lag == r.h_days - 1
 def adj_naive(p, c=1.0):
     m = len(p); o = sorted(range(m), key=lambda k: p[k]); a = [0.0] * m
     for k in range(m): a[o[k]] = min(1.0, min(p[o[j]] * m * c / (j + 1) for j in range(k, m)))
