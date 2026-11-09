@@ -192,6 +192,27 @@ for _, r in C.iterrows():
         ok9 &= r.label == ("CANDIDATE" if r.p_by <= 0.10 else "CANDIDATE — BH_ONLY — FAILS_BY_SENSITIVITY")
 rec("T9 candidates = BH & 3/3 sub-period signs & same sign in S50k and S250k; BH_ONLY label exactly where BY fails", ok9)
 
+# T12 candidate rule on a synthetic table (data-independent: every branch of the rule is exercised)
+Ts = T.copy()
+Ts["p_two_sided"] = 0.9; Ts["mean_ic"] = 0.05
+for k in (1, 2, 3): Ts[f"sub{k}_mean_ic"] = 0.05
+def setc(f, h, **kw):
+    for c, v in kw.items():
+        sc = c.split("__")[0] if "__" in c else None
+        col = c.split("__")[-1]
+        m = (Ts.feature == f) & (Ts.h_days == h) & ((Ts.scenario == sc) if sc else True)
+        Ts.loc[m, col] = v
+setc("F03", 7, p_two_sided=1e-6)                                        # A: candidate, passes BY
+setc("F07", 7, p_two_sided=1e-6, sub2_mean_ic=-0.01)                     # B: only 2 of 3 sub-periods
+setc("F12", 7, p_two_sided=1e-6, S250k__mean_ic=-0.02)                   # C: S250k sign differs
+setc("F15", 7, p_two_sided=0.004)                                       # D: BH passes, BY fails
+setc("F01", 1, p_two_sided=1e-9)                                        # E: exploratory (never in BH, never candidate)
+Cs = F2.classify(Ts).set_index(["feature", "h_days"])
+exp = {("F03", 7): "CANDIDATE", ("F07", 7): "BH_SIGNIFICANT_NOT_STABLE", ("F12", 7): "BH_SIGNIFICANT_NOT_STABLE",
+       ("F15", 7): "CANDIDATE — BH_ONLY — FAILS_BY_SENSITIVITY", ("F01", 1): "EXPLORATORY_SEEN_IN_FD1", ("F20", 30): "NOT_SIGNIFICANT"}
+got = {k: Cs.loc[k, "label"] for k in exp}
+rec("T12 synthetic table: 3/3 sub-periods, S50k AND S250k signs, BH rule, BY label and exploratory exclusion all enforced", got == exp, got if got != exp else "")
+
 # T10 bootstrap: circular blocks of max(7, h) days, 2000 resamples, seed 20260108
 ok10 = True
 for f, h in (("F07", 1), ("F09", 30)):
