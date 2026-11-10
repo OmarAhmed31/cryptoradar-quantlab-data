@@ -25,6 +25,8 @@ M = [
  ("XM18 selection: D-H1 wins the tie", 'PREFERENCE = ["D-D1", "D-H1", "D-H2"]', 'PREFERENCE = ["D-H1", "D-D1", "D-H2"]'),
  ("XM19 wide-stop test on the bar close", 'fill = O[s.row_entry, s.col]', 'fill = C[s.row_entry, s.col]'),
  ("XM20 A1 window includes bar t", 'return width <= width.rolling(win, min_periods=minp).quantile(0.25).shift(1)', 'return width <= width.rolling(win, min_periods=minp).quantile(0.25)'),
+ ("XM28 D-D1 re-entry window 19 days", '"win_start": D - pd.Timedelta(days=D_WIN),', '"win_start": D - pd.Timedelta(days=D_WIN - 1),'),
+ ("XM29 selection on L_worst", 'SELECT_ON = "L_greedy"', 'SELECT_ON = "L_worst"'),
  ("XM27 A1 percentile P25 -> P30", 'width.rolling(win, min_periods=minp).quantile(0.25)', 'width.rolling(win, min_periods=minp).quantile(0.30)'),
  ("XM21 hourly Transition abstention dropped", '("not_transition", ~abst)]:', ('("not_transition", abst | ~abst)]:')),
  ("XM22 daily close = first traded close", 'cl = g("close").last().reindex(FF.DAYS)', 'cl = g("close").first().reindex(FF.DAYS)'),

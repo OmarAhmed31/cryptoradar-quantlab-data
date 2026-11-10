@@ -1,5 +1,5 @@
-"""Experiment 3 counts run (plan docs/EXP3_DESIGN_SELECTION_PLAN_v0.3.md, approved; developer addendum
-docs/EXP3_COUNTS_CODE_ADDENDUM_v0.1.md, PENDING review). Development only, ONE run.
+"""Experiment 3 counts run (plan docs/EXP3_DESIGN_SELECTION_PLAN_v0.3.md, approved; addendum decisions recorded in
+docs/EXP3_COUNTS_CODE_ADDENDUM_v0.2.md: A1-A4 approved by the reviewer). Development only, ONE run.
 
 NO forward return, NO outcome, NO stop/target result, NO price after the entry.
 Inputs: the Development pack, the frozen hourly thresholds (sha256 checked), the U9b delisting ledger (timestamps and
@@ -45,10 +45,21 @@ P_RVOL_D, P_STOP_D = 0.75, 0.90                          # plan §2 (same method
 MIN_L = 100                                              # U7
 CONDITIONS = {"D-H1": 4, "D-H2": 5, "D-D1": 4}           # plan §4 (entry conditions only)
 PREFERENCE = ["D-D1", "D-H1", "D-H2"]                    # fewest conditions; D-D1 wins the tie with D-H1
-# Developer addendum v0.1 (PENDING reviewer decision; one constant each, fixed before the run):
-APPLY_HS_SKIP = True             # A2: P1 skips a trade whose Corwin-Schultz half-spread cannot be estimated (pre-entry data)
-APPLY_ENTRY_STOP_SKIP = True     # A3: P1 skips at entry if (fill - stop)/fill > the design's stop limit (fill = entry bar open)
-SELECT_ON = "L_greedy"           # A1: the approved plan count (full-hold path); "L_worst" = rigorous worst-case bound
+# Addendum decisions (reviewer, approved; fixed, never changed after the counts are seen):
+APPLY_HS_SKIP = True             # A2: P1 skips a trade whose Corwin-Schultz half-spread cannot be estimated (days d-30..d-1
+                                 #     of the entry day d, >= 360 pairs: the P1 window and minimum)
+APPLY_ENTRY_STOP_SKIP = True     # A3: P1 skips at entry if (fill - stop)/fill > the frozen stop limit; fill = the open of the
+                                 #     first traded minute of the entry hour (= the hourly open, rule B); no later candle
+SELECT_ON = "L_greedy"           # A1: acceptance = L_greedy >= 100; L_worst reported beside it, never an acceptance rule
+DEFINITIONS = {
+    "L_greedy": "estimate of completed trades under sequential blocking (every trade held to its latest end); "
+                "NOT a guaranteed minimum; the acceptance measure (L_greedy >= 100)",
+    "L_worst": "guaranteed minimum under the stated assumptions (any exit time, any tie, a superset of re-entry cases); "
+               "conservative, often uninformative; reported only, never an acceptance rule",
+    "no_guarantee": "a design passing L_greedy >= 100 is NOT guaranteed 100 completed trades",
+    "same_coin_reentry": "the signal's full range window (168 h hourly; 20 calendar days D-D1) must start at or after the "
+                         "coin's last exit: a fixed signal-management rule, not derived from data",
+}
 MIN_PAIRS = 360
 _K = 3 - 2 * math.sqrt(2)
 
@@ -232,7 +243,8 @@ def _sorted(X):
 
 
 def l_greedy(X, seg_start):
-    """plan v0.3 §3: every taken trade held to its latest end; ties by coin name."""
+    """plan v0.3 §3: estimate under sequential blocking; every taken trade held to its latest end; ties by coin name.
+    NOT a guaranteed minimum (addendum A1)."""
     free, last = seg_start.value, {}
     out = {"taken": 0, "L_greedy": 0, "blocked_open_trade": 0, "blocked_same_coin_window": 0}
     reasons, taken = {}, []
@@ -248,8 +260,9 @@ def l_greedy(X, seg_start):
 
 
 def l_worst(X, seg_start):
-    """min over every possible exit time (any time in (entry hour, end]; an early exit is a completed trade),
-    every tie choice, and a superset of the same-coin re-entry possibilities. Real completed trades >= L_worst."""
+    """guaranteed minimum under the stated assumptions: min over every possible exit time (any time in (entry hour, end];
+    an early exit is a completed trade), every tie choice, and a superset of the same-coin re-entry possibilities.
+    Reported beside L_greedy only; never an acceptance rule (addendum A1)."""
     S = _sorted(X); n = len(S)
     ent = [s["entry"] for s in S]
     by_coin = {}
@@ -349,7 +362,8 @@ def run(pack=FF.PACK, thr=None, ledger=None, _daily_fixed=None):
             "signals": compose(sig), "greedy_taken": compose(ex, tk_mask), "greedy": g, "L_greedy": g["L_greedy"], "L_worst": int(w)}
         if name == "D-D1":
             res["designs"][name]["daily_thresholds"] = d["derived"]; res["designs"][name]["daily_breakout_population"] = d["population"]
-    res["selection"] = {"rule": "L >= 100, then fewest entry conditions, D-D1 wins the tie with D-H1; else STOP",
+    res["definitions"] = DEFINITIONS
+    res["selection"] = {"rule": "L_greedy >= 100, then fewest entry conditions, D-D1 wins the tie with D-H1; else STOP",
                         "select_on": SELECT_ON, "by_L_greedy": select(Lg), "by_L_worst": select(Lw),
                         "chosen": select(Lw if SELECT_ON == "L_worst" else Lg)}
     res["settings"] = {"APPLY_HS_SKIP": APPLY_HS_SKIP, "APPLY_ENTRY_STOP_SKIP": APPLY_ENTRY_STOP_SKIP, "SELECT_ON": SELECT_ON,

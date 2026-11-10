@@ -384,6 +384,11 @@ tim = all((R["_sig"][d]["entry_hour"] == R["_sig"][d]["sig_t"] + H).all() for d 
       (R["_sig"]["D-D1"]["sig_t"].dt.hour == 0).all()
 rec("X12f timing: hourly entry = bar t + 1h, daily entry = D+1 00:00, entry row = entry hour", tim)
 
+rec("X14 settings fixed by the addendum decisions", E.SELECT_ON == "L_greedy" and E.APPLY_HS_SKIP and E.APPLY_ENTRY_STOP_SKIP
+    and R["selection"]["chosen"] == R["selection"]["by_L_greedy"] and "NOT a guaranteed minimum" in R["definitions"]["L_greedy"], R["selection"])
+d_ws = (R["_sig"]["D-D1"]["sig_t"] - R["_sig"]["D-D1"]["win_start"]).unique()
+rec("X15 D-D1 re-entry window = 21 days before the signal (D-20 .. D-1, signal at D+1): 20 full calendar days after the exit",
+    list(d_ws) == [pd.Timedelta(days=21)], d_ws)
 n_fail = sum(not r["pass"] for r in res)
 print(f"{len(res) - n_fail}/{len(res)} passed")
 if len(sys.argv) > 1: pathlib.Path(sys.argv[1]).write_text(json.dumps(res, indent=1))
