@@ -1,0 +1,71 @@
+{
+ "mutants": [
+  {
+   "mutant": "TM1 range high includes bar t",
+   "killed": true,
+   "by": "FAIL RD5 independent recompute (synthetic): indicators on 400 sampled ; FAIL RD3b R_high/R_low use only the 168 bars BEFORE t: on new-high bar"
+  },
+  {
+   "mutant": "TM2 RVOL baseline includes bar t",
+   "killed": true,
+   "by": "FAIL RD5 independent recompute (synthetic): indicators on 400 sampled "
+  },
+  {
+   "mutant": "TM3 peak window overlaps the range",
+   "killed": true,
+   "by": "FAIL RD5 independent recompute (synthetic): indicators on 400 sampled "
+  },
+  {
+   "mutant": "TM4 excluded (pegged) coins kept",
+   "killed": true,
+   "by": "FAIL RD5 independent recompute (synthetic): indicators on 400 sampled ; FAIL RD6 no circularity: the derivation functions hold no current spec"
+  },
+  {
+   "mutant": "TM5 eligibility ignored",
+   "killed": true,
+   "by": "FAIL RD5 independent recompute (synthetic): indicators on 400 sampled ; FAIL RD6 no circularity: the derivation functions hold no current spec"
+  },
+  {
+   "mutant": "TM6 a stop limit applied before E5",
+   "killed": true,
+   "by": "FAIL RD5 independent recompute (synthetic): indicators on 400 sampled "
+  },
+  {
+   "mutant": "TM7 RVOL >= 2 applied before R3",
+   "killed": true,
+   "by": "FAIL RD5 independent recompute (synthetic): indicators on 400 sampled "
+  },
+  {
+   "mutant": "TM8 percentile levels swapped (E3 <-> R3)",
+   "killed": true,
+   "by": "FAIL RD5 independent recompute (synthetic): indicators on 400 sampled "
+  },
+  {
+   "mutant": "TM9 High-Vol from the full-period distribution",
+   "killed": true,
+   "by": "FAIL RD8 vol30(d) equals an independent recompute over calendar days d"
+  },
+  {
+   "mutant": "TM10 an outcome module imported",
+   "killed": true,
+   "by": "FAIL RD2 no outcome code: static imports within the allowed set; no fo"
+  },
+  {
+   "mutant": "TM11 E2 taken from BO instead of H",
+   "killed": true,
+   "by": "FAIL RD5 independent recompute (synthetic): indicators on 400 sampled "
+  },
+  {
+   "mutant": "TM12 volatility window one day late (the reviewer's finding: extra shift)",
+   "killed": true,
+   "by": "FAIL RD8 vol30(d) equals an independent recompute over calendar days d; FAIL RD8b one-day alignment: vol30(d) never equals the one-day-late wi"
+  },
+  {
+   "mutant": "TM13 volatility window uses a return not yet known at d",
+   "killed": true,
+   "by": "FAIL RD8 vol30(d) equals an independent recompute over calendar days d; FAIL RD8c corrupting returns known after day d leaves the High-Vol fla"
+  }
+ ],
+ "killed": 13,
+ "of": 13
+}

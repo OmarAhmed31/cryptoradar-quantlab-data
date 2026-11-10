@@ -1,0 +1,53 @@
+{
+ "results": [
+  {
+   "test": "RD2 no outcome code: static imports within the allowed set; no forbidden module loaded at runtime",
+   "pass": true,
+   "detail": "['hashlib', 'json', 'lab.fd_features', 'lab.universe_crypto_only', 'numpy', 'pandas', 'pathlib', 'sys']"
+  },
+  {
+   "test": "RD1 real Development pack: last candle starts <= 2025-08-31 23:00, last universe day <= 2025-08-31",
+   "pass": true,
+   "detail": "('2025-08-31 23:00', '2025-08-31')"
+  },
+  {
+   "test": "RD5 independent recompute (synthetic): indicators on 400 sampled bars, populations H/BO, excluded coin removed, percentile formula",
+   "pass": true,
+   "detail": "2800 indicator values"
+  },
+  {
+   "test": "RD3b R_high/R_low use only the 168 bars BEFORE t: on new-high bars R_high < high_t; breakout bars exist (BO not empty)",
+   "pass": true,
+   "detail": "1053 new-high bars checked, BO bars 64118"
+  },
+  {
+   "test": "RD3 destructive overwrite of bars after t: every indicator at t unchanged (synthetic)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "RD8 vol30(d) equals an independent recompute over calendar days d-30..d-1 from raw closes, for EVERY day; High-Vol flag from prior days only",
+   "pass": true,
+   "detail": "609/609 days equal; 549 defined; 29 high-vol days"
+  },
+  {
+   "test": "RD8b one-day alignment: vol30(d) never equals the one-day-late window d-31..d-2",
+   "pass": true,
+   "detail": "late-window matches 0"
+  },
+  {
+   "test": "RD8c corrupting returns known after day d leaves the High-Vol flag of d unchanged",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "RD6 no circularity: the derivation functions hold no current spec constant as a float (2.0, 3.0, 0.70, 0.80, 0.15, 0.08), and H/BO equal a naive definition with no entry filter (RD5)",
+   "pass": true,
+   "detail": "[0.25, 0.33, 0.5, 0.67, 0.75, 0.9]"
+  }
+ ],
+ "passed": 9,
+ "of": 9,
+ "PASS": true,
+ "data": "synthetic (+ real manifest for RD1)"
+}
