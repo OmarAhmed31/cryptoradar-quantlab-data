@@ -1,0 +1,52 @@
+--- docs/EXP3_DESIGN_SELECTION_PLAN_v0.2.md	2026-11-10 07:41:30.187580303 +0300
++++ docs/EXP3_DESIGN_SELECTION_PLAN_v0.3.md	2026-11-10 07:44:59.138030192 +0300
+@@ -1,4 +1,10 @@
+-# Experiment 3: design-selection plan v0.2 (DRAFT for review; NOTHING computed)
++# Experiment 3: design-selection plan v0.3 (DRAFT for review; NOTHING computed)
++
++**v0.3 = v0.2** (sha256 `9cc96ffe…c185`; approved except one point) **+ one required fix:**
++- **Protocol H_max = 30 days = 720 hours** now applies to the counting of L (§3 b, d).
++- Plus one clarification: what "number of conditions" means (§4).
++
++Nothing else changed: the designs, the frozen hourly thresholds, the daily derivation method, the 7 days + 2 hours block, the selection rule and Protocol v1.2.
+ 
+ **v0.2 = v0.1** (sha256 `df7db4d0…5a08`; the designs, reuse/derivation choices and selection rule approved in principle) **+ the reviewer's required fixes:**
+ - **(1)** a blocking period of **7 days + 2 hours**;
+@@ -78,16 +84,23 @@
+ 2. **One position for the whole portfolio** (Scenario A1). There is never more than one open trade across all coins.
+ 3. **A greedy pass in time order:**
+    - **a.** A signal is **taken** if no trade is open, its entry hour has a traded minute (otherwise NOT_EXECUTED, not taken), and the entry is before the segment's entry cut (t < 2025-08-02, H2).
+-   - **b.** A taken trade **blocks** new entries until **block_end = max(entry_signal_time + 7 days + 2 hours, first traded bar after the 7-day deadline + 1 hour)**. 7 days + 2 hours is the reviewer's uniform minimum. The second term covers a coin with no trade right after the deadline, where the time exit fills later.
++   - **b.** A taken trade **blocks** new entries until:
++
++     **block_end = max(signal_time + 7 days + 2 hours, min(first traded bar after the 7-day deadline + 1 hour, segment end))**
++
++     - 7 days + 2 hours is the uniform minimum.
++     - The second term covers a coin with no trade right after the deadline, where the time exit fills later.
++     - If no traded bar comes, the trade keeps the capital **until the segment end** (U9). **No overlapping signal is ever counted while it is open.**
+    - **c.** **Delisting (U9).** If the coin's official cut falls inside [entry, block_end):
+      - the trade ends at the cut;
+      - **it counts only if its forced exit is PRICED** (status PRICED and a gap ≤ 60 minutes in `forced_exit_reference`);
+      - an `UNPRICEABLE_FORCED_EXIT` is **taken (it blocks) but NOT counted**.
+-   - **d.** A trade **counts** toward L only if its exit is **guaranteed**:
+-     - a PRICED forced exit (c); **or**
+-     - a traded bar exists in the coin's data **after the 7-day deadline and before the segment end** (the time-exit fill is then certain).
++   - **d.** A trade **counts** toward L only if its exit is **guaranteed within Protocol H_max (720 hours from entry)**:
++     - a PRICED forced exit (c) with the cut **< entry + 720 hours**; **or**
++     - a traded bar exists **after the 7-day deadline and before both entry + 720 hours and the segment end**. The time-exit fill is then certain inside H_max.
+ 
+-     Otherwise it blocks but does not count.
++     **If no executable exit exists within H_max, the trade is NOT counted** (`EXCLUDED_HMAX`). It still blocks the capital as in (b).
++   - **e.** **The report counts every excluded case by reason:** `NOT_EXECUTED`, `UNPRICEABLE_FORCED_EXIT`, `EXCLUDED_HMAX`, and blocked signals.
+ 4. **Only timestamps, traded-bar existence and the delisting ledger are used.** No price after the entry, no return, no stop or target outcome.
+ 5. **Why L is a lower bound:**
+    - a real trade can only end **earlier** (at a stop or target), which frees capital sooner and lets more signals be taken;
+@@ -104,7 +117,7 @@
+ ## 4. Selection rule (fixed now)
+ 
+ 1. Keep only the designs with **L ≥ 100** (U7 can then be decided, whatever the outcome).
+-2. Among those, choose **the fewest conditions** (parsimony): D-H1, then D-D1 (same count), then D-H2. If D-H1 and D-D1 both pass, **D-D1 wins the tie**, because daily signals are less exposed to intraday microstructure and to costs.
++2. Among those, choose **the fewest conditions** (parsimony). "Conditions" means **the entry conditions a signal must satisfy**: D-H1 = 4 (B, A1, E3, E5), D-H2 = 5 (+ E4), D-D1 = 4 (B_d, A1_d, RVOL_d, stop_d). The Transition/Uncertain abstention is common to all three, so it is not counted. This is never a count of indicators or lines of code. The order is: D-H1, then D-D1 (same count), then D-H2. If D-H1 and D-D1 both pass, **D-D1 wins the tie**, because daily signals are less exposed to intraday microstructure and to costs.
+ 3. If **no** design reaches L ≥ 100: **STOP.** Experiment 3 is recorded as INFEASIBLE, nothing is relaxed, and the reviewer decides.
+ 4. The chosen design then gets its **full specification** for review. **Only after that is the P1 code written.**
+ 
