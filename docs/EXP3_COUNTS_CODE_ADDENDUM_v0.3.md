@@ -43,6 +43,28 @@ The explicit calendar rule closes both, so v0.37 follows the addendum exactly in
 - **XM31:** the exit day taken from the trade end instead of the exit bar;
 - **XM32:** `l_worst` without the calendar rule.
 
+## A defect found in L_worst while testing A4 (fixed; L_worst is a reported measure, not the acceptance rule)
+
+**The defect:** when every remaining signal **might** be blocked by an older same-coin exit, the code did not consider the case where **all** of them are blocked and no further trade happens. So `L_worst` could come out **above** the true minimum, and was not a valid bound.
+
+- It affected both modes, hourly and calendar.
+- It was found while writing the calendar test: **29 violations in 30,000 random cases**.
+- `nxt()` now returns whether "no further trade" is possible, and `W` includes that option.
+
+**After the fix:** 0 violations in 30,000 cases (about 98% of them exact). It is checked by test **X10f** (4,000 cases in real nanosecond time, both modes, against the exhaustive minimum) and by planted defect **XM33**, which brings the old defect back.
+
+**A test-helper defect found with it:** the reference helpers used −10⁹ as "the start of time". In nanoseconds that is only 1 second before the epoch, so the exhaustive reference wrongly refused some windows. It now uses −10³⁰.
+
+**L_greedy, the acceptance measure, is not affected.**
+
+## Wiring moved into functions so that it can be tested
+
+Two planted defects survived at first (XM31, XM32): **the synthetic run never produced a case where they change a number.**
+
+The record building and the two counts now live in `build_trades()` and `bounds()`, and are tested on hand-built cases:
+- **X15f:** the exit day of a 23:00 exit bar, and the hourly re-entry threshold;
+- **X15g:** a case where `L_worst` without the calendar rule would exceed the true minimum.
+
 ## Documentation fix
 
 The `tests/test_exp3.py` header now points to addendum v0.3, not v0.1.

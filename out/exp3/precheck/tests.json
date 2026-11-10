@@ -197,7 +197,7 @@
  {
   "test": "X10b L_worst <= L_greedy",
   "pass": true,
-  "detail": "strictly lower in 61/600"
+  "detail": "strictly lower in 62/600"
  },
  {
   "test": "X10c L_worst is exact when no coin repeats",
@@ -288,6 +288,21 @@
   "test": "X15d exit day: a time exit in the 23:00 bar exits on that day (not the next, though the bar ends at 00:00); a cut at 00:00 exits that day",
   "pass": true,
   "detail": "([Timestamp('2025-01-08 23:00:00+0000', tz='UTC')], [Timestamp('2025-01-05 00:00:00+0000', tz='UTC')])"
+ },
+ {
+  "test": "X15f build_trades: D-D1 exit day from the exit bar (23:00 bar -> re-entry from the next midnight); hourly from the end",
+  "pass": true,
+  "detail": "(1736380800000000000, 1736380800000000000)"
+ },
+ {
+  "test": "X15g bounds: D-D1 L_worst uses the calendar rule (without it the bound would exceed the true minimum here)",
+  "pass": true,
+  "detail": "(0, 2, 1)"
+ },
+ {
+  "test": "X10f L_worst never exceeds the exhaustive true minimum (4,000 cases, hourly and calendar modes)",
+  "pass": true,
+  "detail": "violations 0, exact 3940/4000"
  },
  {
   "test": "X15e l_worst with the calendar rule <= the exhaustive true minimum (real times)",

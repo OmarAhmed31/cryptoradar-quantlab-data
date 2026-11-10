@@ -288,31 +288,31 @@ def mk(rnd, n, coins, span=60, dur=(5, 30), day=None):
         X.append({"i": i, "coin": rnd.choice(coins), "entry": e, "end": end, "ws": ws, "c": rnd.random() < 0.7, "why": "x", "rf": rf})
     return X
 def greedy_ref(X):
-    free, last, cnt = -10 ** 9, {}, 0
+    free, last, cnt = -10 ** 30, {}, 0
     for s in sorted(X, key=lambda s: (s["entry"], s["coin"])):
-        if s["entry"] >= free and s["ws"] >= last.get(s["coin"], -10 ** 9):
+        if s["entry"] >= free and s["ws"] >= last.get(s["coin"], -10 ** 30):
             cnt += s["c"]; free = s["end"]; last[s["coin"]] = s["rf"]
     return cnt
 def true_min(X, day=None):
     """exhaustive: every exit time (pieces of the threshold grid), every tie choice, the EXACT per-coin rule."""
     f = (lambda e: e) if day is None else (lambda e: (e // day) * day + day)
     th = sorted({s["entry"] for s in X} | {s["ws"] for s in X} | {s["ws"] - 1 for s in X} | {s["end"] for s in X})
-    best = [10 ** 9]
+    best = [10 ** 30]
     def go(free, last, cnt):
         if cnt >= best[0]: return
-        el = [s for s in X if s["entry"] >= free and s["ws"] >= last.get(s["coin"], -10 ** 9)]
+        el = [s for s in X if s["entry"] >= free and s["ws"] >= last.get(s["coin"], -10 ** 30)]
         if not el: best[0] = min(best[0], cnt); return
         h = min(s["entry"] for s in el)
         for s in [s for s in el if s["entry"] == h]:
             opts = [(e, 1, f(e)) for e in th if s["entry"] < e < s["end"]] + [(s["end"], 1, f(s["end"]) if day else s["rf"]), (s["end"], int(s["c"]), s["rf"])]
             for e, k, r in opts:
                 go(e, dict(last, **{s["coin"]: r}), cnt + k)
-    go(-10 ** 9, {}, 0); return best[0]
+    go(-10 ** 30, {}, 0); return best[0]
 def real_path(X, rnd, day=None):
     f = (lambda e: e) if day is None else (lambda e: (math.floor(e) // day) * day + day)
-    free, last, cnt = -10 ** 9, {}, 0
+    free, last, cnt = -10 ** 30, {}, 0
     while True:
-        el = [s for s in X if s["entry"] >= free and s["ws"] >= last.get(s["coin"], -10 ** 9)]
+        el = [s for s in X if s["entry"] >= free and s["ws"] >= last.get(s["coin"], -10 ** 30)]
         if not el: return cnt
         h = min(s["entry"] for s in el); s = rnd.choice([s for s in el if s["entry"] == h])
         if rnd.random() < 0.5: e, k, r = s["end"], int(s["c"]), s["rf"]
@@ -426,6 +426,34 @@ _, _, _, xr2 = E.trade_windows(sig1, tt1, {"Z": (TS("2025-01-05 00:00"), True)},
 rec("X15d exit day: a time exit in the 23:00 bar exits on that day (not the next, though the bar ends at 00:00); a cut at 00:00 exits that day",
     xr1[0] == TS("2025-01-08 23:00") and E.reentry_from(xr1[0].value, 0, E.DAY_NS) == TS("2025-01-09").value
     and xr2[0] == TS("2025-01-05 00:00") and E.reentry_from(xr2[0].value, 0, E.DAY_NS) == TS("2025-01-06").value, (xr1, xr2))
+exX = pd.DataFrame({"coin": ["Z"], "entry_hour": [TS("2025-01-01 00:00")], "win_start": [TS("2024-12-11")]})
+bt = E.build_trades(exX, [TS("2025-01-09 00:00")], [True], ["TIME_EXIT"], [TS("2025-01-08 23:00")], daily=True)
+bh = E.build_trades(exX, [TS("2025-01-09 00:00")], [True], ["TIME_EXIT"], [TS("2025-01-08 23:00")], daily=False)
+rec("X15f build_trades: D-D1 exit day from the exit bar (23:00 bar -> re-entry from the next midnight); hourly from the end",
+    bt[0]["rf"] == TS("2025-01-09").value and bh[0]["rf"] == TS("2025-01-09 00:00").value, (bt[0]["rf"], bh[0]["rf"]))
+Xc = [{'i': 0, 'coin': 'A', 'entry': 604800000000000, 'end': 691200000000000, 'ws': 345600000000000, 'c': True, 'why': '', 'rf': 777600000000000},
+      {'i': 1, 'coin': 'A', 'entry': 691200000000000, 'end': 1252800000000000, 'ws': 518400000000000, 'c': True, 'why': '', 'rf': 1296000000000000},
+      {'i': 2, 'coin': 'A', 'entry': 259200000000000, 'end': 518400000000000, 'ws': 0, 'c': False, 'why': '', 'rf': 604800000000000},
+      {'i': 3, 'coin': 'B', 'entry': 518400000000000, 'end': 691200000000000, 'ws': 259200000000000, 'c': True, 'why': '', 'rf': 777600000000000}]
+_, _, wd_ = E.bounds([dict(x) for x in Xc], pd.Timestamp(-10 ** 18), daily=True)
+_, _, wh_ = E.bounds([dict(x) for x in Xc], pd.Timestamp(-10 ** 18), daily=False)
+tmc = true_min(Xc, E.DAY_NS)
+rec("X15g bounds: D-D1 L_worst uses the calendar rule (without it the bound would exceed the true minimum here)",
+    wd_ <= tmc and wh_ > tmc, (wd_, wh_, tmc))
+# ---- X10f validity at scale: 4,000 random cases in real ns time, both re-entry modes, against the exhaustive minimum
+rv = random.Random(11); viol = 0; exact = 0; DN = E.DAY_NS; HN = 3600 * 10 ** 9
+for t in range(4000):
+    daily = t % 2 == 0; X = []
+    for i in range(rv.randint(2, 5)):
+        if daily:
+            e = rv.randrange(0, 10) * DN; end = e + rv.randrange(1, 40) * HN * 6; ws = e - DN * rv.randint(1, 3); rf = (end // DN) * DN + DN
+        else:
+            e = rv.randrange(0, 60) * HN; end = e + rv.randrange(5, 30) * HN; ws = e - rv.randrange(0, 12) * HN; rf = end
+        X.append(dict(i=i, coin=rv.choice("AB" if t % 3 else "ABC"), entry=e, end=end, ws=ws, c=rv.random() < .6, why="", rf=rf))
+    dd = DN if daily else None
+    tm = true_min(X, dd); w, _ = E.l_worst([dict(x) for x in X], pd.Timestamp(-10 ** 18), dd)
+    viol += w > tm; exact += w == tm
+rec("X10f L_worst never exceeds the exhaustive true minimum (4,000 cases, hourly and calendar modes)", viol == 0, f"violations {viol}, exact {exact}/4000")
 w15, _ = E.l_worst([dict(first), dsig(1, "A", 20), dsig(2, "C", 25)], pd.Timestamp(X0 - pd.Timedelta(days=30)), E.DAY_NS)
 rec("X15e l_worst with the calendar rule <= the exhaustive true minimum (real times)",
     w15 <= true_min([dict(first), dsig(1, "A", 20), dsig(2, "C", 25)], E.DAY_NS), w15)

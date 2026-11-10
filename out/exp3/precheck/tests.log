@@ -40,7 +40,7 @@ PASS X8e no half-spread (first 30 days) -> SKIPPED_NO_HALF_SPREAD
 PASS X8f half-spread equals an independent loop (np.float64(0.0014757261336655711), 663)
 PASS X9 L_greedy equals an independent greedy simulation (600 random cases, 200 with the calendar rule) 
 PASS X10a L_worst <= exhaustive true minimum and <= every simulated real path 
-PASS X10b L_worst <= L_greedy strictly lower in 61/600
+PASS X10b L_worst <= L_greedy strictly lower in 62/600
 PASS X10c L_worst is exact when no coin repeats 
 PASS X10d counterexample: greedy L = 3, but a stop at hour 5 then coin B (no exit) gives 1; L_worst = 1 (3, 1)
 PASS X10e older same-coin exit blocks a re-entry: L_worst <= true minimum (= 2) (1, 2)
@@ -51,8 +51,8 @@ PASS X12b hourly signals eligible on the bar day; daily ones on D+1
 PASS X12c report totals reconcile (cascade = signals = execution reasons; taken + blocked = executable) 
 PASS X12d H2 dominates H1 (D-H2 signals subset of D-H1) 
 PASS X12e synthetic run has signals in all designs and only known reasons {'TIME_EXIT'}
-d40f7735a08a94c665ab9d022df82b0e5400c59b73f2a7954f0d298d36a7dc42
-d40f7735a08a94c665ab9d022df82b0e5400c59b73f2a7954f0d298d36a7dc42
+ec26dd908f4dcff50a21d0202be37b492883d2716903fd2da2466c5fcc860679
+ec26dd908f4dcff50a21d0202be37b492883d2716903fd2da2466c5fcc860679
 PASS X13 two runs byte-identical; no private field stored 
 PASS X13b output holds no price / return field 
 PASS X12f timing: hourly entry = bar t + 1h, daily entry = D+1 00:00, entry row = entry hour 
@@ -63,5 +63,8 @@ Length: 1, dtype: timedelta64[us]
 PASS X15b l_greedy: exit on day X at 00/08/12/23h -> same-coin signal X+20 refused, X+21 allowed; other coin free [(0, 20, False), (0, 21, True), (8, 20, False), (8, 21, True), (12, 20, False), (12, 21, True), (23, 20, False), (23, 21, True)]
 PASS X15c reentry_from: D-D1 = midnight after the exit day; hourly = the trade end (unchanged) 
 PASS X15d exit day: a time exit in the 23:00 bar exits on that day (not the next, though the bar ends at 00:00); a cut at 00:00 exits that day ([Timestamp('2025-01-08 23:00:00+0000', tz='UTC')], [Timestamp('2025-01-05 00:00:00+0000', tz='UTC')])
+PASS X15f build_trades: D-D1 exit day from the exit bar (23:00 bar -> re-entry from the next midnight); hourly from the end (1736380800000000000, 1736380800000000000)
+PASS X15g bounds: D-D1 L_worst uses the calendar rule (without it the bound would exceed the true minimum here) (0, 2, 1)
+PASS X10f L_worst never exceeds the exhaustive true minimum (4,000 cases, hourly and calendar modes) violations 0, exact 3940/4000
 PASS X15e l_worst with the calendar rule <= the exhaustive true minimum (real times) 2
-59/59 passed
+62/62 passed

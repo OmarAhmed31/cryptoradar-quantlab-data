@@ -291,7 +291,8 @@ def l_worst(X, seg_start, day=None):
     V = [0] * n
 
     def nxt(ci, fi, e, fe):
-        """fe = re-entry threshold of the current coin after exit e; fi = f(entry): any older exit is <= the entry."""
+        """candidate next trades after exit e, and whether 'no further trade' is possible (every remaining signal may be
+        blocked by older exits). fe = re-entry threshold of the current coin after e; fi = f(entry): older exits <= entry."""
         k = bisect.bisect_left(ent, e); out = set()
         while k < n:
             s = S[k]
@@ -304,13 +305,14 @@ def l_worst(X, seg_start, day=None):
                     if not (S[j]["coin"] == ci and S[j]["ws"] < fe):
                         out.add(j)
                     j += 1
-                return out
+                return out, False
             out.add(k); k += 1                                      # maybe blocked: the adversary may take it or not
-        return out
+        return out, True                                            # all may be blocked: no further trade is possible
 
     def W(ci, fi, e, fe):
-        o = nxt(ci, fi, e, fe)
-        return min(V[j] for j in o) if o else 0
+        o, can_end = nxt(ci, fi, e, fe)
+        v = [V[j] for j in o] + ([0] if can_end else [])
+        return min(v)
 
     for i in range(n - 1, -1, -1):
         s = S[i]; ei, end = s["entry"], s["end"]
@@ -322,8 +324,22 @@ def l_worst(X, seg_start, day=None):
         fi = f(ei)
         full = int(s["c"]) + W(s["coin"], fi, end, s["rf"])
         V[i] = min(full, 1 + min(W(s["coin"], fi, e, f(e)) for e in early))
-    o = nxt(None, None, seg_start.value, None)
-    return (min(V[j] for j in o) if o else 0), V
+    o, can_end = nxt(None, None, seg_start.value, None)
+    return min([V[j] for j in o] + ([0] if can_end else [])), V
+
+
+def build_trades(ex, ends, cnt, why, xref, daily):
+    """one record per executable signal; rf = the re-entry threshold (A4 calendar rule for D-D1, trade end hourly)."""
+    dmode = DAY_NS if daily else None
+    return [{"i": i, "coin": r.coin, "entry": r.entry_hour.value, "end": e.value, "ws": r.win_start.value, "c": bool(c), "why": w,
+             "rf": reentry_from(x.value, e.value, dmode)}
+            for i, (r, e, c, w, x) in enumerate(zip(ex.itertuples(index=False), ends, cnt, why, xref))]
+
+
+def bounds(X, seg_start, daily):
+    g, taken = l_greedy(X, seg_start)
+    w, _ = l_worst(X, seg_start, DAY_NS if daily else None)
+    return g, taken, w
 
 
 # ------------------------------------------------------------------ report helpers
@@ -364,12 +380,8 @@ def run(pack=FF.PACK, thr=None, ledger=None, _daily_fixed=None):
         sig["exec"] = rs
         ex = sig[sig["exec"] == "EXECUTABLE"].reset_index(drop=True)
         ends, cnt, why, xref = trade_windows(ex, traded_times, led, seg_end)
-        dmode = DAY_NS if name == "D-D1" else None
-        X = [{"i": i, "coin": r.coin, "entry": r.entry_hour.value, "end": e.value, "ws": r.win_start.value, "c": bool(c), "why": w,
-              "rf": reentry_from(x.value, e.value, dmode)}
-             for i, (r, e, c, w, x) in enumerate(zip(ex.itertuples(index=False), ends, cnt, why, xref))]
-        g, taken = l_greedy(X, seg_start)
-        w, _ = l_worst(X, seg_start, dmode)
+        X = build_trades(ex, ends, cnt, why, xref, daily=(name == "D-D1"))
+        g, taken, w = bounds(X, seg_start, daily=(name == "D-D1"))
         Lg[name], Lw[name] = g["L_greedy"], w
         tk_mask = np.isin(np.arange(len(ex)), taken)
         sig["end"], sig["c"], sig["why"] = None, None, None
