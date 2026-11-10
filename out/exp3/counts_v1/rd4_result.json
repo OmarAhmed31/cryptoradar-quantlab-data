@@ -1,0 +1,23 @@
+{
+ "RD4_PASS": true,
+ "sha256": [
+  "b951c87833cdecf48d8dfc7f7afe5218a1ccea59da57ca207e594f0d4312884f",
+  "b951c87833cdecf48d8dfc7f7afe5218a1ccea59da57ca207e594f0d4312884f",
+  "b951c87833cdecf48d8dfc7f7afe5218a1ccea59da57ca207e594f0d4312884f"
+ ],
+ "outcome_files_corrupted_in_run2": 489,
+ "attribution_files_found": 20,
+ "attribution_files_corrupted_in_run2": 20,
+ "isolated_run3_files_besides_pack": [
+  "lab/__init__.py",
+  "lab/exp3_counts.py",
+  "lab/fd_features.py",
+  "lab/segment_loader.py",
+  "lab/thresholds.py",
+  "lab/universe_crypto_only.py",
+  "out/feature_discovery/feature_catalogue.json",
+  "out/research_protocol/v1.2/forced_exit_reference.csv",
+  "out/thresholds/run_v1/thresholds.json"
+ ],
+ "isolated_run3_network": "disabled (unshare -rn)"
+}
