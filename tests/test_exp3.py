@@ -20,8 +20,12 @@ def make_pack(root, seed=7, ncoins=24):
     rng = np.random.default_rng(seed); root = pathlib.Path(root)
     (root / "hourly").mkdir(parents=True); (root / "universe").mkdir()
     grid = pd.date_range(FF.DEV_START, FF.DEV_END - pd.Timedelta(hours=1), freq="h")
-    names = ["BTC-USDT", "USDC-USDT"] + [f"C{i:02d}-USDT" for i in range(ncoins - 2)]
+    names = ["BTC-USDT", "USDC-USDT"] + [f"C{i:02d}-USDT" for i in range(ncoins - 2)] + ["PAXG-USDT", "XAUT-USDT"]
+    rng_x = None
     for k, s in enumerate(names):
+        if s in ("PAXG-USDT", "XAUT-USDT"):            # excluded series = exact copies of signal-rich coins
+            src = root / "hourly" / f"C{1 if s == 'PAXG-USDT' else 8:02d}-USDT.csv.gz"
+            (root / "hourly" / f"{s}.csv.gz").write_bytes(src.read_bytes()); continue
         vol = rng.uniform(0.004, 0.012)
         lr = rng.normal(0, vol, len(grid))
         # quiet stretches followed by bursts, so that tight ranges, breakouts and volume spikes all occur
@@ -317,6 +321,15 @@ g, _ = E.l_greedy([dict(s) for s in X], pd.Timestamp(-10 ** 9)); w, _ = E.l_wors
 rec("X10d counterexample: greedy L = 3, but a stop at hour 5 then coin B (no exit) gives 1; L_worst = 1",
     g["L_greedy"] == 3 and w == 1 and true_min(X) == 1, (g["L_greedy"], w))
 
+# re-entry blocked by an OLDER trade of the same coin (A1 exits after A3's window start; B2 sits in between):
+# the real trader must skip A3 and lands on S4 (no exit). L_worst must see that path: true minimum = 2.
+X = [{"i": 0, "coin": "A", "entry": 0, "end": 2, "ws": -168, "c": True, "why": ""},
+     {"i": 1, "coin": "B", "entry": 2, "end": 4, "ws": -166, "c": True, "why": ""},
+     {"i": 2, "coin": "A", "entry": 4, "end": 10, "ws": 1, "c": True, "why": ""},
+     {"i": 3, "coin": "C", "entry": 5, "end": 10 ** 4, "ws": -163, "c": False, "why": ""}]
+w, _ = E.l_worst([dict(s) for s in X], pd.Timestamp(-10 ** 9)); tm = true_min(X)
+rec("X10e older same-coin exit blocks a re-entry: L_worst <= true minimum (= 2)", tm == 2 and w <= tm, (w, tm))
+
 # ------------------------------------------------------------ X11 selection rule
 ok = True
 for la, lb, lc in itertools.product([99, 100], repeat=3):
@@ -327,6 +340,7 @@ rec("X11 selection rule on all 8 pass/fail combinations", ok and E.CONDITIONS ==
 
 # ------------------------------------------------------------ X12 exclusions, eligibility, report integrity
 allsig = pd.concat([R["_sig"][d] for d in R["_sig"]])
+rec("X12a0 the copied coins do produce signals (so X12a has teeth)", {"C01-USDT", "C08-USDT"} & set(allsig["coin"]), sorted(set(allsig["coin"])))
 rec("X12a no excluded coin in any signal", not any(E.is_excluded(c) for c in allsig["coin"]), sorted(set(allsig["coin"]))[:5])
 el_ok = all(bool(U["P1"]["eligible"].loc[t.floor("D"), c]) for c, t in zip(R["_sig"]["D-H1"]["coin"], R["_sig"]["D-H1"]["sig_t"])) and \
         all(bool(U["P1"]["eligible"].loc[t, c]) for c, t in zip(R["_sig"]["D-D1"]["coin"], R["_sig"]["D-D1"]["sig_t"]))
