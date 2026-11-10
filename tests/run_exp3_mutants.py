@@ -17,8 +17,8 @@ M = [
  ("XM10 daily abstention uses the state of D", 'trans.reindex(nxt).fillna(True)', 'trans.reindex(FF.DAYS).fillna(True)'),
  ("XM11 hourly entry hour = t", '"entry_hour": t + HOUR,', '"entry_hour": t,'),
  ("XM12 greedy ignores the same-coin window rule", 'if s["coin"] in last and s["ws"] < last[s["coin"]]:', 'if False:'),
- ("XM13 L_worst without the early-exit option", 'V[i] = min(full, 1 + min(W(s["coin"], ei, e) for e in early))', 'V[i] = full'),
- ("XM14 L_worst treats maybe-blocked signals as free", 'free = ci is None or s["coin"] == ci or s["ws"] >= ei', 'free = True'),
+ ("XM13 L_worst without the early-exit option", 'V[i] = min(full, 1 + min(W(s["coin"], fi, e, f(e)) for e in early))', 'V[i] = full'),
+ ("XM14 L_worst treats maybe-blocked signals as free", 'free = ci is None or s["coin"] == ci or s["ws"] >= fi', 'free = True'),
  ("XM15 excluded coins kept (daily)", 'E = U["P1"]["eligible"].copy(); E.loc[:, [c for c in E.columns if is_excluded(c)]] = False\n    elig_next', 'E = U["P1"]["eligible"].copy()\n    elig_next'),
  ("XM16 rounded hourly thresholds", 'return json.loads(b)["thresholds"]', 'return {k: round(v, 3) for k, v in json.loads(b)["thresholds"].items()}'),
  ("XM17 ledger price column read", 'd = pd.read_csv(path, usecols=LEDGER_COLS)', 'd = pd.read_csv(path)'),
@@ -39,6 +39,8 @@ M = [
  ("XM26 entry cut ignored", 'if not (es <= s.entry_hour < ee) or s.row_entry >= n:', 'if s.row_entry >= n:'),
 ]
 src = (REPO / F).read_text(); out = []
+bad = [name for name, a, b in M if src.count(a) != 1]
+if bad: raise SystemExit(f"mutant text not found exactly once: {bad}")
 for name, a, b in M:
     assert src.count(a) == 1, name
     d = pathlib.Path(tempfile.mkdtemp(prefix="exp3_mut_"))
