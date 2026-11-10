@@ -1,7 +1,15 @@
-"""Planted-defect (mutant) runner for lab/exp4_counts.py. Each mutant is applied to a copy of the code; the synthetic
-test suite tests/test_exp4.py must FAIL on it (killed). SYNTHETIC data only.
+"""Planted-defect (mutant) runner for lab/exp4_counts.py. Each mutant is applied to a copy of the code and the synthetic
+test suite tests/test_exp4.py is run on it. SYNTHETIC data only.
+
+A mutant counts as KILLED (behaviourally) ONLY if ALL of these hold (reviewer requirement, v0.46):
+  - the test run finished normally: no "Traceback" in stdout/stderr (no crash, SyntaxError, ImportError, exception);
+  - the final summary line "<passed>/<total> passed" is present and <total> equals the baseline total
+    (the unmutated suite, run first, must pass completely: every test was reached);
+  - at least one test line starts with "FAIL" (a wrong behaviour was detected);
+  - the exit code is non-zero.
+Otherwise: SURVIVED (complete run, all tests pass, exit 0) or INVALID_TEST_RUN (anything else). Neither counts as killed.
 python3 -I tests/run_exp4_mutants.py [out.json]"""
-import sys, json, shutil, subprocess, tempfile, pathlib
+import sys, re, json, shutil, subprocess, tempfile, pathlib
 REPO = pathlib.Path(__file__).resolve().parents[1]
 F = "lab/exp4_counts.py"
 M = [
@@ -29,23 +37,61 @@ M = [
  ("YM22 fill checked for every batch member before selection", '        sel, rest = batch[:slots], batch[slots:]', '        [fill(s) for s in batch]; sel, rest = batch[:slots], batch[slots:]'),
  ("YM23 entry bar read for every eligible signal (old run order)", '        summ, reason, opened = portfolio(cands, K, _fill)', '        [_fill(x) for x in cands]; summ, reason, opened = portfolio(cands, K, _fill)'),
 ]
-src = (REPO / F).read_text(); out = []
-bad = [name for name, a, b in M if src.count(a) != 1]
-if bad: raise SystemExit(f"mutant text not found exactly once: {bad}")
-for name, a, b in M:
-    assert src.count(a) == 1, name
+COPY = ("lab", "tests/test_exp4.py", "tests/test_exp3.py", "out/thresholds/run_v1/thresholds.json", "out/feature_discovery/feature_catalogue.json")
+SUMMARY = re.compile(r"^(\d+)/(\d+) passed$")
+
+
+def classify(returncode, stdout, stderr, expected_total):
+    """KILLED / SURVIVED / INVALID_TEST_RUN, and the failing test names."""
+    lines = stdout.splitlines()
+    fails = [l.split(" ")[1] for l in lines if l.startswith("FAIL ") and len(l.split(" ")) > 1]
+    summ = [SUMMARY.match(l.strip()) for l in lines if SUMMARY.match(l.strip())]
+    crashed = "Traceback" in stdout or "Traceback" in stderr
+    complete = bool(summ) and int(summ[-1].group(2)) == expected_total
+    if crashed or not complete:
+        return "INVALID_TEST_RUN", fails
+    if fails and returncode != 0:
+        return "KILLED", fails
+    if not fails and returncode == 0:
+        return "SURVIVED", fails
+    return "INVALID_TEST_RUN", fails                                   # inconsistent exit code / FAIL lines
+
+
+def run_suite(code_text):
+    """run tests/test_exp4.py against a copy of the repository whose lab/exp4_counts.py is code_text."""
     d = pathlib.Path(tempfile.mkdtemp(prefix="exp4_mut_"))
-    for p in ("lab", "tests/test_exp4.py", "tests/test_exp3.py", "out/thresholds/run_v1/thresholds.json", "out/feature_discovery/feature_catalogue.json"):
-        (d / p).parent.mkdir(parents=True, exist_ok=True)
-        (shutil.copytree if (REPO / p).is_dir() else shutil.copy2)(REPO / p, d / p)
-    (d / F).write_text(src.replace(a, b))
-    r = subprocess.run([sys.executable, "-I", "tests/test_exp4.py"], cwd=d, capture_output=True, text=True, timeout=3600)
-    fails = [l for l in r.stdout.splitlines() if l.startswith("FAIL")]
-    killed = r.returncode != 0
-    out.append({"mutant": name, "killed": killed, "by": [f.split(" ")[1] for f in fails][:6] or ([r.stderr.strip().splitlines()[-1][:120]] if r.stderr.strip() else [])})
-    print(("KILLED " if killed else "SURVIVED ") + name, out[-1]["by"], flush=True)
-    shutil.rmtree(d)
-k = sum(o["killed"] for o in out)
-print(f"{k}/{len(out)} killed")
-if len(sys.argv) > 1: pathlib.Path(sys.argv[1]).write_text(json.dumps(out, indent=1))
-sys.exit(0 if k == len(out) else 1)
+    try:
+        for p in COPY:
+            (d / p).parent.mkdir(parents=True, exist_ok=True)
+            (shutil.copytree if (REPO / p).is_dir() else shutil.copy2)(REPO / p, d / p)
+        (d / F).write_text(code_text)
+        r = subprocess.run([sys.executable, "-I", "tests/test_exp4.py"], cwd=d, capture_output=True, text=True, timeout=3600)
+        return r.returncode, r.stdout, r.stderr
+    finally:
+        shutil.rmtree(d)
+
+
+def main(out_path=None):
+    src = (REPO / F).read_text(); out = []
+    bad = [name for name, a, b in M if src.count(a) != 1]
+    if bad: raise SystemExit(f"mutant text not found exactly once: {bad}")
+    rc, so, se = run_suite(src)                                       # baseline: the unmutated suite must pass completely
+    base = [SUMMARY.match(l.strip()) for l in so.splitlines() if SUMMARY.match(l.strip())]
+    if rc != 0 or "Traceback" in so + se or not base or base[-1].group(1) != base[-1].group(2):
+        raise SystemExit("baseline test run is not a complete pass: mutants cannot be judged")
+    total = int(base[-1].group(2)); print(f"baseline: {total}/{total} passed", flush=True)
+    for name, a, b in M:
+        rc, so, se = run_suite(src.replace(a, b))
+        status, fails = classify(rc, so, se, total)
+        last = (se.strip().splitlines() or so.strip().splitlines() or [""])[-1][:160]
+        out.append({"mutant": name, "status": status, "killed": status == "KILLED", "exit_code": rc,
+                    "by": fails[:6], "detail": "" if status == "KILLED" else last})
+        print(f"{status} {name} {out[-1]['by'] or out[-1]['detail']}", flush=True)
+    k = sum(o["killed"] for o in out)
+    print(f"{k}/{len(out)} killed (behavioural)")
+    if out_path: pathlib.Path(out_path).write_text(json.dumps({"baseline_total": total, "mutants": out}, indent=1))
+    return 0 if k == len(out) else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1] if len(sys.argv) > 1 else None))
