@@ -36,7 +36,8 @@
   "by": [
    "X5a",
    "X5b",
-   "X12e"
+   "X12e",
+   "X15"
   ]
  },
  {
@@ -150,6 +151,20 @@
   "killed": true,
   "by": [
    "X4c"
+  ]
+ },
+ {
+  "mutant": "XM28 D-D1 re-entry window 19 days",
+  "killed": true,
+  "by": [
+   "X15"
+  ]
+ },
+ {
+  "mutant": "XM29 selection on L_worst",
+  "killed": true,
+  "by": [
+   "X14"
   ]
  },
  {

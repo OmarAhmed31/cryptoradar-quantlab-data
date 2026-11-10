@@ -263,5 +263,15 @@
   "test": "X12f timing: hourly entry = bar t + 1h, daily entry = D+1 00:00, entry row = entry hour",
   "pass": true,
   "detail": ""
+ },
+ {
+  "test": "X14 settings fixed by the addendum decisions",
+  "pass": true,
+  "detail": "{'rule': 'L_greedy >= 100, then fewest entry conditions, D-D1 wins the tie with D-H1; else STOP', 'select_on': 'L_greedy', 'by_L_greedy': 'STOP_INFEASIBLE', 'by_L_worst': 'STOP_INFEASIBLE', 'chosen': 'STOP_INFEASIBLE'}"
+ },
+ {
+  "test": "X15 D-D1 re-entry window = 21 days before the signal (D-20 .. D-1, signal at D+1): 20 full calendar days after the exit",
+  "pass": true,
+  "detail": "<TimedeltaArray>\n['21 days']\nLength: 1, dtype: timedelta64[us]"
  }
 ]

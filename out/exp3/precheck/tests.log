@@ -51,9 +51,13 @@ PASS X12b hourly signals eligible on the bar day; daily ones on D+1
 PASS X12c report totals reconcile (cascade = signals = execution reasons; taken + blocked = executable) 
 PASS X12d H2 dominates H1 (D-H2 signals subset of D-H1) 
 PASS X12e synthetic run has signals in all designs and only known reasons {'TIME_EXIT'}
-1f659fad9cfe7a2fb0cd76e56136e13276f04976c89739b0bcca9ba859959617
-1f659fad9cfe7a2fb0cd76e56136e13276f04976c89739b0bcca9ba859959617
+b0b58cedfd36280e65c7734a6f83c26663e24cc653a367bd5ed7701f47d3f884
+b0b58cedfd36280e65c7734a6f83c26663e24cc653a367bd5ed7701f47d3f884
 PASS X13 two runs byte-identical; no private field stored 
 PASS X13b output holds no price / return field 
 PASS X12f timing: hourly entry = bar t + 1h, daily entry = D+1 00:00, entry row = entry hour 
-53/53 passed
+PASS X14 settings fixed by the addendum decisions {'rule': 'L_greedy >= 100, then fewest entry conditions, D-D1 wins the tie with D-H1; else STOP', 'select_on': 'L_greedy', 'by_L_greedy': 'STOP_INFEASIBLE', 'by_L_worst': 'STOP_INFEASIBLE', 'chosen': 
+PASS X15 D-D1 re-entry window = 21 days before the signal (D-20 .. D-1, signal at D+1): 20 full calendar days after the exit <TimedeltaArray>
+['21 days']
+Length: 1, dtype: timedelta64[us]
+55/55 passed
