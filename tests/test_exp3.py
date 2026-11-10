@@ -1,4 +1,4 @@
-"""Pre-run tests for lab/exp3_counts.py (plan EXP3 v0.3 + addendum v0.1). SYNTHETIC data only (and the frozen
+"""Pre-run tests for lab/exp3_counts.py (plan EXP3 v0.3 + addendum v0.3: A1-A4 as approved, A4 calendar rule). SYNTHETIC data only (and the frozen
 thresholds file for its exact values); NO real count is computed here. The one real run + RD4 is tests/run_exp3_once.py.
 python3 -I tests/test_exp3.py [out.json]   -> exit code 1 if any test fails"""
 import sys, ast, json, gzip, math, random, bisect, hashlib, tempfile, pathlib, itertools
@@ -227,7 +227,7 @@ seg_end = pd.Timestamp(seg[1])
 def tw(entry, traded, cut=None, sig_t=None, se=None):
     sig = pd.DataFrame({"coin": ["Z"], "sig_t": [sig_t if sig_t is not None else entry - H], "entry_hour": [entry]})
     tt = {"Z": np.array(sorted(pd.DatetimeIndex(traded).as_unit("ns").asi8), dtype="int64")}
-    e, c, w = E.trade_windows(sig, tt, {"Z": cut} if cut else {}, se or seg_end); return e[0], c[0], w[0]
+    e, c, w, x = E.trade_windows(sig, tt, {"Z": cut} if cut else {}, se or seg_end); return e[0], c[0], w[0]
 en = TS("2025-01-01 10:00")
 dl = en + H + pd.Timedelta(days=7)
 cases = [("normal", tw(en, [en, dl]), (dl + H, True, "TIME_EXIT")),
@@ -277,21 +277,26 @@ for a in range(len(h) - 1):
 rec("X8f half-spread equals an independent loop", math.isclose(hs[ci], max(float(np.median(vals)), 0) / 2, rel_tol=1e-12), (hs[ci], len(vals)))
 
 # ------------------------------------------------------------ X9 L_greedy against an independent simulation; X10 L_worst
-def mk(rnd, n, coins, span=60, dur=(5, 30)):
+def mk(rnd, n, coins, span=60, dur=(5, 30), day=None):
     X = []
     for i in range(n):
-        e = rnd.randrange(0, span); X.append({"i": i, "coin": rnd.choice(coins), "entry": e, "end": e + rnd.randint(*dur),
-                                              "ws": e - rnd.randint(0, 12), "c": rnd.random() < 0.7, "why": "x"})
+        if day is None:
+            e = rnd.randrange(0, span); ws = e - rnd.randint(0, 12); end = e + rnd.randint(*dur); rf = end
+        else:                                            # daily-like: entries and window starts on day boundaries
+            e = rnd.randrange(0, span // day + 1) * day; ws = e - day * rnd.randint(1, 3); end = e + rnd.randint(*dur)
+            rf = (end // day) * day + day
+        X.append({"i": i, "coin": rnd.choice(coins), "entry": e, "end": end, "ws": ws, "c": rnd.random() < 0.7, "why": "x", "rf": rf})
     return X
 def greedy_ref(X):
     free, last, cnt = -10 ** 9, {}, 0
     for s in sorted(X, key=lambda s: (s["entry"], s["coin"])):
         if s["entry"] >= free and s["ws"] >= last.get(s["coin"], -10 ** 9):
-            cnt += s["c"]; free = s["end"]; last[s["coin"]] = s["end"]
+            cnt += s["c"]; free = s["end"]; last[s["coin"]] = s["rf"]
     return cnt
-def true_min(X):
+def true_min(X, day=None):
     """exhaustive: every exit time (pieces of the threshold grid), every tie choice, the EXACT per-coin rule."""
-    th = sorted({s["entry"] for s in X} | {s["ws"] for s in X} | {s["end"] for s in X})
+    f = (lambda e: e) if day is None else (lambda e: (e // day) * day + day)
+    th = sorted({s["entry"] for s in X} | {s["ws"] for s in X} | {s["ws"] - 1 for s in X} | {s["end"] for s in X})
     best = [10 ** 9]
     def go(free, last, cnt):
         if cnt >= best[0]: return
@@ -299,48 +304,51 @@ def true_min(X):
         if not el: best[0] = min(best[0], cnt); return
         h = min(s["entry"] for s in el)
         for s in [s for s in el if s["entry"] == h]:
-            opts = [(e, 1) for e in th if s["entry"] < e < s["end"]] + [(s["end"], 1), (s["end"], int(s["c"]))]
-            for e, k in opts:
-                go(e, dict(last, **{s["coin"]: e}), cnt + k)
+            opts = [(e, 1, f(e)) for e in th if s["entry"] < e < s["end"]] + [(s["end"], 1, f(s["end"]) if day else s["rf"]), (s["end"], int(s["c"]), s["rf"])]
+            for e, k, r in opts:
+                go(e, dict(last, **{s["coin"]: r}), cnt + k)
     go(-10 ** 9, {}, 0); return best[0]
-def real_path(X, rnd):
+def real_path(X, rnd, day=None):
+    f = (lambda e: e) if day is None else (lambda e: (math.floor(e) // day) * day + day)
     free, last, cnt = -10 ** 9, {}, 0
     while True:
         el = [s for s in X if s["entry"] >= free and s["ws"] >= last.get(s["coin"], -10 ** 9)]
         if not el: return cnt
         h = min(s["entry"] for s in el); s = rnd.choice([s for s in el if s["entry"] == h])
-        if rnd.random() < 0.5: e, k = s["end"], int(s["c"])
-        else: e, k = rnd.uniform(s["entry"] + 1e-6, s["end"]), 1
-        cnt += k; free = e; last[s["coin"]] = e
+        if rnd.random() < 0.5: e, k, r = s["end"], int(s["c"]), s["rf"]
+        else: e = rnd.uniform(s["entry"] + 1e-6, s["end"]); k, r = 1, f(e)
+        cnt += k; free = e; last[s["coin"]] = r
 rnd = random.Random(20261110); g_ok = w_ok = tight_ok = w_le_g = True; nd = 0
-for trial in range(400):
-    X = mk(rnd, rnd.randint(1, 7), ["A", "B", "C"] if trial % 2 else ["A", "B", "C", "D", "E", "F", "G", "H"])
+for trial in range(600):
+    dy = 24 if trial % 3 == 2 else None                  # one third of the cases use the D-D1 calendar rule (day = 24 units)
+    X = mk(rnd, rnd.randint(1, 7), ["A", "B", "C"] if trial % 2 else ["A", "B", "C", "D", "E", "F", "G", "H"],
+           span=60 if dy is None else 240, dur=(5, 30) if dy is None else (24, 200), day=dy)
     g, _ = E.l_greedy([dict(s) for s in X], pd.Timestamp(-10 ** 9))
-    w, _ = E.l_worst([dict(s) for s in X], pd.Timestamp(-10 ** 9))
+    w, _ = E.l_worst([dict(s) for s in X], pd.Timestamp(-10 ** 9), dy)
     g_ok &= g["L_greedy"] == greedy_ref(X)
-    tm = true_min(X); w_ok &= w <= tm and all(real_path(X, rnd) >= w for _ in range(30))
+    tm = true_min(X, dy); w_ok &= w <= tm and all(real_path(X, rnd, dy) >= w for _ in range(30))
     w_le_g &= w <= g["L_greedy"]
     if len({s["coin"] for s in X}) == len(X): tight_ok &= w == tm
     nd += w < g["L_greedy"]
-rec("X9 L_greedy equals an independent greedy simulation (400 random cases)", g_ok)
+rec("X9 L_greedy equals an independent greedy simulation (600 random cases, 200 with the calendar rule)", g_ok)
 rec("X10a L_worst <= exhaustive true minimum and <= every simulated real path", w_ok)
-rec("X10b L_worst <= L_greedy", w_le_g, f"strictly lower in {nd}/400")
+rec("X10b L_worst <= L_greedy", w_le_g, f"strictly lower in {nd}/600")
 rec("X10c L_worst is exact when no coin repeats", tight_ok)
 # the counterexample that motivates addendum A1: a real path can complete fewer trades than the plan's greedy L
-X = [{"i": 0, "coin": "A", "entry": 0, "end": 168, "ws": -168, "c": True, "why": ""},
-     {"i": 1, "coin": "B", "entry": 10, "end": 10 ** 4, "ws": -158, "c": False, "why": ""},
-     {"i": 2, "coin": "C", "entry": 200, "end": 368, "ws": 32, "c": True, "why": ""},
-     {"i": 3, "coin": "D", "entry": 400, "end": 568, "ws": 232, "c": True, "why": ""}]
+X = [{"i": 0, "coin": "A", "entry": 0, "end": 168, "ws": -168, "c": True, "why": "", "rf": 168},
+     {"i": 1, "coin": "B", "entry": 10, "end": 10 ** 4, "ws": -158, "c": False, "why": "", "rf": 10 ** 4},
+     {"i": 2, "coin": "C", "entry": 200, "end": 368, "ws": 32, "c": True, "why": "", "rf": 368},
+     {"i": 3, "coin": "D", "entry": 400, "end": 568, "ws": 232, "c": True, "why": "", "rf": 568}]
 g, _ = E.l_greedy([dict(s) for s in X], pd.Timestamp(-10 ** 9)); w, _ = E.l_worst([dict(s) for s in X], pd.Timestamp(-10 ** 9))
 rec("X10d counterexample: greedy L = 3, but a stop at hour 5 then coin B (no exit) gives 1; L_worst = 1",
     g["L_greedy"] == 3 and w == 1 and true_min(X) == 1, (g["L_greedy"], w))
 
 # re-entry blocked by an OLDER trade of the same coin (A1 exits after A3's window start; B2 sits in between):
 # the real trader must skip A3 and lands on S4 (no exit). L_worst must see that path: true minimum = 2.
-X = [{"i": 0, "coin": "A", "entry": 0, "end": 2, "ws": -168, "c": True, "why": ""},
-     {"i": 1, "coin": "B", "entry": 2, "end": 4, "ws": -166, "c": True, "why": ""},
-     {"i": 2, "coin": "A", "entry": 4, "end": 10, "ws": 1, "c": True, "why": ""},
-     {"i": 3, "coin": "C", "entry": 5, "end": 10 ** 4, "ws": -163, "c": False, "why": ""}]
+X = [{"i": 0, "coin": "A", "entry": 0, "end": 2, "ws": -168, "c": True, "why": "", "rf": 2},
+     {"i": 1, "coin": "B", "entry": 2, "end": 4, "ws": -166, "c": True, "why": "", "rf": 4},
+     {"i": 2, "coin": "A", "entry": 4, "end": 10, "ws": 1, "c": True, "why": "", "rf": 10},
+     {"i": 3, "coin": "C", "entry": 5, "end": 10 ** 4, "ws": -163, "c": False, "why": "", "rf": 10 ** 4}]
 w, _ = E.l_worst([dict(s) for s in X], pd.Timestamp(-10 ** 9)); tm = true_min(X)
 rec("X10e older same-coin exit blocks a re-entry: L_worst <= true minimum (= 2)", tm == 2 and w <= tm, (w, tm))
 
@@ -386,9 +394,41 @@ rec("X12f timing: hourly entry = bar t + 1h, daily entry = D+1 00:00, entry row 
 
 rec("X14 settings fixed by the addendum decisions", E.SELECT_ON == "L_greedy" and E.APPLY_HS_SKIP and E.APPLY_ENTRY_STOP_SKIP
     and R["selection"]["chosen"] == R["selection"]["by_L_greedy"] and "NOT a guaranteed minimum" in R["definitions"]["L_greedy"], R["selection"])
+# ---- X15 A4 calendar rule: exit on day X at ANY hour -> signal day X+20 refused, X+21 allowed (D-D1); hourly unchanged
 d_ws = (R["_sig"]["D-D1"]["sig_t"] - R["_sig"]["D-D1"]["win_start"]).unique()
-rec("X15 D-D1 re-entry window = 21 days before the signal (D-20 .. D-1, signal at D+1): 20 full calendar days after the exit",
-    list(d_ws) == [pd.Timedelta(days=21)], d_ws)
+rec("X15a D-D1 window start = signal day D - 20 days (signal known at D+1 = win_start + 21 days)", list(d_ws) == [pd.Timedelta(days=21)], d_ws)
+X0 = TS("2025-03-10")
+def dsig(i, coin, Dday):                      # a D-D1 signal of day Dday: entry D+1 00:00, window start D-20
+    D = X0 + pd.Timedelta(days=Dday)
+    return {"i": i, "coin": coin, "entry": (D + pd.Timedelta(days=1)).value, "end": (D + pd.Timedelta(days=9)).value,
+            "ws": (D - pd.Timedelta(days=20)).value, "c": True, "why": "TIME_EXIT", "rf": 0}
+okA = True; rows15 = []
+for hh in (0, 8, 12, 23):                     # exit hour on day X (00:00 is the edge the old rule treated differently)
+    xr = X0 + pd.Timedelta(hours=hh)
+    rf = E.reentry_from(xr.value, (xr + H).value, E.DAY_NS)
+    first = {"i": 0, "coin": "A", "entry": (X0 - pd.Timedelta(days=8)).value, "end": (xr + H).value, "ws": 0, "c": True, "why": "TIME_EXIT", "rf": rf}
+    for Dday, allowed in ((20, False), (21, True)):
+        g, tk = E.l_greedy([dict(first), dsig(1, "A", Dday)], pd.Timestamp(X0 - pd.Timedelta(days=30)))
+        got_ = 1 in tk
+        rows15.append((hh, Dday, got_)); okA &= got_ == allowed and g["blocked_same_coin_window"] == (0 if allowed else 1)
+    g, tk = E.l_greedy([dict(first), dsig(1, "B", 1)], pd.Timestamp(X0 - pd.Timedelta(days=30)))
+    okA &= 1 in tk                                                     # another coin is not affected
+rec("X15b l_greedy: exit on day X at 00/08/12/23h -> same-coin signal X+20 refused, X+21 allowed; other coin free", okA, rows15)
+rec("X15c reentry_from: D-D1 = midnight after the exit day; hourly = the trade end (unchanged)",
+    E.reentry_from(TS("2025-03-10 08:00").value, 1, E.DAY_NS) == TS("2025-03-11").value
+    and E.reentry_from(TS("2025-03-10 00:00").value, 1, E.DAY_NS) == TS("2025-03-11").value
+    and E.reentry_from(TS("2025-03-10 23:59").value, 1, E.DAY_NS) == TS("2025-03-11").value
+    and E.reentry_from(123, 456, None) == 456)
+sig1 = pd.DataFrame({"coin": ["Z"], "sig_t": [en - H], "entry_hour": [en]})
+tt1 = {"Z": np.array(sorted(pd.DatetimeIndex([en, TS("2025-01-08 23:00")]).as_unit("ns").asi8), dtype="int64")}
+_, _, _, xr1 = E.trade_windows(sig1, tt1, {}, seg_end)
+_, _, _, xr2 = E.trade_windows(sig1, tt1, {"Z": (TS("2025-01-05 00:00"), True)}, seg_end)
+rec("X15d exit day: a time exit in the 23:00 bar exits on that day (not the next, though the bar ends at 00:00); a cut at 00:00 exits that day",
+    xr1[0] == TS("2025-01-08 23:00") and E.reentry_from(xr1[0].value, 0, E.DAY_NS) == TS("2025-01-09").value
+    and xr2[0] == TS("2025-01-05 00:00") and E.reentry_from(xr2[0].value, 0, E.DAY_NS) == TS("2025-01-06").value, (xr1, xr2))
+w15, _ = E.l_worst([dict(first), dsig(1, "A", 20), dsig(2, "C", 25)], pd.Timestamp(X0 - pd.Timedelta(days=30)), E.DAY_NS)
+rec("X15e l_worst with the calendar rule <= the exhaustive true minimum (real times)",
+    w15 <= true_min([dict(first), dsig(1, "A", 20), dsig(2, "C", 25)], E.DAY_NS), w15)
 n_fail = sum(not r["pass"] for r in res)
 print(f"{len(res) - n_fail}/{len(res)} passed")
 if len(sys.argv) > 1: pathlib.Path(sys.argv[1]).write_text(json.dumps(res, indent=1))

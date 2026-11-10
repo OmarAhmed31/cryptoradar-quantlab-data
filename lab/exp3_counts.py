@@ -1,5 +1,5 @@
 """Experiment 3 counts run (plan docs/EXP3_DESIGN_SELECTION_PLAN_v0.3.md, approved; addendum decisions recorded in
-docs/EXP3_COUNTS_CODE_ADDENDUM_v0.2.md: A1-A4 approved by the reviewer). Development only, ONE run.
+docs/EXP3_COUNTS_CODE_ADDENDUM_v0.2.md + v0.3: A1-A4 approved; A4 calendar rule). Development only, ONE run.
 
 NO forward return, NO outcome, NO stop/target result, NO price after the entry.
 Inputs: the Development pack, the frozen hourly thresholds (sha256 checked), the U9b delisting ledger (timestamps and
@@ -18,7 +18,8 @@ Conventions (all fixed before any count):
   block_end = max(sig_t + 7d + 2h, min(exit bar + 1h, segment end)); segment end if there is no exit bar   (plan §3b)
   delisting cut in [entry hour, block_end): the trade ends at the cut                                     (plan §3c)
   counted iff the exit is guaranteed inside H_max (720 h from the entry hour) and inside the segment       (plan §3d)
-  a new entry needs entry hour >= the previous exit; same coin: the signal's range window starts >= its last exit
+  a new entry needs entry hour >= the previous exit; same coin: hourly window start >= its last exit end,
+  D-D1 window start date >= exit date + 1 calendar day (addendum v0.3)
 """
 import sys, json, bisect, hashlib, pathlib, math
 import numpy as np
@@ -57,8 +58,9 @@ DEFINITIONS = {
     "L_worst": "guaranteed minimum under the stated assumptions (any exit time, any tie, a superset of re-entry cases); "
                "conservative, often uninformative; reported only, never an acceptance rule",
     "no_guarantee": "a design passing L_greedy >= 100 is NOT guaranteed 100 completed trades",
-    "same_coin_reentry": "the signal's full range window (168 h hourly; 20 calendar days D-D1) must start at or after the "
-                         "coin's last exit: a fixed signal-management rule, not derived from data",
+    "same_coin_reentry": "hourly: the signal's full 168-h range window must start at or after the coin's last exit (Spec 5.5); "
+                         "D-D1: window_start_date >= exit_date + 1 calendar day (20 full calendar days after the exit day: "
+                         "exit on day X -> earliest signal day X+21); a fixed signal-management rule, not derived from data",
 }
 MIN_PAIRS = 360
 _K = 3 - 2 * math.sqrt(2)
@@ -212,8 +214,10 @@ def executable(sig, Hh, stop_limit, seg):
 
 
 def trade_windows(sig, traded_times, ledger, seg_end):
-    """end time, counted flag and reason for each executable signal; no price is used."""
-    ends, cnt, why = [], [], []
+    """end time, counted flag, reason and exit reference for each executable signal; no price is used.
+    exit reference = the time whose UTC day is the exit day: the exit bar label (the time-exit fill lies inside that
+    hour, so inside that day), the cut, or the end when there is no exit."""
+    ends, cnt, why, xref = [], [], [], []
     for s in sig.itertuples(index=False):
         tt = traded_times[s.coin]
         dl = s.entry_hour + HOUR + HOLD
@@ -223,18 +227,31 @@ def trade_windows(sig, traded_times, ledger, seg_end):
         block_end = max(s.sig_t + BLOCK_MIN, tail)
         cut = ledger.get(s.coin)
         if cut is not None and s.entry_hour <= cut[0] < block_end:
-            ends.append(cut[0])
+            ends.append(cut[0]); xref.append(cut[0])
             ok = cut[1] and cut[0] < s.entry_hour + H_MAX
             cnt.append(ok); why.append("FORCED_EXIT_PRICED" if ok else ("UNPRICEABLE_FORCED_EXIT" if not cut[1] else "EXCLUDED_HMAX"))
             continue
-        ends.append(block_end)
+        ends.append(block_end); xref.append(xb if (xb is not None and xb + HOUR <= seg_end) else block_end)
         if xb is not None and xb + HOUR <= min(s.entry_hour + H_MAX, seg_end):
             cnt.append(True); why.append("TIME_EXIT")
         elif (xb is not None and xb + HOUR > s.entry_hour + H_MAX) or (xb is None and s.entry_hour + H_MAX <= seg_end):
             cnt.append(False); why.append("EXCLUDED_HMAX")
         else:
             cnt.append(False); why.append("OPEN_AT_SEGMENT_END")
-    return ends, cnt, why
+    return ends, cnt, why, xref
+
+
+DAY_NS = 86_400 * 10 ** 9
+
+
+def reentry_from(xref_ns, end_ns, day_ns=None):
+    """earliest allowed START of a same-coin signal's range window after that coin's exit.
+    hourly designs (day_ns None): the trade's end (Spec §5.5: a new full 168-hour window after the exit; unchanged);
+    D-D1 (addendum v0.3 A4): window_start_date >= exit_date + 1 calendar day, i.e. the UTC midnight after the exit day.
+    Exit on day X (any hour) -> days X+1 .. X+20 form the window -> earliest signal day X+21, entry X+22."""
+    if day_ns is None:
+        return end_ns
+    return (xref_ns // day_ns) * day_ns + day_ns
 
 
 # ------------------------------------------------------------------ L (plan greedy) and L_worst (rigorous bound)
@@ -254,15 +271,16 @@ def l_greedy(X, seg_start):
         if s["coin"] in last and s["ws"] < last[s["coin"]]:
             out["blocked_same_coin_window"] += 1; continue
         out["taken"] += 1; out["L_greedy"] += int(s["c"]); reasons[s["why"]] = reasons.get(s["why"], 0) + 1
-        free = s["end"]; last[s["coin"]] = s["end"]; taken.append(s["i"])
+        free = s["end"]; last[s["coin"]] = s["rf"]; taken.append(s["i"])
     out["taken_by_reason"] = dict(sorted(reasons.items()))
     return out, taken
 
 
-def l_worst(X, seg_start):
+def l_worst(X, seg_start, day=None):
     """guaranteed minimum under the stated assumptions: min over every possible exit time (any time in (entry hour, end];
     an early exit is a completed trade), every tie choice, and a superset of the same-coin re-entry possibilities.
     Reported beside L_greedy only; never an acceptance rule (addendum A1)."""
+    f = (lambda e: e) if day is None else (lambda e: (e // day) * day + day)    # re-entry threshold after an exit at e
     S = _sorted(X); n = len(S)
     ent = [s["entry"] for s in S]
     by_coin = {}
@@ -272,36 +290,39 @@ def l_worst(X, seg_start):
         v.sort()
     V = [0] * n
 
-    def nxt(ci, ei, e):
+    def nxt(ci, fi, e, fe):
+        """fe = re-entry threshold of the current coin after exit e; fi = f(entry): any older exit is <= the entry."""
         k = bisect.bisect_left(ent, e); out = set()
         while k < n:
             s = S[k]
-            if s["coin"] == ci and s["ws"] < e:
+            if s["coin"] == ci and s["ws"] < fe:
                 k += 1; continue                                   # surely blocked by the current trade's exit
-            free = ci is None or s["coin"] == ci or s["ws"] >= ei   # other coins: an older exit is <= ei
+            free = ci is None or s["coin"] == ci or s["ws"] >= fi   # other coins: an older exit is <= the entry
             if free:
                 h = ent[k]; j = k
                 while j < n and ent[j] == h:
-                    if not (S[j]["coin"] == ci and S[j]["ws"] < e):
+                    if not (S[j]["coin"] == ci and S[j]["ws"] < fe):
                         out.add(j)
                     j += 1
                 return out
             out.add(k); k += 1                                      # maybe blocked: the adversary may take it or not
         return out
 
-    def W(ci, ei, e):
-        o = nxt(ci, ei, e)
+    def W(ci, fi, e, fe):
+        o = nxt(ci, fi, e, fe)
         return min(V[j] for j in o) if o else 0
 
     for i in range(n - 1, -1, -1):
         s = S[i]; ei, end = s["entry"], s["end"]
         th = set(ent[bisect.bisect_right(ent, ei):bisect.bisect_right(ent, end)])
         ws = by_coin[s["coin"]]
-        th |= set(ws[bisect.bisect_right(ws, ei):bisect.bisect_right(ws, end)])
+        wsr = ws[bisect.bisect_right(ws, ei):bisect.bisect_right(ws, end)]
+        th |= set(wsr) | {w - 1 for w in wsr if w - 1 > ei}         # daily: eligibility flips just below a window start
         early = [e for e in th if e < end] + [end]
-        full = int(s["c"]) + W(s["coin"], ei, end)
-        V[i] = min(full, 1 + min(W(s["coin"], ei, e) for e in early))
-    o = nxt(None, None, seg_start.value)
+        fi = f(ei)
+        full = int(s["c"]) + W(s["coin"], fi, end, s["rf"])
+        V[i] = min(full, 1 + min(W(s["coin"], fi, e, f(e)) for e in early))
+    o = nxt(None, None, seg_start.value, None)
     return (min(V[j] for j in o) if o else 0), V
 
 
@@ -342,11 +363,13 @@ def run(pack=FF.PACK, thr=None, ledger=None, _daily_fixed=None):
         rs = executable(sig, Hh, d["stop_limit"], seg)
         sig["exec"] = rs
         ex = sig[sig["exec"] == "EXECUTABLE"].reset_index(drop=True)
-        ends, cnt, why = trade_windows(ex, traded_times, led, seg_end)
-        X = [{"i": i, "coin": r.coin, "entry": r.entry_hour.value, "end": e.value, "ws": r.win_start.value, "c": bool(c), "why": w}
-             for i, (r, e, c, w) in enumerate(zip(ex.itertuples(index=False), ends, cnt, why))]
+        ends, cnt, why, xref = trade_windows(ex, traded_times, led, seg_end)
+        dmode = DAY_NS if name == "D-D1" else None
+        X = [{"i": i, "coin": r.coin, "entry": r.entry_hour.value, "end": e.value, "ws": r.win_start.value, "c": bool(c), "why": w,
+              "rf": reentry_from(x.value, e.value, dmode)}
+             for i, (r, e, c, w, x) in enumerate(zip(ex.itertuples(index=False), ends, cnt, why, xref))]
         g, taken = l_greedy(X, seg_start)
-        w, _ = l_worst(X, seg_start)
+        w, _ = l_worst(X, seg_start, dmode)
         Lg[name], Lw[name] = g["L_greedy"], w
         tk_mask = np.isin(np.arange(len(ex)), taken)
         sig["end"], sig["c"], sig["why"] = None, None, None

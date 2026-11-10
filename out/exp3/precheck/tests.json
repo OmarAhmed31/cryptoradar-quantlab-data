@@ -185,7 +185,7 @@
   "detail": "(np.float64(0.0014757261336655711), 663)"
  },
  {
-  "test": "X9 L_greedy equals an independent greedy simulation (400 random cases)",
+  "test": "X9 L_greedy equals an independent greedy simulation (600 random cases, 200 with the calendar rule)",
   "pass": true,
   "detail": ""
  },
@@ -197,7 +197,7 @@
  {
   "test": "X10b L_worst <= L_greedy",
   "pass": true,
-  "detail": "strictly lower in 28/400"
+  "detail": "strictly lower in 61/600"
  },
  {
   "test": "X10c L_worst is exact when no coin repeats",
@@ -270,8 +270,28 @@
   "detail": "{'rule': 'L_greedy >= 100, then fewest entry conditions, D-D1 wins the tie with D-H1; else STOP', 'select_on': 'L_greedy', 'by_L_greedy': 'STOP_INFEASIBLE', 'by_L_worst': 'STOP_INFEASIBLE', 'chosen': 'STOP_INFEASIBLE'}"
  },
  {
-  "test": "X15 D-D1 re-entry window = 21 days before the signal (D-20 .. D-1, signal at D+1): 20 full calendar days after the exit",
+  "test": "X15a D-D1 window start = signal day D - 20 days (signal known at D+1 = win_start + 21 days)",
   "pass": true,
   "detail": "<TimedeltaArray>\n['21 days']\nLength: 1, dtype: timedelta64[us]"
+ },
+ {
+  "test": "X15b l_greedy: exit on day X at 00/08/12/23h -> same-coin signal X+20 refused, X+21 allowed; other coin free",
+  "pass": true,
+  "detail": "[(0, 20, False), (0, 21, True), (8, 20, False), (8, 21, True), (12, 20, False), (12, 21, True), (23, 20, False), (23, 21, True)]"
+ },
+ {
+  "test": "X15c reentry_from: D-D1 = midnight after the exit day; hourly = the trade end (unchanged)",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "X15d exit day: a time exit in the 23:00 bar exits on that day (not the next, though the bar ends at 00:00); a cut at 00:00 exits that day",
+  "pass": true,
+  "detail": "([Timestamp('2025-01-08 23:00:00+0000', tz='UTC')], [Timestamp('2025-01-05 00:00:00+0000', tz='UTC')])"
+ },
+ {
+  "test": "X15e l_worst with the calendar rule <= the exhaustive true minimum (real times)",
+  "pass": true,
+  "detail": "2"
  }
 ]
