@@ -85,6 +85,11 @@
   "detail": "{'K': 3, 'opened': 2, 'L_greedy_K': 1, 'batches': 1, 'batch_size': {'2': 1}, 'open_positions_after_each_entry': {'1': 1, '2': 1}, 'opened_by_window_reason': {'TIME_EXIT': 2}}"
  },
  {
+  "test": "Y2f fill check only for selected signals: none for NO_CASH / RANK / NO_SLOT / coin held",
+  "pass": true,
+  "detail": "([0, 3, 4, 5], {0: 'OPENED', 1: 'SKIPPED_NO_CASH', 2: 'SKIPPED_NO_CASH', 6: 'SKIPPED_RANK', 3: 'OPENED', 4: 'OPENED', 5: 'OPENED', 7: 'BLOCKED_COIN_HELD', 8: 'SKIPPED_NO_SLOT'})"
+ },
+ {
   "test": "Y3 engine equals an independent reference with explicit cash amounts (1,500 random cases, K = 1..3)",
   "pass": true,
   "detail": "cases with >1 open: 214"
@@ -107,7 +112,12 @@
  {
   "test": "Y5c D-D1 candidates use the calendar re-entry rule from the exit bar day (23:00 bar -> next midnight)",
   "pass": true,
-  "detail": "{'i': 0, 'h': 1735725600000000000, 'coin': 'BBB-USDT', 'rvol': 7.0, 'ws': 1735084800000000000, 'fill': 'FILLED', 'end': 1736380800000000000, 'free_at': 1736380800000000000, 'rf': 1736380800000000000, 'c': True, 'why': 'TIME_EXIT'}"
+  "detail": "{'i': 0, 'h': 1735725600000000000, 'coin': 'BBB-USDT', 'rvol': 7.0, 'ws': 1735084800000000000, 'row': -1, 'col': -1, 'stop': nan, 'end': 1736380800000000000, 'free_at': 1736380800000000000, 'rf': 1736380800000000000, 'c': True, 'why': 'TIME_EXIT'}"
+ },
+ {
+  "test": "Y2g candidates carry no fill field: the portfolio cannot read a fill except through the check it calls",
+  "pass": true,
+  "detail": ""
  },
  {
   "test": "Y6 ranking value = the signal's own RVOL (hourly: bar t vs prior 168; daily: day D vs prior 20 traded days), independent loop",
@@ -140,7 +150,7 @@
   "detail": ""
  },
  {
-  "test": "Y8a reasons reconcile with the signals; OPENED = opened >= L; never more than 3 open",
+  "test": "Y8a reasons reconcile; OPENED = opened >= L; never more than 3 open; the entry bar was read only for selected signals",
   "pass": true,
   "detail": ""
  },

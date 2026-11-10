@@ -15,11 +15,13 @@ PASS Y2 free_time: time exit free from h >= end; exit AT end (cut / segment end)
 PASS Y2 coin already held -> BLOCKED_COIN_HELD 
 PASS Y2 same-coin re-entry window (ws >= rf) enforced {0: 'OPENED', 1: 'BLOCKED_REENTRY_WINDOW', 2: 'OPENED'}
 PASS Y2 L counts only completed trades (c) {'K': 3, 'opened': 2, 'L_greedy_K': 1, 'batches': 1, 'batch_size': {'2': 1}, 'open_positions_after_each_entry': {'1': 1, '2': 1}, 'opened_by_window_reason': {'TIME_EXIT': 2}}
+PASS Y2f fill check only for selected signals: none for NO_CASH / RANK / NO_SLOT / coin held ([0, 3, 4, 5], {0: 'OPENED', 1: 'SKIPPED_NO_CASH', 2: 'SKIPPED_NO_CASH', 6: 'SKIPPED_RANK', 3: 'OPENED', 4: 'OPENED', 5: 'OPENED', 7: 'BLOCKED_COIN_HELD', 8: 'SKIPPED_NO_SLOT'})
 PASS Y3 engine equals an independent reference with explicit cash amounts (1,500 random cases, K = 1..3) cases with >1 open: 214
 PASS Y4 K = 1 equals the frozen Exp. 3 L_greedy on equivalent inputs (500 cases) 
 PASS Y5a ranking uses the unrounded RVOL (7.0000000002 beats 7.0000000001) ([2], [7.0000000001, 7.0000000001, 7.0000000002])
 PASS Y5b exact tie -> coin name ascending (AAA before BBB) [1]
-PASS Y5c D-D1 candidates use the calendar re-entry rule from the exit bar day (23:00 bar -> next midnight) {'i': 0, 'h': 1735725600000000000, 'coin': 'BBB-USDT', 'rvol': 7.0, 'ws': 1735084800000000000, 'fill': 'FILLED', 'end': 1736380800000000000, 'free_at': 1736380800000000000, 'rf': 1736380800000000000, 
+PASS Y5c D-D1 candidates use the calendar re-entry rule from the exit bar day (23:00 bar -> next midnight) {'i': 0, 'h': 1735725600000000000, 'coin': 'BBB-USDT', 'rvol': 7.0, 'ws': 1735084800000000000, 'row': -1, 'col': -1, 'stop': nan, 'end': 1736380800000000000, 'free_at': 1736380800000000000, 'rf': 1736
+PASS Y2g candidates carry no fill field: the portfolio cannot read a fill except through the check it calls 
 D-H1 {'BLOCKED_COIN_HELD': 1, 'OPENED': 12, 'PAST_ENTRY_CUT': 1, 'SKIPPED_NO_CASH': 4} 12 {'1': 16}
 D-H2 {'BLOCKED_COIN_HELD': 1, 'OPENED': 11, 'PAST_ENTRY_CUT': 1, 'SKIPPED_NO_CASH': 4} 11 {'1': 15}
 D-D1 {'BLOCKED_COIN_HELD': 2, 'BLOCKED_REENTRY_WINDOW': 4, 'NOT_EXECUTED': 2, 'OPENED': 20, 'PAST_ENTRY_CUT': 4, 'SKIPPED_NO_CASH': 15, 'SKIPPED_NO_SLOT': 1} 20 {'1': 35, '3': 1}
@@ -29,12 +31,12 @@ PASS Y7b fill: wide-stop boundary on the entry bar OPEN (np.float64(157.46070840
 PASS Y7c pre-entry: entry at the entry cut -> PAST_ENTRY_CUT; one hour earlier passes 
 PASS Y7d pre-entry: no half-spread in the first 30 days -> SKIPPED_NO_HALF_SPREAD 
 PASS Y7e pre-entry checks do NOT look at the fill (an untraded entry hour still passes pre-entry) 
-PASS Y8a reasons reconcile with the signals; OPENED = opened >= L; never more than 3 open 
+PASS Y8a reasons reconcile; OPENED = opened >= L; never more than 3 open; the entry bar was read only for selected signals 
 PASS Y8b selection = L_greedy(K) rule; U7 note present 
 PASS Y8c synthetic run exercises parallel positions and several skip reasons [{'BLOCKED_COIN_HELD': 1, 'OPENED': 12, 'PAST_ENTRY_CUT': 1, 'SKIPPED_NO_CASH': 4}, {'BLOCKED_COIN_HELD': 1, 'OPENED': 11, 'PAST_ENTRY_CUT': 1, 'SKIPPED_NO_CASH': 4}, {'BLOCKED_COIN_HELD': 2, 'BLOCKED
 PASS Y9 prices after tau changed: every portfolio decision and fill check at entry hours before tau unchanged [7, 6, 22]
-d40c43a947ddbf35410382dc21397c7f606e6868cc7f2e7085d4187ba0e754ae
-d40c43a947ddbf35410382dc21397c7f606e6868cc7f2e7085d4187ba0e754ae
+7e8181350ee18c9e152927896f6d5a675510675b72631898b24e6517cc3c8a88
+7e8181350ee18c9e152927896f6d5a675510675b72631898b24e6517cc3c8a88
 PASS Y10a two runs byte-identical; no private field stored 
 PASS Y10b output holds no price / return field 
-34/34 passed
+36/36 passed
