@@ -1,0 +1,178 @@
+# Experiment 4: capital-allocation design proposal v0.1 (DESIGN ONLY: no code, no run, no counts, no returns)
+
+**Context:**
+- Experiment 3 is CLOSED as STOP_INFEASIBLE. Under one position for the whole portfolio and a hold of ≥ 7 days, Development can hold at most about 69–82 trades, so U7 (≥ 100 completed trades) was impossible by construction.
+- The system owner has now stated how he actually allocates capital (§1).
+- This document proposes **how to test that policy faithfully**. **It is not a way to raise the trade count.**
+- Protocol v1.2 is FIXED. The Final Holdout is sealed. P1 is not approved.
+
+**Fixed and NOT reopened:**
+- the three designs D-H1, D-H2 and D-D1, and every one of their conditions;
+- the frozen hourly thresholds (`thresholds.json` sha256 `5dc38aa9…8c5f`);
+- the daily derivation method;
+- the execution, cost, H_max, U9b and re-entry rules (Spec v0.1.3; Exp. 3 addendum v0.3).
+
+**A disclosure:** Experiment 3's opportunity counts are already known: D-H1 1,195 signals, L_greedy 43; D-H2 473 and 38; D-D1 119 and 19. No return is known. This proposal uses those counts only to state the problem. It **does not** use them to pick a design, a threshold or a parameter.
+
+## 1. The owner's capital policy (as stated, verbatim intent)
+
+| Equity at decision time | Rule |
+|---|---|
+| **< $2,000** | **one position**, using all available capital |
+| **≥ $2,000** | split equally among the selected opportunities: **1 opportunity → all capital; 2 → half each; 3 or more → the best 3 only, one third each** |
+| always | **no extra position just because cash is available** |
+
+### 1.1 What the rule says literally, and its consequence (to be confirmed by the owner)
+
+The rule allocates capital **among the opportunities that appear together**. Read literally:
+
+- **The batch** is the executable signals that share **the same entry hour**. That is the only moment at which several opportunities "appear" together under the Spec entry rule (§5.5: the first traded minute in [t+1h, t+2h)).
+- **Each batch** receives **all available cash**, split as in §1.
+- **A later signal**, while that cash is invested, finds **no cash**, so it is **skipped and logged** (`NO_CASH`). It cannot take a slot just because a slot is "free".
+- **When a position exits**, its cash returns, and the next batch gets the available cash.
+
+**Consequence:** if signals rarely share an entry hour, the policy behaves almost like the single position of Experiment 3. That is a faithful result about the owner's style, **not a defect to be engineered away**.
+
+How often signals share an entry hour has **not been measured**. It would be measured in the counts stage (§7).
+
+**The owner must confirm which reading matches his real trading.** Three readings are possible, and **only (R1) is the literal statement:**
+
+| Reading | Meaning | Change vs. the statement |
+|---|---|---|
+| **R1: literal, batch = same entry hour** | as above | none |
+| R2: a daily decision batch | collect a whole day's signals, then allocate once at a fixed time | changes **entry timing**, so it would need a new pre-registered entry rule |
+| R3: fixed slots, each 1/3 of equity | a lone signal gets only 1/3 | **contradicts** "1 opportunity → all capital" |
+
+**Recommendation: R1 as the primary**, because it is the statement itself. R2 and R3 are listed only so the owner can say whether either describes what he really does.
+
+### 1.2 Equity and the $2,000 switch
+
+- **Equity at a decision** = cash + open positions valued at their **last closed hourly close before the decision**. That price is known at the decision time, so no future data is used.
+- The number of positions allowed (K = 1 or K ≤ 3) is taken **at each batch** from that equity. A position already open is never resized.
+- **Capital paths:**
+  - **$10,000**, the primary path for U7 (K ≤ 3 while equity ≥ $2,000);
+  - **$1,000**, **K = 1 always** while equity < $2,000.
+
+  The $1,000 path is **single-position again**, so **U7 is infeasible on it by construction** (§4). It is reported as descriptive only.
+
+## 2. Choosing the best 3: the ranking
+
+### 2.1 The criterion (no new score is invented)
+
+The proposal uses **the strategy's own confirmation variable**, the relative volume of the breakout bar, which the designs already rank:
+- **RVOL** for D-H1 and D-H2;
+- **RVOL_d** for D-D1.
+
+**Why RVOL:**
+- It is the only "strength" measure that all three designs share.
+- Its frozen threshold E3 was derived as "the strongest quarter of breakouts by volume" (plan v0.3.2). Ranking by it is consistent with how the strategy defines strength.
+- CLV exists only in D-H2. Stop distance is a **risk** measure, not a strength measure.
+
+**Tie-breakers, in order:**
+1. **the smaller stop distance** (less capital at risk per unit), computed at the fill, exactly as the A3 check computes it;
+2. **the coin name**, alphabetically, so the result is deterministic.
+
+**The alternative, for the reviewer's decision:** rank by **the smaller stop distance first** ("risk first"). This is not chosen by the developer. Both rules are free of outcomes. **Only one may be frozen**, before any count.
+
+### 2.2 No future data
+
+- The rank of a signal uses only the values of **its own signal bar**, which are known at t+1h (for D-D1, at D+1 00:00), plus the stop distance at the fill (A3, the entry price itself).
+- **The rank is fixed when the signal appears. It is never recomputed later.**
+- **Ranking happens only inside one batch** (the same entry hour). Signals from different hours are never compared in scenario A, so a later signal can never displace an earlier allocation.
+
+## 3. Open positions: scenario A against scenario B
+
+| | **A: no replacement (recommended primary)** | **B: replace the weakest open position** |
+|---|---|---|
+| **The rule** | an open position runs to its own exit (stop, target, 7-day time exit, delisting) | when a new batch has no cash: if the new signal's rank > the **weakest open position's rank at its entry**, sell that position at the first traded minute of the new entry hour (the same fill rule), then buy the new one with the cash |
+| **New parameters** | none | the comparison rule (proposed: **strictly higher RVOL**, nothing more), and whether a minimum hold applies (**proposed: none**, so that no number is invented) |
+| **Weakness** | it may miss a stronger signal while invested | it compares a **stale** entry score with a fresh one. The strategy has no measure of an open position's *current* strength, and creating one would be a new, unvalidated score |
+| **Costs** | as in the Spec | **two extra crossings** per replacement: exit fee + half-spread + slippage, then entry fee + half-spread + slippage |
+| **Effect on U7** | trades complete naturally | **every replacement creates a completed trade.** Churn inflates the count without testing the strategy's exits. Replacement exits must be **reported separately** and **must not be counted toward U7** (proposal) |
+| **Effect on risk** | the risk is set at entry | turnover is higher, and the exposure to recent breakouts is higher |
+
+**Recommendation:** freeze **A** as the primary. **B** is either:
+- **(i)** deferred; or
+- **(ii)** run only as a **descriptive** comparison under the same frozen plan, with its replacement exits excluded from U7.
+
+The reviewer decides.
+
+## 4. Trade-count capacity and U7 (arithmetic only)
+
+**Capacity ceiling, without data:**
+- With **at most K open positions**, each held at least 7 days + 2–3 hours, Development holds at most about **K × 82** trades (K × 69 from April 2024, when A1 first allows signals).
+- That gives **K = 1 → 69–82** and **K = 3 → 207–246**.
+
+**This is only a ceiling.** Under the literal reading R1, positions run in parallel **only when signals share an entry hour**. A lone signal takes all the cash, so the real number lies between the single-position count and the ceiling.
+
+**U7 is therefore decided by an empirical quantity:** how often executable signals share an entry hour while cash is free. It is unknown, and it is measured once, in the counts stage (§7).
+
+**The $1,000 path is single-position**, so U7 is **infeasible there by construction**. **Proposal: U7 is assessed on the $10,000 path only.**
+
+## 5. Risk, costs and exposure (defined now; computed only in P1)
+
+**Equal capital does not mean equal risk.** The defined measures:
+
+| Quantity | Definition |
+|---|---|
+| **allocated capital** a_i | the cash given to position i at entry |
+| **capital at risk at the stop** r_i | a_i × (P_fill − stop)/P_fill **+** the exit costs at the stop (fee + half-spread + slippage), with a gap risk stated separately (a gap fill below the stop, Spec §6) |
+| **portfolio open risk** | Σ r_i over the open positions, as a % of equity, logged at each decision |
+| **cash / invested** | cash, the number of open positions, the share of equity invested |
+| **exposure** | the distinct coins held; positions opened in the **same batch** (one market move, so highly correlated); the market state at entry |
+
+**The size of the issue, from the frozen limits (no data computed):**
+- A full-capital position may be up to **34.07%** from its stop on the hourly designs (E5), and up to **52.71%** on D-D1 (its derived P90).
+- So **one stopped trade can cost about a third, or about half, of the equity**, before costs and gaps.
+- With 3 positions of one third each, the portfolio open risk is the **average** of the three stop distances. Because breakouts in one batch tend to come from the same market move, the three stops are **not** independent.
+
+**Proposal:**
+- All risk measures are **reported**.
+- **No risk cap is added** in this experiment. A cap would be a new rule needing its own evidence, and the owner's policy is equal capital.
+- Whether to add a portfolio risk limit is listed as an open decision (§8), to be decided from evidence, not from an invented number.
+
+**Costs:** unchanged (0.10% taker, Corwin–Schultz half-spread, slippage, U9b).
+- More positions mean more crossings, but each crossing is smaller.
+- The DV30 cap (1% of DV30_med per position) applies to each position separately.
+
+## 6. Protocol v1.2 and the Final Holdout
+
+- Development only, for the counts stage and for any later P1 development. Validation is used once, only after a frozen P1 passes on Development.
+- **The Final Holdout stays sealed.** Experiment 4 counts toward the proposed Holdout budget of at most 3 frozen candidates (Spec §16; P-5 still open).
+- Experiment 4 is a new row in the registry. It does not reopen Experiment 3.
+
+## 7. Pre-registered test plan
+
+| Stage | What | Allowed outputs | Gate |
+|---|---|---|---|
+| **0** | this proposal, then a frozen specification | — | reviewer and owner approve §8 |
+| **1: counts** | the designs D-H1, D-H2 and D-D1 under the frozen policy (R1 + scenario A; B only if approved as descriptive) on Development, **$10,000 path with K ≤ 3** | the number of batches, the batch-size distribution (1 / 2 / ≥ 3), NO_CASH skips, positions in parallel, **L_greedy(K)** with the same sequential-blocking estimate as Exp. 3, L_worst reported. **No price after the entry, no return** | the code and tests are reviewed first; one run; RD4; outputs committed before they are read |
+| **1-rule** | the selection is fixed now: **L_greedy(K) ≥ 100**, then the fewest entry conditions, and D-D1 wins the tie with D-H1; **otherwise STOP**, with nothing relaxed | — | — |
+| **2: P1 spec** | a full P1 specification of the chosen design under the policy (costs, risk logging, both capital paths) | — | reviewer |
+| **3: P1 Development** | the frozen P1 run on Development | returns, risk measures, U7 on the $10,000 path | pre-registered criteria |
+| **4: Validation** | once, unchanged | — | — |
+
+**Equity in stage 1:** it cannot be known without returns, so stage 1 assumes **K ≤ 3 throughout** on the $10,000 path. In P1, K drops to 1 if equity falls below $2,000 (an 80% drawdown). This is disclosed: the stage-1 count is an estimate under that assumption.
+
+## 8. Open decisions
+
+**For the owner:**
+
+| # | Decision |
+|---|---|
+| O1 | Which reading is true: **R1** (batch = same entry hour, literal), R2 (a daily batch) or R3 (fixed thirds)? |
+| O2 | When fully invested and a stronger signal appears, do you in reality **wait** (scenario A) or **switch** (scenario B)? |
+| O3 | Equity for the $2,000 switch: cash + open positions at the last close (proposed). Or cash + positions at cost? |
+
+**For the reviewer:**
+
+| # | Decision |
+|---|---|
+| D1 | The ranking criterion: **RVOL** (proposed), or the smaller stop distance first |
+| D2 | Scenario B: deferred, or descriptive only with its replacement exits excluded from U7 (proposed) |
+| D3 | U7 is assessed on the **$10,000 path only**, since the $1,000 path is single-position by the owner's rule |
+| D4 | Risk is reported only, with no portfolio risk cap in this experiment (proposed) |
+| D5 | Stage 1 reuses the frozen Exp. 3 counting code, extended to K positions, under a new frozen plan with its own tests and RD4 |
+| D6 | Whether Experiment 4 counts as a new candidate toward the Holdout budget (P-5) |
+
+**Nothing is implemented until these are approved and the specification is frozen.**
