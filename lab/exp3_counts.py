@@ -104,12 +104,17 @@ def half_spread_day(Hi, Lo, i):
 
 
 # ------------------------------------------------------------------ signals
+def tight(width, win, minp):
+    """coin-relative A1: width_t <= the 25th percentile of the coin's own widths at t-win .. t-1 (>= minp values)."""
+    return width <= width.rolling(win, min_periods=minp).quantile(0.25).shift(1)
+
+
 def hourly_designs(Hh, U, T, trans, trend, hv):
     ind = TH.indicators(Hh, U, None)
     C = ind["close"]
     A = TH.allowed_mask(U, None, C.index).reindex(columns=C.columns).fillna(False)
     width = ind["R_high"] / ind["R_low"] - 1
-    a1 = width <= width.rolling(180 * 24, min_periods=90 * 24).quantile(0.25).shift(1)
+    a1 = tight(width, 180 * 24, 90 * 24)
     day = C.index.floor("D")
     abst = pd.DataFrame(np.repeat(trans.reindex(day).fillna(True).astype(bool).values[:, None], C.shape[1], 1), index=C.index, columns=C.columns)
     steps = [("H_eligible", A & C.notna() & (ind["n_prior"] >= TH.MINW)), ("B_breakout", C > ind["R_high"]), ("A1_tight", a1),
@@ -143,7 +148,7 @@ def daily_design(Hh, U, trans, trend, hv, fixed=None):
     RH = hi.where(traded).rolling(D_WIN, min_periods=D_MINW).max().shift(1)
     RL = lo.where(traded).rolling(D_WIN, min_periods=D_MINW).min().shift(1)
     width = RH / RL - 1
-    a1 = width <= width.rolling(D_A1_WIN, min_periods=D_A1_MIN).quantile(0.25).shift(1)
+    a1 = tight(width, D_A1_WIN, D_A1_MIN)
     rvol = vol / vol.where(traded).rolling(D_WIN, min_periods=D_MINW).median().shift(1)
     stop = (cl - RL) / cl
     E = U["P1"]["eligible"].copy(); E.loc[:, [c for c in E.columns if is_excluded(c)]] = False

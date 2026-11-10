@@ -113,6 +113,7 @@ tr2 = [lab[i] == "UNCERTAIN" or (i > 0 and any(lab[j] != lab[j - 1] for j in ran
 rec("X3 trend and Transition equal an independent loop", list(trend.values) == lab and list(trans.values) == tr2, sum(tr2))
 
 # ------------------------------------------------------------ X4 hourly signals: independent numpy recompute
+a1_count = [0]
 def naive_hourly(extra_clv):
     E5 = T["E5_stop_P90"]; out = set()
     elig = U["P1"]["eligible"]
@@ -130,6 +131,11 @@ def naive_hourly(extra_clv):
             width = rh / rl - 1
         day = grid.floor("D")
         el = elig[c].reindex(day).fillna(False).values & ~trans.reindex(day).fillna(True).values
+        elA = elig[c].reindex(day).fillna(False).values
+        for t in np.where(elA & ~np.isnan(cl) & (npri >= 84) & (cl > rh))[0]:                  # cascade stage after A1
+            w = width[max(0, t - 4320):t]
+            if np.sum(~np.isnan(w)) >= 2160 and width[t] <= np.nanquantile(w, 0.25):
+                a1_count[0] += 1
         cand = np.where(el & ~np.isnan(cl) & (npri >= 84) & (cl > rh) & (rvol >= T["E3_rvol_P75"]) & (stop <= E5)
                         & ((clv >= T["E4_clv_median"]) if extra_clv else True))[0]
         for t in cand:
@@ -141,9 +147,17 @@ def naive_hourly(extra_clv):
                 out.add((c, grid[t]))
     return out
 for d, cl_ in (("D-H1", False), ("D-H2", True)):
+    a1_count[0] = 0
     got = set(zip(*[R["_sig"][d][k] for k in ("coin", "sig_t")])) if "_sig" in R else None
     nv = naive_hourly(cl_)
+    rec(f"X4b {d} count after B and A1 equals an independent recompute", dict(R["designs"][d]["cascade"])["A1_tight"] == a1_count[0], (dict(R["designs"][d]["cascade"])["A1_tight"], a1_count[0]))
     rec(f"X4 {d} signal set equals an independent recompute", got == nv, f"code {len(got or [])} naive {len(nv)} diff {len((got or set()) ^ nv)}")
+
+w = np.r_[np.ones(1080), np.full(3240, 2.0), 1.8]       # window t-4320..t-1: P25 = 1.75 -> 1.8 is NOT tight
+wt = E.tight(pd.DataFrame({"x": w}), 4320, 2160)["x"].values
+wd = E.tight(pd.DataFrame({"x": np.r_[np.ones(45), np.full(135, 2.0), 1.8]}), 180, 90)["x"].values
+_x = pd.Series(w); teeth = bool((_x <= _x.rolling(4320, min_periods=2160).quantile(0.25)).iloc[-1])
+rec("X4c A1 uses only bars before t (a window that includes t would flip this case to tight)", (not wt[-1]) and (not wd[-1]) and teeth, (wt[-1], wd[-1], teeth))
 
 # ------------------------------------------------------------ X5 daily design: independent loop recompute
 hi_h, lo_h, cl_h, vq_h = (Hh[k] for k in ("high", "low", "close", "vol_quote"))
