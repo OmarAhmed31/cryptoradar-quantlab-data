@@ -1,0 +1,214 @@
+[
+ {
+  "mutant": "XM1 H_max 720 h -> 744 h",
+  "killed": true,
+  "by": [
+   "X7",
+   "X7",
+   "X7"
+  ]
+ },
+ {
+  "mutant": "XM2 unpriceable forced exit counted",
+  "killed": true,
+  "by": [
+   "X7"
+  ]
+ },
+ {
+  "mutant": "XM3 H_max check dropped for the time exit",
+  "killed": true,
+  "by": [
+   "X7",
+   "X7"
+  ]
+ },
+ {
+  "mutant": "XM4 exit bar may sit inside the deadline hour",
+  "killed": true,
+  "by": [
+   "X7"
+  ]
+ },
+ {
+  "mutant": "XM5 daily range window includes day D",
+  "killed": true,
+  "by": [
+   "X5a",
+   "X5b",
+   "X12e"
+  ]
+ },
+ {
+  "mutant": "XM6 daily RVOL baseline includes day D",
+  "killed": true,
+  "by": [
+   "X5a",
+   "X5b"
+  ]
+ },
+ {
+  "mutant": "XM7 RVOL_d level P75 -> P70",
+  "killed": true,
+  "by": [
+   "X5a",
+   "X5b"
+  ]
+ },
+ {
+  "mutant": "XM8 daily thresholds taken after the A1 filter",
+  "killed": true,
+  "by": [
+   "X5a",
+   "X5b"
+  ]
+ },
+ {
+  "mutant": "XM9 daily eligibility on D instead of D+1",
+  "killed": true,
+  "by": [
+   "X5a"
+  ]
+ },
+ {
+  "mutant": "XM10 daily abstention uses the state of D",
+  "killed": true,
+  "by": [
+   "X5b"
+  ]
+ },
+ {
+  "mutant": "XM11 hourly entry hour = t",
+  "killed": true,
+  "by": [
+   "X12f"
+  ]
+ },
+ {
+  "mutant": "XM12 greedy ignores the same-coin window rule",
+  "killed": true,
+  "by": [
+   "X9",
+   "X10b"
+  ]
+ },
+ {
+  "mutant": "XM13 L_worst without the early-exit option",
+  "killed": true,
+  "by": [
+   "X10a",
+   "X10c",
+   "X10d"
+  ]
+ },
+ {
+  "mutant": "XM14 L_worst treats maybe-blocked signals as free",
+  "killed": true,
+  "by": [
+   "X10e"
+  ]
+ },
+ {
+  "mutant": "XM15 excluded coins kept (daily)",
+  "killed": true,
+  "by": [
+   "X5a",
+   "X5b",
+   "X12a"
+  ]
+ },
+ {
+  "mutant": "XM16 rounded hourly thresholds",
+  "killed": true,
+  "by": [
+   "X2a"
+  ]
+ },
+ {
+  "mutant": "XM17 ledger price column read",
+  "killed": true,
+  "by": [
+   "X1c"
+  ]
+ },
+ {
+  "mutant": "XM18 selection: D-H1 wins the tie",
+  "killed": true,
+  "by": [
+   "X11"
+  ]
+ },
+ {
+  "mutant": "XM19 wide-stop test on the bar close",
+  "killed": true,
+  "by": [
+   "X8g"
+  ]
+ },
+ {
+  "mutant": "XM20 A1 window includes bar t",
+  "killed": true,
+  "by": [
+   "X4c"
+  ]
+ },
+ {
+  "mutant": "XM27 A1 percentile P25 -> P30",
+  "killed": true,
+  "by": [
+   "X4b",
+   "X4",
+   "X4b",
+   "X4",
+   "X4c",
+   "X5b"
+  ]
+ },
+ {
+  "mutant": "XM21 hourly Transition abstention dropped",
+  "killed": true,
+  "by": [
+   "X4",
+   "X4"
+  ]
+ },
+ {
+  "mutant": "XM22 daily close = first traded close",
+  "killed": true,
+  "by": [
+   "X5a",
+   "X5b",
+   "X12e"
+  ]
+ },
+ {
+  "mutant": "XM23 thresholds sha not enforced",
+  "killed": true,
+  "by": [
+   "X2b"
+  ]
+ },
+ {
+  "mutant": "XM24 half-spread skip off",
+  "killed": true,
+  "by": [
+   "X8e"
+  ]
+ },
+ {
+  "mutant": "XM25 delisting cut ignored",
+  "killed": true,
+  "by": [
+   "X7",
+   "X7",
+   "X7"
+  ]
+ },
+ {
+  "mutant": "XM26 entry cut ignored",
+  "killed": true,
+  "by": [
+   "X8c"
+  ]
+ }
+]

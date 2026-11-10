@@ -1,0 +1,267 @@
+[
+ {
+  "test": "X1a imports allowed only",
+  "pass": true,
+  "detail": "[]"
+ },
+ {
+  "test": "X1b no validation/holdout segment named",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "X1c ledger read without its price column",
+  "pass": true,
+  "detail": "{'usecols': ['series', 'cut_utc', 'status', 'minutes_last_trade_to_cut', 'max_stale_minutes_rule']}"
+ },
+ {
+  "test": "X1d ledger status",
+  "pass": true,
+  "detail": "{'C03-USDT': (Timestamp('2025-03-10 08:00:00+0000', tz='UTC'), True), 'C04-USDT': (Timestamp('2024-11-20 08:00:00+0000', tz='UTC'), False)}"
+ },
+ {
+  "test": "X2a exact floats from thresholds.json",
+  "pass": true,
+  "detail": "7.966534121768224"
+ },
+ {
+  "test": "X2b modified thresholds file refused",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "X2c the source pins the frozen sha",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "X3 trend and Transition equal an independent loop",
+  "pass": true,
+  "detail": "281"
+ },
+ {
+  "test": "X4b D-H1 count after B and A1 equals an independent recompute",
+  "pass": true,
+  "detail": "(329, 329)"
+ },
+ {
+  "test": "X4 D-H1 signal set equals an independent recompute",
+  "pass": true,
+  "detail": "code 18 naive 18 diff 0"
+ },
+ {
+  "test": "X4b D-H2 count after B and A1 equals an independent recompute",
+  "pass": true,
+  "detail": "(329, 329)"
+ },
+ {
+  "test": "X4 D-H2 signal set equals an independent recompute",
+  "pass": true,
+  "detail": "code 17 naive 17 diff 0"
+ },
+ {
+  "test": "X4c A1 uses only bars before t (a window that includes t would flip this case to tight)",
+  "pass": true,
+  "detail": "(np.False_, np.False_, True)"
+ },
+ {
+  "test": "X5a daily P75 / P90 equal an independent recompute",
+  "pass": true,
+  "detail": "({'RVOL_d_P75': 1.326492543684744, 'stop_d_P90': 0.3689061943562182}, np.float64(1.326492543684744), np.float64(0.3689061943562182), 1127)"
+ },
+ {
+  "test": "X5b daily signal set equals an independent recompute",
+  "pass": true,
+  "detail": "code 48 naive 48"
+ },
+ {
+  "test": "X6 prices after tau changed: every signal, execution status and trade window before tau unchanged",
+  "pass": true,
+  "detail": "[7, 6, 22]"
+ },
+ {
+  "test": "X7 window: normal",
+  "pass": true,
+  "detail": "((Timestamp('2025-01-08 12:00:00+0000', tz='UTC'), True, 'TIME_EXIT'), (Timestamp('2025-01-08 12:00:00+0000', tz='UTC'), True, 'TIME_EXIT'))"
+ },
+ {
+  "test": "X7 window: min block 7d+2h from signal",
+  "pass": true,
+  "detail": "((Timestamp('2025-01-08 12:00:00+0000', tz='UTC'), True, 'TIME_EXIT'), (Timestamp('2025-01-08 12:00:00+0000', tz='UTC'), True, 'TIME_EXIT'))"
+ },
+ {
+  "test": "X7 window: bar inside the deadline hour is not used",
+  "pass": true,
+  "detail": "((Timestamp('2025-01-08 17:00:00+0000', tz='UTC'), True, 'TIME_EXIT'), (Timestamp('2025-01-08 17:00:00+0000', tz='UTC'), True, 'TIME_EXIT'))"
+ },
+ {
+  "test": "X7 window: H_max boundary counted",
+  "pass": true,
+  "detail": "((Timestamp('2025-01-31 10:00:00+0000', tz='UTC'), True, 'TIME_EXIT'), (Timestamp('2025-01-31 10:00:00+0000', tz='UTC'), True, 'TIME_EXIT'))"
+ },
+ {
+  "test": "X7 window: H_max boundary +1h excluded",
+  "pass": true,
+  "detail": "((Timestamp('2025-01-31 11:00:00+0000', tz='UTC'), False, 'EXCLUDED_HMAX'), (Timestamp('2025-01-31 11:00:00+0000', tz='UTC'), False, 'EXCLUDED_HMAX'))"
+ },
+ {
+  "test": "X7 window: no bar, H_max inside segment",
+  "pass": true,
+  "detail": "((Timestamp('2025-09-01 00:00:00+0000', tz='UTC'), False, 'EXCLUDED_HMAX'), (Timestamp('2025-09-01 00:00:00+0000', tz='UTC'), False, 'EXCLUDED_HMAX'))"
+ },
+ {
+  "test": "X7 window: last entry hour: H_max ends inside the segment",
+  "pass": true,
+  "detail": "((Timestamp('2025-09-01 00:00:00+0000', tz='UTC'), False, 'EXCLUDED_HMAX'), (Timestamp('2025-09-01 00:00:00+0000', tz='UTC'), False, 'EXCLUDED_HMAX'))"
+ },
+ {
+  "test": "X7 window: no bar, segment ends first",
+  "pass": true,
+  "detail": "((Timestamp('2025-01-21 10:00:00+0000', tz='UTC'), False, 'OPEN_AT_SEGMENT_END'), (Timestamp('2025-01-21 10:00:00+0000', tz='UTC'), False, 'OPEN_AT_SEGMENT_END'))"
+ },
+ {
+  "test": "X7 window: exit bar after segment end",
+  "pass": true,
+  "detail": "((Timestamp('2025-01-21 10:00:00+0000', tz='UTC'), False, 'OPEN_AT_SEGMENT_END'), (Timestamp('2025-01-21 10:00:00+0000', tz='UTC'), False, 'OPEN_AT_SEGMENT_END'))"
+ },
+ {
+  "test": "X7 window: priced delisting",
+  "pass": true,
+  "detail": "((Timestamp('2025-01-03 10:00:00+0000', tz='UTC'), True, 'FORCED_EXIT_PRICED'), (Timestamp('2025-01-03 10:00:00+0000', tz='UTC'), True, 'FORCED_EXIT_PRICED'))"
+ },
+ {
+  "test": "X7 window: unpriceable delisting",
+  "pass": true,
+  "detail": "((Timestamp('2025-01-03 10:00:00+0000', tz='UTC'), False, 'UNPRICEABLE_FORCED_EXIT'), (Timestamp('2025-01-03 10:00:00+0000', tz='UTC'), False, 'UNPRICEABLE_FORCED_EXIT'))"
+ },
+ {
+  "test": "X7 window: priced cut after H_max",
+  "pass": true,
+  "detail": "((Timestamp('2025-01-31 10:00:00+0000', tz='UTC'), False, 'EXCLUDED_HMAX'), (Timestamp('2025-01-31 10:00:00+0000', tz='UTC'), False, 'EXCLUDED_HMAX'))"
+ },
+ {
+  "test": "X7 window: cut after the trade ends ignored",
+  "pass": true,
+  "detail": "((Timestamp('2025-01-08 12:00:00+0000', tz='UTC'), True, 'TIME_EXIT'), (Timestamp('2025-01-08 12:00:00+0000', tz='UTC'), True, 'TIME_EXIT'))"
+ },
+ {
+  "test": "X7 invariant: every non-delisting block lasts >= 7d+2h after the signal",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "X8a untraded entry hour -> NOT_EXECUTED",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "X8b traded entry hour -> EXECUTABLE",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "X8c entry at the entry cut -> PAST_ENTRY_CUT",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "X8d wide stop at the fill -> SKIPPED_WIDE_STOP_AT_ENTRY",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "X8g wide-stop test uses the fill (entry bar open), boundary exact",
+  "pass": true,
+  "detail": "(np.float64(157.46070840882211), np.float64(160.0978502309124))"
+ },
+ {
+  "test": "X8e no half-spread (first 30 days) -> SKIPPED_NO_HALF_SPREAD",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "X8f half-spread equals an independent loop",
+  "pass": true,
+  "detail": "(np.float64(0.0014757261336655711), 663)"
+ },
+ {
+  "test": "X9 L_greedy equals an independent greedy simulation (400 random cases)",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "X10a L_worst <= exhaustive true minimum and <= every simulated real path",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "X10b L_worst <= L_greedy",
+  "pass": true,
+  "detail": "strictly lower in 28/400"
+ },
+ {
+  "test": "X10c L_worst is exact when no coin repeats",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "X10d counterexample: greedy L = 3, but a stop at hour 5 then coin B (no exit) gives 1; L_worst = 1",
+  "pass": true,
+  "detail": "(3, 1)"
+ },
+ {
+  "test": "X10e older same-coin exit blocks a re-entry: L_worst <= true minimum (= 2)",
+  "pass": true,
+  "detail": "(1, 2)"
+ },
+ {
+  "test": "X11 selection rule on all 8 pass/fail combinations",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "X12a0 the copied coins do produce signals (so X12a has teeth)",
+  "pass": true,
+  "detail": "['BTC-USDT', 'C00-USDT', 'C01-USDT', 'C02-USDT', 'C03-USDT', 'C05-USDT', 'C06-USDT', 'C08-USDT', 'C09-USDT', 'C10-USDT', 'C11-USDT', 'C12-USDT', 'C13-USDT', 'C14-USDT', 'C15-USDT', 'C16-USDT', 'C17-USDT', 'C18-USDT', 'C19-USDT', 'C20-USDT', 'C21-USDT']"
+ },
+ {
+  "test": "X12a no excluded coin in any signal",
+  "pass": true,
+  "detail": "['BTC-USDT', 'C00-USDT', 'C01-USDT', 'C02-USDT', 'C03-USDT']"
+ },
+ {
+  "test": "X12b hourly signals eligible on the bar day; daily ones on D+1",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "X12c report totals reconcile (cascade = signals = execution reasons; taken + blocked = executable)",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "X12d H2 dominates H1 (D-H2 signals subset of D-H1)",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "X12e synthetic run has signals in all designs and only known reasons",
+  "pass": true,
+  "detail": "{'TIME_EXIT'}"
+ },
+ {
+  "test": "X13 two runs byte-identical; no private field stored",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "X13b output holds no price / return field",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "X12f timing: hourly entry = bar t + 1h, daily entry = D+1 00:00, entry row = entry hour",
+  "pass": true,
+  "detail": ""
+ }
+]

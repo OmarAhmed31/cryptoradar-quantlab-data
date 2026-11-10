@@ -1,0 +1,59 @@
+PASS X1a imports allowed only []
+PASS X1b no validation/holdout segment named 
+PASS X1c ledger read without its price column {'usecols': ['series', 'cut_utc', 'status', 'minutes_last_trade_to_cut', 'max_stale_minutes_rule']}
+PASS X1d ledger status {'C03-USDT': (Timestamp('2025-03-10 08:00:00+0000', tz='UTC'), True), 'C04-USDT': (Timestamp('2024-11-20 08:00:00+0000', tz='UTC'), False)}
+PASS X2a exact floats from thresholds.json 7.966534121768224
+PASS X2b modified thresholds file refused 
+PASS X2c the source pins the frozen sha 
+D-H1 [['H_eligible', 293983], ['B_breakout', 5215], ['A1_tight', 329], ['E3_rvol', 29], ['E5_stop', 29], ['not_transition', 18]] {'EXECUTABLE': 17, 'PAST_ENTRY_CUT': 1} 12 12
+D-H2 [['H_eligible', 293983], ['B_breakout', 5215], ['A1_tight', 329], ['E3_rvol', 29], ['E5_stop', 29], ['E4_clv', 26], ['not_transition', 17]] {'EXECUTABLE': 16, 'PAST_ENTRY_CUT': 1} 11 11
+D-D1 [['D_eligible', 12752], ['B_d_breakout', 1127], ['A1_d_tight', 242], ['RVOL_d', 70], ['stop_d', 70], ['not_transition', 48]] {'EXECUTABLE': 41, 'NOT_EXECUTED': 3, 'PAST_ENTRY_CUT': 4} 18 14
+PASS X3 trend and Transition equal an independent loop 281
+PASS X4b D-H1 count after B and A1 equals an independent recompute (329, 329)
+PASS X4 D-H1 signal set equals an independent recompute code 18 naive 18 diff 0
+PASS X4b D-H2 count after B and A1 equals an independent recompute (329, 329)
+PASS X4 D-H2 signal set equals an independent recompute code 17 naive 17 diff 0
+PASS X4c A1 uses only bars before t (a window that includes t would flip this case to tight) (np.False_, np.False_, True)
+PASS X5a daily P75 / P90 equal an independent recompute ({'RVOL_d_P75': 1.326492543684744, 'stop_d_P90': 0.3689061943562182}, np.float64(1.326492543684744), np.float64(0.3689061943562182), 1127)
+PASS X5b daily signal set equals an independent recompute code 48 naive 48
+PASS X6 prices after tau changed: every signal, execution status and trade window before tau unchanged [7, 6, 22]
+PASS X7 window: normal ((Timestamp('2025-01-08 12:00:00+0000', tz='UTC'), True, 'TIME_EXIT'), (Timestamp('2025-01-08 12:00:00+0000', tz='UTC'), True, 'TIME_EXIT'))
+PASS X7 window: min block 7d+2h from signal ((Timestamp('2025-01-08 12:00:00+0000', tz='UTC'), True, 'TIME_EXIT'), (Timestamp('2025-01-08 12:00:00+0000', tz='UTC'), True, 'TIME_EXIT'))
+PASS X7 window: bar inside the deadline hour is not used ((Timestamp('2025-01-08 17:00:00+0000', tz='UTC'), True, 'TIME_EXIT'), (Timestamp('2025-01-08 17:00:00+0000', tz='UTC'), True, 'TIME_EXIT'))
+PASS X7 window: H_max boundary counted ((Timestamp('2025-01-31 10:00:00+0000', tz='UTC'), True, 'TIME_EXIT'), (Timestamp('2025-01-31 10:00:00+0000', tz='UTC'), True, 'TIME_EXIT'))
+PASS X7 window: H_max boundary +1h excluded ((Timestamp('2025-01-31 11:00:00+0000', tz='UTC'), False, 'EXCLUDED_HMAX'), (Timestamp('2025-01-31 11:00:00+0000', tz='UTC'), False, 'EXCLUDED_HMAX'))
+PASS X7 window: no bar, H_max inside segment ((Timestamp('2025-09-01 00:00:00+0000', tz='UTC'), False, 'EXCLUDED_HMAX'), (Timestamp('2025-09-01 00:00:00+0000', tz='UTC'), False, 'EXCLUDED_HMAX'))
+PASS X7 window: last entry hour: H_max ends inside the segment ((Timestamp('2025-09-01 00:00:00+0000', tz='UTC'), False, 'EXCLUDED_HMAX'), (Timestamp('2025-09-01 00:00:00+0000', tz='UTC'), False, 'EXCLUDED_HMAX'))
+PASS X7 window: no bar, segment ends first ((Timestamp('2025-01-21 10:00:00+0000', tz='UTC'), False, 'OPEN_AT_SEGMENT_END'), (Timestamp('2025-01-21 10:00:00+0000', tz='UTC'), False, 'OPEN_AT_SEGMENT_END'))
+PASS X7 window: exit bar after segment end ((Timestamp('2025-01-21 10:00:00+0000', tz='UTC'), False, 'OPEN_AT_SEGMENT_END'), (Timestamp('2025-01-21 10:00:00+0000', tz='UTC'), False, 'OPEN_AT_SEGMENT_END'))
+PASS X7 window: priced delisting ((Timestamp('2025-01-03 10:00:00+0000', tz='UTC'), True, 'FORCED_EXIT_PRICED'), (Timestamp('2025-01-03 10:00:00+0000', tz='UTC'), True, 'FORCED_EXIT_PRICED'))
+PASS X7 window: unpriceable delisting ((Timestamp('2025-01-03 10:00:00+0000', tz='UTC'), False, 'UNPRICEABLE_FORCED_EXIT'), (Timestamp('2025-01-03 10:00:00+0000', tz='UTC'), False, 'UNPRICEABLE_FORCED_EXIT'))
+PASS X7 window: priced cut after H_max ((Timestamp('2025-01-31 10:00:00+0000', tz='UTC'), False, 'EXCLUDED_HMAX'), (Timestamp('2025-01-31 10:00:00+0000', tz='UTC'), False, 'EXCLUDED_HMAX'))
+PASS X7 window: cut after the trade ends ignored ((Timestamp('2025-01-08 12:00:00+0000', tz='UTC'), True, 'TIME_EXIT'), (Timestamp('2025-01-08 12:00:00+0000', tz='UTC'), True, 'TIME_EXIT'))
+PASS X7 invariant: every non-delisting block lasts >= 7d+2h after the signal 
+PASS X8a untraded entry hour -> NOT_EXECUTED 
+PASS X8b traded entry hour -> EXECUTABLE 
+PASS X8c entry at the entry cut -> PAST_ENTRY_CUT 
+PASS X8d wide stop at the fill -> SKIPPED_WIDE_STOP_AT_ENTRY 
+PASS X8g wide-stop test uses the fill (entry bar open), boundary exact (np.float64(157.46070840882211), np.float64(160.0978502309124))
+PASS X8e no half-spread (first 30 days) -> SKIPPED_NO_HALF_SPREAD 
+PASS X8f half-spread equals an independent loop (np.float64(0.0014757261336655711), 663)
+PASS X9 L_greedy equals an independent greedy simulation (400 random cases) 
+PASS X10a L_worst <= exhaustive true minimum and <= every simulated real path 
+PASS X10b L_worst <= L_greedy strictly lower in 28/400
+PASS X10c L_worst is exact when no coin repeats 
+PASS X10d counterexample: greedy L = 3, but a stop at hour 5 then coin B (no exit) gives 1; L_worst = 1 (3, 1)
+PASS X10e older same-coin exit blocks a re-entry: L_worst <= true minimum (= 2) (1, 2)
+PASS X11 selection rule on all 8 pass/fail combinations 
+PASS X12a0 the copied coins do produce signals (so X12a has teeth) ['BTC-USDT', 'C00-USDT', 'C01-USDT', 'C02-USDT', 'C03-USDT', 'C05-USDT', 'C06-USDT', 'C08-USDT', 'C09-USDT', 'C10-USDT', 'C11-USDT', 'C12-USDT', 'C13-USDT', 'C14-USDT', 'C15-USDT', 'C16-USDT', 'C17-US
+PASS X12a no excluded coin in any signal ['BTC-USDT', 'C00-USDT', 'C01-USDT', 'C02-USDT', 'C03-USDT']
+PASS X12b hourly signals eligible on the bar day; daily ones on D+1 
+PASS X12c report totals reconcile (cascade = signals = execution reasons; taken + blocked = executable) 
+PASS X12d H2 dominates H1 (D-H2 signals subset of D-H1) 
+PASS X12e synthetic run has signals in all designs and only known reasons {'TIME_EXIT'}
+1f659fad9cfe7a2fb0cd76e56136e13276f04976c89739b0bcca9ba859959617
+1f659fad9cfe7a2fb0cd76e56136e13276f04976c89739b0bcca9ba859959617
+PASS X13 two runs byte-identical; no private field stored 
+PASS X13b output holds no price / return field 
+PASS X12f timing: hourly entry = bar t + 1h, daily entry = D+1 00:00, entry row = entry hour 
+53/53 passed

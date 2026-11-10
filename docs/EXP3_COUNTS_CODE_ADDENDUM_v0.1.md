@@ -72,7 +72,19 @@ P1 skips at entry if (fill − stop)/fill > the stop limit.
 - **The time unit:** traded-bar times were in the index's unit (not ns), while Timestamp.value is ns, so no exit bar was ever found. Fixed with `as_unit("ns")`; the X7 cases catch it.
 - **The abstention mask** became an object array after `fillna`. `~` on Python booleans gives −1/−2, so Transition days were not removed from D-D1. Fixed with `astype(bool)`; X5b catches it.
 
-## Test status
+## Test status (synthetic data only)
 
-- `tests/test_exp3.py`: **48/48 PASS** on synthetic data.
-- `tests/run_exp3_mutants.py`: see `out/exp3/precheck/mutants.json` (26 planted defects).
+- `tests/test_exp3.py`: **53/53 PASS**. Independent recomputations:
+  - the hourly signals and the count after A1, in numpy;
+  - the daily bars, P75, P90 and signals, in plain loops;
+  - Transition;
+  - the half-spread;
+  - the exhaustive true minimum of L.
+
+  Also tested: the destructive future overwrite, the hand-built trade-window cases, executability, the selection table, exclusions and determinism.
+- `tests/run_exp3_mutants.py`: **27/27 planted defects killed** (`out/exp3/precheck/mutants.json`).
+  - Three defects first survived. Each exposed a test gap, and a test was added for it:
+    - **XM14:** a re-entry blocked by an *older* same-coin exit, now caught by X10e;
+    - **XM15:** excluded coins kept, which the flat synthetic USDC never exposed. Excluded copies of signal-rich coins were added (X12a0);
+    - **XM20:** the A1 window including bar t, now caught by a boundary case (X4c) after moving A1 into one shared function.
+  - One planted defect is **equivalent by construction**: changing the 7 d + 2 h minimum, see A4.1. An invariant test covers it instead.
