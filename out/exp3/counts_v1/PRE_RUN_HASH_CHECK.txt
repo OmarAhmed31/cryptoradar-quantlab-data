@@ -1,0 +1,13 @@
+Pre-run hash check (2026-11-10, before the ONE counts run)
+HEAD 1f91f8b09c5d0b80d345511cbff2bf889d929cc5
+lab/exp3_counts.py: OK
+tests/test_exp3.py: OK
+tests/run_exp3_mutants.py: OK
+tests/run_exp3_once.py: OK
+docs/EXP3_COUNTS_CODE_ADDENDUM_v0.1.md: OK
+docs/EXP3_COUNTS_CODE_ADDENDUM_v0.2.md: OK
+docs/EXP3_COUNTS_CODE_ADDENDUM_v0.3.md: OK
+5dc38aa95599526c17ad42fc98aa37a87abdb10d84e071eb959805fd11758c5f  out/thresholds/run_v1/thresholds.json
+67221b1037e2800ca4a5a7696b996a78df14df898944e5aecb8f0c924c1e3e59  out/research_protocol/v1.2/forced_exit_reference.csv
+e582ca5f098035276bcd17b25d6ee98dac457124fc74664e81d2f07f45759d65  out/market_intelligence/dev_pack_v1/PACK_MANIFEST.json
+v0.37 zip: 5/5 code+doc files byte-identical to repo; FILES_SHA256 0 mismatches
