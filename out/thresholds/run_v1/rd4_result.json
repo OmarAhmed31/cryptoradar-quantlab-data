@@ -1,0 +1,20 @@
+{
+ "RD4_PASS": true,
+ "sha256": [
+  "5dc38aa95599526c17ad42fc98aa37a87abdb10d84e071eb959805fd11758c5f",
+  "5dc38aa95599526c17ad42fc98aa37a87abdb10d84e071eb959805fd11758c5f",
+  "5dc38aa95599526c17ad42fc98aa37a87abdb10d84e071eb959805fd11758c5f"
+ ],
+ "outcome_files_corrupted_in_run2": 489,
+ "attribution_files_found": 20,
+ "attribution_files_corrupted_in_run2": 20,
+ "isolated_run3_files_besides_pack": [
+  "lab/__init__.py",
+  "lab/fd_features.py",
+  "lab/segment_loader.py",
+  "lab/thresholds.py",
+  "lab/universe_crypto_only.py",
+  "out/feature_discovery/feature_catalogue.json"
+ ],
+ "isolated_run3_network": "disabled (unshare -rn)"
+}
