@@ -1,3 +1,4 @@
+baseline: 36/36 passed
 KILLED YM1 K 3 -> 4 ['Y8b']
 KILLED YM2 cash rule removed (a free slot is enough) ['Y2', 'Y2f', 'Y3']
 KILLED YM3 fill information used in the selection ['Y2', 'Y2', 'Y2', 'Y2f', 'Y3']
@@ -21,4 +22,4 @@ KILLED YM20 daily RVOL from day D+1 ['Y6']
 KILLED YM21 failed share not kept (cash lost) ['Y2', 'Y2', 'Y3', 'Y8c']
 KILLED YM22 fill checked for every batch member before selection ['Y2f']
 KILLED YM23 entry bar read for every eligible signal (old run order) ['Y8a']
-23/23 killed
+23/23 killed (behavioural)

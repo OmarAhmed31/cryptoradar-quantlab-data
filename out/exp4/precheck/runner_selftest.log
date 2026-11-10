@@ -1,0 +1,14 @@
+PASS classify: behavioural failure, complete run, exit 1 -> KILLED KILLED
+PASS classify: all pass, exit 0 -> SURVIVED SURVIVED
+PASS classify: SyntaxError before any test -> INVALID INVALID_TEST_RUN
+PASS classify: ImportError -> INVALID INVALID_TEST_RUN
+PASS classify: crash midway after some FAIL lines -> INVALID INVALID_TEST_RUN
+PASS classify: FAIL lines but no summary (run cut short) -> INVALID INVALID_TEST_RUN
+PASS classify: summary total differs from the baseline (tests skipped) -> INVALID INVALID_TEST_RUN
+PASS classify: traceback printed on stdout -> INVALID INVALID_TEST_RUN
+PASS classify: FAIL lines but exit 0 (inconsistent) -> INVALID INVALID_TEST_RUN
+PASS classify: no FAIL but exit 1 (inconsistent) -> INVALID INVALID_TEST_RUN
+PASS real run: SyntaxError in the code -> INVALID_TEST_RUN, not KILLED ('INVALID_TEST_RUN', 1)
+PASS real run: crash (NameError) inside the engine -> INVALID_TEST_RUN, not KILLED ('INVALID_TEST_RUN', 1)
+PASS real run: unmutated code -> SURVIVED (complete 36/36) ('SURVIVED', 0)
+13/13 passed
