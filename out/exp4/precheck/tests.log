@@ -1,0 +1,40 @@
+PASS Y1a imports allowed only (frozen Exp. 3 code reused, no outcome module) []
+PASS Y1b no validation/holdout segment named 
+PASS Y1c frozen Exp. 3 code unchanged (sha256 at the frozen commit 1f91f8b) 
+PASS Y2 E1 lone signal opens 
+PASS Y2 E2 3 open, one exits, 3 new -> only the best 1 {0: 'OPENED', 1: 'OPENED', 2: 'OPENED', 5: 'SKIPPED_RANK', 3: 'SKIPPED_RANK', 4: 'OPENED'}
+PASS Y2 E3 2 open, one exits, 3 new -> best 2 {0: 'OPENED', 1: 'OPENED', 3: 'SKIPPED_RANK', 4: 'OPENED', 5: 'OPENED'}
+PASS Y2 E4 one lone position holds all cash -> later batch SKIPPED_NO_CASH {0: 'OPENED', 1: 'SKIPPED_NO_CASH', 2: 'SKIPPED_NO_CASH'}
+PASS Y2 E5 K=1 with 3 signals -> only the best 1 {2: 'SKIPPED_RANK', 0: 'SKIPPED_RANK', 1: 'OPENED'}
+PASS Y2 E6a under K=1 a batch is refused while any position is open (NO_SLOT), allowed once all exited 
+PASS Y2 E8 a failed fill keeps its share in cash: the next batch can still enter {0: 'OPENED', 1: 'NOT_EXECUTED', 2: 'OPENED'}
+PASS Y2 E8b a failed selected signal is NOT replaced by a lower-ranked one of the same batch {2: 'SKIPPED_RANK', 0: 'OPENED', 1: 'SKIPPED_WIDE_STOP_AT_ENTRY'}
+PASS Y2 E9 exit after h: its slot/cash do not join the batch at h {0: 'OPENED', 1: 'OPENED', 9: 'NOT_EXECUTED', 3: 'SKIPPED_RANK', 2: 'OPENED'}
+PASS Y2 E9b exit strictly before h (free_at <= h): released in the snapshot {0: 'OPENED', 1: 'OPENED', 9: 'NOT_EXECUTED', 2: 'OPENED', 3: 'OPENED'}
+PASS Y2 free_time: time exit free from h >= end; exit AT end (cut / segment end) free only after end 
+PASS Y2 coin already held -> BLOCKED_COIN_HELD 
+PASS Y2 same-coin re-entry window (ws >= rf) enforced {0: 'OPENED', 1: 'BLOCKED_REENTRY_WINDOW', 2: 'OPENED'}
+PASS Y2 L counts only completed trades (c) {'K': 3, 'opened': 2, 'L_greedy_K': 1, 'batches': 1, 'batch_size': {'2': 1}, 'open_positions_after_each_entry': {'1': 1, '2': 1}, 'opened_by_window_reason': {'TIME_EXIT': 2}}
+PASS Y3 engine equals an independent reference with explicit cash amounts (1,500 random cases, K = 1..3) cases with >1 open: 214
+PASS Y4 K = 1 equals the frozen Exp. 3 L_greedy on equivalent inputs (500 cases) 
+PASS Y5a ranking uses the unrounded RVOL (7.0000000002 beats 7.0000000001) ([2], [7.0000000001, 7.0000000001, 7.0000000002])
+PASS Y5b exact tie -> coin name ascending (AAA before BBB) [1]
+PASS Y5c D-D1 candidates use the calendar re-entry rule from the exit bar day (23:00 bar -> next midnight) {'i': 0, 'h': 1735725600000000000, 'coin': 'BBB-USDT', 'rvol': 7.0, 'ws': 1735084800000000000, 'fill': 'FILLED', 'end': 1736380800000000000, 'free_at': 1736380800000000000, 'rf': 1736380800000000000, 
+D-H1 {'BLOCKED_COIN_HELD': 1, 'OPENED': 12, 'PAST_ENTRY_CUT': 1, 'SKIPPED_NO_CASH': 4} 12 {'1': 16}
+D-H2 {'BLOCKED_COIN_HELD': 1, 'OPENED': 11, 'PAST_ENTRY_CUT': 1, 'SKIPPED_NO_CASH': 4} 11 {'1': 15}
+D-D1 {'BLOCKED_COIN_HELD': 2, 'BLOCKED_REENTRY_WINDOW': 4, 'NOT_EXECUTED': 2, 'OPENED': 20, 'PAST_ENTRY_CUT': 4, 'SKIPPED_NO_CASH': 15, 'SKIPPED_NO_SLOT': 1} 20 {'1': 35, '3': 1}
+PASS Y6 ranking value = the signal's own RVOL (hourly: bar t vs prior 168; daily: day D vs prior 20 traded days), independent loop 83
+PASS Y7a fill: untraded entry hour -> NOT_EXECUTED 
+PASS Y7b fill: wide-stop boundary on the entry bar OPEN (np.float64(157.46070840882211), np.float64(160.0978502309124))
+PASS Y7c pre-entry: entry at the entry cut -> PAST_ENTRY_CUT; one hour earlier passes 
+PASS Y7d pre-entry: no half-spread in the first 30 days -> SKIPPED_NO_HALF_SPREAD 
+PASS Y7e pre-entry checks do NOT look at the fill (an untraded entry hour still passes pre-entry) 
+PASS Y8a reasons reconcile with the signals; OPENED = opened >= L; never more than 3 open 
+PASS Y8b selection = L_greedy(K) rule; U7 note present 
+PASS Y8c synthetic run exercises parallel positions and several skip reasons [{'BLOCKED_COIN_HELD': 1, 'OPENED': 12, 'PAST_ENTRY_CUT': 1, 'SKIPPED_NO_CASH': 4}, {'BLOCKED_COIN_HELD': 1, 'OPENED': 11, 'PAST_ENTRY_CUT': 1, 'SKIPPED_NO_CASH': 4}, {'BLOCKED_COIN_HELD': 2, 'BLOCKED
+PASS Y9 prices after tau changed: every portfolio decision and fill check at entry hours before tau unchanged [7, 6, 22]
+d40c43a947ddbf35410382dc21397c7f606e6868cc7f2e7085d4187ba0e754ae
+d40c43a947ddbf35410382dc21397c7f606e6868cc7f2e7085d4187ba0e754ae
+PASS Y10a two runs byte-identical; no private field stored 
+PASS Y10b output holds no price / return field 
+34/34 passed

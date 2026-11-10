@@ -63,4 +63,6 @@
 
 ## Test status (synthetic data only)
 
-See `out/exp4/precheck/`: `tests.json` and `mutants.json`. The frozen hashes are in `FROZEN_SHA256.txt`.
+- `tests/test_exp4.py`: **34/34 PASS**. These include: the spec examples E1–E9 as hand cases; an independent reference engine with explicit cash amounts (1,500 random cases, K = 1–3); K = 1 equal to the frozen Exp. 3 L_greedy (500 cases); the unrounded ranking and ties; an independent RVOL recompute; the pre-entry and fill checks; a destructive future overwrite; determinism.
+- `tests/run_exp4_mutants.py`: **22/22 planted defects killed**, all by behaviour, none by a crash.
+- Hashes: `out/exp4/precheck/FROZEN_SHA256.txt`.

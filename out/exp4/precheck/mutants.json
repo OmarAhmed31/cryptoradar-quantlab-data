@@ -1,0 +1,183 @@
+[
+ {
+  "mutant": "YM1 K 3 -> 4",
+  "killed": true,
+  "by": [
+   "Y8b"
+  ]
+ },
+ {
+  "mutant": "YM2 cash rule removed (a free slot is enough)",
+  "killed": true,
+  "by": [
+   "Y2",
+   "Y3"
+  ]
+ },
+ {
+  "mutant": "YM3 fill information used in the selection",
+  "killed": true,
+  "by": [
+   "Y2",
+   "Y2",
+   "Y2",
+   "Y3"
+  ]
+ },
+ {
+  "mutant": "YM4 ranking ascending",
+  "killed": true,
+  "by": [
+   "Y2",
+   "Y2",
+   "Y2",
+   "Y2",
+   "Y2",
+   "Y3"
+  ]
+ },
+ {
+  "mutant": "YM5 tie broken by coin descending",
+  "killed": true,
+  "by": [
+   "Y2",
+   "Y2",
+   "Y3",
+   "Y5b"
+  ]
+ },
+ {
+  "mutant": "YM6 rounded RVOL",
+  "killed": true,
+  "by": [
+   "Y5a"
+  ]
+ },
+ {
+  "mutant": "YM7 snapshot counts an exit AT h",
+  "killed": true,
+  "by": [
+   "Y2"
+  ]
+ },
+ {
+  "mutant": "YM8 snapshot counts exits up to h + 1h",
+  "killed": true,
+  "by": [
+   "Y2",
+   "Y2",
+   "Y2",
+   "Y2",
+   "Y2",
+   "Y2"
+  ]
+ },
+ {
+  "mutant": "YM9 coin-held check removed",
+  "killed": true,
+  "by": [
+   "Y2",
+   "Y3"
+  ]
+ },
+ {
+  "mutant": "YM10 re-entry window check removed",
+  "killed": true,
+  "by": [
+   "Y2",
+   "Y3",
+   "Y4"
+  ]
+ },
+ {
+  "mutant": "YM11 slot limit removed",
+  "killed": true,
+  "by": [
+   "Y2",
+   "Y3"
+  ]
+ },
+ {
+  "mutant": "YM12 cash stays available after a fully filled batch",
+  "killed": true,
+  "by": [
+   "Y2",
+   "Y3"
+  ]
+ },
+ {
+  "mutant": "YM13 RVOL from the bar before the signal bar",
+  "killed": true,
+  "by": [
+   "Y6"
+  ]
+ },
+ {
+  "mutant": "YM14 daily RVOL baseline includes day D",
+  "killed": true,
+  "by": [
+   "Y6"
+  ]
+ },
+ {
+  "mutant": "YM15 half-spread skip off",
+  "killed": true,
+  "by": [
+   "Y7d"
+  ]
+ },
+ {
+  "mutant": "YM16 wide-stop test on the bar close",
+  "killed": true,
+  "by": [
+   "Y7b"
+  ]
+ },
+ {
+  "mutant": "YM17 entry window ignored",
+  "killed": true,
+  "by": [
+   "Y7c"
+  ]
+ },
+ {
+  "mutant": "YM18 L counts every opened trade",
+  "killed": true,
+  "by": [
+   "Y2",
+   "Y3",
+   "Y4"
+  ]
+ },
+ {
+  "mutant": "YM19 D-D1 re-entry from the trade end",
+  "killed": true,
+  "by": [
+   "Y5c"
+  ]
+ },
+ {
+  "mutant": "YM20 daily RVOL from day D+1",
+  "killed": true,
+  "by": [
+   "Y6"
+  ]
+ },
+ {
+  "mutant": "YM21 failed share not kept (cash lost)",
+  "killed": true,
+  "by": [
+   "Y2",
+   "Y2",
+   "Y3",
+   "Y8c"
+  ]
+ },
+ {
+  "mutant": "YM22 fill checks applied before the portfolio (v0.3 timing)",
+  "killed": true,
+  "by": [
+   "Y8a"
+  ]
+ }
+]
