@@ -26,9 +26,19 @@
    "detail": ""
   },
   {
-   "test": "RD8 High-Vol flag of day d uses prior days only (independent recompute; corrupting days > d changes nothing at d)",
+   "test": "RD8 vol30(d) equals an independent recompute over calendar days d-30..d-1 from raw closes, for EVERY day; High-Vol flag from prior days only",
    "pass": true,
-   "detail": "29 synthetic high-vol days"
+   "detail": "609/609 days equal; 549 defined; 29 high-vol days"
+  },
+  {
+   "test": "RD8b one-day alignment: vol30(d) never equals the one-day-late window d-31..d-2",
+   "pass": true,
+   "detail": "late-window matches 0"
+  },
+  {
+   "test": "RD8c corrupting returns known after day d leaves the High-Vol flag of d unchanged",
+   "pass": true,
+   "detail": ""
   },
   {
    "test": "RD6 no circularity: the derivation functions hold no current spec constant as a float (2.0, 3.0, 0.70, 0.80, 0.15, 0.08), and H/BO equal a naive definition with no entry filter (RD5)",
@@ -36,8 +46,8 @@
    "detail": "[0.25, 0.33, 0.5, 0.67, 0.75, 0.9]"
   }
  ],
- "passed": 7,
- "of": 7,
+ "passed": 9,
+ "of": 9,
  "PASS": true,
  "data": "synthetic (+ real manifest for RD1)"
 }

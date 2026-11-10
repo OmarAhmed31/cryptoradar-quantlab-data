@@ -15,7 +15,8 @@ MUT = [
  ("TM9 High-Vol from the full-period distribution", "        h = v[:i]; h = h[~np.isnan(h)]", "        h = v[~np.isnan(v)]"),
  ("TM10 an outcome module imported", "from lab.universe_crypto_only import is_excluded", "from lab.universe_crypto_only import is_excluded\nfrom lab import fd2"),
  ("TM11 E2 taken from BO instead of H", "pops = {\"H\": vals(ind[\"ratio\"], H & ind[\"ratio\"].notna())", "pops = {\"H\": vals(ind[\"ratio\"], BO & ind[\"ratio\"].notna())"),
- ("TM12 volatility window includes day d", "vol30 = ret.rolling(VOL_WIN, min_periods=VOL_WIN).std().shift(1)", "vol30 = ret.rolling(VOL_WIN, min_periods=VOL_WIN).std()"),
+ ("TM12 volatility window one day late (the reviewer's finding: extra shift)", "vol30 = ret.rolling(VOL_WIN, min_periods=VOL_WIN).std()", "vol30 = ret.rolling(VOL_WIN, min_periods=VOL_WIN).std().shift(1)"),
+ ("TM13 volatility window uses a return not yet known at d", "vol30 = ret.rolling(VOL_WIN, min_periods=VOL_WIN).std()", "vol30 = ret.rolling(VOL_WIN, min_periods=VOL_WIN).std().shift(-1)"),
 ]
 out = []
 for name, a, b in MUT:

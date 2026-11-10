@@ -69,7 +69,7 @@ def states(ret):
     idx = (1 + ret.fillna(0)).cumprod().where(ret.notna().cumsum() > 0)
     r20 = idx / idx.shift(TREND_RET) - 1
     ma50 = idx.rolling(TREND_MA, min_periods=TREND_MA).mean()
-    vol30 = ret.rolling(VOL_WIN, min_periods=VOL_WIN).std().shift(1)                # days d-30 .. d-1
+    vol30 = ret.rolling(VOL_WIN, min_periods=VOL_WIN).std()          # ret(d) = return of day d-1 (known at d 00:00) -> days d-30 .. d-1
     pct = pd.Series(np.nan, index=ret.index)
     v = vol30.values
     for i in range(len(v)):                                                           # prior days only (expanding)

@@ -134,18 +134,46 @@ for t in (TH.PEAK + TH.W + 500, len(C) - 3000):
         bad += int((~((np.isnan(a) & np.isnan(b)) | (a == b))).sum())
 rec("RD3 destructive overwrite of bars after t: every indicator at t unchanged (synthetic)", bad == 0)
 
-# RD8 point-in-time High-Vol flag: independent recompute from prior days + destructive check
-ret, n, _ = TH.ew_index(Hh, U, None)
-v = ret.rolling(30, min_periods=30).std().shift(1).values
+# RD8 High-Vol flag, recomputed INDEPENDENTLY from raw hourly closes (not from TH.ew_index / TH.states):
+#   return of calendar day x = mean over coins allowed on day x+1 (the day it becomes known) of lastclose(x)/lastclose(x-1)-1,
+#   with >= 20 coins; vol30(d) = sample std of the returns of calendar days d-30 .. d-1 (all 30 present);
+#   High-Vol(d) = share of PRIOR days' vol30 below vol30(d) > 2/3, with >= 60 prior values.
+cl = Hh["close"]; days = list(FF.DAYS); dpos = {dd.date(): k for k, dd in enumerate(days)}
+lastc = {}
+for c_ in cl.columns:
+    col = cl[c_].values; idx = cl.index
+    for k in range(len(col)):
+        if not math.isnan(col[k]): lastc[(c_, dpos[idx[k].date()])] = col[k]       # time-sorted: the last traded close wins
+def day_ret(x):                                                                  # calendar day index x
+    vals = []
+    for c_ in cl.columns:
+        dstr_k = days[x + 1].strftime("%Y-%m-%d") if x + 1 < len(days) else None
+        if dstr_k is None or (c_, dstr_k) not in elig or c_.split("-")[0] in pegged: continue
+        a_, b_ = lastc.get((c_, x)), lastc.get((c_, x - 1))
+        if a_ is not None and b_ is not None: vals.append(a_ / b_ - 1)
+    return sum(vals) / len(vals) if len(vals) >= 20 else float("nan")
+DR = [day_ret(x) if x >= 1 else float("nan") for x in range(len(days))]
+def vol_window(d, lag):
+    w = [DR[x] for x in range(d - 30 - lag, d - lag)]
+    if d - 30 - lag < 0 or any(math.isnan(z) for z in w): return float("nan")
+    m = sum(w) / 30; return math.sqrt(sum((z - m) ** 2 for z in w) / 29)
+V0 = [vol_window(d, 0) for d in range(len(days))]                                # days d-30 .. d-1 (the definition)
+V1 = [vol_window(d, 1) for d in range(len(days))]                                # days d-31 .. d-2 (one-day-late window)
+code_v = st["vol30"].values
+match = sum(1 for d in range(len(days)) if same(float(code_v[d]), V0[d], 1e-9))
+late = sum(1 for d in range(len(days)) if not math.isnan(V0[d]) and same(float(code_v[d]), V1[d], 1e-9))
+n_def = sum(1 for z in V0 if not math.isnan(z))
 flag = []
-for i in range(len(v)):
-    h = [x for x in v[:i] if not math.isnan(x)]
-    flag.append(len(h) >= 60 and not math.isnan(v[i]) and sum(x < v[i] for x in h) / len(h) > 2 / 3)
-ok8 = list(st["high_vol"].values) == flag
-d = 300; ret2 = ret.copy(); ret2.iloc[d + 1:] = 5.0
-ok8 &= bool(TH.states(ret2)["high_vol"].iloc[d] == st["high_vol"].iloc[d])
-rec("RD8 High-Vol flag of day d uses prior days only (independent recompute; corrupting days > d changes nothing at d)", ok8,
-    f"{int(st['high_vol'].sum())} synthetic high-vol days")
+for i in range(len(V0)):
+    h = [x for x in V0[:i] if not math.isnan(x)]
+    flag.append(len(h) >= 60 and not math.isnan(V0[i]) and sum(x < V0[i] for x in h) / len(h) > 2 / 3)
+ok8 = match == len(days) and list(st["high_vol"].values) == flag and n_def > 400
+rec("RD8 vol30(d) equals an independent recompute over calendar days d-30..d-1 from raw closes, for EVERY day; High-Vol flag "
+    "from prior days only", ok8, f"{match}/{len(days)} days equal; {n_def} defined; {int(sum(flag))} high-vol days")
+rec("RD8b one-day alignment: vol30(d) never equals the one-day-late window d-31..d-2", late == 0 and n_def > 400, f"late-window matches {late}")
+d = 300; ret2 = TH.ew_index(Hh, U, None)[0]; ret2.iloc[d + 1:] = 5.0
+rec("RD8c corrupting returns known after day d leaves the High-Vol flag of d unchanged",
+    bool(TH.states(ret2)["high_vol"].iloc[d] == st["high_vol"].iloc[d]) and bool(TH.states(ret2)["vol30"].iloc[d] == st["vol30"].iloc[d]))
 
 # RD6 no circularity: populations use no entry constant; derived values do not depend on any current spec constant
 code = ast.parse((FF.LAB / "lab/thresholds.py").read_text())

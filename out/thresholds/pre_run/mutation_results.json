@@ -43,7 +43,7 @@
   {
    "mutant": "TM9 High-Vol from the full-period distribution",
    "killed": true,
-   "by": "FAIL RD8 High-Vol flag of day d uses prior days only (independent reco"
+   "by": "FAIL RD8 vol30(d) equals an independent recompute over calendar days d"
   },
   {
    "mutant": "TM10 an outcome module imported",
@@ -56,11 +56,16 @@
    "by": "FAIL RD5 independent recompute (synthetic): indicators on 400 sampled "
   },
   {
-   "mutant": "TM12 volatility window includes day d",
+   "mutant": "TM12 volatility window one day late (the reviewer's finding: extra shift)",
    "killed": true,
-   "by": "FAIL RD8 High-Vol flag of day d uses prior days only (independent reco"
+   "by": "FAIL RD8 vol30(d) equals an independent recompute over calendar days d; FAIL RD8b one-day alignment: vol30(d) never equals the one-day-late wi"
+  },
+  {
+   "mutant": "TM13 volatility window uses a return not yet known at d",
+   "killed": true,
+   "by": "FAIL RD8 vol30(d) equals an independent recompute over calendar days d; FAIL RD8c corrupting returns known after day d leaves the High-Vol fla"
   }
  ],
- "killed": 12,
- "of": 12
+ "killed": 13,
+ "of": 13
 }
