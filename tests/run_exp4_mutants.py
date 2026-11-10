@@ -7,7 +7,7 @@ F = "lab/exp4_counts.py"
 M = [
  ("YM1 K 3 -> 4", 'K_STAGE1 = 3 ', 'K_STAGE1 = 4 '),
  ("YM2 cash rule removed (a free slot is enough)", '        if not cash:\n', '        if False:\n'),
- ("YM3 fill information used in the selection", '        batch.sort(key=lambda s: (-s["rvol"], s["coin"]))', '        batch = [s for s in batch if s["fill"] == "FILLED"] or batch; batch.sort(key=lambda s: (-s["rvol"], s["coin"]))'),
+ ("YM3 fill information used in the selection", '        batch.sort(key=lambda s: (-s["rvol"], s["coin"]))', '        batch = [s for s in batch if fill(s) == "FILLED"] or batch; batch.sort(key=lambda s: (-s["rvol"], s["coin"]))'),
  ("YM4 ranking ascending", 'batch.sort(key=lambda s: (-s["rvol"], s["coin"]))', 'batch.sort(key=lambda s: (s["rvol"], s["coin"]))'),
  ("YM5 tie broken by coin descending", 'batch.sort(key=lambda s: (-s["rvol"], s["coin"]))', 'batch.sort(key=lambda s: (-s["rvol"], [-ord(ch) for ch in s["coin"]]))'),
  ("YM6 rounded RVOL", '"rvol": float(v),', '"rvol": round(float(v), 1),'),
@@ -20,13 +20,14 @@ M = [
  ("YM13 RVOL from the bar before the signal bar", 'return R[sig["row_entry"].values - 1, sig["col"].values]', 'return R[sig["row_entry"].values - 2, sig["col"].values]'),
  ("YM14 daily RVOL baseline includes day D", 'rolling(E3.D_WIN, min_periods=E3.D_MINW).median().shift(1)', 'rolling(E3.D_WIN, min_periods=E3.D_MINW).median()'),
  ("YM15 half-spread skip off", '        if E3.APPLY_HS_SKIP:', '        if False:'),
- ("YM16 wide-stop test on the bar close", '        fill = O[s.row_entry, s.col]', '        fill = C[s.row_entry, s.col]'),
+ ("YM16 wide-stop test on the bar close", '    fill = O[row, col]', '    fill = C[row, col]'),
  ("YM17 entry window ignored", '        if not (es <= s.entry_hour < ee) or s.row_entry >= n:', '        if s.row_entry >= n:'),
  ("YM18 L counts every opened trade", '    L = int(sum(int(s["c"]) for s in opened))', '    L = len(opened)'),
  ("YM19 D-D1 re-entry from the trade end", '"rf": E3.reentry_from(x.value, e.value, d)', '"rf": E3.reentry_from(e.value, e.value, d)'),
  ("YM20 daily RVOL from day D+1", 'R[sig["row_entry"].values // 24 - 1, sig["col"].values]', 'R[sig["row_entry"].values // 24, sig["col"].values]'),
- ("YM21 failed share not kept (cash lost)", '                reason[s["i"]] = s["fill"]; failed = True ', '                reason[s["i"]] = s["fill"]; failed = False '),
- ("YM22 fill checks applied before the portfolio (v0.3 timing)", '        fills = fill_check(ok, Hh, d["stop_limit"])', '        fills = fill_check(ok, Hh, d["stop_limit"]); ok = ok[[f == "FILLED" for f in fills]].reset_index(drop=True); fills = ["FILLED"] * len(ok)'),
+ ("YM21 failed share not kept (cash lost)", '                reason[s["i"]] = f; failed = True ', '                reason[s["i"]] = f; failed = False '),
+ ("YM22 fill checked for every batch member before selection", '        sel, rest = batch[:slots], batch[slots:]', '        [fill(s) for s in batch]; sel, rest = batch[:slots], batch[slots:]'),
+ ("YM23 entry bar read for every eligible signal (old run order)", '        summ, reason, opened = portfolio(cands, K, _fill)', '        [_fill(x) for x in cands]; summ, reason, opened = portfolio(cands, K, _fill)'),
 ]
 src = (REPO / F).read_text(); out = []
 bad = [name for name, a, b in M if src.count(a) != 1]

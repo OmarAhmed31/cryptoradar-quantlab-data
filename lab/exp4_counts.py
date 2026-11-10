@@ -73,17 +73,21 @@ def pre_entry(sig, Hh, seg):
     return out
 
 
+def fill_one(C, O, row, col, stop_level, stop_limit):
+    """checks known only at the fill, for ONE selected signal: a traded minute in the entry hour; A3 wide stop at the
+    fill (the entry bar open = the open of its first traded minute). Called by the portfolio ONLY after selection."""
+    if np.isnan(C[row, col]):
+        return "NOT_EXECUTED"
+    fill = O[row, col]
+    if E3.APPLY_ENTRY_STOP_SKIP and (fill - stop_level) / fill > stop_limit:
+        return "SKIPPED_WIDE_STOP_AT_ENTRY"
+    return "FILLED"
+
+
 def fill_check(sig, Hh, stop_limit):
-    """checks known only at the fill: a traded minute in the entry hour; A3 wide stop at the fill (the bar open)."""
-    C, O = Hh["close"].values, Hh["open"].values; out = []
-    for s in sig.itertuples(index=False):
-        if np.isnan(C[s.row_entry, s.col]):
-            out.append("NOT_EXECUTED"); continue
-        fill = O[s.row_entry, s.col]
-        if E3.APPLY_ENTRY_STOP_SKIP and (fill - s.stop_level) / fill > stop_limit:
-            out.append("SKIPPED_WIDE_STOP_AT_ENTRY"); continue
-        out.append("FILLED")
-    return out
+    """the same check for a table of signals (used by the tests only)."""
+    C, O = Hh["close"].values, Hh["open"].values
+    return [fill_one(C, O, s.row_entry, s.col, s.stop_level, stop_limit) for s in sig.itertuples(index=False)]
 
 
 def free_time(end_ns, xref_ns):
@@ -94,8 +98,11 @@ def free_time(end_ns, xref_ns):
 
 
 # ------------------------------------------------------------------ the portfolio engine (spec v0.5 §1.3)
-def portfolio(cands, K):
-    """cands: dicts with h, coin, rvol, ws, fill, end, free_at, rf, c, why, i. Returns summary, per-signal reasons, opened."""
+def portfolio(cands, K, fill=None):
+    """cands: dicts with h, coin, rvol, ws, end, free_at, rf, c, why, i. fill(s) is the fill check; it is called ONLY
+    for the signals the portfolio selected at h (spec v0.5 step 7), never before or for the others.
+    Returns summary, per-signal reasons, opened."""
+    fill = fill or (lambda s: s["fill"])
     by_h = {}
     for s in cands:
         by_h.setdefault(s["h"], []).append(s)
@@ -132,9 +139,10 @@ def portfolio(cands, K):
         sel, rest = batch[:slots], batch[slots:]
         for s in rest: reason[s["i"]] = "SKIPPED_RANK"
         failed = False
-        for s in sel:                                                     # step 7: at each fill
-            if s["fill"] != "FILLED":
-                reason[s["i"]] = s["fill"]; failed = True                 # its share stays in cash
+        for s in sel:                                                     # step 7: at each fill, selected only
+            f = fill(s)
+            if f != "FILLED":
+                reason[s["i"]] = f; failed = True                         # its share stays in cash
             else:
                 reason[s["i"]] = "OPENED"; opn.append(s); opened.append(s)
                 conc.append(len(opn))
@@ -147,11 +155,13 @@ def portfolio(cands, K):
     return out, reason, opened
 
 
-def build_candidates(sig, rv, ends, cnt, why, xref, daily, fills):
+def build_candidates(sig, rv, ends, cnt, why, xref, daily):
+    """no fill information here: only what is known at h, plus the row/column/stop the fill check needs later."""
     d = E3.DAY_NS if daily else None
-    return [{"i": i, "h": r.entry_hour.value, "coin": r.coin, "rvol": float(v), "ws": r.win_start.value, "fill": f,
+    return [{"i": i, "h": r.entry_hour.value, "coin": r.coin, "rvol": float(v), "ws": r.win_start.value,
+             "row": int(getattr(r, "row_entry", -1)), "col": int(getattr(r, "col", -1)), "stop": float(getattr(r, "stop_level", np.nan)),
              "end": e.value, "free_at": free_time(e.value, x.value), "rf": E3.reentry_from(x.value, e.value, d), "c": bool(c), "why": w}
-            for i, (r, v, e, c, w, x, f) in enumerate(zip(sig.itertuples(index=False), rv, ends, cnt, why, xref, fills))]
+            for i, (r, v, e, c, w, x) in enumerate(zip(sig.itertuples(index=False), rv, ends, cnt, why, xref))]
 
 
 def run(pack=FF.PACK, thr=None, ledger=None, K=K_STAGE1, _daily_fixed=None):
@@ -174,12 +184,15 @@ def run(pack=FF.PACK, thr=None, ledger=None, K=K_STAGE1, _daily_fixed=None):
         sig["rvol_rank"] = rank_values(sig, name, Hh, U) if len(sig) else []
         sig["pre"] = pre_entry(sig, Hh, seg)
         ok = sig[sig["pre"] == "OK"].reset_index(drop=True)
-        fills = fill_check(ok, Hh, d["stop_limit"])
         ends, cnt, why, xref = E3.trade_windows(ok, traded_times, led, seg_end)
-        cands = build_candidates(ok, ok["rvol_rank"].values, ends, cnt, why, xref, name == "D-D1", fills)
-        summ, reason, opened = portfolio(cands, K)
+        cands = build_candidates(ok, ok["rvol_rank"].values, ends, cnt, why, xref, name == "D-D1")
+        Cv, Ov, lim, checked = Hh["close"].values, Hh["open"].values, d["stop_limit"], {}
+        def _fill(s):                                                     # the entry bar is read here, and only here
+            checked[s["i"]] = fill_one(Cv, Ov, s["row"], s["col"], s["stop"], lim); return checked[s["i"]]
+        summ, reason, opened = portfolio(cands, K, _fill)
         Lg[name] = summ["L_greedy_K"]
-        ok["fill"] = fills; ok["portfolio"] = [reason.get(i, "NO_DECISION") for i in range(len(ok))]
+        ok["fill"] = [checked.get(i, "NOT_CHECKED") for i in range(len(ok))]
+        ok["portfolio"] = [reason.get(i, "NO_DECISION") for i in range(len(ok))]
         ok["end"] = ends; ok["c"] = cnt; ok["why"] = why
         res["_sig"][name] = {"all": sig, "ok": ok, "cands": cands}
         allr = list(sig.loc[sig["pre"] != "OK", "pre"]) + list(ok["portfolio"])

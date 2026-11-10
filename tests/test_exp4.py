@@ -88,6 +88,18 @@ s, r, o = run_e(cs); rec("Y2 same-coin re-entry window (ws >= rf) enforced", r[1
 cs = [c(0, 0, "A", cnt=False), c(1, 0, "B")]
 s, r, o = run_e(cs); rec("Y2 L counts only completed trades (c)", s["L_greedy_K"] == 1 and s["opened"] == 2, s)
 
+# ---- Y2f the fill check is called ONLY for the signals the portfolio selected (spec v0.5 step 7)
+calls = []
+def spy(s):
+    calls.append(s["i"]); return s["fill"]
+cs = [c(0, 0, "A", end=500), c(1, 10, "B"), c(2, 10, "C"),                 # 1-2: NO_CASH (A holds all the cash)
+      c(3, 600, "D", rvol=9, end=2000), c(4, 600, "E", rvol=8, end=2000), c(5, 600, "F", rvol=7, end=2000), c(6, 600, "G", rvol=6),   # K=3: 6 is RANK
+      c(7, 610, "D"), c(8, 900, "H", fill="NOT_EXECUTED")]                 # 7: coin held; 8: NO_SLOT
+s, r, o = E.portfolio([dict(x) for x in cs], 3, spy)
+rec("Y2f fill check only for selected signals: none for NO_CASH / RANK / NO_SLOT / coin held",
+    sorted(calls) == [0, 3, 4, 5] and r[1] == r[2] == "SKIPPED_NO_CASH" and r[6] == "SKIPPED_RANK" and r[7] == "BLOCKED_COIN_HELD"
+    and r[8] == "SKIPPED_NO_SLOT", (calls, r))
+
 # ------------------------------------------------------------ Y3 an independent reference engine (explicit cash amounts)
 def reference(cands, K):
     hours = sorted({x["h"] for x in cands}); cash = 1.0; opn = []; last = {}; reason = {}; L = 0
@@ -150,15 +162,18 @@ rec("Y4 K = 1 equals the frozen Exp. 3 L_greedy on equivalent inputs (500 cases)
 sigr = pd.DataFrame({"coin": ["BBB-USDT", "AAA-USDT", "CCC-USDT"], "entry_hour": [TS("2025-01-01 10:00")] * 3,
                      "win_start": [TS("2024-12-25")] * 3})
 xr = [TS("2025-01-09 05:00")] * 3; en = [TS("2025-01-09 06:00")] * 3
-cnd = E.build_candidates(sigr, [7.0000000001, 7.0000000001, 7.0000000002], en, [True] * 3, ["TIME_EXIT"] * 3, xr, False, ["FILLED"] * 3)
+cnd = [dict(x, fill="FILLED") for x in E.build_candidates(sigr, [7.0000000001, 7.0000000001, 7.0000000002], en, [True] * 3, ["TIME_EXIT"] * 3, xr, False)]
 s, r, o = E.portfolio(cnd, 1); o = [x["i"] for x in o]
 rec("Y5a ranking uses the unrounded RVOL (7.0000000002 beats 7.0000000001)", o == [2], (o, [x["rvol"] for x in cnd]))
-cnd = E.build_candidates(sigr, [7.0, 7.0, 6.0], en, [True] * 3, ["TIME_EXIT"] * 3, xr, False, ["FILLED"] * 3)
+cnd = [dict(x, fill="FILLED") for x in E.build_candidates(sigr, [7.0, 7.0, 6.0], en, [True] * 3, ["TIME_EXIT"] * 3, xr, False)]
 s, r, o = E.portfolio(cnd, 1); o = [x["i"] for x in o]
 rec("Y5b exact tie -> coin name ascending (AAA before BBB)", o == [1], o)
-cnd = E.build_candidates(sigr.iloc[:1], [7.0], [TS("2025-01-09 00:00")], [True], ["TIME_EXIT"], [TS("2025-01-08 23:00")], True, ["FILLED"])
+cnd = E.build_candidates(sigr.iloc[:1], [7.0], [TS("2025-01-09 00:00")], [True], ["TIME_EXIT"], [TS("2025-01-08 23:00")], True)
 rec("Y5c D-D1 candidates use the calendar re-entry rule from the exit bar day (23:00 bar -> next midnight)",
     cnd[0]["rf"] == TS("2025-01-09").value and cnd[0]["free_at"] == TS("2025-01-09").value, cnd[0])
+
+rec("Y2g candidates carry no fill field: the portfolio cannot read a fill except through the check it calls",
+    all("fill" not in x for x in E.build_candidates(sigr, [1.0, 2.0, 3.0], en, [True] * 3, ["TIME_EXIT"] * 3, xr, False)))
 
 # ------------------------------------------------------------ full synthetic run
 R = E.run(pack, thr_syn, pack / "ledger.csv")
@@ -203,12 +218,16 @@ rec("Y7e pre-entry checks do NOT look at the fill (an untraded entry hour still 
 
 # ------------------------------------------------------------ Y8 report integrity on the synthetic run
 okr = True
+for d in R["_sig"]:                                                         # pipeline: entry bar read only for selected signals
+    o_ = R["_sig"][d]["ok"]
+    okr &= all((f == "NOT_CHECKED") == (p not in ("OPENED", "NOT_EXECUTED", "SKIPPED_WIDE_STOP_AT_ENTRY")) for f, p in zip(o_["fill"], o_["portfolio"]))
+    okr &= all(f == p for f, p in zip(o_["fill"], o_["portfolio"]) if p in ("NOT_EXECUTED", "SKIPPED_WIDE_STOP_AT_ENTRY"))
 for d, x in R["designs"].items():
     tot = sum(x["reasons_all_signals"].values()); okr &= tot == x["signals"]["n"] == x["cascade"][-1][1]
     okr &= x["reasons_all_signals"].get("OPENED", 0) == x["portfolio"]["opened"] >= x["portfolio"]["L_greedy_K"]
     okr &= max(map(int, x["portfolio"]["open_positions_after_each_entry"] or {"0": 0})) <= E.K_STAGE1
     okr &= x["L_worst"] is None
-rec("Y8a reasons reconcile with the signals; OPENED = opened >= L; never more than 3 open", okr)
+rec("Y8a reasons reconcile; OPENED = opened >= L; never more than 3 open; the entry bar was read only for selected signals", okr)
 rec("Y8b selection = L_greedy(K) rule; U7 note present", R["selection"]["chosen"] == E3.select({d: R["designs"][d]["L_greedy_K"] for d in R["designs"]})
     and "NOT proof" in R["selection"]["U7_note"] and R["selection"]["K"] == 3)
 multi = sum(int(k) * 0 + v for d in R["designs"] for k, v in R["designs"][d]["portfolio"]["open_positions_after_each_entry"].items() if int(k) > 1)
