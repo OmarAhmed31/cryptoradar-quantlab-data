@@ -3,9 +3,10 @@ test suite tests/test_exp4.py is run on it. SYNTHETIC data only.
 
 A mutant counts as KILLED (behaviourally) ONLY if ALL of these hold (reviewer requirement, v0.46):
   - the test run finished normally: no "Traceback" in stdout/stderr (no crash, SyntaxError, ImportError, exception);
-  - the final summary line "<passed>/<total> passed" is present and <total> equals the baseline total
-    (the unmutated suite, run first, must pass completely: every test was reached);
-  - at least one test line starts with "FAIL" (a wrong behaviour was detected);
+  - the final summary line "<passed>/<total> passed" is the LAST non-empty stdout line, and <total> equals the baseline
+    total (the unmutated suite, run first, must pass completely and consistently: every test was reached);
+  - the summary agrees with the test lines: PASS lines = <passed>, FAIL lines = <total> - <passed> >= 1
+    (passed + failed = total; a FAIL with "36/36 passed" is a contradiction, not a kill);
   - the exit code is non-zero.
 Otherwise: SURVIVED (complete run, all tests pass, exit 0) or INVALID_TEST_RUN (anything else). Neither counts as killed.
 python3 -I tests/run_exp4_mutants.py [out.json]"""
@@ -42,19 +43,26 @@ SUMMARY = re.compile(r"^(\d+)/(\d+) passed$")
 
 
 def classify(returncode, stdout, stderr, expected_total):
-    """KILLED / SURVIVED / INVALID_TEST_RUN, and the failing test names."""
-    lines = stdout.splitlines()
+    """KILLED / SURVIVED / INVALID_TEST_RUN, and the failing test names.
+    A run is valid only if: no Traceback; the summary '<passed>/<total> passed' is the LAST non-empty stdout line;
+    total == the baseline total; the PASS lines number exactly <passed>, the FAIL lines exactly total - passed
+    (passed + failed = total); and the exit code agrees (non-zero iff there is a FAIL)."""
+    lines = [l for l in stdout.splitlines() if l.strip()]
     fails = [l.split(" ")[1] for l in lines if l.startswith("FAIL ") and len(l.split(" ")) > 1]
-    summ = [SUMMARY.match(l.strip()) for l in lines if SUMMARY.match(l.strip())]
-    crashed = "Traceback" in stdout or "Traceback" in stderr
-    complete = bool(summ) and int(summ[-1].group(2)) == expected_total
-    if crashed or not complete:
+    n_fail = sum(l.startswith("FAIL ") for l in lines); n_pass = sum(l.startswith("PASS ") for l in lines)
+    if "Traceback" in stdout or "Traceback" in stderr or not lines:
         return "INVALID_TEST_RUN", fails
-    if fails and returncode != 0:
+    m = SUMMARY.match(lines[-1].strip())                               # the summary must be the last line
+    if not m:
+        return "INVALID_TEST_RUN", fails
+    passed, total = int(m.group(1)), int(m.group(2))
+    if total != expected_total or n_pass != passed or n_fail != total - passed or n_pass + n_fail != total:
+        return "INVALID_TEST_RUN", fails                               # summary inconsistent with the test lines
+    if n_fail > 0 and passed < total and returncode != 0:
         return "KILLED", fails
-    if not fails and returncode == 0:
+    if n_fail == 0 and passed == total and returncode == 0:
         return "SURVIVED", fails
-    return "INVALID_TEST_RUN", fails                                   # inconsistent exit code / FAIL lines
+    return "INVALID_TEST_RUN", fails                                   # exit code inconsistent with the results
 
 
 def run_suite(code_text):
@@ -76,10 +84,14 @@ def main(out_path=None):
     bad = [name for name, a, b in M if src.count(a) != 1]
     if bad: raise SystemExit(f"mutant text not found exactly once: {bad}")
     rc, so, se = run_suite(src)                                       # baseline: the unmutated suite must pass completely
-    base = [SUMMARY.match(l.strip()) for l in so.splitlines() if SUMMARY.match(l.strip())]
-    if rc != 0 or "Traceback" in so + se or not base or base[-1].group(1) != base[-1].group(2):
-        raise SystemExit("baseline test run is not a complete pass: mutants cannot be judged")
-    total = int(base[-1].group(2)); print(f"baseline: {total}/{total} passed", flush=True)
+    last = [l for l in so.splitlines() if l.strip()]
+    m = SUMMARY.match(last[-1].strip()) if last else None
+    if not m or m.group(1) != m.group(2):
+        raise SystemExit("baseline test run has no complete-pass summary as its last line: mutants cannot be judged")
+    total = int(m.group(2))
+    if classify(rc, so, se, total)[0] != "SURVIVED":
+        raise SystemExit("baseline test run is not a clean, consistent complete pass: mutants cannot be judged")
+    print(f"baseline: {total}/{total} passed", flush=True)
     for name, a, b in M:
         rc, so, se = run_suite(src.replace(a, b))
         status, fails = classify(rc, so, se, total)

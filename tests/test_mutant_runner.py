@@ -1,4 +1,4 @@
-"""Tests of the mutant runner's classification (reviewer requirement, v0.46): a crash, a SyntaxError, an ImportError or an
+"""Tests of the mutant runner's classification (reviewer requirements, v0.46 + v0.47): a crash, a SyntaxError, an ImportError or an
 incomplete test run is NEVER counted as a kill. Two cases run the real suite against broken code.
 python3 -I tests/test_mutant_runner.py   -> exit code 1 if any test fails"""
 import sys, pathlib
@@ -25,6 +25,18 @@ cases = [
     ("traceback printed on stdout -> INVALID", (1, bh_out + tb, ""), "INVALID_TEST_RUN"),
     ("FAIL lines but exit 0 (inconsistent) -> INVALID", (0, bh_out, ""), "INVALID_TEST_RUN"),
     ("no FAIL but exit 1 (inconsistent) -> INVALID", (1, ok_out, ""), "INVALID_TEST_RUN"),
+    # v0.47: the summary must agree with the test lines and be the last line
+    ("FAIL + '36/36 passed' + exit 1 (contradiction) -> INVALID",
+     (1, "\n".join(["PASS Y1a x"] * (N - 1) + ["FAIL Y2 E1 y"]) + f"\n{N}/{N} passed\n", ""), "INVALID_TEST_RUN"),
+    ("FAIL + 36 PASS lines + '35/36 passed' (passed + failed != total) -> INVALID",
+     (1, "\n".join(["PASS Y1a x"] * N + ["FAIL Y2 E1 y"]) + f"\n{N-1}/{N} passed\n", ""), "INVALID_TEST_RUN"),
+    ("2 FAIL lines but '35/36 passed' -> INVALID",
+     (1, "\n".join(["PASS Y1a x"] * (N - 2) + ["FAIL Y2 a", "FAIL Y3 b"]) + f"\n{N-1}/{N} passed\n", ""), "INVALID_TEST_RUN"),
+    ("output after the summary (summary not the last line) -> INVALID", (1, bh_out + "something else\n", ""), "INVALID_TEST_RUN"),
+    ("summary repeated, then an extra FAIL after it -> INVALID", (1, bh_out + "FAIL Y9 late\n", ""), "INVALID_TEST_RUN"),
+    ("two behavioural FAILs, consistent '34/36 passed' -> KILLED",
+     (1, "\n".join(["PASS Y1a x"] * (N - 2) + ["FAIL Y2 a", "FAIL Y3 b"]) + f"\n{N-2}/{N} passed\n", ""), "KILLED"),
+    ("trailing blank lines after the summary are ignored -> KILLED", (1, bh_out + "\n\n", ""), "KILLED"),
 ]
 for name, (rc, so, se), exp in cases:
     st, _ = R.classify(rc, so, se, N)
