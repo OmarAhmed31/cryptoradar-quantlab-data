@@ -8,7 +8,14 @@ PASS classify: summary total differs from the baseline (tests skipped) -> INVALI
 PASS classify: traceback printed on stdout -> INVALID INVALID_TEST_RUN
 PASS classify: FAIL lines but exit 0 (inconsistent) -> INVALID INVALID_TEST_RUN
 PASS classify: no FAIL but exit 1 (inconsistent) -> INVALID INVALID_TEST_RUN
+PASS classify: FAIL + '36/36 passed' + exit 1 (contradiction) -> INVALID INVALID_TEST_RUN
+PASS classify: FAIL + 36 PASS lines + '35/36 passed' (passed + failed != total) -> INVALID INVALID_TEST_RUN
+PASS classify: 2 FAIL lines but '35/36 passed' -> INVALID INVALID_TEST_RUN
+PASS classify: output after the summary (summary not the last line) -> INVALID INVALID_TEST_RUN
+PASS classify: summary repeated, then an extra FAIL after it -> INVALID INVALID_TEST_RUN
+PASS classify: two behavioural FAILs, consistent '34/36 passed' -> KILLED KILLED
+PASS classify: trailing blank lines after the summary are ignored -> KILLED KILLED
 PASS real run: SyntaxError in the code -> INVALID_TEST_RUN, not KILLED ('INVALID_TEST_RUN', 1)
 PASS real run: crash (NameError) inside the engine -> INVALID_TEST_RUN, not KILLED ('INVALID_TEST_RUN', 1)
 PASS real run: unmutated code -> SURVIVED (complete 36/36) ('SURVIVED', 0)
-13/13 passed
+20/20 passed
