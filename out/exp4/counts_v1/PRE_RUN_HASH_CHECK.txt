@@ -1,0 +1,15 @@
+Pre-run hash check (2026-11-11, before the ONE Experiment 4 counts run)
+HEAD 0608994130348d9c87074a90013493fc060b9176
+approved code commit a342099f54a2a9a26361a63fa8593ccd6cdca1a3
+code/test diff a342099..HEAD: 
+lab/exp4_counts.py: OK
+lab/exp3_counts.py: OK
+tests/test_exp4.py: OK
+tests/run_exp4_mutants.py: OK
+tests/test_mutant_runner.py: OK
+tests/run_exp4_once.py: OK
+docs/EXP4_COUNTS_CODE_NOTE_v0.4.md: OK
+docs/EXP4_CAPITAL_ALLOCATION_DESIGN_PROPOSAL_v0.5.md: OK
+5dc38aa95599526c17ad42fc98aa37a87abdb10d84e071eb959805fd11758c5f  out/thresholds/run_v1/thresholds.json
+67221b1037e2800ca4a5a7696b996a78df14df898944e5aecb8f0c924c1e3e59  out/research_protocol/v1.2/forced_exit_reference.csv
+e582ca5f098035276bcd17b25d6ee98dac457124fc74664e81d2f07f45759d65  out/market_intelligence/dev_pack_v1/PACK_MANIFEST.json
